@@ -1,6 +1,9 @@
 <?php
 
 
+use App\Skill;
+use App\SkillLevel;
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
@@ -15,4 +18,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/player/create_submit', 'PlayerController@createSubmit');
 
 
+});
+
+
+View::composer(array('popups.createSkillSelector'), function($view)
+{
+	$selectedProducts = "a1, a2";
+	$view->with(['skills' => Skill::all(), "skilllevels"=>SkillLevel::all()]);
 });

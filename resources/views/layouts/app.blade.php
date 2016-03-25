@@ -11,11 +11,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
-    <!-- Styles -->
+	<!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
 
     <link href="{{ URL::asset('css/player.css') }}" rel="stylesheet">
+	<link href="css/create.css" rel='stylesheet' type='text/css'>
+	<script src="js/skill/create.js"></script>
+   
+
 
 </head>
 <body id="app-layout">
