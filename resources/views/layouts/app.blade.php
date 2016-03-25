@@ -15,15 +15,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+    <link href="{{ URL::asset('css/player.css') }}" rel="stylesheet">
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
@@ -38,7 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="http://anir.be"><img src="img/omen.png" alt="Omen Creator"></a>
+                <a href="http://anir.be"><img src="/img/omen.png" alt="Omen Creator"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -55,6 +48,16 @@
                                 <li><a href="{{ url('/create') }}">Cre&euml;er Vaardigheid</a></li>
                                 <li><a href="{{ url('/skillshowall') }}">Overzicht Vaardigheden</a></li>
                             </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Spelers<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('player/create') }}">Cre&euml;er Speler</a></li>
+                            <li><a href="{{ url('player/') }}">Overzicht Spelers</a></li>
+                        </ul>
                     </li>
                 </ul>
 
