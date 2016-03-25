@@ -1,6 +1,8 @@
 
-.player_form .name{
+.player_form {
     text-align: center;
+    position: relative;
+    margin-bottom:50px;
 }
 
 .player_form input{
@@ -13,8 +15,6 @@
     -o-transition: border-bottom 0.3s;
     transition: border-bottom 0.3s;
     margin:0px; margin-bottom:5px;
-
-
 }
 
     .player_form input:focus {
@@ -22,11 +22,11 @@
         outline:none;
     }
 
-.player_form .name p {
+.player_form  p {
     font-size: 1.2em;
 }
 
-.player_form .name input {
+.player_form  input {
     width:100%;
     text-align:center;
     font-size:2em;
@@ -35,3 +35,58 @@
 .player_form .step{
     display:none;
 }
+
+.player_form #next{
+    position: absolute;
+    background-color:black;
+    color:white;
+    text-align: center;
+    padding:10px;
+    right:0px;
+    height:50px;
+    bottom:-70px; //holding for account 20 padding
+
+}
+
+    .player_form #next:hover{
+        background-color:#111;
+        cursor: pointer;
+    }
+
+
+.player_form ul.buttons{
+    padding:0px;
+    list-style-type: none;
+    clear:both;
+}
+
+    .player_form ul.buttons li{
+        display:inline-block;
+        width:25%;
+        box-sizing:border-box;
+        float:left;
+        padding:5px;
+        -webkit-transition: background-color 0.3s;
+        -moz-transition: background-color 0.3s;
+        -ms-transition: background-color 0.3s;
+        -o-transition: background-color 0.3s;
+        transition: background-color 0.3s;
+        font-size:12px;
+    }
+
+        .player_form .buttons li:hover{
+            background-color:white;
+            cursor: pointer;
+        }
+
+        .player_form .buttons li section{
+
+            padding:5px;
+            box-shadow: 1px 1px 10px black;
+            width:100%;
+        }
+
+        .player_form .buttons li.selected section{
+            background-color: #BF4638;
+            color:white;
+        }

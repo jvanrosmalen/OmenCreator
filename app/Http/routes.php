@@ -4,6 +4,7 @@
 use App\Skill;
 use App\SkillLevel;
 
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 

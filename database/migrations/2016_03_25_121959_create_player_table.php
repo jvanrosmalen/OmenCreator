@@ -16,10 +16,10 @@ class CreatePlayerTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->string('status');
-            $table->integer('focus');
+            $table->string('class');
+            $table->integer('race');
+            $table->integer('faith');
             $table->integer('experience');
-            $table->integer('ras');
         });
     }
 
