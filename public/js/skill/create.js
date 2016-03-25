@@ -1,7 +1,9 @@
-Create = function(){
+var Create = new function(){
+	var self = this;
 	
-}
-
-Create.submitSkill(inputArray){
-	
+	self.addSkillPrereq = function(set){
+		$("#createSkillSelector").fadeIn();
+		event.preventDefault();
+		console.log("addSkillPrereg " + set );
+	};
 }

@@ -1,0 +1,41 @@
+.desc_long {
+	width: 100%;
+	height: 200px;
+}
+
+.nicEdit-main{
+     background-color: #FFF;
+}
+
+.skill_prereqs {
+	width: 100%;
+	height: 50px;
+	background-color: #FFF;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-color: #AAA;
+}
+
+.skillSelector {
+	width: 800px;
+	height: 500px;
+	position: relative;
+	background-color: white;
+	box-shadow: 1px 1px 10px black;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+}
+
+.popup {
+	display: none;
+}
+
+.popup .wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	background-color: RGBA(200, 200, 200, 0.3);
+}

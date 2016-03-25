@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 @extends('layouts.app')
-	<body>
 
 @section('content')
+	
+
 		<div class='container'>
 			<div class='row'>
 				<div class='col-xs-12'>
@@ -11,7 +12,7 @@
 				</div>
 			</div>
 			
-			<form action="/create_submit" method="POST">
+ 			<form action="/create_submit" method="POST">
 				<div class='row well'>
 					<div class='col-xs-2'>
 						Naam:
@@ -52,18 +53,6 @@
 				</div>
 				
 				<div class="row well">
-					<div class="col-xs-2">Profiel prereq:</div>
-					<div class="col-xs-3">
-						<input type='number' name='profile_amount' min='0' max='20' value='0' style="width: 40px;">
-						<select name='profile_type'>
-							@foreach($stats as $stat)
-								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				
-				<div class="row well">
 					<div class="row">
 						<div class="col-xs-2">Korte beschrijving:</div>
 						<div class="col-xs-10">
@@ -79,9 +68,43 @@
 								bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 							</script>
 						
-							<textarea name="desc_long" style="width: 100%; height: 300px; background-color:0xFFFFFF;"></textarea>
+							<textarea name="desc_long" class="desc_long"></textarea>
 						</div>
 					</div>
+				</div>
+
+				<div class="row well">
+					<div class="col-xs-2">Profiel prereq:</div>
+					<div class="col-xs-3">
+						<input type='number' name='profile_amount' min='0' max='20' value='0' style="width: 40px;">
+						<select name='profile_type'>
+							@foreach($stats as $stat)
+								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				
+				<div class="row well">
+					<div class="col-xs-2">Vaardigheid prereq:</div>
+					<div class="col-xs-3">
+						<div class="skill_prereqs prereqs_set1"></div>
+					</div>
+					<div class="col-xs-1">
+						<button type="button button_set1" class="btn btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq(1);">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="col-xs-1"><b>OF</b></div>
+					<div class="col-xs-3">
+						<div class="skill_prereqs prereqs_set2"></div>
+					</div>
+					<div class="col-xs-1">
+						<button type="button button_set2" class="btn btn-default" aria-label="Left Align">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</button>
+					</div>
+					
 				</div>
 				
 				<div class="row well">
@@ -109,6 +132,9 @@
 				</div>
 			</form>
 		</div>
+		
+		@include('popups.createSkillSelector');
+		
 		@endsection
-	</body>
+
 </html>

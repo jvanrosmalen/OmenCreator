@@ -1,5 +1,7 @@
 <?php
 
+use App\Skill;
+use App\SkillLevel;
 /*
  * Testje
  */
@@ -48,4 +50,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+});
+
+
+View::composer(array('popups.createSkillSelector'), function($view)
+{
+	$selectedProducts = "a1, a2";
+	$view->with(['skills' => Skill::all(), "skilllevels"=>SkillLevel::all()]);
 });
