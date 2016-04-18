@@ -16,6 +16,7 @@
 
 	<link href="css/create.css" rel='stylesheet' type='text/css'>
 	<script src="js/skill/create.js"></script>
+   <script src="js/ajax/ajaxInterface.js"></script>
    
     <style>
         body {

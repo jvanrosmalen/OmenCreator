@@ -30,6 +30,7 @@ Route::get('/create', 'SkillController@showSkillCreate');
 Route::post('/create_submit', 'SkillController@submitSkillCreate');
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
+Route::get('/jsonskill', 'JsonSkillController@decodeJson');
 
 /*
 |--------------------------------------------------------------------------

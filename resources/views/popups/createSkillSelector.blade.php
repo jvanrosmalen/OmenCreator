@@ -9,13 +9,13 @@
 			
 				<div class="row">
 					<div class="col-xs-7">
-						<h3>Vaardigheden</h3>
+						<h3>Selecteer &eacute;&eacute;n of meer vaardigheden</h3>
 					</div>
 					
 					<div class="col-xs-5">
            				<div id="skillSelectorSearch">
                             <div class="input-group col-md-12">
-                                <input id="skillFilter"  type="text" class="search-query form-control" placeholder="Zoeken" onchange="Create.filterSkills();"/>
+                                <input id="skillSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken (Geselecteerde items blijven getoond)" onchange="Create.skillSearch();"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-danger" type="button">
                                         <span class=" glyphicon glyphicon-search"></span>
@@ -48,7 +48,7 @@
 					 
 					        <tbody id="skills">
 					            @foreach ($skills as $skill)
-					                <tr id="{{ $skill->id }}">
+					                <tr id="{{ $skill->id }}" onclick="Create.selectSkill(event);">
 					                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
 					                    <td class="col-xs-4">{{ $skill->descriptionSmall }}</td>
 					                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
@@ -60,18 +60,18 @@
 					</div>
 					
 					<div class="col-xs-2 well">
-				    	<h4>Toon:</h4>
-				    	<hr>
-				    	<form>
+				    	<form id="filterSkillsForm" content="{{ csrf_token() }}">
 				    		@foreach($skilllevels as $skilllevel)
-								<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked onClick="ShowAll.getFilteredSkills()"> {{$skilllevel->skill_level}}<br>
+								<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked> {{$skilllevel->skill_level}}<br>
 		  					@endforeach
 		  					<br>
 				    		@foreach($playerclasses as $playerclass)
-								<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked  onClick="ShowAll.getFilteredSkills()"> {{$playerclass->class_name}}<br>
+								<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked> {{$playerclass->class_name}}<br>
 		  					@endforeach
-		  					
 						</form>
+						<br>
+						<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterSkills(event);">Filter</button>
+						
 			    	</div>
 			    </div>
 			    
