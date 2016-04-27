@@ -1,6 +1,6 @@
 .desc_long {
 	width: 100%;
-	height: 200px;
+	height: 180px;
 }
 
 .nicEdit-main {
@@ -9,11 +9,12 @@
 
 .skill_prereqs {
 	width: 100%;
-	height: 50px;
+	height: 70px;
 	background-color: #FFF;
 	overflow-y: scroll;
 	border: 1px solid;
 	border-color: #AAA;
+	padding: 0px;
 }
 
 .skillSelector {
@@ -151,4 +152,14 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 
 .selected {
 	background-color: RGBA(102, 255, 102, 0.3) !important;
+}
+
+.submitted {
+	background-color: RGBA(100, 100, 100, 0.3) !important;
+	font-style: italic !important;
+}
+
+.checkbox_text {
+	margin-left: 5px;
+	margin-right: 20px;
 }

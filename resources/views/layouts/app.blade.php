@@ -15,8 +15,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
 	<link href="css/create.css" rel='stylesheet' type='text/css'>
+	<link href="css/mainstyle.css" rel='stylesheet' type='text/css'>
+    <script src="js/skill/Skill.js"></script>
 	<script src="js/skill/create.js"></script>
-   <script src="js/ajax/ajaxInterface.js"></script>
+    <script src="js/ajax/ajaxInterface.js"></script>
    
     <style>
         body {
@@ -41,7 +43,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="http://anir.be"><img src="img/omen.png" alt="Omen Creator"></a>
+                <a href="{{ url('/home') }}"><img src="img/omen.png" alt="Omen Creator"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">

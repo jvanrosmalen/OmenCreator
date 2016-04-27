@@ -8,7 +8,7 @@
 		<div class='container'>
 			<div class='row'>
 				<div class='col-xs-12'>
-					<h1>Cre&euml;er Nieuwe Vaardigheid</h1>
+					<h3>Cre&euml;er Nieuwe Vaardigheid</h3>
 				</div>
 			</div>
 			
@@ -20,35 +20,35 @@
 					<div class='col-xs-3'>
 						<input type="text" name="skill_name" style="width: 100%;">
 					</div>
-					 			
-					<div class='col-xs-1'>
-						Kosten:
-					</div>
-					<div class='col-xs-1'>
-						<input type="number" name="ep_cost" min="1" max="6" value='1'> EP
-					</div> 
 					
-					<div class='col-xs-1'>
-						Klasse:
-					</div>	
-					<div>
+					<div class='col-xs-7'> 			
 						<div class='col-xs-1'>
-						<select name='player_class'>
-							@foreach($playerclasses as $playerclass)
-								<option value='{{$playerclass->id}}'>{{$playerclass->class_name}}</option>
-							@endforeach
-						</select>
-					</div>					</div>
-					
-					<div class='col-xs-1'>
-						Niveau:
-					</div>
-					<div class='col-xs-1'>
-						<select name='skill_level'>
-							@foreach($levels as $level)
-								<option value='{{$level->id}}'>{{$level->skill_level}}</option>
-							@endforeach
-						</select>
+							Kosten:
+						</div>
+						<div class='col-xs-2'>
+							<input type="number" name="ep_cost" min="1" max="6" value='1'> EP
+						</div> 
+	
+						<div class= "col-xs-2">
+							Inkomsten:
+						</div>
+						<div class="col-xs-3">
+							<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
+							<select name='income_type'>
+								@foreach($coins as $coin)
+									<option value='{{$coin->id}}'>{{$coin->coin_name}}</option>
+								@endforeach
+							</select>
+						</div>
+											
+						<div class='col-xs-1'>Niveau:</div>
+						<div class='col-xs-3'>
+							<select name='skill_level'>
+								@foreach($levels as $level)
+									<option value='{{$level->id}}'>{{$level->skill_level}}</option>
+								@endforeach
+							</select>
+						</div>
 					</div>
 				</div>
 				
@@ -83,24 +83,28 @@
 							@endforeach
 						</select>
 					</div>
+					
+					<div class="col-xs-3">
+						<input tabindex="1" type="checkbox" name="mentor"><span class="checkbox_text">Mentor Vereist</span>
+					</div>
 				</div>
 				
 				<div class="row well">
 					<div class="col-xs-2">Vaardigheid prereq:</div>
 					<div class="col-xs-3">
-						<div class="skill_prereqs prereqs_set1"></div>
+						<div id="prereqs_set1" class="skill_prereqs"></div>
 					</div>
 					<div class="col-xs-1">
-						<button type="button button_set1" class="btn btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq(1);">
+						<button type="button button_set1" class="btn btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq('set1');">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 					</div>
 					<div class="col-xs-1"><b>OF</b></div>
 					<div class="col-xs-3">
-						<div class="skill_prereqs prereqs_set2"></div>
+						<div id="prereqs_set2" class="skill_prereqs"></div>
 					</div>
 					<div class="col-xs-1">
-						<button type="button button_set2" class="btn btn-default" aria-label="Left Align">
+						<button type="button button_set2" class="btn btn-default disabled" aria-label="Left Align">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 					</div>
@@ -109,16 +113,21 @@
 				
 				<div class="row well">
 					<div class="row">
-						<div class= "col-xs-2">
-							Inkomsten:
-						</div>
-						<div class="col-xs-2">
-							<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
-							<select name='income_type'>
-								@foreach($coins as $coin)
-									<option value='{{$coin->id}}'>{{$coin->coin_name}}</option>
+						<div class='col-xs-2'>
+							Klasse:
+						</div>	
+						<div>
+							<div class='col-xs-10'>
+								@foreach($playerclasses as $playerclass)
+										<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
 								@endforeach
-							</select>
+								
+<!-- 								$friends_checked = Input::get('friend'); -->
+<!-- if(is_array($friends_checked)) -->
+<!-- { -->
+<!--    // do stuff with checked friends -->
+<!-- } -->								
+							</div>
 						</div>
 					</div>
 				</div>

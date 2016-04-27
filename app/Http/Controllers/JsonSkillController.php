@@ -12,7 +12,11 @@ class JsonSkillController extends Controller {
 		
 		if(Request::has('levels')){
 			$levels_filter = Request::input("levels", []);
-			$skills = DB::table('skills')->whereIn('level', $levels_filter)->get();
+			$skills = DB::table('skills')
+				->join('skilllevels', 'skills.level', '=', 'skilllevels.id')
+				->whereIn('level', $levels_filter)
+				->select('skills.*', 'skilllevels.skill_level as levelName')
+				->get();
 		}
 		
 		if(Request::has('classes')){
