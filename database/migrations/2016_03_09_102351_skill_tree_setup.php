@@ -107,6 +107,7 @@ class SkillTreeSetup extends Migration {
 			$table->integer('level')->unsigned();
 			$table->string ( 'descriptionSmall', 255 );
 			$table->text ( 'descriptionLong' );
+			$table->boolean('mentorRequired');
 		} );
 		// set foreign keys
 		Schema::table('Skills', function(Blueprint $table){

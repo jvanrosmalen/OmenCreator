@@ -45,20 +45,20 @@
 			    </table>
 		    </div>
 		    
-		    <div class="col-xs-2 well">
-		    	<h4>Toon:</h4>
-		    	<hr>
-		    	<form>
+			<div class="col-xs-2 well">
+		    	<form id="filterSkillsForm" content="{{ csrf_token() }}">
 		    		@foreach($skilllevels as $skilllevel)
-						<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked onClick="ShowAll.getFilteredSkills()"> {{$skilllevel->skill_level}}<br>
+						<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked> {{$skilllevel->skill_level}}<br>
   					@endforeach
   					<br>
 		    		@foreach($playerclasses as $playerclass)
-						<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked  onClick="ShowAll.getFilteredSkills()"> {{$playerclass->class_name}}<br>
+						<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked> {{$playerclass->class_name}}<br>
   					@endforeach
-  					
 				</form>
-		    </div>
+				<br>
+				<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterSkills(event);">Filter</button>
+				
+	    	</div>
 	    </div>
 	</div>
 @endsection

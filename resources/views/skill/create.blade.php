@@ -54,6 +54,36 @@
 				
 				<div class="row well">
 					<div class="row">
+						<div class='col-xs-2'>
+							Klasse:
+						</div>	
+						<div class='col-xs-10'>
+							@foreach($playerclasses as $playerclass)
+									<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
+							@endforeach
+							
+<!-- 								$friends_checked = Input::get('friend'); -->
+<!-- if(is_array($friends_checked)) -->
+<!-- { -->
+<!--    // do stuff with checked friends -->
+<!-- } -->								
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class='col-xs-2'>
+							Afkomst:
+						</div>
+						<div class='col-xs-10'>
+							@foreach($playerraces as $playerrace)
+									<input tabindex="1" type="checkbox" name="playerrace[]" value="{{$playerrace->id}}"><span class="checkbox_text">{{$playerrace->race_name}}</span>
+							@endforeach
+						</div>
+					</div>
+				</div>
+				
+				<div class="row well">
+					<div class="row">
 						<div class="col-xs-2">Korte beschrijving:</div>
 						<div class="col-xs-10">
 							<input type="text" name="desc_short" maxlength="255" style="width: 100%;">
@@ -76,8 +106,18 @@
 				<div class="row well">
 					<div class="col-xs-2">Profiel prereq:</div>
 					<div class="col-xs-3">
-						<input type='number' name='profile_amount' min='0' max='20' value='0' style="width: 40px;">
-						<select name='profile_type'>
+						<input type='number' name='profile_prereq_amount' min='0' max='20' value='0' style="width: 40px;">
+						<select name='profile_prereq'>
+							@foreach($stats as $stat)
+								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
+							@endforeach
+						</select>
+					</div>
+					
+					<div class="col-xs-2">Profiel bonus:</div>
+					<div class="col-xs-2">
+						<input type='number' name='profile_bonus_amount' min='0' max='20' value='0' style="width: 40px;">
+						<select name='profile_bonus'>
 							@foreach($stats as $stat)
 								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
 							@endforeach
@@ -111,26 +151,6 @@
 					
 				</div>
 				
-				<div class="row well">
-					<div class="row">
-						<div class='col-xs-2'>
-							Klasse:
-						</div>	
-						<div>
-							<div class='col-xs-10'>
-								@foreach($playerclasses as $playerclass)
-										<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
-								@endforeach
-								
-<!-- 								$friends_checked = Input::get('friend'); -->
-<!-- if(is_array($friends_checked)) -->
-<!-- { -->
-<!--    // do stuff with checked friends -->
-<!-- } -->								
-							</div>
-						</div>
-					</div>
-				</div>
 				
 				<div class="row">
 					<div class="col-xs-2">
