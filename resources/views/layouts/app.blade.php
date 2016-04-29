@@ -15,6 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
 	<link href="css/create.css" rel='stylesheet' type='text/css'>
+	<link href="css/showall.css" rel='stylesheet' type='text/css'>
 	<link href="css/mainstyle.css" rel='stylesheet' type='text/css'>
     <script src="js/skill/Skill.js"></script>
 	<script src="js/skill/create.js"></script>

@@ -1,0 +1,62 @@
+.skillDetails {
+	width: 1000px;
+	height: 550px;
+	position: relative;
+	background-color: white;
+	box-shadow: 1px 1px 10px black;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+}
+
+#skill_name {
+	font-size: 20px;
+	line-height: 30px;
+	vertical-align: bottom;
+	font-weight: bold;
+}
+
+#skill_ep_cost {
+	font-size: 16px;
+	vertical-align: bottom;
+	line-height: 30px;
+}
+
+.popup {
+	display: none;
+}
+
+.popup .wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	background-color: RGBA(200, 200, 200, 0.3);
+}
+
+#showSkillDetails {
+	margin-bottom: 10px;
+}
+
+
+.search-query:focus+button {
+	z-index: 3;
+}
+
+.close-button {
+	float: right;
+	margin-top: -14px;
+	margin-bottom: 5px;
+}
+
+.hidden {
+	display: none;
+}
+
+#skill_desc_long {
+	width: 100%;
+	height: 180px;
+	resize: none;
+	border: none;
+}

@@ -32,15 +32,19 @@
 			            </tr>
 			        </thead>
 			 
-			        <tbody>
-			            @foreach ($skills as $skill)
-			                <tr>
-			                    <td class="col-xs-2">{{ $skill->name }}</td>
-			                    <td class="col-xs-3">{{ $skill->descriptionSmall }}</td>
-			                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
-			                    <td class="col-xs-2">{{ $skilllevels[$skill->level]->skill_level }}</td>
-			                </tr>
-			            @endforeach
+			        <tbody id="skills">
+				            @foreach ($skills as $skill)
+				                <tr id="{{ $skill->id }}" onclick="ShowAll.showSkillDetails();">
+				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
+				                    <td class="col-xs-4">{{ $skill->descriptionSmall }}</td>
+				                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
+				           			@foreach ( $skilllevels as $skilllevel)
+				           				@if($skilllevel->id == $skill->level)
+				                    		<td class="col-xs-3">{{ $skilllevel->skill_level }}</td>
+				                    	@endif
+				                    @endforeach
+				                </tr>
+				            @endforeach
 			        </tbody>
 			    </table>
 		    </div>
@@ -61,7 +65,10 @@
 	    	</div>
 	    </div>
 	</div>
-@endsection
+	
+	@include('popups.showSkillDetails');
+
+	@endsection
 </body>
 
 <!-- 	<body>

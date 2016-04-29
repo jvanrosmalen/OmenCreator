@@ -1,11 +1,13 @@
-ShowAll = function(){
-	
-}
+var ShowAll = new function(){
+	var self = this;
 
-ShowAll.getFilteredSkills = function(){
-	level_filter = $(".level_filter");
-	class_filter = $(".class_filter");
+	self.showSkillDetails = function(set){
+		$("#showSkillDetails").fadeIn();
+		event.preventDefault();
+	};
 	
-	console.log(level_filter);
-	console.log(class_filter);
+	self.closeSkillDetails = function(){
+		$("#showSkillDetails").fadeOut();
+	};
+	
 }
