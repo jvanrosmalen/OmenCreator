@@ -15,12 +15,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
 	<link href="css/create.css" rel='stylesheet' type='text/css'>
+	<link href="css/equipment.css" rel='stylesheet' type='text/css'>
 	<link href="css/showall.css" rel='stylesheet' type='text/css'>
 	<link href="css/mainstyle.css" rel='stylesheet' type='text/css'>
     <script src="js/skill/Skill.js"></script>
 	<script src="js/skill/create.js"></script>
     <script src="js/ajax/ajaxInterface.js"></script>
-   
+  
     <style>
         body {
             font-family: 'Lato';
@@ -60,6 +61,55 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/create') }}">Cre&euml;er Vaardigheid</a></li>
                                 <li><a href="{{ url('/skillshowall') }}">Overzicht Vaardigheden</a></li>
+                            </ul>
+                    </li>
+
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 Uitrusting<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+		                       <li class="menu-item dropdown dropdown-submenu">
+		                            <a href="{{ url('/create_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Cre&euml;er Uitrusting</a>
+		                            <ul class="dropdown-menu">
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/create_armor') }}">Cre&euml;er Pantser</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/create_shield') }}">Cre&euml;er Schild</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/create_weapon') }}">Cre&euml;er Wapen</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/create_craft_equipment') }}">Cre&euml;er Ambachtsuitrusting</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/create_general_equipment') }}">Cre&euml;er Algemene Uitrusting</a>
+		                                </li>
+		                            </ul>
+		                        </li>
+                                <li class="menu-item dropdown dropdown-submenu">
+                                	<a href="{{ url('/showall_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Overzicht Uitrusting</a>
+		                            <ul class="dropdown-menu">
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/showall_armor') }}">Overzicht Pantsers</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/showall_shield') }}">Overzicht Schilden</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/showall_weapon') }}">Overzicht Wapens</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/showall_craft_equipment') }}">Overzicht Ambachtsuitrusting</a>
+		                                </li>
+		                                <li class="menu-item ">
+		                                    <a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a>
+		                                </li>
+		                            </ul>
+                                </li>
                             </ul>
                     </li>
                 </ul>

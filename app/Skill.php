@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 class Skill extends Model {
-
+	
 	public $timestamps = false;
 	
 	private $saved = false;

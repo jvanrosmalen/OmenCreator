@@ -31,6 +31,10 @@ Route::post('/create_submit', 'SkillController@submitSkillCreate');
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('/jsonskill', 'JsonSkillController@decodeJson');
+Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson');
+Route::get('/create_armor', 'EquipmentController@showCreateArmor');
+Route::post('/create_armor_submit', 'EquipmentController@submitArmorCreate');
+Route::get('/showall_armor', 'EquipmentController@showAllArmor');
 
 /*
 |--------------------------------------------------------------------------
