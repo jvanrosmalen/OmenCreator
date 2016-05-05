@@ -4,23 +4,23 @@
 	<div class='container'>
 		<div class='row'>
 			<div class='col-xs-12'>
-				@if($armor == null)
-					<h3>Cre&euml;er Nieuw Pantser</h3>
+				@if($shield == null)
+					<h3>Cre&euml;er Nieuw Schild</h3>
 				@else
-					<h3>Aanpassen Pantser</h3>
+					<h3>Aanpassen Schild</h3>
 				@endif
 			</div>
 		</div>
 	
-		@if ($armor == null)
-		<form id="{{ $armor->id }}" action="/create_armor_submit" method="POST">
+		@if ($shield == null)
+		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="/create_shield_submit" method="POST">
 		@else
-		<form id="{{ $armor->id }}" action="/create_armor_update/{{ $armor->id }}" method="POST">
+		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="/create_shield_update/{{ $shield->id }}" method="POST">
 		@endif
 			<div class='row well'>
 				<div class='col-xs-2'>Naam:</div>
 				<div class='col-xs-3'>
-					<input onfocus= "Armor.hideNameWarning()" onfocusout="Armor.checkName()" id="armor_name" type="text" name="armor_name" style="width: 100%;" value="{{ ($armor!=null?$armor->name:'') }}">
+					<input onfocus= "Shield.hideNameWarning()" onfocusout="Shield.checkName()" id="shield_name" type="text" name="shield_name" style="width: 100%;" value="{{ ($shield!=null?$shield->name:'') }}">
 				</div>
 				<div class='col-xs-4 name_warning hidden'>Deze naam bestaat al. Kies een andere.</div>
 			</div>
@@ -33,7 +33,7 @@
 						bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 					</script>
 				
-					<textarea name="armor_desc" class="equipment_desc">{{ ($armor!=null?$armor->description:'') }}</textarea>
+					<textarea name="shield_desc" class="equipment_desc">{{ ($shield!=null?$shield->description:'') }}</textarea>
 				</div>
 			</div>
 	
@@ -58,13 +58,13 @@
 				        <tbody>
 				        	<tr>
 				        		<td>
-				        			<input type="text" name="price_normal" style="width: 100%;" value="{{ ($armor!=null?$armor->price_normal:'') }}">
+				        			<input type="text" name="price_normal" style="width: 100%;" value="{{ ($shield!=null?$shield->price_normal:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="price_good" style="width: 100%;" value="{{ ($armor!=null?$armor->price_good:'') }}">
+				        			<input type="text" name="price_good" style="width: 100%;" value="{{ ($shield!=null?$shield->price_good:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="price_master" style="width: 100%;" value="{{ ($armor!=null?$armor->price_master:'') }}">
+				        			<input type="text" name="price_master" style="width: 100%;" value="{{ ($shield!=null?$shield->price_master:'') }}">
 				        		</td>
 				        	</tr>
 				        </tbody>					
@@ -95,13 +95,13 @@
 				        <tbody>
 				        	<tr>
 				        		<td>
-				        			<input type="text" name="armor_normal" style="width: 100%;" value="{{ ($armor!=null?$armor->armor_normal:'') }}">
+				        			<input type="text" name="armor_normal" style="width: 100%;" value="{{ ($shield!=null?$shield->armor_normal:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="armor_good" style="width: 100%;" value="{{ ($armor!=null?$armor->armor_good:'') }}">
+				        			<input type="text" name="armor_good" style="width: 100%;" value="{{ ($shield!=null?$shield->armor_good:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="armor_master" style="width: 100%;" value="{{ ($armor!=null?$armor->armor_master:'') }}">
+				        			<input type="text" name="armor_master" style="width: 100%;" value="{{ ($shield!=null?$shield->armor_master:'') }}">
 				        		</td>
 				        	</tr>
 				        </tbody>					
@@ -129,13 +129,13 @@
 				        <tbody>
 				        	<tr>
 				        		<td>
-				        			<input type="text" name="structure_normal" style="width: 100%;" value="{{ ($armor!=null?$armor->structure_normal:'') }}">
+				        			<input type="text" name="structure_normal" style="width: 100%;" value="{{ ($shield!=null?$shield->structure_normal:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="structure_good" style="width: 100%;" value="{{ ($armor!=null?$armor->structure_good:'') }}">
+				        			<input type="text" name="structure_good" style="width: 100%;" value="{{ ($shield!=null?$shield->structure_good:'') }}">
 				        		</td>
 				        		<td>
-				        			<input type="text" name="structure_master" style="width: 100%;" value="{{ ($armor!=null?$armor->structure_master:'') }}">
+				        			<input type="text" name="structure_master" style="width: 100%;" value="{{ ($shield!=null?$shield->structure_master:'') }}">
 				        		</td>
 				        	</tr>
 				        </tbody>					
@@ -146,12 +146,12 @@
 			<div class="row button-row">
 				<div class="col-xs-3"></div>
 				<div class="col-xs-2">
-					<input class="btn btn-default" id="submit_button" type="submit" value="{{ ($armor==null?'Cre&euml;er':'Aanpassen') }}"
+					<input class="btn btn-default" id="submit_button" type="submit" value="{{ ($shield==null?'Cre&euml;er':'Aanpassen') }}"
 						style="width: 120px; font-size: 18px;">
 				</div>
 				<div class="col-xs-2"></div>
 				<div class="col-xs-2">
-					<a href="/showall_armor" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+					<a href="/showall_shield" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
 					Cancel
 					</a>
 				</div>

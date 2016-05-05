@@ -32,9 +32,21 @@ Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('/jsonskill', 'JsonSkillController@decodeJson');
 Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson');
-Route::get('/create_armor', 'EquipmentController@showCreateArmor');
+Route::get('/create_armor/{id?}', 'EquipmentController@showCreateArmor');
+Route::get('/show_delete_armor/{id?}', 'EquipmentController@showDeleteArmor');
+Route::get('/delete_armor/{id?}', 'EquipmentController@deleteArmor');
 Route::post('/create_armor_submit', 'EquipmentController@submitArmorCreate');
-Route::get('/showall_armor', 'EquipmentController@showAllArmor');
+Route::post('/create_armor_update/{id?}', 'EquipmentController@updateArmor');
+Route::get('/showall_armor', array( 'as'=> 'showall_armor', 'uses'=>'EquipmentController@showAllArmor'));
+Route::get('/check_armor_name', 'JsonEquipmentController@checkArmorName');
+
+Route::get('/create_shield/{id?}', 'EquipmentController@showCreateShield');
+Route::get('/show_delete_shield/{id?}', 'EquipmentController@showDeleteShield');
+Route::get('/delete_shield/{id?}', 'EquipmentController@deleteShield');
+Route::post('/create_shield_submit', 'EquipmentController@submitShieldCreate');
+Route::post('/create_shield_update/{id?}', 'EquipmentController@updateShield');
+Route::get('/showall_shield', array( 'as'=> 'showall_shield', 'uses'=>'EquipmentController@showAllShield'));
+Route::get('/check_shield_name', 'JsonEquipmentController@checkShieldName');
 
 /*
 |--------------------------------------------------------------------------

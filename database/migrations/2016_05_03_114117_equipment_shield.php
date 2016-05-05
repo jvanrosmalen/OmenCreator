@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EquipmentArmor extends Migration
+class EquipmentShield extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class EquipmentArmor extends Migration
      */
     public function up()
     {
-		Schema::create ( 'Armors', function (Blueprint $table) {
+		Schema::create ( 'Shields', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
 			$table->string ('name');
 			$table->text( 'description' );
@@ -35,6 +35,6 @@ class EquipmentArmor extends Migration
      */
     public function down()
     {
-        Schema::drop('Armors');
+        Schema::drop('Shields');
     }
 }

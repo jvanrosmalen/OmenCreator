@@ -14,13 +14,17 @@
 	<!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-	<link href="css/create.css" rel='stylesheet' type='text/css'>
-	<link href="css/equipment.css" rel='stylesheet' type='text/css'>
-	<link href="css/showall.css" rel='stylesheet' type='text/css'>
-	<link href="css/mainstyle.css" rel='stylesheet' type='text/css'>
-    <script src="js/skill/Skill.js"></script>
-	<script src="js/skill/create.js"></script>
-    <script src="js/ajax/ajaxInterface.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<link href="{{ URL::asset('css/create.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/equipment.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/showall.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/mainstyle.css') }}" rel='stylesheet' type='text/css'>
+    <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
+	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
+    <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
   
     <style>
         body {
@@ -45,7 +49,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="{{ url('/home') }}"><img src="img/omen.png" alt="Omen Creator"></a>
+                <a href="{{ url('/home') }}"><img src="{{ URL::asset('img/omen.png') }}" alt="Omen Creator"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -70,47 +74,35 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-		                       <li class="menu-item dropdown dropdown-submenu">
-		                            <a href="{{ url('/create_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Cre&euml;er Uitrusting</a>
-		                            <ul class="dropdown-menu">
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/create_armor') }}">Cre&euml;er Pantser</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/create_shield') }}">Cre&euml;er Schild</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/create_weapon') }}">Cre&euml;er Wapen</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/create_craft_equipment') }}">Cre&euml;er Ambachtsuitrusting</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/create_general_equipment') }}">Cre&euml;er Algemene Uitrusting</a>
-		                                </li>
-		                            </ul>
-		                        </li>
-                                <li class="menu-item dropdown dropdown-submenu">
-                                	<a href="{{ url('/showall_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Overzicht Uitrusting</a>
-		                            <ul class="dropdown-menu">
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/showall_armor') }}">Overzicht Pantsers</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/showall_shield') }}">Overzicht Schilden</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/showall_weapon') }}">Overzicht Wapens</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/showall_craft_equipment') }}">Overzicht Ambachtsuitrusting</a>
-		                                </li>
-		                                <li class="menu-item ">
-		                                    <a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a>
-		                                </li>
-		                            </ul>
-                                </li>
+                                <li><a href="{{ url('/showall_armor') }}">Pantsers</a></li>
+                                <li><a href="{{ url('/showall_shield') }}">Schilden</a></li>
+                                <li><a href="{{ url('/showall_weapon') }}">Wapens</a></li>
+                                <li><a href="{{ url('/showall_craft_equipment') }}">Ambachtsuitrusting</a></li>
+                                <li><a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a></li>
                             </ul>
+
+<!-- Example in case of submenu <ul class="dropdown-menu" role="menu"> -->
+<!--                                 <li class="menu-item dropdown dropdown-submenu"> -->
+<!--                                 	<a href="{{ url('/showall_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Overzicht Uitrusting</a> -->
+<!-- 		                            <ul class="dropdown-menu"> -->
+<!-- 		                                <li class="menu-item "> -->
+<!-- 		                                    <a href="{{ url('/showall_armor') }}">Overzicht Pantsers</a> -->
+<!-- 		                                </li> -->
+<!-- 		                                <li class="menu-item "> -->
+<!-- 		                                    <a href="{{ url('/showall_shield') }}">Overzicht Schilden</a> -->
+<!-- 		                                </li> -->
+<!-- 		                                <li class="menu-item "> -->
+<!-- 		                                    <a href="{{ url('/showall_weapon') }}">Overzicht Wapens</a> -->
+<!-- 		                                </li> -->
+<!-- 		                                <li class="menu-item "> -->
+<!-- 		                                    <a href="{{ url('/showall_craft_equipment') }}">Overzicht Ambachtsuitrusting</a> -->
+<!-- 		                                </li> -->
+<!-- 		                                <li class="menu-item "> -->
+<!-- 		                                    <a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a> -->
+<!-- 		                                </li> -->
+<!-- 		                            </ul> -->
+<!--                                 </li> -->
+<!--                             </ul> -->
                     </li>
                 </ul>
 

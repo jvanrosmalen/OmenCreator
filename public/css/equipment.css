@@ -1,11 +1,12 @@
-.armor_desc {
-	width: 100%;
-	height: 150px;
+.overview_header {
+	font-size: 32px;
+	font-weight: bold;
+	padding-right: 15px;
+	vertical-align: middle;
 }
 
-.armor_name_row {
-	padding: 8px !important;
-	margin-bottom: 10px !important;
+.button-add {
+	vertical-align: middle;
 }
 
 .detail_name {
@@ -20,6 +21,40 @@
 	text-align: center;
 }
 
-.armor_details {
+.btn-update {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.btn-delete {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.equipment_search_input {
+	vertical-align: middle;
+}
+
+.equipment_desc {
+	width: 100%;
+	height: 150px;
+}
+
+.equipment_name_row {
+	padding: 8px !important;
+	margin-bottom: 10px !important;
+}
+
+.equipment_details {
 	display: none;
+}
+
+.name_warning {
+	background: red;
+	color: white !important;
+	font-weight: bold;
 }

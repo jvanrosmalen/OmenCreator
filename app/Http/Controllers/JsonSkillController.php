@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Request;
+use Response;
 use App\Skill;
 use DB;
 
@@ -23,7 +24,9 @@ class JsonSkillController extends Controller {
 			$class_filter = Request::input("classes", []);
 		}
 		
- 		echo json_encode($skills);
+
+		return Response::json(json_encode($skills));
+//  		echo json_encode($skills);
 	}
 	
 	public function getSkillDetailsJson(){
@@ -72,7 +75,8 @@ class JsonSkillController extends Controller {
 			"skillIncome" => $skillIncome
 			);
 		
-		echo json_encode($retArray);
+		return Response::json(json_encode($retArray));
+// 		echo json_encode($retArray);
 	}
 }
 ?>

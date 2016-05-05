@@ -55,4 +55,38 @@ var AjaxInterface = new function(){
 			}
 		});
 	}
+	
+	self.checkArmorName = function(name, armor_id, callback){
+		$.ajax({
+			url: "/check_armor_name",
+			type: "GET",
+			data: {	"name":name,
+					"armor_id": armor_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(){
+				console.log("JSON error");
+			}
+		});
+	}
+	
+	self.checkShieldName = function(name, shield_id, callback){
+		$.ajax({
+			url: "/check_shield_name",
+			type: "GET",
+			data: {	"name":name,
+					"shield_id": shield_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(){
+				console.log("JSON error");
+			}
+		});
+	}
 }
