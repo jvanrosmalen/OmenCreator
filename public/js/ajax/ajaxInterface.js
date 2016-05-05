@@ -89,4 +89,21 @@ var AjaxInterface = new function(){
 			}
 		});
 	}
+	
+	self.checkWeaponName = function(name, weapon_id, callback){
+		$.ajax({
+			url: "/check_weapon_name",
+			type: "GET",
+			data: {	"name":name,
+					"weapon_id": weapon_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(){
+				console.log("JSON error");
+			}
+		});
+	}
 }

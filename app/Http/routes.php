@@ -48,6 +48,14 @@ Route::post('/create_shield_update/{id?}', 'EquipmentController@updateShield');
 Route::get('/showall_shield', array( 'as'=> 'showall_shield', 'uses'=>'EquipmentController@showAllShield'));
 Route::get('/check_shield_name', 'JsonEquipmentController@checkShieldName');
 
+Route::get('/create_weapon/{id?}', 'EquipmentController@showCreateWeapon');
+Route::get('/show_delete_weapon/{id?}', 'EquipmentController@showDeleteWeapon');
+Route::get('/delete_weapon/{id?}', 'EquipmentController@deleteWeapon');
+Route::post('/create_weapon_submit', 'EquipmentController@submitWeaponCreate');
+Route::post('/create_weapon_update/{id?}', 'EquipmentController@updateWeapon');
+Route::get('/showall_weapon', array( 'as'=> 'showall_weapon', 'uses'=>'EquipmentController@showAllWeapon'));
+Route::get('/check_weapon_name', 'JsonEquipmentController@checkWeaponName');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

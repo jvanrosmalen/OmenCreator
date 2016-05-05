@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use App\Armor;
 use App\Shield;
-use URL;
+use App\Weapon;
 
 class EquipmentController extends Controller
 {
@@ -168,4 +164,68 @@ class EquipmentController extends Controller
 	}
 	//*** END SHIELD FUNCTIONS
 	
+	//*** WEAPON FUNCTIONS
+	public function showCreateWeapon($id = -1){
+		if($id < 0){
+			return view('equipment/weapon/createWeapon', ['weapon'=>null]);
+		}
+		else {
+			$weapon = Weapon::find($id);
+			return view('equipment/weapon/createWeapon', ['weapon'=>$weapon]);
+		}
+	}
+	
+	public function showDeleteWeapon($id = -1){
+		$weapon = Weapon::find($id);
+		return view('equipment/weapon/showDeleteWeapon', ['weapon'=>$weapon]);
+	}
+	
+	public function deleteWeapon($id = -1){
+		$weapon = Weapon::find($id);
+		$weapon->delete();
+		return $this->gotoShowAllWeapon();
+	}
+	
+	public function updateWeapon($id){
+		$weapon = Weapon::find($id);
+	
+		$weapon->name = $_POST["weapon_name"];
+		$weapon->description = $_POST["weapon_desc"];
+		$weapon->price_normal = $_POST["price_normal"];
+		$weapon->price_good = $_POST["price_good"];
+		$weapon->price_master = $_POST["price_master"];
+	
+		$weapon->save();
+
+		return $this->gotoShowAllWeapon();
+	}
+	
+	public function submitWeaponCreate(){
+		$newWeapon = new Weapon();
+	
+		$newWeapon->name = $_POST["weapon_name"];
+		$newWeapon->description = $_POST["weapon_desc"];
+		$newWeapon->price_normal = $_POST["price_normal"];
+		$newWeapon->price_good = $_POST["price_good"];
+		$newWeapon->price_master = $_POST["price_master"];
+	
+		$newWeapon->save();
+	
+		return $this->gotoShowAllWeapon();
+	}
+	
+	public function showAllWeapon(){
+		$weapons = Weapon::all()->sortBy(function($weapon)
+			{
+			    return $weapon->name;
+			});
+		return view('equipment/weapon/showAllWeapon', [ "weapons"=>$weapons]);
+	}
+
+	public function gotoShowAllWeapon(){
+		$url = route('showall_weapon');
+		header("Location:".$url);
+		die();
+	}
+	//*** END WEAPON FUNCTIONS
 }

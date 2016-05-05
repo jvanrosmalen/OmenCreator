@@ -25,6 +25,7 @@
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/weapon/weapon.js') }}"></script>
   
     <style>
         body {

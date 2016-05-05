@@ -6,6 +6,7 @@ use Request;
 use Response;
 use App\Armor;
 use App\Shield;
+use App\Weapon;
 
 class JsonEquipmentController extends Controller
 {
@@ -55,6 +56,32 @@ class JsonEquipmentController extends Controller
 		$shields = Shield::where('name', '=', $name)->get();
 	
 		if(sizeof($shields)>0 && $shields[0]->id != $id){
+			$retBool = true;
+		}
+	
+		return Response::json(json_encode($retBool));
+	}
+
+	public function checkWeaponName(){
+		// True means the name already exists.
+		// False will be returned when:
+		// - the name does not exist
+		// - the name is the same as the id of the armor that is checked.
+		$name = "";
+		$id = 0;
+		$retBool = false;
+	
+		if(Request::has('name')){
+			$name = Request::input('name');
+		}
+	
+		if(Request::has('weapon_id')){
+			$id = Request::input('weapon_id');
+		}
+	
+		$weapons = Weapon::where('name', '=', $name)->get();
+	
+		if(sizeof($weapons)>0 && $weapons[0]->id != $id){
 			$retBool = true;
 		}
 	
