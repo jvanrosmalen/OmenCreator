@@ -56,6 +56,14 @@ Route::post('/create_weapon_update/{id?}', 'EquipmentController@updateWeapon');
 Route::get('/showall_weapon', array( 'as'=> 'showall_weapon', 'uses'=>'EquipmentController@showAllWeapon'));
 Route::get('/check_weapon_name', 'JsonEquipmentController@checkWeaponName');
 
+Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
+Route::get('/create_rule', 'RulesController@showCreateRule');
+Route::post('/create_rule_submit', 'RulesController@submitRuleCreate');
+Route::get('/show_delete_rule_statistic/{id?}', 'RulesController@showDeleteRuleStatistic');
+Route::get('/delete_rule_statistic/{id?}', 'RulesController@deleteRuleStatistic');
+Route::get('/check_rule_submit_statistic', 'JsonRuleController@ruleExistsStatistic');
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

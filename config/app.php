@@ -204,6 +204,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
    		'Form'=> Collective\Html\FormFacade::class,
    		'HTML'=> Collective\Html\HtmlFacade::class,
+    		
+    	// Add to be able to reference to StatisticRule in blade files
+    	'StatisticRule'=> App\Statistic::class,
     ],
 
 ];

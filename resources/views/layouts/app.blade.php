@@ -20,12 +20,14 @@
 	<link href="{{ URL::asset('css/equipment.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/showall.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/mainstyle.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/rule.css') }}" rel='stylesheet' type='text/css'>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/weapon/weapon.js') }}"></script>
+    <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
   
     <style>
         body {
@@ -104,6 +106,16 @@
 <!-- 		                            </ul> -->
 <!--                                 </li> -->
 <!--                             </ul> -->
+                    </li>
+                    
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 Bonusregels<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/showall_rule') }}">Overzicht Bonusregels</a></li>
+                            </ul>
                     </li>
                 </ul>
 

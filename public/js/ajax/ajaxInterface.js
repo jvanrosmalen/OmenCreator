@@ -106,4 +106,26 @@ var AjaxInterface = new function(){
 			}
 		});
 	}
+	
+	self.checkRule = function(ruleStat, ruleOperatorId, ruleValue, callback){
+		var type = ruleStat.split("_")[0];
+		var id = ruleStat.split("_")[1];
+		var myUrl = "/check_rule_submit_"+type;
+		
+		$.ajax({
+			url: myUrl,
+			type: "GET",
+			data: {	"rule_statistic":id,
+					"rule_operator": ruleOperatorId,
+					"rule_value": ruleValue},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(){
+				console.log("JSON error");
+			}
+		});
+	}
 }

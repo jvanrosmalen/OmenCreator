@@ -1,0 +1,17 @@
+.rule_line {
+	padding-bottom: 10px;
+}
+
+.rule_header {
+	font-weight: bold;
+}
+
+.rule_details {
+	display: none;
+}
+
+.rule_warning {
+	background: red;
+	color: white !important;
+	font-weight: bold;	
+}

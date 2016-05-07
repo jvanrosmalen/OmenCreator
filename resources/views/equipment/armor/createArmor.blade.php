@@ -13,9 +13,9 @@
 		</div>
 	
 		@if ($armor == null)
-		<form id="{{ $armor->id }}" action="/create_armor_submit" method="POST">
+		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="/create_armor_submit" method="POST">
 		@else
-		<form id="{{ $armor->id }}" action="/create_armor_update/{{ $armor->id }}" method="POST">
+		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="/create_armor_update/{{ $armor->id }}" method="POST">
 		@endif
 			<div class='row well'>
 				<div class='col-xs-2'>Naam:</div>
