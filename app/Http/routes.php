@@ -62,6 +62,9 @@ Route::post('/create_rule_submit', 'RulesController@submitRuleCreate');
 Route::get('/show_delete_rule_statistic/{id?}', 'RulesController@showDeleteRuleStatistic');
 Route::get('/delete_rule_statistic/{id?}', 'RulesController@deleteRuleStatistic');
 Route::get('/check_rule_submit_statistic', 'JsonRuleController@ruleExistsStatistic');
+Route::get('/check_rule_submit_resistance', 'JsonRuleController@ruleExistsResistance');
+Route::get('/show_delete_rule_resistance/{id?}', 'RulesController@showDeleteRuleResistance');
+Route::get('/delete_rule_resistance/{id?}', 'RulesController@deleteRuleResistance');
 
 
 /*

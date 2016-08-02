@@ -15,3 +15,13 @@
 	color: white !important;
 	font-weight: bold;	
 }
+
+.rule_name_row {
+	padding: 8px !important;
+	margin-bottom: 10px !important;
+}
+
+.rule_header {
+	padding: 6px !important;
+	margin-bottom: 8px !important;
+}

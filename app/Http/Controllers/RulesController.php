@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\StatisticRule;
+use App\ResistanceRule;
 use App\Statistic;
 use App\RulesOperator;
+use App\Resistance;
 
 class RulesController extends Controller
 {
@@ -23,11 +25,18 @@ class RulesController extends Controller
 		{
 			return sprintf('%-30s%-5s%-5s', $rule->statistic->statistic_name, $rule->rulesOperator, $rule->value );
 		});
-		return view('rules/showAllRule', [ "statrules"=>$statRules]);
+		
+		$resRules = ResistanceRule::all()->sortBy(function($rule)
+		{
+			return sprintf('%-30s%-5s%-5s', $rule->resistance->resistance_name, $rule->rulesOperator, $rule->value );
+		});
+		
+		return view('rules/showAllRule', [ "statrules"=>$statRules, "resrules"=> $resRules]);
 	}
 	
 	public function showCreateRule(){
-		return view('rules/createRule', ["statistics"=>Statistic::all(),
+		return view('rules/createRule', [	"statistics"=>Statistic::all(),
+											"resistances"=>Resistance::all(),
 											"rulesOperators"=>RulesOperator::all()
 											]);
 	}
@@ -38,6 +47,8 @@ class RulesController extends Controller
 		
 		if(strcasecmp($ruletype, 'statistic') == 0){
 			$this->submitRuleCreateStatistic($statId, $postData);
+		}else if(strcasecmp($ruletype, 'resistance') == 0){
+			$this->submitRuleCreateResistance($statId, $postData);
 		}
 		
 		return $this->gotoShowAllRule();
@@ -53,13 +64,36 @@ class RulesController extends Controller
 		$newRule->save();
 	}
 	
+	private function submitRuleCreateResistance($resId, $postData){
+		$newRule = new ResistanceRule();
+	
+		$newRule->Resistances_id = $resId;
+		$newRule->rulesOperator = $postData["rule_operator"];
+		$newRule->value = $postData["rule_value"];
+	
+		$newRule->save();
+	}
+	
+	
 	public function showDeleteRuleStatistic($id){
 		$rule = StatisticRule::find($id);
 		return view('rules/showDeleteRule', ['rule'=>$rule, 'type'=>'statistic']);		
 	}
+
+	public function showDeleteRuleResistance($id){
+		$rule = ResistanceRule::find($id);
+		return view('rules/showDeleteRule', ['rule'=>$rule, 'type'=>'resistance']);
+	}
 	
 	public function deleteRuleStatistic($id = -1){
 		$rule = StatisticRule::find($id);
+		$rule->delete();
+	
+		$this->gotoShowAllRule();
+	}
+
+	public function deleteRuleResistance($id = -1){
+		$rule = ResistanceRule::find($id);
 		$rule->delete();
 	
 		$this->gotoShowAllRule();

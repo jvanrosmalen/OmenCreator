@@ -8,6 +8,12 @@ var Rule = new function(){
 				// Animation complete.
 			});
 		});
+		
+		$("#resrules" ).click(function(event) {
+			$( "#resistance_rule_details" ).slideToggle( "fast", function() {
+				// Animation complete.
+			});
+		});
 	}
 	
 	self.addCreateListeners = function(){
@@ -34,5 +40,12 @@ var Rule = new function(){
 		} else {
 			$('form').submit();
 		}
+	}
+	
+	self.sortOptionsInSelect = function(selectId){
+		$("#"+selectId).append($("#"+selectId+" option").remove().sort(function(a, b) {
+			var at = $(a).text().toLowerCase(), bt = $(b).text().toLowerCase();
+		    return (at > bt)?1:((at < bt)?-1:0);
+		}));
 	}
 }

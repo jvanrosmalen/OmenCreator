@@ -34,6 +34,9 @@
 				        				@foreach($statistics as $statistic)
 				        				<option value="statistic_{{$statistic->id}}">{{$statistic->statistic_name}}</option>
 				        				@endforeach
+				        				@foreach($resistances as $resistance)
+				        				<option value="resistance_{{$resistance->id}}">{{$resistance->resistance_name}} Resistentie</option>
+				        				@endforeach
 				        			</select>
 				        		</td>
 				        		<td>
@@ -73,5 +76,8 @@
 		</form>
 	</div>
 	
-	<script>Rule.addCreateListeners()</script>
+	<script>
+		Rule.addCreateListeners();
+		Rule.sortOptionsInSelect("rule_statistic");
+	</script>
 @endsection

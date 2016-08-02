@@ -28,9 +28,12 @@
 				<div class="col-xs-9 rule_line">
 					@if(strcasecmp($type, "statistic")==0)
 								{{ $rule->statistic->statistic_name }}
+					@endif
+					@if(strcasecmp($type, "resistance")==0)
+								{{ $rule->resistance->resistance_name }}
+					@endif
 								{{ $rule->rulesOperator->operator }}
 								{{ $rule->value }}
-					@endif
 				</div>
 			</div>
 			
