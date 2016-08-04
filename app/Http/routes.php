@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('/jsonskill', 'JsonSkillController@decodeJson');
 Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson');
+
 Route::get('/create_armor/{id?}', 'EquipmentController@showCreateArmor');
 Route::get('/show_delete_armor/{id?}', 'EquipmentController@showDeleteArmor');
 Route::get('/delete_armor/{id?}', 'EquipmentController@deleteArmor');
@@ -55,6 +56,14 @@ Route::post('/create_weapon_submit', 'EquipmentController@submitWeaponCreate');
 Route::post('/create_weapon_update/{id?}', 'EquipmentController@updateWeapon');
 Route::get('/showall_weapon', array( 'as'=> 'showall_weapon', 'uses'=>'EquipmentController@showAllWeapon'));
 Route::get('/check_weapon_name', 'JsonEquipmentController@checkWeaponName');
+
+Route::get('/create_craft_equipment/{id?}', 'EquipmentController@showCreateCraftEquipment');
+Route::get('/show_delete_craft_equipment/{id?}', 'EquipmentController@showDeleteCraftEquipment');
+Route::get('/delete_craft_equipment/{id?}', 'EquipmentController@deleteCraftEquipment');
+Route::post('/create_craft_equipment_submit', 'EquipmentController@submitCraftEquipmentCreate');
+Route::post('/create_craft_equipment_update/{id?}', 'EquipmentController@updateCraftEquipment');
+Route::get('/showall_craft_equipment', array( 'as'=> 'showall_craft_equipment', 'uses'=>'EquipmentController@showAllCraftEquipment'));
+Route::get('/check_craft_equipment_name', 'JsonEquipmentController@checkCraftEquipmentName');
 
 Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
 Route::get('/create_rule', 'RulesController@showCreateRule');

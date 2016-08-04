@@ -224,8 +224,36 @@
 				</div>
 			</div>
 		</div>
+	
+<!-- 	WEALTH RULES -->
+		<div id="wealthrules" class="row well rule_name_row">
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-8 detail_name">
+				Welvaart Regels (Welvaart)
+			</div>
+		</div>
+
+		<div id="wealth_rule_details" class="row rule_details">		
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-9">
+					<div class ="row well rule_header">Welvaart</div>
+					<div class ="row">
+					@foreach ($wealthrules as $wealthRule)
+						<div id="wealthrule_{{$wealthRule->id}}" class="col-xs-7 rule_line">
+							{{ $wealthRule->wealth->wealth_name }}
+							{{ $wealthRule->rulesOperator->operator }}
+							{{ $wealthRule->wealthType->wealth_type }}
+						</div>
+					@endforeach
+					</div>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
 
 	</div>
-	
+		
 	<script>Rule.addListeners()</script>
 @endsection

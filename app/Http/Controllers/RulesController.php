@@ -7,6 +7,7 @@ use App\ResistanceRule;
 use App\Statistic;
 use App\RulesOperator;
 use App\Resistance;
+use App\WealthRule;
 
 class RulesController extends Controller
 {
@@ -31,7 +32,13 @@ class RulesController extends Controller
 			return sprintf('%-30s%-5s%-5s', $rule->resistance->resistance_name, $rule->rulesOperator, $rule->value );
 		});
 		
-		return view('rules/showAllRule', [ "statrules"=>$statRules, "resrules"=> $resRules]);
+// 		$wealthRules = WealthRule::all()->sortBy(function($rule){
+// 			return sprintf(	'%-30s%-5s%-5i', 'Welvaart', $rule->rulesOperator, $rule->valueType_id );
+// 		});
+		
+		$wealthRules = WealthRule::all();
+		
+		return view('rules/showAllRule', [ "statrules"=>$statRules, "resrules"=> $resRules, "wealthrules"=> $wealthRules]);
 	}
 	
 	public function showCreateRule(){

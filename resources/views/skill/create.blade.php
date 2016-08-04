@@ -13,6 +13,19 @@
 			</div>
 			
  			<form action="/create_submit" method="POST">
+
+<!-- ******************* -->
+
+
+ 			<ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#base_info">Basis Info</a></li>
+			  <li><a data-toggle="tab" href="#optional">Optioneel</a></li>
+			  <li><a data-toggle="tab" href="#prereqs">Prereqs</a></li>
+			</ul>
+
+			<div class="tab-content">
+			  <div id="base_info" class="tab-pane fade in active">
+			    <h3>Basis Informatie</h3>
 				<div class='row well'>
 					<div class='col-xs-2'>
 						Naam:
@@ -61,12 +74,6 @@
 							@foreach($playerclasses as $playerclass)
 									<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
 							@endforeach
-							
-<!-- 								$friends_checked = Input::get('friend'); -->
-<!-- if(is_array($friends_checked)) -->
-<!-- { -->
-<!--    // do stuff with checked friends -->
-<!-- } -->								
 						</div>
 					</div>
 					
@@ -102,7 +109,13 @@
 						</div>
 					</div>
 				</div>
-
+			  </div>
+			  <div id="optional" class="tab-pane fade">
+			    <h3>Optioneel</h3>
+			    <p>Some content in menu 1.</p>
+			  </div>
+			  <div id="prereqs" class="tab-pane fade">
+			    <h3>Prereqs</h3>
 				<div class="row well">
 					<div class="col-xs-2">Profiel prereq:</div>
 					<div class="col-xs-3">
@@ -159,6 +172,12 @@
 						<input type="submit" value="Cre&euml;er" style="width: 80px; font-size:18px;">
 					</div>
 				</div>
+			  </div>
+			</div>
+
+<!-- ******************* -->
+
+
 			</form>
 		</div>
 		
