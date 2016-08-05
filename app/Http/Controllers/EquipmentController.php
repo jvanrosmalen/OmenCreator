@@ -232,12 +232,14 @@ class EquipmentController extends Controller
 	
 	//*** CRAFT EQUIPMENT FUNCTIONS
 	public function showCreateCraftEquipment($id = -1){
+		$rules = RulesController::getAllRules();
+		
 		if($id < 0){
-			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>null]);
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>null, 'rules' => $rules]);
 		}
 		else {
 			$craft_equipment = CraftEquipment::find($id);
-			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>$craft_equipment]);
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>$craft_equipment, 'rules' => $rules]);
 		}
 	}
 	

@@ -85,7 +85,7 @@
 			</div>
 			  </div>
 			  <div id="optional" class="tab-pane fade">
-			    <h3>Optioneel</h3>
+			    @include('rules.addRulesInclude', array('rules'=>$rules))
 			  </div>
 			</div>
 			</form>

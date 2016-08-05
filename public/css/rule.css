@@ -25,3 +25,11 @@
 	padding: 6px !important;
 	margin-bottom: 8px !important;
 }
+
+.btn-add {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+

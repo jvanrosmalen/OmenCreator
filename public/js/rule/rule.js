@@ -21,10 +21,34 @@ var Rule = new function(){
 			});
 		});
 
+		$("#callrules" ).click(function(event) {
+			$( "#call_rule_details" ).slideToggle( "fast", function() {
+				// Animation complete.
+			});
+		});
+
 		$("#wealthrules" ).click(function(event) {
 			$( "#wealth_rule_details" ).slideToggle( "fast", function() {
 				// Animation complete.
 			});
+		});
+	}
+
+	self.addRulesIncludeListeners = function(){
+		$(".statRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			rulesInclude.addRulesIncludeListener(source, "stat");
+		});
+		
+		$(".resRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			rulesInclude.addRulesIncludeListener(source, "res");
 		});
 	}
 	
@@ -60,4 +84,5 @@ var Rule = new function(){
 		    return (at > bt)?1:((at < bt)?-1:0);
 		}));
 	}
+	
 }
