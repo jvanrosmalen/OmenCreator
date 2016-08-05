@@ -224,6 +224,83 @@
 				</div>
 			</div>
 		</div>
+
+<!-- 	DAMAGE RULES -->
+		<div id="damrules" class="row well rule_name_row">
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-8 detail_name">
+				Schade Regels (Vuur, Zuur, Magische, Niet-magische)
+			</div>
+		</div>
+
+		<div id="damage_rule_details" class="row rule_details">		
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-4">
+					<div class ="row well rule_header">Vuur</div>
+					<div class ="row">
+					@foreach ($damrules as $damRule)
+						@if(strcasecmp($damRule->damageType->damage_name, 'vuur') == 0)
+							<div id="damrule_{{$damRule->id}}" class="col-xs-12 rule_line">
+								{{ $damRule->rulesOperator->operator_name }}
+								{{ $damRule->damageType->damage_name }}
+								schade
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</div>
+				<div class="col-xs-1"></div>
+				<div class="col-xs-4">
+					<div class ="row well rule_header">Zuur</div>
+					<div class ="row">
+					@foreach ($damrules as $damRule)
+						@if(strcasecmp($damRule->damageType->damage_name, 'zuur') == 0)
+							<div id="damrule_{{$damRule->id}}" class="col-xs-12 rule_line">
+								{{ $damRule->rulesOperator->operator_name }}
+								{{ $damRule->damageType->damage_name }}
+								schade
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-4">
+					<div class ="row well rule_header">Magisch</div>
+					<div class ="row">
+					@foreach ($damrules as $damRule)
+						@if(strcasecmp($damRule->damageType->damage_name, 'magische') == 0)
+							<div id="damrule_{{$damRule->id}}" class="col-xs-12 rule_line">
+								{{ $damRule->rulesOperator->operator_name }}
+								{{ $damRule->damageType->damage_name }}
+								schade
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</div>
+				<div class="col-xs-1"></div>
+				<div class="col-xs-4">
+					<div class ="row well rule_header">Niet-magische</div>
+					<div class ="row">
+					@foreach ($damrules as $damRule)
+						@if(strcasecmp($damRule->damageType->damage_name, 'niet-magische') == 0)
+							<div id="damrule_{{$damRule->id}}" class="col-xs-12 rule_line">
+								{{ $damRule->rulesOperator->operator_name }}
+								{{ $damRule->damageType->damage_name }}
+								schade
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 	END DAMAGE RULES -->
 	
 <!-- 	WEALTH RULES -->
 		<div id="wealthrules" class="row well rule_name_row">
@@ -252,6 +329,8 @@
 				<div class="col-xs-1"></div>
 			</div>
 		</div>
+		
+<!-- 	END WEALTH RULES -->
 
 	</div>
 		

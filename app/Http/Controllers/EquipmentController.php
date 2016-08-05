@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Armor;
 use App\Shield;
 use App\Weapon;
+use App\CraftEquipment;
 
 class EquipmentController extends Controller
 {
@@ -228,4 +229,65 @@ class EquipmentController extends Controller
 		die();
 	}
 	//*** END WEAPON FUNCTIONS
+	
+	//*** CRAFT EQUIPMENT FUNCTIONS
+	public function showCreateCraftEquipment($id = -1){
+		if($id < 0){
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>null]);
+		}
+		else {
+			$craft_equipment = CraftEquipment::find($id);
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>$craft_equipment]);
+		}
+	}
+	
+	public function showDeleteCraftEquipment($id = -1){
+		$craft_equipment = CraftEquipment::find($id);
+		return view('equipment/craft_equipment/showDeleteCraftEquipment', ['craft_equipment'=>$craft_equipment]);
+	}
+	
+	public function deleteCraftEquipment($id = -1){
+		$craft_equipment = CraftEquipment::find($id);
+		$craft_equipment->delete();
+		return $this->gotoShowAllCraftEquipment();
+	}
+	
+	public function updateCraftEquipment($id){
+		$craft_equipment = CraftEquipment::find($id);
+	
+		$craft_equipment->name = $_POST["craft_equipment_name"];
+		$craft_equipment->description = $_POST["craft_equipment_desc"];
+		$craft_equipment->price = $_POST["price"];
+	
+		$craft_equipment->save();
+	
+		return $this->gotoShowAllCraftEquipment();
+	}
+	
+	public function submitCraftEquipmentCreate(){
+		$newCraftEquipment = new CraftEquipment();
+	
+		$newCraftEquipment->name = $_POST["craft_equipment_name"];
+		$newCraftEquipment->description = $_POST["craft_equipment_desc"];
+		$newCraftEquipment->price = $_POST["price"];
+	
+		$newCraftEquipment->save();
+	
+		return $this->gotoShowAllCraftEquipment();
+	}
+	
+	public function showAllCraftEquipment(){
+		$craft_equipments = CraftEquipment::all()->sortBy(function($craft_equipment)
+		{
+			return $craft_equipment->name;
+		});
+		return view('equipment/craft_equipment/showAllCraftEquipment', [ "craft_equipments"=>$craft_equipments]);
+	}
+	
+	public function gotoShowAllCraftEquipment(){
+		$url = route('showall_craft_equipment');
+		header("Location:".$url);
+		die();
+	}
+	//*** END CRAFT EQUIPMENT FUNCTIONS	
 }

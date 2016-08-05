@@ -27,6 +27,7 @@
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/weapon/weapon.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/craft_equipment/craftEquipment.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
   
     <style>

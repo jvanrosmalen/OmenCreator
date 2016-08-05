@@ -15,6 +15,12 @@ var Rule = new function(){
 			});
 		});
 
+		$("#damrules" ).click(function(event) {
+			$( "#damage_rule_details" ).slideToggle( "fast", function() {
+				// Animation complete.
+			});
+		});
+
 		$("#wealthrules" ).click(function(event) {
 			$( "#wealth_rule_details" ).slideToggle( "fast", function() {
 				// Animation complete.
