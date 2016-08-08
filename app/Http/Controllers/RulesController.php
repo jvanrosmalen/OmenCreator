@@ -16,11 +16,10 @@ use App\CallType;
 
 class RulesController extends Controller
 {
-	protected $table = 'statisticRules';
 	
 	public function showAllRule(){
 		$rules = RulesController::getAllRules();
-				
+		
 		return view('rules/showAllRule',[ 	"statrules"=>$rules['statRules'],
 											"statTypes"=>$rules['statTypes'],
 											"resrules"=> $rules['resRules'],
@@ -40,13 +39,13 @@ class RulesController extends Controller
 		$rules['statTypes'] = Statistic::all();
 		$rules['statRules'] = StatisticRule::all()->sortBy(function($rule)
 		{
-			return sprintf('%-30s%-5s%-5s', $rule->statistic->statistic_name, $rule->rulesOperator, $rule->value );
+			return sprintf('%-30s%-5s%-5s', $rule->statistic->statistic_name, $rule->rules_operator, $rule->value );
 		});
 		
 		$rules['resTypes'] = Resistance::all();
 		$rules['resRules'] = ResistanceRule::all()->sortBy(function($rule)
 		{
-			return sprintf('%-30s%-5s%-5s', $rule->resistance->resistance_name, $rule->rulesOperator, $rule->value );
+			return sprintf('%-30s%-5s%-5s', $rule->resistance->resistance_name, $rule->rules_operator, $rule->value );
 		});
 		
 		$rules['wealthTypes'] = WealthType::all();
@@ -54,12 +53,12 @@ class RulesController extends Controller
 		
 		$rules['damTypes'] = DamageType::all();
 		$rules['damRules'] = DamageRule::all()->sortBy(function($rule){
-			return sprintf('%-30s%-30s', $rule->damageType->damage_name, $rule->rulesOperator);
+			return sprintf('%-30s%-30s', $rule->damageType->damage_name, $rule->rules_operator);
 		}); 
 		
 		$rules['callTypes'] = CallType::all();
 		$rules['callRules'] = CallRule::all()->sortBy(function($rule){
-			return sprintf('%-30s%-30s', $rule->callType->call_name, $rule->rulesOperator);
+			return sprintf('%-30s%-30s', $rule->callType->call_name, $rule->rules_operator);
 		});
 		
 		return $rules;
@@ -88,8 +87,8 @@ class RulesController extends Controller
 	private function submitRuleCreateStatistic($statId, $postData){
 		$newRule = new StatisticRule();
 		
-		$newRule->Statistics_id = $statId;
-		$newRule->rulesOperator = $postData["rule_operator"];
+		$newRule->statistic_id = $statId;
+		$newRule->rules_operator = $postData["rule_operator"];
 		$newRule->value = $postData["rule_value"];
 		
 		$newRule->save();
@@ -98,8 +97,8 @@ class RulesController extends Controller
 	private function submitRuleCreateResistance($resId, $postData){
 		$newRule = new ResistanceRule();
 	
-		$newRule->Resistances_id = $resId;
-		$newRule->rulesOperator = $postData["rule_operator"];
+		$newRule->resistance_id = $resId;
+		$newRule->rules_operator = $postData["rule_operator"];
 		$newRule->value = $postData["rule_value"];
 	
 		$newRule->save();

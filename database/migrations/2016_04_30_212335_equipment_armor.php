@@ -12,7 +12,7 @@ class EquipmentArmor extends Migration
      */
     public function up()
     {
-		Schema::create ( 'Armors', function (Blueprint $table) {
+		Schema::create ( 'armors', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
 			$table->string ('name');
 			$table->text( 'description' );
@@ -35,6 +35,6 @@ class EquipmentArmor extends Migration
      */
     public function down()
     {
-        Schema::drop('Armors');
+        Schema::drop('armors');
     }
 }

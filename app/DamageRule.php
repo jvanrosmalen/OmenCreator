@@ -6,17 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class DamageRule extends Model
 {
-    protected $table = 'DamageRules';
     public $timestamps = false;
     
     public function rulesOperator()
     {
-    	return $this->belongsTo('App\ImmuneDoesOperator', 'RulesOperator', 'operator_name');
+    	return $this->belongsTo('App\ImmuneDoesOperator', 'rules_operator', 'operator_name');
     }
     
     public function damageType()
     {
-    	return $this->belongsTo('App\DamageType', 'DamageTypes_id', 'id');
+    	return $this->belongsTo('App\DamageType', 'damage_type_id', 'id');
     }
     
+    public function craftEquipments(){
+    	return $this->belongsToMany('App\CraftEquipment');
+    }
+
+    public function toString(){
+    	return "".$this->rules_operator." ".DamageType::find($this->damage_type_id)->damage_name." schade";
+    }
 }

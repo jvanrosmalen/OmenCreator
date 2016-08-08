@@ -12,89 +12,89 @@ class DamageTypesRules extends Migration
      */
     public function up()
     {
-		Schema::create ( 'DamageTypes', function (Blueprint $table) {
+		Schema::create ( 'damage_types', function (Blueprint $table) {
 			$table->increments('id')->index();
 			$table->string ( 'damage_name', 25 );
 		} );
 		
 		// Seed the Statistics table
-		DB::table ( 'DamageTypes' )->insert ( array (
+		DB::table ( 'damage_types' )->insert ( array (
 				'damage_name' => 'Vuur' 
 		) );
-		DB::table ( 'DamageTypes' )->insert ( array (
+		DB::table ( 'damage_types' )->insert ( array (
 				'damage_name' => 'Zuur' 
 		) );
-		DB::table ( 'DamageTypes' )->insert ( array (
+		DB::table ( 'damage_types' )->insert ( array (
 				'damage_name' => 'Magische' 
 		) );
-		DB::table ( 'DamageTypes' )->insert ( array (
+		DB::table ( 'damage_types' )->insert ( array (
 				'damage_name' => 'Niet-Magische'
 		) );
 
-		Schema::create ( 'ImmuneDoesOperators', function (Blueprint $table) {
+		Schema::create ( 'immune_does_operators', function (Blueprint $table) {
 			$table->string ( 'operator_name', 50 ) -> index();
 		} );
 		
-		DB::table ( 'ImmuneDoesOperators' )->insert ( array (
+		DB::table ( 'immune_does_operators' )->insert ( array (
 				'operator_name' => 'doet'
 		) );
 			
-		DB::table ( 'ImmuneDoesOperators' )->insert ( array (
+		DB::table ( 'immune_does_operators' )->insert ( array (
 				'operator_name' => 'is immuun aan'
 		) );
 		
-		Schema::create ( 'DamageRules', function (Blueprint $table) {
+		Schema::create ( 'damage_rules', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
-			$table->integer ( 'DamageTypes_id' )->unsigned ();
-			$table->string ( 'RulesOperator' );
+			$table->integer ( 'damage_type_id' )->unsigned ();
+			$table->string ( 'rules_operator' );
 		} );
 		
-		Schema::table ( 'DamageRules', function (Blueprint $table) {
-			$table->foreign ( 'DamageTypes_id' )->references ( 'id' )->on ( 'DamageTypes' );
+		Schema::table ( 'damage_rules', function (Blueprint $table) {
+			$table->foreign ( 'damage_type_id' )->references ( 'id' )->on ( 'damage_types' );
 		} );
 		
-		Schema::table ( 'DamageRules', function (Blueprint $table) {
-			$table->foreign ( 'RulesOperator' )->references ( 'operator_name' )->on ( 'ImmuneDoesOperators' );
+		Schema::table ( 'damage_rules', function (Blueprint $table) {
+			$table->foreign ( 'rules_operator' )->references ( 'operator_name' )->on ( 'immune_does_operators' );
 		} );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 1,
-				'RulesOperator' =>  'doet'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 1,
+				'rules_operator' =>  'doet'
 		) );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 1,
-				'RulesOperator' =>  'is immuun aan'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 1,
+				'rules_operator' =>  'is immuun aan'
 		) );
 
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 2,
-				'RulesOperator' =>  'doet'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 2,
+				'rules_operator' =>  'doet'
 		) );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 2,
-				'RulesOperator' =>  'is immuun aan'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 2,
+				'rules_operator' =>  'is immuun aan'
 		) );
 
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 3,
-				'RulesOperator' =>  'doet'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 3,
+				'rules_operator' =>  'doet'
 		) );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 3,
-				'RulesOperator' =>  'is immuun aan'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 3,
+				'rules_operator' =>  'is immuun aan'
 		) );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 4,
-				'RulesOperator' =>  'doet'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 4,
+				'rules_operator' =>  'doet'
 		) );
 		
-		DB::table ( 'DamageRules' )->insert ( array (
-				'DamageTypes_id' => 4,
-				'RulesOperator' =>  'is immuun aan'
+		DB::table ( 'damage_rules' )->insert ( array (
+				'damage_type_id' => 4,
+				'rules_operator' =>  'is immuun aan'
 		) );
     }
 
@@ -105,8 +105,8 @@ class DamageTypesRules extends Migration
      */
     public function down()
     {
-        Schema::drop('DamageRules');
-        Schema::drop('ImmuneDoesOperators');
-        Schema::drop('DamageTypes');
+        Schema::drop('damage_rules');
+        Schema::drop('immune_does_operators');
+        Schema::drop('damage_types');
     }
 }

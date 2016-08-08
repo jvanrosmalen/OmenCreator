@@ -6,6 +6,7 @@ use App\Armor;
 use App\Shield;
 use App\Weapon;
 use App\CraftEquipment;
+use App\DamageRule;
 
 class EquipmentController extends Controller
 {
@@ -250,6 +251,25 @@ class EquipmentController extends Controller
 	
 	public function deleteCraftEquipment($id = -1){
 		$craft_equipment = CraftEquipment::find($id);
+		
+		// delete the relationships with various rules first.
+		if(!$craft_equipment->call_rules->isEmpty()){
+			$craft_equipment->callRules()->detach();
+		}
+		if(!$craft_equipment->dam_rules->isEmpty()){
+			$craft_equipment->damageRules()->detach();
+		}
+		if(!$craft_equipment->res_rules->isEmpty()){
+			$craft_equipment->resistanceRules()->detach();
+		}
+		if(!$craft_equipment->stat_rules->isEmpty()){
+			$craft_equipment->statisticRules()->detach();
+		}
+		if(!$craft_equipment->wealth_rules->isEmpty()){
+			$craft_equipment->wealthRules()->detach();
+		}
+	
+		// Delete craft equipment from DB table
 		$craft_equipment->delete();
 		return $this->gotoShowAllCraftEquipment();
 	}
@@ -272,8 +292,26 @@ class EquipmentController extends Controller
 		$newCraftEquipment->name = $_POST["craft_equipment_name"];
 		$newCraftEquipment->description = $_POST["craft_equipment_desc"];
 		$newCraftEquipment->price = $_POST["price"];
-	
+
+		// First save the new equipment so it has an DB id.
 		$newCraftEquipment->save();
+		
+		// Now sync the pivot table.
+		$ruleArray = json_decode($_POST["rules_list"]);
+		
+		foreach($ruleArray as $rule){
+			if(strcasecmp( $rule->type, "call")==0){
+				$newCraftEquipment->callRules()->sync([intval($rule->ruleId)], false);
+			} elseif (strcasecmp( $rule->type, "dam")==0){
+				$newCraftEquipment->damageRules()->sync([intval($rule->ruleId)], false);
+			} elseif (strcasecmp( $rule->type, "res")==0){
+				$newCraftEquipment->resistanceRules()->sync([intval($rule->ruleId)], false);
+			} elseif (strcasecmp( $rule->type, "stat")==0){
+				$newCraftEquipment->statisticRules()->sync([intval($rule->ruleId)], false);
+			} elseif (strcasecmp( $rule->type, "wealth")==0){
+				$newCraftEquipment->wealthRules()->sync([intval($rule->ruleId)], false);
+			}
+		}
 	
 		return $this->gotoShowAllCraftEquipment();
 	}

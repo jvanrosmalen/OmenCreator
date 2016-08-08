@@ -8,44 +8,44 @@ class ResistenceRules extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create ( 'Resistances', function (Blueprint $table) {
+		Schema::create ( 'resistances', function (Blueprint $table) {
 			$table->increments('id')->index();
 			$table->string ( 'resistance_name', 20 );
 		} );
 		
 		// Seed the Statistics table
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Angst' 
 		) );
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Diefstal' 
 		) );
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Trauma' 
 		) );
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Gif' 
 		) );
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Magie' 
 		) );
-		DB::table ( 'Resistances' )->insert ( array (
+		DB::table ( 'resistances' )->insert ( array (
 				'resistance_name' => 'Ziekte' 
 		) );
 		
-		Schema::create ( 'ResistanceRules', function (Blueprint $table) {
+		Schema::create ( 'resistance_rules', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
-			$table->integer ( 'Resistances_id' )->unsigned ();
-			$table->string ( 'RulesOperator' );
+			$table->integer ( 'resistance_id' )->unsigned ();
+			$table->string ( 'rules_operator' );
 			$table->integer ( 'value' );
 		} );
 		
 		// set foreign keys
-		Schema::table ( 'ResistanceRules', function (Blueprint $table) {
-			$table->foreign ( 'Resistances_id' )->references ( 'id' )->on ( 'Resistances' );
+		Schema::table ( 'resistance_rules', function (Blueprint $table) {
+			$table->foreign ( 'resistance_id' )->references ( 'id' )->on ( 'resistances' );
 		} );
-		Schema::table ( 'ResistanceRules', function (Blueprint $table) {
-			$table->foreign ( 'RulesOperator' )->references ( 'operator' )->on ( 'RulesOperators' );
+		Schema::table ( 'resistance_rules', function (Blueprint $table) {
+			$table->foreign ( 'rules_operator' )->references ( 'operator' )->on ( 'rules_operators' );
 		} );
 	}
 	
@@ -55,7 +55,7 @@ class ResistenceRules extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('ResistanceRules');
-		Schema::drop('Resistances');
+		Schema::drop('resistance_rules');
+		Schema::drop('resistances');
 	}
 }

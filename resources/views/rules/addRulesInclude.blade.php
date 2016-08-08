@@ -6,9 +6,10 @@
 			Toegevoegde regels:
 		</div>
 		<div class='col-xs-10'>
-			<div id="added_rules_list" class='col-xs-4 empty'>
+			<div id="added_rules_list" class='col-xs-6 empty'>
 				<div>Geen regels geselecteerd</div>
 			</div>
+			<input id="rules_list_hidden" name="rules_list" class="hidden">
 		</div>
 	</div>
 
@@ -140,7 +141,7 @@
 									@if(strcasecmp($damRule->damageType->damage_name, $damType->damage_name) == 0)
 										<div id="damrule_{{$damRule->id}}" class="col-xs-8 rule_line">{{ $damRule->rulesOperator->operator_name }} {{ $damRule->damageType->damage_name }} schade</div>
 										<div class="col-xs-3">
-											<div class="btn btn-default btn-add" role="button">Toevoegen</div>
+											<button class="btn btn-default btn-add btn-ruleIncludeAdd-{{$damRule->id}} damRuleIncludeAdd" data-id="{{$damRule->id}}">Toevoegen</button>
 										</div>						
 									@endif
 								@endforeach
@@ -187,7 +188,7 @@
 									@if(strcasecmp($callRule->callType->call_name, $callType->call_name) == 0)
 										<div id="callrule_{{$callRule->id}}" class="col-xs-8 rule_line">{{ $callRule->rulesOperator->operator_name }} {{ $callRule->callType->call_name }}</div>
 										<div class="col-xs-3">
-											<div class="btn btn-default btn-add" role="button">Toevoegen</div>
+											<button class="btn btn-default btn-add btn-ruleIncludeAdd-{{$callRule->id}} callRuleIncludeAdd" data-id="{{$callRule->id}}">Toevoegen</button>
 										</div>						
 									@endif
 								@endforeach
@@ -221,7 +222,7 @@
 						@foreach ($rules['wealthRules'] as $wealthRule)
 							<div id="wealthrule_{{$wealthRule->id}}" class="col-xs-8 rule_line">{{ $wealthRule->wealth->wealth_name }} {{ $wealthRule->rulesOperator->operator }} {{ $wealthRule->wealthType->wealth_type }}</div>
 							<div class="col-xs-3">
-								<div class="btn btn-default btn-add" role="button">Toevoegen</div>
+								<button class="btn btn-default btn-add btn-ruleIncludeAdd-{{$wealthRule->id}} wealthRuleIncludeAdd" data-id="{{$wealthRule->id}}">Toevoegen</button>
 							</div>						
 						@endforeach
 						</div>

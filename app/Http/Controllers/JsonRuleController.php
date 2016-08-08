@@ -28,8 +28,8 @@ class JsonRuleController extends Controller
 			$value = Request::input('rule_value');
 		}
 		
-		$rules = StatisticRule::where('Statistics_id', '=', $statId)
-								->where('RulesOperator', '=', $operatorId)
+		$rules = StatisticRule::where('statistic_id', '=', $statId)
+								->where('rules_operator', '=', $operatorId)
 								->where('value', '=', $value)->get();
 		
 		if(sizeof($rules)>0){
@@ -58,8 +58,8 @@ class JsonRuleController extends Controller
 			$value = Request::input('rule_value');
 		}
 	
-		$rules = ResistanceRule::where('resistances_id', '=', $resId)
-		->where('RulesOperator', '=', $operatorId)
+		$rules = ResistanceRule::where('resistance_id', '=', $resId)
+		->where('rules_operator', '=', $operatorId)
 		->where('value', '=', $value)->get();
 	
 		if(sizeof($rules)>0){

@@ -26,6 +26,10 @@
 	margin-bottom: 8px !important;
 }
 
+.rule_display {
+	font-style: italic;
+}
+
 .btn-add {
 	padding-top: 1px;
 	padding-bottom: 1px;

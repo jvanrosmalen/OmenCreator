@@ -6,74 +6,73 @@ use Illuminate\Database\Migrations\Migration;
 class WealthRules extends Migration
 {
 	public function up() {
-		Schema::create ( 'Wealth', function (Blueprint $table) {
+		Schema::create ( 'wealths', function (Blueprint $table) {
 			$table->increments('id')->index();
 			$table->string ( 'wealth_name', 20 );
 		} );
 		
-		// Seed the Wealth table
-		DB::table ( 'Wealth' )->insert ( array (
+		// Seed the wealth table
+		DB::table ( 'wealths' )->insert ( array (
 				'wealth_name' => 'Welvaart'
 		) );
 		
-		Schema::create ( 'WealthTypes', function (Blueprint $table) {
+		Schema::create ( 'wealth_types', function (Blueprint $table) {
 			$table->increments('id')->index();
 			$table->string ( 'wealth_type', 20 );
 		} );
 		
-		// Seed the Wealth types table
-		DB::table ( 'WealthTypes' )->insert ( array (
+		// Seed the wealth types table
+		DB::table ( 'wealth_types' )->insert ( array (
 				'wealth_type' => 'Arm' 
 		) );
-		DB::table ( 'WealthTypes' )->insert ( array (
+		DB::table ( 'wealth_types' )->insert ( array (
 				'wealth_type' => 'Middenklasse'
 		) );
-		DB::table ( 'WealthTypes' )->insert ( array (
+		DB::table ( 'wealth_types' )->insert ( array (
 				'wealth_type' => 'Welvarend'
 		) );
-		DB::table ( 'WealthTypes' )->insert ( array (
+		DB::table ( 'wealth_types' )->insert ( array (
 				'wealth_type' => 'Rijk'
 		) );
 		
-		
-		Schema::create ( 'WealthRules', function (Blueprint $table) {
+		Schema::create ( 'wealth_rules', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
-			$table->integer ( 'Wealth_id' )->unsigned ();
-			$table->string ( 'RulesOperator' );
-			$table->integer ( 'ValueType_id' ) ->unsigned();
+			$table->integer ( 'wealth_id' )->unsigned ();
+			$table->string ( 'rules_operator' );
+			$table->integer ( 'value_type_id' ) ->unsigned();
 		} );
 		
 		// set foreign keys
-		Schema::table ( 'WealthRules', function (Blueprint $table) {
-			$table->foreign ( 'Wealth_id' )->references ( 'id' )->on ( 'Wealth' );
+		Schema::table ( 'wealth_rules', function (Blueprint $table) {
+			$table->foreign ( 'wealth_id' )->references ( 'id' )->on ( 'wealths' );
 		} );
-		Schema::table ( 'WealthRules', function (Blueprint $table) {
-			$table->foreign ( 'RulesOperator' )->references ( 'operator' )->on ( 'RulesOperators' );
+		Schema::table ( 'wealth_rules', function (Blueprint $table) {
+			$table->foreign ( 'rules_operator' )->references ( 'operator' )->on ( 'rules_operators' );
 		} );
-		Schema::table ( 'WealthRules', function (Blueprint $table) {
-			$table->foreign ( 'ValueType_id' )->references ( 'id' )->on ( 'WealthTypes' );
+		Schema::table ( 'wealth_rules', function (Blueprint $table) {
+			$table->foreign ( 'value_type_id' )->references ( 'id' )->on ( 'wealth_types' );
 		} );
 		
-		// Seed the WealthRules table
-		DB::table ( 'WealthRules' )->insert ( array (
-				'Wealth_id' => 1,
-				'RulesOperator' => '=',
-				'ValueType_id' => 1
+		// Seed the wealth_rules table
+		DB::table ( 'wealth_rules' )->insert ( array (
+				'wealth_id' => 1,
+				'rules_operator' => '=',
+				'value_type_id' => 1
 		) );
-		DB::table ( 'WealthRules' )->insert ( array (
-				'Wealth_id' => 1,
-				'RulesOperator' => '=',
-				'ValueType_id' => 2
+		DB::table ( 'wealth_rules' )->insert ( array (
+				'wealth_id' => 1,
+				'rules_operator' => '=',
+				'value_type_id' => 2
 		) );
-		DB::table ( 'WealthRules' )->insert ( array (
-				'Wealth_id' => 1,
-				'RulesOperator' => '=',
-				'ValueType_id' => 3
+		DB::table ( 'wealth_rules' )->insert ( array (
+				'wealth_id' => 1,
+				'rules_operator' => '=',
+				'value_type_id' => 3
 		) );
-		DB::table ( 'WealthRules' )->insert ( array (
-				'Wealth_id' => 1,
-				'RulesOperator' => '=',
-				'ValueType_id' => 4
+		DB::table ( 'wealth_rules' )->insert ( array (
+				'wealth_id' => 1,
+				'rules_operator' => '=',
+				'value_type_id' => 4
 		) );
 	}
 	
@@ -83,8 +82,8 @@ class WealthRules extends Migration
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('WealthRules');
-		Schema::drop('Wealth');
-		Schema::drop('WealthTypes');
+		Schema::drop('wealth_rules');
+		Schema::drop('wealths');
+		Schema::drop('wealth_types');
 	}
 }

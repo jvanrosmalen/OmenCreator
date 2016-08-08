@@ -12,34 +12,34 @@ class StatisticRules extends Migration
      */
     public function up()
     {
-    	Schema::create ( 'RulesOperators', function (Blueprint $table) {
+    	Schema::create ( 'rules_operators', function (Blueprint $table) {
     		$table->string('operator')->index();
     	});
     	
     	// Seed the Statistics table
-    	DB::table ( 'RulesOperators' )->insert ( array (
+    	DB::table ( 'rules_operators' )->insert ( array (
     		'operator' => '=',    		
     	) );
-    	DB::table ( 'RulesOperators' )->insert ( array (
+    	DB::table ( 'rules_operators' )->insert ( array (
     			'operator' => '-',
     	) );
-    	DB::table ( 'RulesOperators' )->insert ( array (
+    	DB::table ( 'rules_operators' )->insert ( array (
     			'operator' => '+',
     	) );
     	 
-		Schema::create ( 'StatisticRules', function (Blueprint $table) {
+		Schema::create ( 'statistic_rules', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
-			$table->integer('Statistics_id')->unsigned();
-			$table->string( 'RulesOperator' );
+			$table->integer('statistic_id')->unsigned();
+			$table->string( 'rules_operator' );
 			$table->integer('value');
 		} );
 		
 		// set foreign keys
-		Schema::table('StatisticRules', function(Blueprint $table){
-			$table->foreign('Statistics_id')->references('id')->on('Statistics');
+		Schema::table('statistic_rules', function(Blueprint $table){
+			$table->foreign('statistic_id')->references('id')->on('statistics');
 		});
-		Schema::table('StatisticRules', function(Blueprint $table){
-			$table->foreign('RulesOperator')->references('operator')->on('RulesOperators');
+		Schema::table('statistic_rules', function(Blueprint $table){
+			$table->foreign('rules_operator')->references('operator')->on('rules_operators');
 		});
     }
 
@@ -50,7 +50,7 @@ class StatisticRules extends Migration
      */
     public function down()
     {
-        Schema::drop('StatisticRules');
-        Schema::drop('RulesOperators');
+        Schema::drop('statistic_rules');
+        Schema::drop('rules_operators');
     }
 }

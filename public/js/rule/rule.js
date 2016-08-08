@@ -50,6 +50,30 @@ var Rule = new function(){
 			var rulesInclude = new RulesInclude();
 			rulesInclude.addRulesIncludeListener(source, "res");
 		});
+
+		$(".damRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			rulesInclude.addRulesIncludeListener(source, "dam");
+		});
+
+		$(".callRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			rulesInclude.addRulesIncludeListener(source, "call");
+		});
+
+		$(".wealthRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			rulesInclude.addRulesIncludeListener(source, "wealth");
+		});
 	}
 	
 	self.addCreateListeners = function(){

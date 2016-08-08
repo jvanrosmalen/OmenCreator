@@ -12,7 +12,7 @@ class EquipmentWeapon extends Migration
      */
     public function up()
     {
-		Schema::create ( 'Weapons', function (Blueprint $table) {
+		Schema::create ( 'weapons', function (Blueprint $table) {
 			$table->increments ( 'id' )->index ();
 			$table->string ('name');
 			$table->text( 'description' );
@@ -29,6 +29,6 @@ class EquipmentWeapon extends Migration
      */
     public function down()
     {
-        Schema::drop('Weapons');
+        Schema::drop('weapons');
     }
 }

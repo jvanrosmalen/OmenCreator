@@ -38,7 +38,7 @@ var CraftEquipment = new function(){
 		$('.name_warning').addClass('hidden');
 	}
 	
-	self.searchArmors = function() {
+	self.searchCraftEquipments = function() {
 		var value = $("#craftEquipmentSearchInput").val().toLowerCase();
 		
 		if(value == 'undefined' || value == ""){

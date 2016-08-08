@@ -6,17 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class CallRule extends Model
 {
-    protected $table = 'CallRules';
     public $timestamps = false;
     
     public function rulesOperator()
     {
-    	return $this->belongsTo('App\ImmuneDoesOperator', 'RulesOperator', 'operator_name');
+    	return $this->belongsTo('App\ImmuneDoesOperator', 'rules_operator', 'operator_name');
     }
     
     public function callType()
     {
-    	return $this->belongsTo('App\CallType', 'CallTypes_id', 'id');
+    	return $this->belongsTo('App\CallType', 'call_type_id', 'id');
     }
-	//
+	
+    public function craftEquipments(){
+    	return $this->belongsToMany('App\CraftEquipment');
+    }
+    
+    public function toString(){
+    	return "".$this->rules_operator." ".CallType::find($this->call_type_id)->call_name;
+    }
 }

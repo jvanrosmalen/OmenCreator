@@ -12,25 +12,25 @@ class CreatePlayerraces extends Migration
      */
     public function up()
     {
-		Schema::create ( 'playerraces', function (Blueprint $table) {
+		Schema::create ( 'player_races', function (Blueprint $table) {
 			$table->increments( 'id')->index();
 			$table->string ( 'race_name', 255 );
 		} );
 		
 		// Seed the PlayerClasses table
-		DB::table ( 'playerraces' )->insert ( array (
+		DB::table ( 'player_races' )->insert ( array (
 				'race_name' => 'Mannheimer'
 		) );
-		DB::table ( 'playerraces' )->insert ( array (
+		DB::table ( 'player_races' )->insert ( array (
 				'race_name' => 'Goliad'
 		) );
-		DB::table ( 'playerraces' )->insert ( array (
+		DB::table ( 'player_races' )->insert ( array (
 				'race_name' => 'Khali&euml;r'
 		) );
-		DB::table ( 'playerraces' )->insert ( array (
+		DB::table ( 'player_races' )->insert ( array (
 				'race_name' => 'Bhanda Korr'
 		) );
-		DB::table ( 'playerraces' )->insert ( array (
+		DB::table ( 'player_races' )->insert ( array (
 				'race_name' => 'Ranae'
 		) );
     }
@@ -42,6 +42,6 @@ class CreatePlayerraces extends Migration
      */
     public function down()
     {
-		Schema::drop ( 'playerraces' );
+		Schema::drop ( 'player_races' );
     }
 }
