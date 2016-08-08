@@ -106,6 +106,23 @@ var AjaxInterface = new function(){
 			}
 		});
 	}
+
+	self.checkCraftEquipmentName = function(name, craft_equipment_id, callback){
+		$.ajax({
+			url: "/check_craft_equipment_name",
+			type: "GET",
+			data: {	"name":name,
+					"craft_equipment_id": craft_equipment_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(){
+				console.log("JSON error");
+			}
+		});
+	}
 	
 	self.checkRule = function(ruleStat, ruleOperatorId, ruleValue, callback){
 		var type = ruleStat.split("_")[0];

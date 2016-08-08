@@ -89,16 +89,15 @@
 				</div>
 
 				<div id="optional" class="tab-pane fade">
-					@include('rules.addRulesInclude', array('rules'=>$rules))
+					@include('rules.addRulesInclude', array('rules'=>$rules, 'item_rules'=>$item_rules))
 					@include('layouts.tab_buttons', array('tab'=>'tab2', 'previous'=>'tab1', 'save'=>true, 'next'=>null))
 				</div>
 			</div>
 			
 			</form>
 		</div>
-		
-		<script>
-			CraftEquipmentTabControl.addTabButtonListeners();
-		</script>
-@endsection
+			<script>
+				CraftEquipmentTabControl.addTabButtonListeners();
+			</script>
+@stop
 </html>

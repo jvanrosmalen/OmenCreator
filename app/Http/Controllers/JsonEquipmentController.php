@@ -7,6 +7,7 @@ use Response;
 use App\Armor;
 use App\Shield;
 use App\Weapon;
+use App\CraftEquipment;
 
 class JsonEquipmentController extends Controller
 {
@@ -82,6 +83,32 @@ class JsonEquipmentController extends Controller
 		$weapons = Weapon::where('name', '=', $name)->get();
 	
 		if(sizeof($weapons)>0 && $weapons[0]->id != $id){
+			$retBool = true;
+		}
+	
+		return Response::json(json_encode($retBool));
+	}
+	
+	public function checkCraftEquipmentName(){
+		// True means the name already exists.
+		// False will be returned when:
+		// - the name does not exist
+		// - the name is the same as the id of the armor that is checked.
+		$name = "";
+		$id = 0;
+		$retBool = false;
+	
+		if(Request::has('name')){
+			$name = Request::input('name');
+		}
+	
+		if(Request::has('craft_equipment_id')){
+			$id = Request::input('craft_equipment_id');
+		}
+	
+		$craftEquipments = CraftEquipment::where('name', '=', $name)->get();
+	
+		if(sizeof($craftEquipments)>0 && $craftEquipments[0]->id != $id){
 			$retBool = true;
 		}
 	

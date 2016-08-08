@@ -58,6 +58,5 @@ var CraftEquipment = new function(){
 				$(this).addClass("hidden");
 			}
 		});
-		
 	}
 }

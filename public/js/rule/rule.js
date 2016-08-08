@@ -40,7 +40,10 @@ var Rule = new function(){
 			
 			var source = e.target || e.srcElement;
 			var rulesInclude = new RulesInclude();
-			rulesInclude.addRulesIncludeListener(source, "stat");
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "stat");
+			$(source).addClass("disabled");
 		});
 		
 		$(".resRuleIncludeAdd").on("click", function(e){
@@ -48,7 +51,10 @@ var Rule = new function(){
 			
 			var source = e.target || e.srcElement;
 			var rulesInclude = new RulesInclude();
-			rulesInclude.addRulesIncludeListener(source, "res");
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "res");
+			$(source).addClass("disabled");
 		});
 
 		$(".damRuleIncludeAdd").on("click", function(e){
@@ -56,7 +62,10 @@ var Rule = new function(){
 			
 			var source = e.target || e.srcElement;
 			var rulesInclude = new RulesInclude();
-			rulesInclude.addRulesIncludeListener(source, "dam");
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "dam");
+			$(source).addClass("disabled");
 		});
 
 		$(".callRuleIncludeAdd").on("click", function(e){
@@ -64,7 +73,10 @@ var Rule = new function(){
 			
 			var source = e.target || e.srcElement;
 			var rulesInclude = new RulesInclude();
-			rulesInclude.addRulesIncludeListener(source, "call");
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "call");
+			$(source).addClass("disabled");
 		});
 
 		$(".wealthRuleIncludeAdd").on("click", function(e){
@@ -72,7 +84,10 @@ var Rule = new function(){
 			
 			var source = e.target || e.srcElement;
 			var rulesInclude = new RulesInclude();
-			rulesInclude.addRulesIncludeListener(source, "wealth");
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "wealth");
+			$(source).addClass("disabled");
 		});
 	}
 	
@@ -109,4 +124,15 @@ var Rule = new function(){
 		}));
 	}
 	
+	self.addRulesToOverview = function() {
+		var itemRules = $("#item_rules").data("item-rules");
+		
+		for(var index = 0; index < itemRules['dam_rules'].length; index++){
+			var dam_rule = itemRules['dam_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(dam_rule['id'], "dam");
+			$('.btn-ruleIncludeAdd-'+dam_rule['id'] + '.damRuleIncludeAdd').addClass("disabled");
+		}
+	}
 }

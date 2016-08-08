@@ -1,8 +1,7 @@
 function RulesInclude(){
 	var self = this;
 
-	self.addRulesIncludeListener = function(source, ruleType){
-		var sourceId = source.dataset.id;
+	self.addRulesIncludeListener = function(sourceId, ruleType){
 		var text = $("#"+ruleType+"rule_"+sourceId).text();
 		var target = $("#added_rules_list");
 
@@ -65,6 +64,6 @@ function RulesInclude(){
 		newRow.append(newButton);
 		target.append(newRow);
 		
-		$(source).addClass("disabled");
+		console.log("Button id = "+$("#added_rules_list .btn").data('id'));
 	}
 }

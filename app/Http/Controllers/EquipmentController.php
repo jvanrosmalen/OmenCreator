@@ -234,13 +234,27 @@ class EquipmentController extends Controller
 	//*** CRAFT EQUIPMENT FUNCTIONS
 	public function showCreateCraftEquipment($id = -1){
 		$rules = RulesController::getAllRules();
+		$item_rules = null;
 		
 		if($id < 0){
-			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>null, 'rules' => $rules]);
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>null, 'rules' => $rules, 'item_rules' => $item_rules]);
 		}
 		else {
 			$craft_equipment = CraftEquipment::find($id);
-			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>$craft_equipment, 'rules' => $rules]);
+			$item_dam_rules = $craft_equipment->dam_rules;
+			$item_call_rules = $craft_equipment->call_rules;
+			$item_res_rules = $craft_equipment->res_rules;
+			$item_stat_rules = $craft_equipment->stat_rules;
+			$item_wealth_rules = $craft_equipment->wealth_rules;
+			
+			$item_rules = [	"dam_rules"=>$item_dam_rules,
+							"call_rules"=>$item_call_rules,
+							"res_rules"=>$item_res_rules,
+							"stat_rules"=>$item_stat_rules,
+							"wealth_rules"=>$item_wealth_rules
+							];
+			
+			return view('equipment/craft_equipment/createCraftEquipment', ['craft_equipment'=>$craft_equipment, 'rules' => $rules, 'item_rules'=> json_encode($item_rules)]);
 		}
 	}
 	
@@ -299,17 +313,19 @@ class EquipmentController extends Controller
 		// Now sync the pivot table.
 		$ruleArray = json_decode($_POST["rules_list"]);
 		
-		foreach($ruleArray as $rule){
-			if(strcasecmp( $rule->type, "call")==0){
-				$newCraftEquipment->callRules()->sync([intval($rule->ruleId)], false);
-			} elseif (strcasecmp( $rule->type, "dam")==0){
-				$newCraftEquipment->damageRules()->sync([intval($rule->ruleId)], false);
-			} elseif (strcasecmp( $rule->type, "res")==0){
-				$newCraftEquipment->resistanceRules()->sync([intval($rule->ruleId)], false);
-			} elseif (strcasecmp( $rule->type, "stat")==0){
-				$newCraftEquipment->statisticRules()->sync([intval($rule->ruleId)], false);
-			} elseif (strcasecmp( $rule->type, "wealth")==0){
-				$newCraftEquipment->wealthRules()->sync([intval($rule->ruleId)], false);
+		if($ruleArray!=null && $ruleArray!=''){
+			foreach($ruleArray as $rule){
+				if(strcasecmp( $rule->type, "call")==0){
+					$newCraftEquipment->callRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "dam")==0){
+					$newCraftEquipment->damageRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "res")==0){
+					$newCraftEquipment->resistanceRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "stat")==0){
+					$newCraftEquipment->statisticRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "wealth")==0){
+					$newCraftEquipment->wealthRules()->sync([intval($rule->ruleId)], false);
+				}
 			}
 		}
 	

@@ -235,4 +235,12 @@
 	</div>
 
 	<script>Rule.addListeners()</script>
+
 	<script>Rule.addRulesIncludeListeners()</script>
+	
+	@if(!($item_rules == null || $item_rules == ""))
+		<!-- 	Dirty trick to be able to access the rules of this equipment in the JS below -->
+		<div id="item_rules" class="hidden" data-item-rules="{{ $item_rules }}" ></div>
+		<script>Rule.addRulesToOverview()</script>
+	@endif
+	
