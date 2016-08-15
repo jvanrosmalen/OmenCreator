@@ -15,7 +15,7 @@
 			
 			<div class="col-xs-3">
 				<div class="input-group">
-					<input id="craftEquipmentSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken" onchange="CraftEquipment.searchCraftEquipment();"/>
+					<input id="craftEquipmentSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken" onchange="CraftEquipment.searchCraftEquipments();"/>
                     <span class="input-group-btn">
     	                <button class="btn searchGlyphiconButton" type="button">
     			            <span class=" glyphicon glyphicon-search"></span>

@@ -290,13 +290,53 @@ class EquipmentController extends Controller
 	
 	public function updateCraftEquipment($id){
 		$craft_equipment = CraftEquipment::find($id);
+		if($craft_equipment->id == null){
+			return "echo 'ID is NULL' ";
+		}
 	
 		$craft_equipment->name = $_POST["craft_equipment_name"];
 		$craft_equipment->description = $_POST["craft_equipment_desc"];
 		$craft_equipment->price = $_POST["price"];
-	
+		
+		// Now sync the pivot table.
+		$ruleArray = json_decode($_POST["rules_list"]);
+
+		// Remove all old rules
+		if($craft_equipment->callRules() != null){
+			$craft_equipment->callRules()->detach();
+		}
+		if($craft_equipment->damageRules() != null){
+			$craft_equipment->damageRules()->detach();
+		}
+		if($craft_equipment->resistanceRules() != null){
+			$craft_equipment->resistanceRules()->detach();
+		}
+		if($craft_equipment->statisticRules() != null){
+			$craft_equipment->statisticRules()->detach();
+		}
+		if($craft_equipment->wealthRules() != null){
+			$craft_equipment->wealthRules()->detach();
+		}
+		
+		// Update with new rules
+		if($ruleArray!=null && $ruleArray!=''){
+			foreach($ruleArray as $rule){
+				if(strcasecmp( $rule->type, "call")==0){
+					$craft_equipment->callRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "dam")==0){
+					$craft_equipment->damageRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "res")==0){
+					$craft_equipment->resistanceRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "stat")==0){
+					$craft_equipment->statisticRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "wealth")==0){
+					$craft_equipment->wealthRules()->sync([intval($rule->ruleId)], false);
+				}
+			}
+		}
+
 		$craft_equipment->save();
-	
+		
 		return $this->gotoShowAllCraftEquipment();
 	}
 	

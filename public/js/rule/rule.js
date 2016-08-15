@@ -132,6 +132,7 @@ var Rule = new function(){
 			var rulesInclude = new RulesInclude();
 			
 			rulesInclude.addRulesIncludeListener(dam_rule['id'], "dam");
+			$("#added_rules_list button").data('id', dam_rule['id']);
 			$('.btn-ruleIncludeAdd-'+dam_rule['id'] + '.damRuleIncludeAdd').addClass("disabled");
 		}
 	}

@@ -47,7 +47,7 @@ var CraftEquipment = new function(){
 			});
 		}
 		
-		$(".craft_equipment_name_row").each(function(){
+		$(".equipment_name_row").each(function(){
 			var craftEquipmentName = $(this).find(".detail_name").text().toLowerCase();
 			
 			if(craftEquipmentName.indexOf(value) > -1){

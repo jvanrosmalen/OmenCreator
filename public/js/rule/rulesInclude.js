@@ -1,12 +1,12 @@
 function RulesInclude(){
 	var self = this;
 
-	self.addRulesIncludeListener = function(sourceId, ruleType){
-		var text = $("#"+ruleType+"rule_"+sourceId).text();
+	self.addRulesIncludeListener = function(source_id, ruleType){
+		var text = $("#"+ruleType+"rule_"+source_id).text();
 		var target = $("#added_rules_list");
 
 //		Add the rule to the hidden rule list for Form input
-		var ruleObj = {type:ruleType, ruleId:sourceId};
+		var ruleObj = {type:ruleType, ruleId:source_id};
 		var ruleArray = new Array();
 		
 		if(!$("#added_rules_list").hasClass("empty")){
@@ -23,21 +23,19 @@ function RulesInclude(){
 		
 		var newRow = $("<div></div>");
 		newRow.addClass("row col-xs-12");
-		newRow.attr('id', ruleType+"_rule_row_"+sourceId);
+		newRow.attr('id', ruleType+"_rule_row_"+source_id);
 		
 		var newTextDiv = $("<div class='col-xs-8 rule_line'>"+text+"</div>");
-		newTextDiv.data({ id: sourceId, type: ruleType});
+		newTextDiv.data({ id: source_id, type: ruleType});
 		
 		var newButtonDiv = $("<div class='col-xs-3'></div>");
 		var newButton = $("<button class='btn btn-default btn-add'>Verwijder</button>");
-		
-		newButton.data({ id: sourceId});
 		
 		newButton.on("click", function(e){
 			e.preventDefault();
 			
 			var removeSource = e.target || e.srcElement;
-			var removeId = $(removeSource).data('id');
+			var removeId = $(removeSource).attr('id');
 
 			$("#"+ruleType+"_rule_row_"+removeId).remove();
 			
@@ -59,11 +57,11 @@ function RulesInclude(){
 			
 			$(".btn-ruleIncludeAdd-"+removeId).removeClass("disabled");
 		});
+
+		newButton.attr('id', source_id);
 		
 		newRow.append(newTextDiv);
 		newRow.append(newButton);
 		target.append(newRow);
-		
-		console.log("Button id = "+$("#added_rules_list .btn").data('id'));
 	}
 }
