@@ -29,6 +29,8 @@
     <script src="{{ URL::asset('js/equipment/weapon/weapon.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/craft_equipment/craftEquipmentTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/craft_equipment/craftEquipment.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/generic_equipment/genericEquipmentTabControl.js') }}"></script>
+    <script src="{{ URL::asset('js/equipment/generic_equipment/genericEquipment.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
@@ -85,7 +87,7 @@
                                 <li><a href="{{ url('/showall_shield') }}">Schilden</a></li>
                                 <li><a href="{{ url('/showall_weapon') }}">Wapens</a></li>
                                 <li><a href="{{ url('/showall_craft_equipment') }}">Ambachtsuitrusting</a></li>
-                                <li><a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a></li>
+                                <li><a href="{{ url('/showall_generic_equipment') }}">Algemene Uitrusting</a></li>
                             </ul>
 
 <!-- Example in case of submenu <ul class="dropdown-menu" role="menu"> -->

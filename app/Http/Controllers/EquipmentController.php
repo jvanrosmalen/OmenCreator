@@ -6,7 +6,7 @@ use App\Armor;
 use App\Shield;
 use App\Weapon;
 use App\CraftEquipment;
-use App\DamageRule;
+use App\GenericEquipment;
 
 class EquipmentController extends Controller
 {
@@ -385,5 +385,165 @@ class EquipmentController extends Controller
 		header("Location:".$url);
 		die();
 	}
-	//*** END CRAFT EQUIPMENT FUNCTIONS	
+	//*** END CRAFT EQUIPMENT FUNCTIONS
+	
+	//*** GENERIC EQUIPMENT FUNCTIONS
+	public function showCreateGenericEquipment($id = -1){
+		$rules = RulesController::getAllRules();
+		$item_rules = null;
+	
+		if($id < 0){
+			return view('equipment/generic_equipment/createGenericEquipment', ['generic_equipment'=>null, 'rules' => $rules, 'item_rules' => $item_rules]);
+		}
+		else {
+			$generic_equipment = GenericEquipment::find($id);
+			$item_dam_rules = $generic_equipment->dam_rules;
+			$item_call_rules = $generic_equipment->call_rules;
+			$item_res_rules = $generic_equipment->res_rules;
+			$item_stat_rules = $generic_equipment->stat_rules;
+			$item_wealth_rules = $generic_equipment->wealth_rules;
+				
+			$item_rules = [	"dam_rules"=>$item_dam_rules,
+					"call_rules"=>$item_call_rules,
+					"res_rules"=>$item_res_rules,
+					"stat_rules"=>$item_stat_rules,
+					"wealth_rules"=>$item_wealth_rules
+			];
+				
+			return view('equipment/generic_equipment/createGenericEquipment', ['generic_equipment'=>$generic_equipment, 'rules' => $rules, 'item_rules'=> json_encode($item_rules)]);
+		}
+	}
+	
+	public function showDeleteGenericEquipment($id = -1){
+		$generic_equipment = GenericEquipment::find($id);
+		return view('equipment/generic_equipment/showDeleteGenericEquipment', ['generic_equipment'=>$generic_equipment]);
+	}
+	
+	public function deleteGenericEquipment($id = -1){
+		$generic_equipment = GenericEquipment::find($id);
+	
+		// delete the relationships with various rules first.
+		if(!$generic_equipment->call_rules->isEmpty()){
+			$generic_equipment->callRules()->detach();
+		}
+		if(!$generic_equipment->dam_rules->isEmpty()){
+			$generic_equipment->damageRules()->detach();
+		}
+		if(!$generic_equipment->res_rules->isEmpty()){
+			$generic_equipment->resistanceRules()->detach();
+		}
+		if(!$generic_equipment->stat_rules->isEmpty()){
+			$generic_equipment->statisticRules()->detach();
+		}
+		if(!$generic_equipment->wealth_rules->isEmpty()){
+			$generic_equipment->wealthRules()->detach();
+		}
+	
+		// Delete generic equipment from DB table
+		$generic_equipment->delete();
+		return $this->gotoShowAllGenericEquipment();
+	}
+	
+	public function updateGenericEquipment($id){
+		$generic_equipment = GenericEquipment::find($id);
+		if($generic_equipment->id == null){
+			return "echo 'ID is NULL' ";
+		}
+	
+		$generic_equipment->name = $_POST["generic_equipment_name"];
+		$generic_equipment->description = $_POST["generic_equipment_desc"];
+		$generic_equipment->price_normal = $_POST["price_normal"];
+		$generic_equipment->price_good = $_POST["price_good"];
+		$generic_equipment->price_master = $_POST["price_master"];
+		
+		// Now sync the pivot table.
+		$ruleArray = json_decode($_POST["rules_list"]);
+	
+		// Remove all old rules
+		if($generic_equipment->callRules() != null){
+			$generic_equipment->callRules()->detach();
+		}
+		if($generic_equipment->damageRules() != null){
+			$generic_equipment->damageRules()->detach();
+		}
+		if($generic_equipment->resistanceRules() != null){
+			$generic_equipment->resistanceRules()->detach();
+		}
+		if($generic_equipment->statisticRules() != null){
+			$generic_equipment->statisticRules()->detach();
+		}
+		if($generic_equipment->wealthRules() != null){
+			$generic_equipment->wealthRules()->detach();
+		}
+	
+		// Update with new rules
+		if($ruleArray!=null && $ruleArray!=''){
+			foreach($ruleArray as $rule){
+				if(strcasecmp( $rule->type, "call")==0){
+					$generic_equipment->callRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "dam")==0){
+					$generic_equipment->damageRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "res")==0){
+					$generic_equipment->resistanceRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "stat")==0){
+					$generic_equipment->statisticRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "wealth")==0){
+					$generic_equipment->wealthRules()->sync([intval($rule->ruleId)], false);
+				}
+			}
+		}
+	
+		$generic_equipment->save();
+	
+		return $this->gotoShowAllGenericEquipment();
+	}
+	
+	public function submitGenericEquipmentCreate(){
+		$newGenericEquipment = new GenericEquipment();
+	
+		$newGenericEquipment->name = $_POST["generic_equipment_name"];
+		$newGenericEquipment->description = $_POST["generic_equipment_desc"];
+		$newGenericEquipment->price_normal = $_POST["price_normal"];
+		$newGenericEquipment->price_good = $_POST["price_good"];
+		$newGenericEquipment->price_master = $_POST["price_master"];
+		
+		// First save the new equipment so it has an DB id.
+		$newGenericEquipment->save();
+	
+		// Now sync the pivot table.
+		$ruleArray = json_decode($_POST["rules_list"]);
+	
+		if($ruleArray!=null && $ruleArray!=''){
+			foreach($ruleArray as $rule){
+				if(strcasecmp( $rule->type, "call")==0){
+					$newGenericEquipment->callRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "dam")==0){
+					$newGenericEquipment->damageRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "res")==0){
+					$newGenericEquipment->resistanceRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "stat")==0){
+					$newGenericEquipment->statisticRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "wealth")==0){
+					$newGenericEquipment->wealthRules()->sync([intval($rule->ruleId)], false);
+				}
+			}
+		}
+	
+		return $this->gotoShowAllGenericEquipment();
+	}
+	
+	public function showAllGenericEquipment(){
+		$generic_equipments = GenericEquipment::all()->sortBy(function($generic_equipment)
+		{
+			return $generic_equipment->name;
+		});
+		return view('equipment/generic_equipment/showAllGenericEquipment', [ "generic_equipments"=>$generic_equipments]);
+	}
+	
+	public function gotoShowAllGenericEquipment(){
+		$url = route('showall_generic_equipment');
+		header("Location:".$url);
+		die();
+	}
+	//*** END GENERIC EQUIPMENT FUNCTIONS
 }

@@ -61,6 +61,14 @@ Route::post('/create_craft_equipment_update/{id?}', 'EquipmentController@updateC
 Route::get('/showall_craft_equipment', array( 'as'=> 'showall_craft_equipment', 'uses'=>'EquipmentController@showAllCraftEquipment'));
 Route::get('/check_craft_equipment_name', 'JsonEquipmentController@checkCraftEquipmentName');
 
+Route::get('/create_generic_equipment/{id?}', 'EquipmentController@showCreateGenericEquipment');
+Route::get('/show_delete_generic_equipment/{id?}', 'EquipmentController@showDeleteGenericEquipment');
+Route::get('/delete_generic_equipment/{id?}', 'EquipmentController@deleteGenericEquipment');
+Route::post('/create_generic_equipment_submit', 'EquipmentController@submitGenericEquipmentCreate');
+Route::post('/create_generic_equipment_update/{id?}', 'EquipmentController@updateGenericEquipment');
+Route::get('/showall_generic_equipment', array( 'as'=> 'showall_generic_equipment', 'uses'=>'EquipmentController@showAllGenericEquipment'));
+Route::get('/check_generic_equipment_name', 'JsonEquipmentController@checkGenericEquipmentName');
+
 Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
 Route::get('/create_rule', 'RulesController@showCreateRule');
 Route::post('/create_rule_submit', 'RulesController@submitRuleCreate');
