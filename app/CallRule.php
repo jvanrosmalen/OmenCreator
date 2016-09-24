@@ -22,6 +22,10 @@ class CallRule extends Model
     	return $this->belongsToMany('App\CraftEquipment');
     }
     
+    public function skills(){
+    	return $this->belongsToMany('App\Skill');
+    }
+    
     public function toString(){
     	return "".$this->rules_operator." ".CallType::find($this->call_type_id)->call_name;
     }

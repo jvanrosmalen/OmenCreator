@@ -27,6 +27,10 @@ class WealthRule extends Model
 		return $this->belongsToMany('App\CraftEquipment');
 	}
 
+	public function skills(){
+		return $this->belongsToMany('App\Skill');
+	}
+	
 	public function toString(){
 		return Wealth::find($this->wealth_id)->wealth_name." ".$this->rules_operator." ".WealthType::find($this->value_type_id)->wealth_type;
 	}

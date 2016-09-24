@@ -31,7 +31,7 @@ var AjaxInterface = new function(){
 						retData["skill"]["name"],
 						retData["skill"]["ep_cost"],
 						retData["skill"]["level"],
-						retData["levelName"][0],
+						retData["levelName"],
 						retData["skill"]["descriptionSmall"],
 						retData["skill"]["descriptionLong"],
 						requiresMentor
@@ -50,7 +50,7 @@ var AjaxInterface = new function(){
 				
 				callback(retSkill);
 			},
-			error: function(){
+			error: function(data){
 				console.log("JSON error");
 			}
 		});

@@ -21,6 +21,10 @@ class DamageRule extends Model
     public function craftEquipments(){
     	return $this->belongsToMany('App\CraftEquipment');
     }
+    
+    public function skills(){
+    	return $this->belongsToMany('App\Skill');
+    }
 
     public function toString(){
     	return "".$this->rules_operator." ".DamageType::find($this->damage_type_id)->damage_name." schade";

@@ -1,6 +1,6 @@
 var ShowAll = new function(){
 	var self = this;
-
+	
 	self.showSkillDetails = function(event){
 		var skillId = $(event.target).parents("tr").attr("id");
 		self.clearSkillDetails();

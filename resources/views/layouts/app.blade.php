@@ -16,11 +16,14 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+	<!-- All other stuff -->
 	<link href="{{ URL::asset('css/create.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/equipment.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/showall.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/mainstyle.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/rule.css') }}" rel='stylesheet' type='text/css'>
+    <script src="{{ URL::asset('js/skill/createSkillTabControl.js') }}"></script>
+    <script src="{{ URL::asset('js/skill/createSkillControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>

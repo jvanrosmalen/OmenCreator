@@ -38,7 +38,6 @@ var Create = new function(){
 	};
 	
 	self.selectSkill = function(row_id){
-		var search = "tr #"+row_id;
 		var source = $(event.target).parents("tr");
 		if(source.hasClass("selected")){
 			source.removeClass("selected");

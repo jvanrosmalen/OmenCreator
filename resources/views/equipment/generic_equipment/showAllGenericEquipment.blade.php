@@ -63,8 +63,24 @@
 							<tbody>
 								<tr>
 									<td class="detail_name">Prijs</td>
+									@if(isset($generic_equipment->price_normal)
+										&& $generic_equipment->price_normal!=null
+										&& !strcasecmp($generic_equipment->price_normal,"")
+										&& $generic_equipment->price_normal!=0
+										&& !strcasecmp($generic_equipment->price_normal, "-"))
 									<td class="detail_rating">{{$generic_equipment->price_normal}}</td>
+									@else
+									<td class="detail_rating">Nvt</td>
+									@endif
+									@if(isset($generic_equipment->price_good)
+										&& $generic_equipment->price_good!=null
+										&& !strcasecmp($generic_equipment->price_good,"")
+										&& $generic_equipment->price_good!=0
+										&& !strcasecmp($generic_equipment->price_good, "-"))
 									<td class="detail_rating">{{$generic_equipment->price_good}}</td>
+									@else
+									<td class="detail_rating">Nvt</td>
+									@endif
 									<td class="detail_rating">{{$generic_equipment->price_master}}</td>
 								</tr>
 							</tbody>		

@@ -9,6 +9,7 @@ use App\SkillLevel;
 use App\Skill;
 use App\PlayerRace;
 use App\Income;
+use App\CraftEquipment;
 use Illuminate\Support\Facades\Input;
 use Request;
 
@@ -21,18 +22,30 @@ class SkillController extends Controller
 		return view('skill/showall', [ "skills"=>Skill::all(), "skilllevels" => SkillLevel::all(), "playerclasses" => PlayerClass::all()]);		
 	}
 	
-	public function showSkillCreate(){
-		return view('skill/create', [	"coins"=>Coin::all(),
-										"playerclasses"=>PlayerClass::all(),
-										"stats"=>Statistic::all(),
-										"levels"=>SkillLevel::all(),
-										"playerraces"=>PlayerRace::all(),
-		]);
+	public function showCreateSkill($id = -1){
+		$rules = RulesController::getAllRules();
+		$skill_rules = null;
+		
+		$craftequipments = CraftEquipment::all()->sortBy(function($equipment)
+		{
+			return sprintf('%-30s', $equipment->name );
+		});
+		
+		if($id < 0){
+			// this is a create. Not an update
+			return view('skill/create', [	"coins"=>Coin::all(),
+											"playerclasses"=>PlayerClass::all(),
+											"stats"=>Statistic::all(),
+											"levels"=>SkillLevel::all(),
+											"playerraces"=>PlayerRace::all(),
+											"craftequipments"=>$craftequipments,
+											"rules" => $rules,
+											"skill_rules" => $skill_rules
+			]);
+		}
 	}
 	
 	public function submitSkillCreate(){
-		
-		
 		$skill_name = $_POST["skill_name"];
 		$ep_cost = $_POST["ep_cost"];
 		$income_amount = $_POST["income_amount"];
@@ -42,9 +55,6 @@ class SkillController extends Controller
 		$desc_long = $_POST["desc_long"];
 		$profile_prereq_amount = $_POST["profile_prereq_amount"];
 		$profile_prereq = $_POST["profile_prereq"];
-		$profile_bonus_amount = $_POST["profile_bonus_amount"];
-		$profile_bonus = $_POST["profile_bonus"];
-		
 		$mentor_required = false;
 		$mentor_check = Request::input('mentor');
 		if($mentor_check != null && $mentor_check==="on")
@@ -56,49 +66,68 @@ class SkillController extends Controller
 		$newSkill = new Skill();
 		$newSkill->name = $skill_name;
 		$newSkill->ep_cost = $ep_cost;
-		$newSkill->level = $skill_level;
-		$newSkill->descriptionSmall = $desc_short;
-		$newSkill->descriptionLong = $desc_long;
-		$newSkill->mentorRequired = $mentor_required;
+		$newSkill->skill_level_id = $skill_level;
+		$newSkill->description_small = $desc_short;
+		$newSkill->description_long = $desc_long;
+		$newSkill->mentor_required = $mentor_required;
+		$newSkill->coin_id = $income_type;
+		$newSkill->income_amount = $income_amount;
 		
 		$newSkill->save();
 		
 		$skill_id = $newSkill->id;
 		
-		// Save to income table
-		if($income_amount != 0){
-			$newIncome = new Income();
-			$newIncome->amount = $income_amount;
-			$newIncome->Coins_id = $income_type;
-			$newIncome->Skills_id = $skill_id;
-			
-			$newIncome->save();
-		}
+		// Sync craft equipment pivot table
+		$craftEquipmentArray = json_decode($_POST["craft_equipment_list"]);
 		
-		// Save class prereqs
-		$player_classes = Input::get('playerclass');
-		if(is_array($player_classes))
-		{
-			foreach($player_classes as $class_id){
-				$newSkill->addClassPrereq($class_id);
+		if($craftEquipmentArray!=null && $craftEquipmentArray!=''){
+			foreach($craftEquipmentArray as $craftEquipmentId){
+				$newSkill->craftEquipments()->sync([intval($craftEquipmentId)], false);
 			}
 		}
+	
+		// Now sync the rules table.
+		$ruleArray = json_decode($_POST["rules_list"]);
+		
+		if($ruleArray!=null && $ruleArray!=''){
+			foreach($ruleArray as $rule){
+				if(strcasecmp( $rule->type, "call")==0){
+					$newSkill->callRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "dam")==0){
+					$newSkill->damageRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "res")==0){
+					$newSkill->resistanceRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "stat")==0){
+					$newSkill->statisticRules()->sync([intval($rule->ruleId)], false);
+				} elseif (strcasecmp( $rule->type, "wealth")==0){
+					$newSkill->wealthRules()->sync([intval($rule->ruleId)], false);
+				}
+			}
+		}
+		
+// 		// Save income
+// 		$newSkill->incomes()->sync(
+// 				[intval($income_type) => ['amount' => intval($income_amount)]],
+// 				false);
+		
+		// Save class prereqs
+ 		$player_classes = Input::get('playerclass');
+ 		if(is_array($player_classes)){
+ 			$newSkill->playerClasses()->sync($player_classes,false);
+ 		}
 		
 		// Save race prereqs
 		$player_races = Input::get('playerrace');
-		if(is_array($player_races))
-		{
-			foreach($player_races as $race_id){
-				$newSkill->addRacePrereq($race_id);
-			}
+		if(is_array($player_races)){
+ 			$newSkill->playerRaces()->sync($player_races,false);
 		}
 		
-		// Save profile prereq
-		if ($profile_prereq_amount > 0){
-			$newSkill->addProfilePrereq($profile_prereq, $profile_prereq_amount);
-		}
+// 		// Save profile prereq
+// 		if ($profile_prereq_amount > 0){
+// 			$newSkill->addProfilePrereq($profile_prereq, $profile_prereq_amount);
+// 		}
 		
-		return $this->showSkillCreate();
+		return $this->showCreateSkill();
 	}
 }
 ?>

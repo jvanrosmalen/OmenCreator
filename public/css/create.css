@@ -17,6 +17,16 @@
 	padding: 0px;
 }
 
+.craft_equipment_skill {
+	width: 100%;
+	height: 150px;
+	background-color: #FFF;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-color: #AAA;
+	padding: 0px;
+}
+
 .skillSelector {
 	width: 1000px;
 	height: 550px;
@@ -162,4 +172,8 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 .checkbox_text {
 	margin-left: 5px;
 	margin-right: 20px;
+}
+
+.craft_equip_select_btn{
+	margin-bottom: 5px;
 }

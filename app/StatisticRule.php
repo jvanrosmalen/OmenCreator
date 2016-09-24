@@ -21,8 +21,13 @@ class StatisticRule extends Model
 	public function craftEquipments(){
 		return $this->belongsToMany('App\CraftEquipment');
 	}
+	
+	public function skills(){
+		return $this->belongsToMany('App\Skill');
+	}
 
 	public function toString(){
 		return Statistic::find($this->statistic_id)->statistic_name." ".$this->rules_operator." ".$this->value;
 	}
 }
+?>

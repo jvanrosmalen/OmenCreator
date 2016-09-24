@@ -12,15 +12,16 @@
 				</div>
 			</div>
 			
- 			<form action="/create_submit" method="POST">
+ 			<form id="createSkillForm" action="/create_submit" method="POST">
 
 <!-- ******************* -->
 
 
  			<ul class="nav nav-tabs">
-			  <li class="active"><a data-toggle="tab" href="#base_info">Basis Info</a></li>
-			  <li><a data-toggle="tab" href="#optional">Optioneel</a></li>
-			  <li><a data-toggle="tab" href="#prereqs">Prereqs</a></li>
+			  <li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
+			  <li><a id="tab2" data-toggle="tab" href="#craftequipment">Ambachtsuitrusting</a></li>
+			  <li><a id="tab3" data-toggle="tab" href="#rules">Regels</a></li>
+			  <li><a id="tab4" data-toggle="tab" href="#prereqs">Prereqs</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -49,7 +50,7 @@
 							<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
 							<select name='income_type'>
 								@foreach($coins as $coin)
-									<option value='{{$coin->id}}'>{{$coin->coin_name}}</option>
+									<option value='{{$coin->id}}'>{{$coin->coin}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -109,11 +110,58 @@
 						</div>
 					</div>
 				</div>
+				@include('layouts.tab_buttons', array('tab'=>'tab1', 'previous'=>null, 'save'=>false, 'next'=>'tab2'))
 			  </div>
-			  <div id="optional" class="tab-pane fade">
-			    <h3>Optioneel</h3>
-			    <p>Some content in menu 1.</p>
+			  
+			  <div id="craftequipment" class="tab-pane fade">
+			    <h3>Ambachtsuitrusting</h3>
+				<div id="skill_craft_equipment_selection" class="row well">
+					<div class="col-xs-2"></div>
+					<div class="col-xs-3">
+						<div id="craft_equipment_selected" class="craft_equipment_skill">
+						    <table class="table table-condensed table-hover">
+						        <tbody id="craft_equipment_options">
+						            @foreach ($craftequipments as $craftequipment)
+						                <tr class="craft_equipment_selection craft_equipment_selection_{{ $craftequipment->id }} hidden" data-id="{{ $craftequipment->id }}">
+						                    <td class="col-xs-3">{{ $craftequipment->name }}</td>
+						                </tr>
+						            @endforeach
+						        </tbody>
+						    </table>
+						</div>
+					</div>
+					<div class="col-xs-2 text-center">
+						<button type="button" class="btn btn-default craft_equip_select_btn disabled" aria-label="Select Equipment">
+							<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+						</button>
+						<br>
+						<button type="button" class="btn btn-default craft_equip_remove_btn disabled" aria-label="Remove Equipment">
+							<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="col-xs-3">
+						<div id="craft_equipment_options" class="craft_equipment_skill">
+						    <table class="table table-condensed table-hover">
+						        <tbody id="craft_equipment_options">
+						            @foreach ($craftequipments as $craftequipment)
+						                <tr class="craft_equipment_option craft_equipment_option_{{ $craftequipment->id }}" data-id="{{ $craftequipment->id }}">
+						                    <td class="col-xs-3">{{ $craftequipment->name }}</td>
+						                </tr>
+						            @endforeach
+						        </tbody>
+						    </table>
+						</div>
+					</div>
+					<input id="craft_equipment_list_hidden" name="craft_equipment_list" class="hidden">					
+				</div>
+				@include('layouts.tab_buttons', array('tab'=>'tab2', 'previous'=>'tab1', 'save'=>false, 'next'=>'tab3'))
 			  </div>
+
+				<div id="rules" class="tab-pane fade">
+					@include('rules.addRulesInclude', array('rules'=>$rules, 'item_rules'=>$skill_rules))
+					@include('layouts.tab_buttons', array('tab'=>'tab3', 'previous'=>'tab2', 'save'=>false, 'next'=>'tab4'))
+				</div>
+			  
 			  <div id="prereqs" class="tab-pane fade">
 			    <h3>Prereqs</h3>
 				<div class="row well">
@@ -121,16 +169,6 @@
 					<div class="col-xs-3">
 						<input type='number' name='profile_prereq_amount' min='0' max='20' value='0' style="width: 40px;">
 						<select name='profile_prereq'>
-							@foreach($stats as $stat)
-								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
-							@endforeach
-						</select>
-					</div>
-					
-					<div class="col-xs-2">Profiel bonus:</div>
-					<div class="col-xs-2">
-						<input type='number' name='profile_bonus_amount' min='0' max='20' value='0' style="width: 40px;">
-						<select name='profile_bonus'>
 							@foreach($stats as $stat)
 								<option value='{{$stat->id}}'>{{$stat->statistic_name}}</option>
 							@endforeach
@@ -148,7 +186,7 @@
 						<div id="prereqs_set1" class="skill_prereqs"></div>
 					</div>
 					<div class="col-xs-1">
-						<button type="button button_set1" class="btn btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq('set1');">
+						<button type="button" class="btn button_set1 btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq('set1');">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 					</div>
@@ -157,21 +195,14 @@
 						<div id="prereqs_set2" class="skill_prereqs"></div>
 					</div>
 					<div class="col-xs-1">
-						<button type="button button_set2" class="btn btn-default disabled" aria-label="Left Align">
+						<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 					</div>
 					
 				</div>
 				
-				
-				<div class="row">
-					<div class="col-xs-2">
-					</div>
-					<div class="col-xs-1">
-						<input type="submit" value="Cre&euml;er" style="width: 80px; font-size:18px;">
-					</div>
-				</div>
+				@include('layouts.tab_buttons', array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>true, 'next'=>null))
 			  </div>
 			</div>
 
@@ -182,6 +213,11 @@
 		</div>
 		
 		@include('popups.createSkillSelector');
+
+		<script>
+			createSkillTabControl.addTabButtonListeners();
+			createSkillControl.addCreateSkillListeners();
+		</script>
 		
 		@endsection
 

@@ -22,7 +22,7 @@ use App\SkillLevel;
 // Route::post('login', array('uses' => 'HomeController@doLogin'));
 
 Route::get('/skillshowall', 'SkillController@showAll');
-Route::get('/create', 'SkillController@showSkillCreate');
+Route::get('/create', 'SkillController@showCreateSkill');
 Route::post('/create_submit', 'SkillController@submitSkillCreate');
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');

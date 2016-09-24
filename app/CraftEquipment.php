@@ -38,6 +38,10 @@ class CraftEquipment extends Model
 		return $this->belongsToMany('App\WealthRule');
 	}
 	
+	public function skills(){
+		return $this->belongsToMany('App\Skill');
+	}
+	
 	/**
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB

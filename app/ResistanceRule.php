@@ -22,7 +22,12 @@ class ResistanceRule extends Model
 		return $this->belongsToMany('App\CraftEquipment');
 	}
 
+	public function skills(){
+		return $this->belongsToMany('App\Skill');
+	}
+		
 	public function toString(){
 		return Resistance::find($this->resistance_id)->resistance_name." ".$this->rules_operator." ".$this->value;
 	}
 }
+?>

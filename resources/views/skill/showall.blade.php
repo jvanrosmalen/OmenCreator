@@ -14,7 +14,7 @@
 
 		<div class="row">
 			<div class="col-xs-10">
-			    <table class="table table-condensed table-hover">
+			    <table id="skill_table" class="table table-condensed table-hover">
 			        <thead>
 			            <tr>
 			                <th>
@@ -38,11 +38,7 @@
 				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
 				                    <td class="col-xs-4">{{ $skill->descriptionSmall }}</td>
 				                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
-				           			@foreach ( $skilllevels as $skilllevel)
-				           				@if($skilllevel->id == $skill->level)
-				                    		<td class="col-xs-3">{{ $skilllevel->skill_level }}</td>
-				                    	@endif
-				                    @endforeach
+				               		<td class="col-xs-3">{{ $skill->skill_level }}</td>
 				                </tr>
 				            @endforeach
 			        </tbody>
@@ -71,16 +67,4 @@
 	@endsection
 </body>
 
-<!-- 	<body>
-	@section('content')
-		<div class='container'>
-			<div class='row'>
-				<div class='col-xs-12'>
-					<h1>Alle Vaardigheden</h1>
-				</div>
-			</div>
-			
-		</div>
-	@endsection
-	</body>  -->
 </html>

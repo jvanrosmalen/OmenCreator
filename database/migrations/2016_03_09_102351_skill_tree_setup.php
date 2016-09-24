@@ -78,21 +78,21 @@ class SkillTreeSetup extends Migration {
 		) );
 		
 		// coins: contains all coin versions of the ingame money
-		// coin_name: String (key)
+		// coin: String (key)
 		Schema::create ( 'coins', function (Blueprint $table) {
 			$table->increments('id')->index();
-			$table->string ( 'coin_name', 32 );
+			$table->string ( 'coin', 32 );
 		} );
 		
 		// Seed coins table
 		DB::table ( 'coins' )->insert ( array (
-				'coin_name' => 'Brons' 
+				'coin' => 'Brons' 
 		) );
 		DB::table ( 'coins' )->insert ( array (
-				'coin_name' => 'Zilver' 
+				'coin' => 'Zilver' 
 		) );
 		DB::table ( 'coins' )->insert ( array (
-				'coin_name' => 'Goud' 
+				'coin' => 'Goud' 
 		) );
 		
 		// Skill: contains descriptions and all attributes for skills
@@ -104,25 +104,32 @@ class SkillTreeSetup extends Migration {
 			$table->increments ( 'id' )->index ();
 			$table->string ( 'name', 255 );
 			$table->mediumInteger ( 'ep_cost' );
-			$table->integer('level')->unsigned();
+			$table->integer('skill_level_id')->unsigned();
 			$table->string ( 'description_small', 255 );
 			$table->text ( 'description_long' );
 			$table->boolean('mentor_required');
+			$table->integer( 'coin_id' )->unsigned();
+			$table->mediumInteger ( 'income_amount' );
+
+			$table->foreign('skill_level_id')->references('id')->on('skill_levels');
+			$table->foreign('coin_id')->references('id')->on('coins');
+				
 		} );
 		// set foreign keys
-		Schema::table('skills', function(Blueprint $table){
-			$table->foreign('level')->references('id')->on('skill_levels');
-		});
+// 		Schema::table('skills', function(Blueprint $table){
+// 			$table->foreign('skill_level_id')->references('id')->on('skill_levels');
+// 			$table->foreign('coin_id')->references('id')->on('coins');
+// 		});
 		
-		// skill_class_prereqs: contains class prereqs for a certain skill
+		// player_class_skill: contains class prereqs for a certain skill
 		// skill_id: foreign key to id in skills
 		// player_classes_class_name: forign key to class_name in player_classes
-		Schema::create ( 'skill_class_prereqs', function (Blueprint $table) {
+		Schema::create ( 'player_class_skill', function (Blueprint $table) {
 			$table->integer ( 'skill_id' )->unsigned ()->index ();
 			$table->integer ( 'player_class_id' )->unsigned() -> index ();
 		} );
 		// set foreign keys
-		Schema::table ( 'skill_class_prereqs', function (Blueprint $table) {
+		Schema::table ( 'player_class_skill', function (Blueprint $table) {
 			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
 			$table->foreign ( 'player_class_id' )->references ( 'id' )->on ( 'player_classes' )->onDelete('cascade');
 		} );
@@ -156,21 +163,6 @@ class SkillTreeSetup extends Migration {
 			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
 			$table->foreign ( 'statistic_id' )->references ( 'id' )->on ( 'statistics' )->onDelete('cascade');
 		} );
-		
-		// incomes: contains relation between Skill and coins
-		// skill_id: foreign key to id in skills
-		// coins_coin_name: foreign key to coin_name in coins
-		// amount: the amount of income
-		Schema::create ( 'incomes', function (Blueprint $table) {
-			$table->integer ( 'skill_id' )->unsigned ()->index ();
-			$table->integer( 'coin_id', 32 )->unsigned()->index ();
-			$table->mediumInteger ( 'amount' );
-		} );
-		// set foreign keys
-		Schema::table ( 'incomes', function (Blueprint $table) {
-			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
-			$table->foreign ( 'coin_id' )->references ( 'id' )->on ( 'coins' )->onDelete('cascade');
-		} );
 	}
 	
 	/**
@@ -179,10 +171,10 @@ class SkillTreeSetup extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop ( 'incomes' );
+// 		Schema::drop ( 'incomes' );
 		Schema::drop ( 'skill_statistic_prereqs' );
 		Schema::drop ( 'skill_skill_prereqs' );
-		Schema::drop ( 'skill_class_prereqs' );
+		Schema::drop ( 'player_class_skill' );
 		Schema::drop ( 'skills' );
 		Schema::drop ( 'coins' );
 		Schema::drop ( 'statistics' );
