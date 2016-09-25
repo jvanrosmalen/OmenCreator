@@ -57,6 +57,7 @@ class SkillController extends Controller
 		$profile_prereq = $_POST["profile_prereq"];
 		$mentor_required = false;
 		$mentor_check = Request::input('mentor');
+		
 		if($mentor_check != null && $mentor_check==="on")
 		{
 			$mentor_required = true;
@@ -70,7 +71,7 @@ class SkillController extends Controller
 		$newSkill->description_small = $desc_short;
 		$newSkill->description_long = $desc_long;
 		$newSkill->mentor_required = $mentor_required;
-		$newSkill->coin_id = $income_type;
+		$newSkill->income_coin_id = $income_type;
 		$newSkill->income_amount = $income_amount;
 		
 		$newSkill->save();
@@ -104,11 +105,6 @@ class SkillController extends Controller
 				}
 			}
 		}
-		
-// 		// Save income
-// 		$newSkill->incomes()->sync(
-// 				[intval($income_type) => ['amount' => intval($income_amount)]],
-// 				false);
 		
 		// Save class prereqs
  		$player_classes = Input::get('playerclass');

@@ -36,9 +36,9 @@
 				            @foreach ($skills as $skill)
 				                <tr id="{{ $skill->id }}" onclick="ShowAll.showSkillDetails(event);">
 				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
-				                    <td class="col-xs-4">{{ $skill->descriptionSmall }}</td>
+				                    <td class="col-xs-5">{{ $skill->description_small }}</td>
 				                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
-				               		<td class="col-xs-3">{{ $skill->skill_level }}</td>
+				               		<td class="col-xs-2">{{ $skill->skill_level }}</td>
 				                </tr>
 				            @endforeach
 			        </tbody>

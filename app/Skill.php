@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use PhpParser\Node\Expr\Array_;
 
 class Skill extends Model {
 	
@@ -17,7 +18,9 @@ class Skill extends Model {
 							'wealth_rules',
 							'res_rules',
 							'skill_level',
-							'coin_value'
+							'income_coin',
+							'player_classes',
+							'player_races'
 						];
 	
 	public function save(array $options = []){
@@ -49,8 +52,8 @@ class Skill extends Model {
 		return $this->belongsToMany('App\WealthRule');
 	}
 	
-	public function coin(){
-		return $this->belongsTo('App\Coin', 'coin_id');
+	public function incomeCoin(){
+		return $this->belongsTo('App\Coin');
 	}
 	
 	public function playerClasses(){
@@ -99,27 +102,34 @@ class Skill extends Model {
 		return Skill::find($this->id)->wealthRules()->get();
 	}
 	
-	public function getCraftEquipmentsAttribute()
+	public function getIncomeCoinAttribute()
 	{
-		return Skill::find($this->id)->craftEquipments()->get();
-	}
-	
-	public function getCoinIdAttribute()
-	{
-// 		$income_coin_result = Skill::find($this->id)->incomeCoin()->get(); 
-// 	return $income_coin_result[0]->coin_name;
-// 		return Skill::find($this->id)->coin();
-		return $this->coin()->get();
+		$result = Skill::find($this->id)->incomeCoin()->get();  
+		return $result[0]->coin;
 	}
 	
 	public function getPlayerClassesAttribute()
 	{
-		return Skill::find($this->id)->playerClasses()->get();
+		$retArray = array();
+		$resultArray = Skill::find($this->id)->playerClasses()->get(); 
+		
+		foreach($resultArray as $i=>$result){
+			array_push($retArray, $result->class_name);
+		}
+		
+		return $retArray;
 	}
 	
 	public function getPlayerRacesAttribute()
 	{
-		return Skill::find($this->id)->playerRaces()->get();
+		$retArray = array();
+		$resultArray = Skill::find($this->id)->playerRaces()->get();
+		
+		foreach($resultArray as $i=>$result){
+			array_push($retArray, $result->race_name);
+		}
+		
+		return $retArray;
 	}
 	
 	public function getProfilePrereqsAttribute()
@@ -131,6 +141,18 @@ class Skill extends Model {
 	{
 		$skill_level_result = Skill::find($this->id)->skillLevel()->get(); 
 		return $skill_level_result[0]->skill_level;
+	}
+	
+	public function getCraftEquipmentsAttribute()
+	{
+		$retArray = array();
+		$resultArray = Skill::find($this->id)->craftEquipments()->get();
+	
+		foreach($resultArray as $i=>$result){
+			array_push($retArray, $result->name);
+		}
+	
+		return $retArray;
 	}
 	
 	// BELOW IS OLD CODE WITHOUT PROPER ORM USED

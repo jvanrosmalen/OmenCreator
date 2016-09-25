@@ -47,6 +47,12 @@
 					<div id="skill_classes" class="col-xs-9">-</div>
 				</div>
 				
+				<!-- Craft Equipments -->
+				<div id="skill_craft_equipments_row" class="row hidden">
+					<div class="col-xs-2 skill_detail">Ambachtsuitrusting:</div>
+					<div id="skill_craft_equipments" class="col-xs-9">-</div>
+				</div>
+				
 				<!-- Skill races -->
 				<div id="skill_races_row" class="row hidden">
 					<div class="col-xs-2 skill_detail">Afkomst:</div>

@@ -32,23 +32,14 @@ class JsonSkillController extends Controller {
 	public function getSkillDetailsJson(){
 		$skill = null;
 		$levelName = "";
-		$skillClasses = [];
-		$skillRaces = [];
 		
 		if(Request::has('id')){
 			$skill_id = Request::input("id");
 			$skill = Skill::find($skill_id);
-				
-			$levelName = $skill->skill_level;
-			$skillClasses = $skill->getPlayerClassesAttribute();
-			$skillRaces = $skill->getPlayerRacesAttribute();
 		}
 		
 		$retArray = array(
 			"skill" => $skill,
-			"levelName" => $levelName,
-			"skillClasses" => $skillClasses,
-			"skillRaces" => $skillRaces,
 			);
 		
  		return Response::json(json_encode($retArray));

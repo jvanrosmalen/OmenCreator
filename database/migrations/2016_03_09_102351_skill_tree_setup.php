@@ -108,11 +108,11 @@ class SkillTreeSetup extends Migration {
 			$table->string ( 'description_small', 255 );
 			$table->text ( 'description_long' );
 			$table->boolean('mentor_required');
-			$table->integer( 'coin_id' )->unsigned();
+			$table->integer( 'income_coin_id' )->unsigned();
 			$table->mediumInteger ( 'income_amount' );
 
 			$table->foreign('skill_level_id')->references('id')->on('skill_levels');
-			$table->foreign('coin_id')->references('id')->on('coins');
+			$table->foreign('income_coin_id')->references('id')->on('coins');
 				
 		} );
 		// set foreign keys

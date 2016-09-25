@@ -22,6 +22,8 @@ var ShowAll = new function(){
 		$("#skill_races").html("");
 		$("#skill_mentor").addClass("hidden");
 		$("#skill_races_row").addClass("hidden");
+		$("#skill_craft_equipments").html("");
+		$("#skill_craft_equipments_row").addClass("hidden");
 	};
 	
 	self.fillSkillDetails = function(skill){
@@ -37,14 +39,14 @@ var ShowAll = new function(){
 			classText = classText + skill.classes[index] + ", ";
 		}
 		classText = classText + skill.classes[skill.classes.length-1];
-		$("#skill_classes").text(classText);
+		$("#skill_classes").html(classText);
 		
 		// Income entry
 		var incomeText = "geen";
 		if(skill.incomeAmount>0){
-			incomeText = skill.incomeAmount + " " + skill.incomeLevel; 
+			incomeText = skill.incomeAmount + " " + skill.incomeCoin; 
 		}
-		$("#skill_income").text(incomeText);
+		$("#skill_income").html(incomeText);
 		
 		// Races indication
 		if(skill.races.length > 0){
@@ -53,8 +55,19 @@ var ShowAll = new function(){
 				raceText = raceText + skill.races[index] + ", ";
 			}
 			raceText = raceText + skill.races[skill.races.length-1];
-			$("#skill_races").text(raceText);
+			$("#skill_races").html(raceText);
 			$("#skill_races_row").removeClass("hidden");
+		}
+		
+		// Craft equipments indication
+		if(skill.craftEquipments.length > 0){
+			var craftEquipText = "";
+			for (var index = 0; index < (skill.craftEquipments.length - 1); index++){
+				craftEquipText = craftEquipText + skill.craftEquipments[index] + ", ";
+			}
+			craftEquipText = craftEquipText + skill.craftEquipments[skill.craftEquipments.length - 1];
+			$("#skill_craft_equipments").html(craftEquipText);
+			$("#skill_craft_equipments_row").removeClass("hidden");
 		}
 		
 		// Mentor indication

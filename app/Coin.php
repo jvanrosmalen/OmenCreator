@@ -10,6 +10,6 @@ class Coin extends Model
 
 	public function skills()
 	{
-		return $this->hasMany('App\Skill');
+		return $this->hasMany('App\Skill', 'income_coin_id', 'id');
 	}	
 }

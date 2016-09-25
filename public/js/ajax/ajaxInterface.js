@@ -24,29 +24,25 @@ var AjaxInterface = new function(){
 				
 				var retData = JSON.parse(data);
 				var requiresMentor =
-					(retData["skill"]["mentorRequired"]==0?false:true);
+					(retData["skill"]["mentor_required"]==0?false:true);
 				
 				var retSkill = new Skill(
 						retData["skill"]["id"],
 						retData["skill"]["name"],
 						retData["skill"]["ep_cost"],
 						retData["skill"]["level"],
-						retData["levelName"],
-						retData["skill"]["descriptionSmall"],
-						retData["skill"]["descriptionLong"],
-						requiresMentor
+						retData["skill"]["skill_level"],
+						retData["skill"]["description_small"],
+						retData["skill"]["description_long"],
+						requiresMentor,
+						retData["skill"]["income_amount"],
+						retData["skill"]["income_coin"]
 					);
 				
-				retSkill.classes = retData["skillClasses"];
-				retSkill.races = retData["skillRaces"];
+				retSkill.classes = retData["skill"]["player_classes"];
+				retSkill.races = retData["skill"]["player_races"];
+				retSkill.craftEquipments = retData["skill"]["craft_equipments"];
 				
-				if(retData["skillIncome"].length > 0){
-					retSkill.incomeAmount = retData["skillIncome"][0]["incomeAmount"];
-					retSkill.incomeLevel = retData["skillIncome"][0]["incomeLevel"];
-				} else {
-					retSkill.incomeAmount = 0;
-					retSkill.incomeLevel = "";
-				}
 				
 				callback(retSkill);
 			},

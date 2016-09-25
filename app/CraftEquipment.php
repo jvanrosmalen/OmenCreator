@@ -15,7 +15,8 @@ class CraftEquipment extends Model
 							'dam_rules',
 							'res_rules',
 							'stat_rules',
-							'wealth_rules'
+							'wealth_rules',
+							'skills'
 							];
 	
 	public function callRules(){
@@ -69,5 +70,10 @@ class CraftEquipment extends Model
 	public function getWealthRulesAttribute()
 	{
 		return CraftEquipment::find($this->id)->wealthRules()->get();
+	}
+	
+	public function getSkillsAttribute()
+	{
+		return CraftEquipment::find($this->id)->skills()->get();
 	}
 }
