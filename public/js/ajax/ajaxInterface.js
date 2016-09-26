@@ -36,7 +36,9 @@ var AjaxInterface = new function(){
 						retData["skill"]["description_long"],
 						requiresMentor,
 						retData["skill"]["income_amount"],
-						retData["skill"]["income_coin"]
+						retData["skill"]["income_coin"],
+						retData["skill"]["statistic_prereq_amount"],
+						retData["skill"]["statistic_prereq"]
 					);
 				
 				retSkill.classes = retData["skill"]["player_classes"];

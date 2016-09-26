@@ -41,6 +41,17 @@ var ShowAll = new function(){
 		classText = classText + skill.classes[skill.classes.length-1];
 		$("#skill_classes").html(classText);
 		
+		// Prereq entry
+		$("#skill_prereqs").html("geen");
+		var prereqText = "";
+		if(skill.statPrereqAmount > 0){
+			prereqText = prereqText + skill.statPrereq + ": " + skill.statPrereqAmount;
+		}
+		
+		if(prereqText.length > 0){
+			$("#skill_prereqs").html(prereqText);
+		}
+		
 		// Income entry
 		var incomeText = "geen";
 		if(skill.incomeAmount>0){

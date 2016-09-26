@@ -20,7 +20,8 @@ class Skill extends Model {
 							'skill_level',
 							'income_coin',
 							'player_classes',
-							'player_races'
+							'player_races',
+							'statistic_prereq'
 						];
 	
 	public function save(array $options = []){
@@ -54,6 +55,10 @@ class Skill extends Model {
 	
 	public function incomeCoin(){
 		return $this->belongsTo('App\Coin');
+	}
+	
+	public function statisticPrereq(){
+		return $this->belongsTo('App\Statistic');
 	}
 	
 	public function playerClasses(){
@@ -104,8 +109,24 @@ class Skill extends Model {
 	
 	public function getIncomeCoinAttribute()
 	{
-		$result = Skill::find($this->id)->incomeCoin()->get();  
-		return $result[0]->coin;
+		$result = Skill::find($this->id)->incomeCoin()->get();
+		
+		if(sizeof($result)> 0){
+			return $result[0]->coin;
+		} else {
+			return "onbekende munt";
+		}
+	}
+	
+	public function getStatisticPrereqAttribute()
+	{
+		$result = Skill::find($this->id)->statisticPrereq()->get();
+		
+		if(sizeof($result)> 0){
+			return $result[0]->statistic_name;
+		} else {
+			return "onbekende statistiek";
+		}
 	}
 	
 	public function getPlayerClassesAttribute()
@@ -139,8 +160,13 @@ class Skill extends Model {
 	
 	public function getSkillLevelAttribute()
 	{
-		$skill_level_result = Skill::find($this->id)->skillLevel()->get(); 
-		return $skill_level_result[0]->skill_level;
+		$skill_level_result = Skill::find($this->id)->skillLevel()->get();
+		
+		if( sizeof($skill_level_result)> 0){
+			return $skill_level_result[0]->skill_level;
+		} else {
+			return "onbekend skill niveau";
+		}
 	}
 	
 	public function getCraftEquipmentsAttribute()

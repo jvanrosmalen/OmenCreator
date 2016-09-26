@@ -110,16 +110,13 @@ class SkillTreeSetup extends Migration {
 			$table->boolean('mentor_required');
 			$table->integer( 'income_coin_id' )->unsigned();
 			$table->mediumInteger ( 'income_amount' );
-
+			$table->integer('statistic_prereq_id')->unsigned();
+			$table->mediumInteger ( 'statistic_prereq_amount' );
+				
 			$table->foreign('skill_level_id')->references('id')->on('skill_levels');
 			$table->foreign('income_coin_id')->references('id')->on('coins');
-				
+			$table->foreign('statistic_prereq_id')->references('id')->on('statistics');
 		} );
-		// set foreign keys
-// 		Schema::table('skills', function(Blueprint $table){
-// 			$table->foreign('skill_level_id')->references('id')->on('skill_levels');
-// 			$table->foreign('coin_id')->references('id')->on('coins');
-// 		});
 		
 		// player_class_skill: contains class prereqs for a certain skill
 		// skill_id: foreign key to id in skills
@@ -149,20 +146,20 @@ class SkillTreeSetup extends Migration {
 			$table->foreign ( 'skills_prereq_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
 		} );
 		
-		// skillstatisticPrereqs: contains statistic prereqs for a certain skill
-		// skill_id: foreign key to id in skills
-		// statistic_id: foreign key to statistic in statistics
-		// level: level of required statistic
-		Schema::create ( 'skill_statistic_prereqs', function (Blueprint $table) {
-			$table->integer ( 'skill_id' )->unsigned ()->index ();
-			$table->integer ( 'statistic_id' )->unsigned()->index ();
-			$table->mediumInteger ( 'level' );
-		} );
-		// set foreign keys
-		Schema::table ( 'skill_statistic_prereqs', function (Blueprint $table) {
-			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
-			$table->foreign ( 'statistic_id' )->references ( 'id' )->on ( 'statistics' )->onDelete('cascade');
-		} );
+// 		// skillstatisticPrereqs: contains statistic prereqs for a certain skill
+// 		// skill_id: foreign key to id in skills
+// 		// statistic_id: foreign key to statistic in statistics
+// 		// level: level of required statistic
+// 		Schema::create ( 'skill_statistic_prereqs', function (Blueprint $table) {
+// 			$table->integer ( 'skill_id' )->unsigned ()->index ();
+// 			$table->integer ( 'statistic_id' )->unsigned()->index ();
+// 			$table->mediumInteger ( 'level' );
+// 		} );
+// 		// set foreign keys
+// 		Schema::table ( 'skill_statistic_prereqs', function (Blueprint $table) {
+// 			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
+// 			$table->foreign ( 'statistic_id' )->references ( 'id' )->on ( 'statistics' )->onDelete('cascade');
+// 		} );
 	}
 	
 	/**
@@ -172,7 +169,7 @@ class SkillTreeSetup extends Migration {
 	 */
 	public function down() {
 // 		Schema::drop ( 'incomes' );
-		Schema::drop ( 'skill_statistic_prereqs' );
+// 		Schema::drop ( 'skill_statistic_prereqs' );
 		Schema::drop ( 'skill_skill_prereqs' );
 		Schema::drop ( 'player_class_skill' );
 		Schema::drop ( 'skills' );

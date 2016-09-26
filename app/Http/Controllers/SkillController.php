@@ -73,6 +73,8 @@ class SkillController extends Controller
 		$newSkill->mentor_required = $mentor_required;
 		$newSkill->income_coin_id = $income_type;
 		$newSkill->income_amount = $income_amount;
+		$newSkill->statistic_prereq_id = $profile_prereq;
+		$newSkill->statistic_prereq_amount = $profile_prereq_amount;
 		
 		$newSkill->save();
 		
@@ -117,11 +119,6 @@ class SkillController extends Controller
 		if(is_array($player_races)){
  			$newSkill->playerRaces()->sync($player_races,false);
 		}
-		
-// 		// Save profile prereq
-// 		if ($profile_prereq_amount > 0){
-// 			$newSkill->addProfilePrereq($profile_prereq, $profile_prereq_amount);
-// 		}
 		
 		return $this->showCreateSkill();
 	}
