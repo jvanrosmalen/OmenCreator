@@ -195,12 +195,15 @@
 						<div id="prereqs_set2" class="skill_prereqs"></div>
 					</div>
 					<div class="col-xs-1">
-						<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align">
+						<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align" onclick = "Create.addSkillPrereq('set2');">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</button>
 					</div>
 					
 				</div>
+				
+				<input id="skill_prereqs_set1_list_hidden" name="skill_prereqs_set1_list" class="hidden">
+				<input id="skill_prereqs_set2_list_hidden" name="skill_prereqs_set2_list" class="hidden">
 				
 				@include('layouts.tab_buttons', array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>true, 'next'=>null))
 			  </div>
