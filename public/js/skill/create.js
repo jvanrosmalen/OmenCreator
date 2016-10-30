@@ -89,7 +89,8 @@ var Create = new function(){
 		
 		for(var index in jsonSkills){
 			var jsonSkill = jsonSkills[index];
-			skills.push(self.jsonToSkill(jsonSkills[index]));
+//			skills.push(self.jsonToSkill(jsonSkills[index]));
+			skills.push(AjaxInterface.createSkillFromJson(jsonSkills[index]));
 		}
 		
 		return skills;
@@ -124,20 +125,32 @@ var Create = new function(){
 		tr.appendChild(skillname);
 
 		var descSmall = document.createElement("TD");
-		descSmall.setAttribute("class", "col-xs-4");
+		descSmall.setAttribute("class", "col-xs-5");
 		descSmall.appendChild(document.createTextNode(skill.descriptionSmall));
 		tr.appendChild(descSmall);
 		
-		var epcost = document.createElement("TD");
-		epcost.setAttribute("class", "col-xs-2");
-		epcost.appendChild(document.createTextNode(skill.ep_cost));
-		tr.appendChild(epcost);
+		var classes = document.createElement("TD");
+		classes.setAttribute("class", "col-xs-2");
+
+		var classStr = "";
+		var index = 0;
+		for(index = 0; index < (skill.classes.length - 1); index++){
+			classStr = classStr + skill.classes[index] + ", ";
+		}
+		classStr = classStr + skill.classes[index];
+		classes.appendChild(document.createTextNode(classStr));
+		tr.appendChild(classes);
 
 		var skilllevel = document.createElement("TD");
-		skilllevel.setAttribute("class", "col-xs-3");
+		skilllevel.setAttribute("class", "col-xs-1");
 		skilllevel.appendChild(document.createTextNode(skill.levelName));
 		tr.appendChild(skilllevel);
 		
+		var epcost = document.createElement("TD");
+		epcost.setAttribute("class", "col-xs-1 skill_ep_cost");
+		epcost.appendChild(document.createTextNode(skill.ep_cost));
+		tr.appendChild(epcost);
+
 		tableBody.appendChild(tr);
 	}
 	
@@ -191,7 +204,7 @@ var Create = new function(){
 		$("#skill_prereqs_"+set+"_list_hidden").val(JSON.stringify(skillPrereqsArray));
 		
 		$(".selected").each(function(id, value){
-			removeClass("selected");
+			value.removeClass("selected");
 		});
 		
 		self.closeSkillSelector();	

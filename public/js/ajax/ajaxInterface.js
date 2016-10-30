@@ -9,7 +9,7 @@ var AjaxInterface = new function(){
 			success: function(data){
 				callback(data);
 			},
-			error: function(){
+			error: function(data){
 				console.log("JSON error");
 			}
 		});
@@ -23,28 +23,16 @@ var AjaxInterface = new function(){
 			success: function(data){
 				
 				var retData = JSON.parse(data);
-				var requiresMentor =
-					(retData["skill"]["mentor_required"]==0?false:true);
+				var retSkill = AjaxInterface.createSkillFromJson(retData["skill"]);
 				
-				var retSkill = new Skill(
-						retData["skill"]["id"],
-						retData["skill"]["name"],
-						retData["skill"]["ep_cost"],
-						retData["skill"]["level"],
-						retData["skill"]["skill_level"],
-						retData["skill"]["description_small"],
-						retData["skill"]["description_long"],
-						requiresMentor,
-						retData["skill"]["income_amount"],
-						retData["skill"]["income_coin"],
-						retData["skill"]["statistic_prereq_amount"],
-						retData["skill"]["statistic_prereq"]
-					);
-				
-				retSkill.classes = retData["skill"]["player_classes"];
-				retSkill.races = retData["skill"]["player_races"];
-				retSkill.craftEquipments = retData["skill"]["craft_equipments"];
-				
+				for(var index in retData["skill"]["skill_prereqs"]){
+					var prereq = retData["skill"]["skill_prereqs"][index];
+					if(prereq["pivot"]["prereq_set"]===1){
+						retSkill.skillPrereqs["set1"].push(AjaxInterface.createSkillFromJson(prereq));
+					} else {
+						retSkill.skillPrereqs["set2"].push(AjaxInterface.createSkillFromJson(prereq));
+					}
+				}
 				
 				callback(retSkill);
 			},
@@ -52,6 +40,32 @@ var AjaxInterface = new function(){
 				console.log("JSON error");
 			}
 		});
+	}
+	
+	self.createSkillFromJson = function(skill){
+		var requiresMentor =
+			(skill["mentor_required"]==0?false:true);
+		
+		var retSkill = new Skill(
+				skill["id"],
+				skill["name"],
+				skill["ep_cost"],
+				skill["level"],
+				skill["levelName"],
+				skill["description_small"],
+				skill["description_long"],
+				requiresMentor,
+				skill["income_amount"],
+				skill["income_coin"],
+				skill["statistic_prereq_amount"],
+				skill["statistic_prereq"]
+			);
+		
+		retSkill.classes = skill["player_classes"];
+		retSkill.races = skill["player_races"];
+		retSkill.craftEquipments = skill["craft_equipments"];
+		
+		return retSkill;
 	}
 	
 	self.checkArmorName = function(name, armor_id, callback){

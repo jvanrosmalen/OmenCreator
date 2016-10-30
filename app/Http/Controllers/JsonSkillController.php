@@ -11,22 +11,42 @@ class JsonSkillController extends Controller {
 	public function decodeJson() {
 		$skills = array();
 		
-		if(Request::has('levels')){
+		if(Request::has('levels') && Request::has('classes')){
 			$levels_filter = Request::input("levels", []);
-			$skills = DB::table('skills')
-				->join('skilllevels', 'skills.level', '=', 'skilllevels.id')
-				->whereIn('level', $levels_filter)
-				->select('skills.*', 'skilllevels.skill_level as levelName')
-				->get();
-		}
-		
-		if(Request::has('classes')){
 			$class_filter = Request::input("classes", []);
-		}
-		
+			$skills = DB::table('skills')
+				->join('skill_levels', 'skills.skill_level_id', '=', 'skill_levels.id')
+				->join('player_class_skill', 'skills.id', '=', 'player_class_skill.skill_id')
+				->join('player_classes', 'player_class_skill.player_class_id', '=', 'player_classes.id')
+				->whereIn('skill_level_id', $levels_filter)
+				->whereIn('player_class_id', $class_filter)
+				->select('skills.*', 'skill_levels.skill_level as levelName', 'player_classes.class_name as player_classes')
+				->groupBy('skills.id')
+				->get();
 
-		return Response::json(json_encode($skills));
-//  		echo json_encode($skills);
+			// skills can have more than one player_class
+			// for each skill, get the list of player_classes
+			$test = array();
+			foreach ($skills as $skill){
+				$player_classes = DB::table('skills')
+					->join('player_class_skill', 'skills.id', '=', 'player_class_skill.skill_id')
+					->join('player_classes', 'player_class_skill.player_class_id', '=', 'player_classes.id')
+					->where('skills.id', '=', $skill->id)
+					->select('player_classes.class_name')
+					->get();
+				
+				$classes = array();
+				foreach($player_classes as $player_class){
+					$classes[] = $player_class->class_name;
+				}
+				
+				$skill->player_classes = $classes;
+			}
+			
+			return Response::json(json_encode($skills));
+		} else {
+			return json_encode("Skill filter missing either levels or classes");
+		}
 	}
 	
 	public function getSkillDetailsJson(){

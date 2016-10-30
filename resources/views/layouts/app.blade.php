@@ -37,6 +37,7 @@
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
+    <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
   
     <style>
         body {

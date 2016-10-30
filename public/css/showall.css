@@ -1,6 +1,6 @@
 .skillDetails {
 	width: 1000px;
-	height: 550px;
+	height: 450px;
 	position: relative;
 	background-color: white;
 	box-shadow: 1px 1px 10px black;
@@ -61,4 +61,8 @@
 
 #skill_mentor {
 	margin-top: 10px;
+}
+
+.skill_ep_cost{
+	text-align: center !important;
 }

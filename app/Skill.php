@@ -21,7 +21,10 @@ class Skill extends Model {
 							'income_coin',
 							'player_classes',
 							'player_races',
-							'statistic_prereq'
+							'statistic_prereq',
+							'skill_prereqs'
+// 							'skill_prereqs',
+// 							'is_prereq_to'
 						];
 	
 	public function save(array $options = []){
@@ -78,10 +81,30 @@ class Skill extends Model {
 		return $this->belongsTo('App\SkillLevel');
 	}
 	
+	public function skillPrereqs()
+	{
+		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skill_id', 'skills_prereq_id')->withPivot('prereq_set');
+	}
+	
+// 	public function isPrereqTo()
+// 	{
+// 		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skills_prereq_id', 'skill_id')->withPivot('prereq_set');
+// 	}
+	
 	/**
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB
 	 */
+	public function getSkillPrereqsAttribute()
+	{
+		return Skill::find($this->id)->skillPrereqs()->get();
+	}
+	
+// 	public function getIsPrereqToAttribute()
+// 	{
+// 		return Skill::find($this->id)->isPrereqTo()->get();
+// 	}
+	
 	public function getCallRulesAttribute()
 	{
 		return Skill::find($this->id)->callRules()->get();

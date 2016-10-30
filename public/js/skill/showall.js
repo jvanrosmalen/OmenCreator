@@ -48,6 +48,30 @@ var ShowAll = new function(){
 			prereqText = prereqText + skill.statPrereq + ": " + skill.statPrereqAmount;
 		}
 		
+		if(skill.statPrereqAmount > 0 && skill.skillPrereqs["set1"].length > 0){
+			prereqText = prereqText + "<br>";
+		}
+		
+		if(skill.skillPrereqs["set1"].length > 0){
+			var index = 0;
+			for(index = 0; index < (skill.skillPrereqs["set1"].length - 1); index++){
+				prereqText = prereqText + skill.skillPrereqs["set1"][index].name + ", ";
+			}
+			prereqText = prereqText + skill.skillPrereqs["set1"][index].name;
+			
+			index = 0;
+			
+			if(skill.skillPrereqs["set2"].length > 0){
+				prereqText = prereqText + " <b>OF</b> ";
+			
+				for(index = 0; index < (skill.skillPrereqs["set2"].length - 1); index++){
+					prereqText = prereqText + skill.skillPrereqs["set2"][index].name + ", ";
+				}
+				prereqText = prereqText + skill.skillPrereqs["set2"][index].name;
+			}
+		}
+			
+		
 		if(prereqText.length > 0){
 			$("#skill_prereqs").html(prereqText);
 		}

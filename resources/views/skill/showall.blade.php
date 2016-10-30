@@ -14,7 +14,7 @@
 
 		<div class="row">
 			<div class="col-xs-10">
-			    <table id="skill_table" class="table table-condensed table-hover">
+			    <table id="skill_table" class="table table-condensed table-hover sortable">
 			        <thead>
 			            <tr>
 			                <th>
@@ -24,10 +24,13 @@
 			                	Korte Beschrijving
 			                </th>
 			                <th>
-			                	EP Kosten
+			                	Klasse
 			                </th>
 			                <th>
 			                	Niveau
+			                </th>
+			                <th class="skill_ep_cost">
+			                	EP
 			                </th>
 			            </tr>
 			        </thead>
@@ -37,8 +40,13 @@
 				                <tr id="{{ $skill->id }}" onclick="ShowAll.showSkillDetails(event);">
 				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
 				                    <td class="col-xs-5">{{ $skill->description_small }}</td>
-				                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
-				               		<td class="col-xs-2">{{ $skill->skill_level }}</td>
+				               		<td class="col-xs-2">
+				               		@foreach ($skill->player_classes as $player_class)
+				               			{{ $player_class }}
+				               		@endforeach
+				               		</td>
+				               		<td class="col-xs-1">{{ $skill->skill_level }}</td>
+				                    <td class="col-xs-1 skill_ep_cost">{{ $skill->ep_cost }}</td>
 				                </tr>
 				            @endforeach
 			        </tbody>

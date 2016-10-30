@@ -15,6 +15,8 @@ function Skill(id, name, ep_cost, level, levelName,
 	this.statPrereq = statPrereq;
 	
 	this.skillPrereqs = [];
+	this.skillPrereqs["set1"] = [];
+	this.skillPrereqs["set2"] = [];
 	this.classes = [];
 	this.races = [];
 	this.craftEquipments = [];

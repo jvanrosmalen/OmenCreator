@@ -73,7 +73,11 @@
 						</div>	
 						<div class='col-xs-10'>
 							@foreach($playerclasses as $playerclass)
+								@if($playerclass->class_name == "Algemeen")
+									<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}" checked="checked"><span class="checkbox_text">{{$playerclass->class_name}}</span>
+								@else
 									<input tabindex="1" type="checkbox" name="playerclass[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
+								@endif
 							@endforeach
 						</div>
 					</div>

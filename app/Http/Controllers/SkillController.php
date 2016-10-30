@@ -16,9 +16,6 @@ use Request;
 class SkillController extends Controller
 {
 	public function showAll(){
-		
-//		return View::make('posts.index', compact('posts', 'sortby', 'order'));
-		
 		return view('skill/showall', [ "skills"=>Skill::all(), "skilllevels" => SkillLevel::all(), "playerclasses" => PlayerClass::all()]);		
 	}
 	
@@ -79,6 +76,21 @@ class SkillController extends Controller
 		$newSkill->save();
 		
 		$skill_id = $newSkill->id;
+		
+		// Sync prereqs
+		$prereqs_set1 = json_decode($_POST['skill_prereqs_set1_list']);
+		$prereqs_set2 = json_decode($_POST['skill_prereqs_set2_list']);
+		
+		if($prereqs_set1!=null && $prereqs_set1!=''){
+			foreach($prereqs_set1 as $prereqId){
+				$newSkill->skillPrereqs()->sync([intval($prereqId)=>['prereq_set'=>'1']], false);
+			}
+		}
+		if($prereqs_set2!=null && $prereqs_set2!=''){
+			foreach($prereqs_set2 as $prereqId){
+				$newSkill->skillPrereqs()->sync([intval($prereqId)=>['prereq_set'=>'2']], false);
+			}
+		}
 		
 		// Sync craft equipment pivot table
 		$craftEquipmentArray = json_decode($_POST["craft_equipment_list"]);
