@@ -127,6 +127,15 @@ var Rule = new function(){
 	self.addRulesToOverview = function() {
 		var itemRules = $("#item_rules").data("item-rules");
 		
+		for(var index = 0; index < itemRules['call_rules'].length; index++){
+			var call_rule = itemRules['call_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(call_rule['id'], "call");
+			$("#added_rules_list button").data('id', call_rule['id']);
+			$('.btn-ruleIncludeAdd-'+call_rule['id'] + '.callRuleIncludeAdd').addClass("disabled");
+		}
+		
 		for(var index = 0; index < itemRules['dam_rules'].length; index++){
 			var dam_rule = itemRules['dam_rules'][index];
 			var rulesInclude = new RulesInclude();
@@ -134,6 +143,33 @@ var Rule = new function(){
 			rulesInclude.addRulesIncludeListener(dam_rule['id'], "dam");
 			$("#added_rules_list button").data('id', dam_rule['id']);
 			$('.btn-ruleIncludeAdd-'+dam_rule['id'] + '.damRuleIncludeAdd').addClass("disabled");
+		}
+		
+		for(var index = 0; index < itemRules['res_rules'].length; index++){
+			var res_rule = itemRules['res_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(res_rule['id'], "dam");
+			$("#added_rules_list button").data('id', res_rule['id']);
+			$('.btn-ruleIncludeAdd-'+res_rule['id'] + '.resRuleIncludeAdd').addClass("disabled");
+		}
+		
+		for(var index = 0; index < itemRules['stat_rules'].length; index++){
+			var stat_rule = itemRules['stat_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(stat_rule['id'], "stat");
+			$("#added_rules_list button").data('id', stat_rule['id']);
+			$('.btn-ruleIncludeAdd-'+stat_rule['id'] + '.statRuleIncludeAdd').addClass("disabled");
+		}
+		
+		for(var index = 0; index < itemRules['wealth_rules'].length; index++){
+			var wealth_rule = itemRules['wealth_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(wealth_rule['id'], "wealth");
+			$("#added_rules_list button").data('id', wealth_rule['id']);
+			$('.btn-ruleIncludeAdd-'+wealth_rule['id'] + '.wealthRuleIncludeAdd').addClass("disabled");
 		}
 	}
 }

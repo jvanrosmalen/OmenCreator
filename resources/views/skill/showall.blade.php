@@ -10,7 +10,25 @@
 	@section('content')
 	
 	<div class='container'>
-		<h1>Overzicht Vaardigheden</h1>
+		<div class="row">
+			<div class="col-xs-7">
+				<h1>Overzicht Vaardigheden</h1>
+			</div>
+					
+			<div class="col-xs-5">
+<!--    				<div id="skillSelectorSearch"> -->
+   				<div>
+   					<div class="input-group col-md-12">
+                    	<input id="skillSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken (Geselecteerde items blijven getoond)" onchange="Create.skillSearch();"/>
+                        <span class="input-group-btn">
+                           	<button class="btn btn-danger" type="button">
+                               	<span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+            	    </div>
+                </div>					
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-xs-10">
@@ -32,6 +50,8 @@
 			                <th class="skill_ep_cost">
 			                	EP
 			                </th>
+			                <th>
+			                </th>
 			            </tr>
 			        </thead>
 			 
@@ -47,6 +67,11 @@
 				               		</td>
 				               		<td class="col-xs-1">{{ $skill->skill_level }}</td>
 				                    <td class="col-xs-1 skill_ep_cost">{{ $skill->ep_cost }}</td>
+				                    <td>
+				                    	<a href="/create_skill/{{$skill->id}}" class="btn btn-info btn-sm edit-skill-btn">
+          									<span class="glyphicon glyphicon-pencil"></span> 
+        								</a>
+        							</td>
 				                </tr>
 				            @endforeach
 			        </tbody>

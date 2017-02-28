@@ -31,17 +31,17 @@
 					    <table class="table table-condensed table-fixedheader table-hover">
 					        <thead>
 					            <tr>
-					                <th class="col-xs-3">
+					                <th class="col-xs-5">
 					                    Naam
 					                </th>
 					                <th class="col-xs-4">
-					                	Korte Beschrijving
+					                	Klasse
 					                </th>
 					                <th class="col-xs-2">
-					                	EP Kosten
-					                </th>
-					                <th class="col-xs-3">
 					                	Niveau
+					                </th>
+					                <th class="col-xs-1 skill_ep_cost">
+					                	EP
 					                </th>
 					            </tr>
 					        </thead>
@@ -49,14 +49,16 @@
 					        <tbody id="skills">
 					            @foreach ($skills as $skill)
 					                <tr id="{{ $skill->id }}" onclick="Create.selectSkill(event);">
-					                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
-					                    <td class="col-xs-4">{{ $skill->descriptionSmall }}</td>
-					                    <td class="col-xs-2">{{ $skill->ep_cost }}</td>
-					           			@foreach ( $skilllevels as $skilllevel)
-					           				@if($skilllevel->id == $skill->level)
-					                    		<td class="col-xs-3">{{ $skilllevel->skill_level }}</td>
-					                    	@endif
-					                    @endforeach
+					                    <td id="{{$skill->name}}" class="skillname col-xs-5">
+					                    	{{ $skill->name }}
+					                    </td>
+					                    <td class="col-xs-4">
+											@foreach ($skill->player_classes as $player_class)
+				               					{{ $player_class }}
+				               				@endforeach
+				               			</td>
+					           			<td class="col-xs-2">{{ $skill->skill_level }}</td>
+					                    <td class="col-xs-1 skill_ep_cost">{{ $skill->ep_cost }}</td>
 					                </tr>
 					            @endforeach
 					        </tbody>
@@ -74,7 +76,7 @@
 		  					@endforeach
 						</form>
 						<br>
-						<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterSkills(event);">Filter</button>
+						<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterPrereqSkills(event);">Filter</button>
 						
 			    	</div>
 			    </div>

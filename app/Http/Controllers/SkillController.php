@@ -30,7 +30,8 @@ class SkillController extends Controller
 		
 		if($id < 0){
 			// this is a create. Not an update
-			return view('skill/create', [	"coins"=>Coin::all(),
+			return view('skill/create', [	"skill"=>null,
+											"coins"=>Coin::all(),
 											"playerclasses"=>PlayerClass::all(),
 											"stats"=>Statistic::all(),
 											"levels"=>SkillLevel::all(),
@@ -38,6 +39,33 @@ class SkillController extends Controller
 											"craftequipments"=>$craftequipments,
 											"rules" => $rules,
 											"skill_rules" => $skill_rules
+			]);
+		} else {
+			// This is an update
+			$skill = Skill::find($id);
+			$skill_dam_rules = $skill->dam_rules;
+			$skill_call_rules = $skill->call_rules;
+			$skill_res_rules = $skill->res_rules;
+			$skill_stat_rules = $skill->stat_rules;
+			$skill_wealth_rules = $skill->wealth_rules;
+				
+			$skill_rules = [	"dam_rules"=>$skill_dam_rules,
+					"call_rules"=>$skill_call_rules,
+					"res_rules"=>$skill_res_rules,
+					"stat_rules"=>$skill_stat_rules,
+					"wealth_rules"=>$skill_wealth_rules
+			];
+			
+			return view('skill/create', [	"skill"=>$skill,
+											"coins"=>Coin::all(),
+											"playerclasses"=>PlayerClass::all(),
+											"stats"=>Statistic::all(),
+											"levels"=>SkillLevel::all(),
+											"playerraces"=>PlayerRace::all(),
+											"craftequipments"=>$craftequipments,
+											"rules" => $rules,
+											"skill_rules" => json_encode($skill_rules)
+					
 			]);
 		}
 	}

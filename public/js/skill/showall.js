@@ -2,10 +2,13 @@ var ShowAll = new function(){
 	var self = this;
 	
 	self.showSkillDetails = function(event){
-		var skillId = $(event.target).parents("tr").attr("id");
-		self.clearSkillDetails();
-		event.preventDefault();
-		AjaxInterface.getFullSkillDetails(skillId, self.fillSkillDetails);
+		// if the event was fired by the edit button, do nothing
+		if(!($(event.target).hasClass("edit-skill-btn")||$(event.target).hasClass("glyphicon-pencil"))){
+			var skillId = $(event.target).parents("tr").attr("id");
+			self.clearSkillDetails();
+			event.preventDefault();
+			AjaxInterface.getFullSkillDetails(skillId, self.fillSkillDetails);
+		}
 	};
 	
 	self.closeSkillDetails = function(){

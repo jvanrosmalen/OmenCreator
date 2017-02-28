@@ -53,11 +53,29 @@ var Create = new function(){
 		event.preventDefault();
 	};
 	
-	self.filterSkills = function(e){
+	self.displayJsonSkills = function(jsonSkills){
+		var skills = self.jsonToSkills(JSON.parse(jsonSkills));
+		self.removeSkillsFromTable();
+		
+		for(var index in skills){
+			self.addSkillToTable(skills[index]);
+		}
+	}
+	
+	self.displayJsonPrereqSkills = function(jsonSkills){
+		var skills = self.jsonToSkills(JSON.parse(jsonSkills));
+		self.removeSkillsFromTable();
+		
+		for(var index in skills){
+			self.addSkillToPrereqTable(skills[index]);
+		}
+	}
+
+	self.doFilterSkills = function(callback){
 		var skill_levels = new Array();
 		var class_levels = new Array();
 		var selected_skills = new Array();
-		var csrf_token = $(e.target).val(); 
+//		var csrf_token = $(e.target).val(); 
 		
 		$(".level_filter:checked").each(function(){
 			skill_levels.push($(this).val());
@@ -71,17 +89,15 @@ var Create = new function(){
 			selected_skills.push($(this).attr("id"));
 		});
 		
-		AjaxInterface.getSkillLevelsClasses(skill_levels, class_levels, selected_skills, self.displayJsonSkills);
-		
+		AjaxInterface.getSkillLevelsClasses(skill_levels, class_levels, selected_skills, callback);
 	}
 	
-	self.displayJsonSkills = function(jsonSkills){
-		var skills = self.jsonToSkills(JSON.parse(jsonSkills));
-		self.removeSkillsFromTable();
-		
-		for(var index in skills){
-			self.addSkillToTable(skills[index]);
-		}
+	self.filterPrereqSkills = function(e){
+		self.doFilterSkills(self.displayJsonPrereqSkills);
+	}
+	
+	self.filterSkills = function(e){
+		self.doFilterSkills(self.displayJsonSkills);
 	}
 	
 	self.jsonToSkills = function(jsonSkills){
@@ -153,6 +169,44 @@ var Create = new function(){
 
 		tableBody.appendChild(tr);
 	}
+
+	self.addSkillToPrereqTable = function(skill){
+		var tableBody = $("#skills")[0];
+		var tr = document.createElement("TR");
+
+		tr.setAttribute("id", skill.id);
+		tr.setAttribute("onclick", "Create.selectSkill(event);");
+		
+		var skillname = document.createElement("TD");
+		skillname.setAttribute("id", skill.name);
+		skillname.setAttribute("class", "skillname col-xs-5");
+		skillname.appendChild(document.createTextNode(skill.name));
+		tr.appendChild(skillname);
+
+		var classes = document.createElement("TD");
+		classes.setAttribute("class", "col-xs-4");
+
+		var classStr = "";
+		var index = 0;
+		for(index = 0; index < (skill.classes.length - 1); index++){
+			classStr = classStr + skill.classes[index] + ", ";
+		}
+		classStr = classStr + skill.classes[index];
+		classes.appendChild(document.createTextNode(classStr));
+		tr.appendChild(classes);
+
+		var skilllevel = document.createElement("TD");
+		skilllevel.setAttribute("class", "col-xs-2");
+		skilllevel.appendChild(document.createTextNode(skill.levelName));
+		tr.appendChild(skilllevel);
+		
+		var epcost = document.createElement("TD");
+		epcost.setAttribute("class", "col-xs-1 skill_ep_cost");
+		epcost.appendChild(document.createTextNode(skill.ep_cost));
+		tr.appendChild(epcost);
+
+		tableBody.appendChild(tr);
+	}
 	
 	self.submitPrereqSkills = function(e){
 		var set = $(event.target).attr('id');
@@ -178,7 +232,7 @@ var Create = new function(){
 			var entryTdRemoveButton = document.createElement("div");
 			entryTdRemoveButton.setAttribute("class", "col-xs-3");
 			var removeBtn = document.createElement("button");
-			removeBtn.setAttribute("class", "btn btn-xs pull_right");
+			removeBtn.setAttribute("class", "btn btn-xs pull-right");
 			var removeMinus = document.createElement("span");
 			removeMinus.setAttribute("class", "glyphicon glyphicon-minus");
 			removeMinus.setAttribute("id", set+"_"+value.id);
@@ -211,6 +265,8 @@ var Create = new function(){
 	}
 	
 	self.removePrereqSkill = function(e){
+		event.preventDefault();
+		
 		var compound_id = $(event.target).attr('id');
 		var set = compound_id.split("_")[0];
 		var id = compound_id.split("_")[1];
@@ -253,7 +309,5 @@ var Create = new function(){
 			$("#skill_prereqs_set1_list_hidden").val($("#skill_prereqs_set2_list_hidden").val());
 			$("#skill_prereqs_set2_list_hidden").val("[]");
 		}
-		
-		event.preventDefault();
 	}
 }

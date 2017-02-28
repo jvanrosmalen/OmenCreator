@@ -38,6 +38,7 @@
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
     <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
+    <script src="{{ URL::asset('js/nicedit/nicEdit.js') }}"></script>
   
     <style>
         body {
@@ -76,10 +77,20 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/create') }}">Cre&euml;er Vaardigheid</a></li>
+                                <li><a href="{{ url('/create_skill') }}">Cre&euml;er Vaardigheid</a></li>
                                 <li><a href="{{ url('/skillshowall') }}">Overzicht Vaardigheden</a></li>
                             </ul>
                     </li>
+
+<!--                     <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 Spelersrassen<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/showall_player_races') }}">Overzicht Spelersrassen</a></li>
+                            </ul>
+                    </li> -->
 
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

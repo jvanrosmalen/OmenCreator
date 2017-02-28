@@ -22,8 +22,10 @@ use App\SkillLevel;
 // Route::post('login', array('uses' => 'HomeController@doLogin'));
 
 Route::get('/skillshowall', 'SkillController@showAll');
-Route::get('/create', 'SkillController@showCreateSkill');
-Route::post('/create_submit', 'SkillController@submitSkillCreate');
+//Route::get('/create_skill', 'SkillController@showCreateSkill');
+Route::get('/create_skill/{id?}', 'SkillController@showCreateSkill');
+Route::post('/create_skill_submit', 'SkillController@submitSkillCreate');
+Route::post('/create_skill_update', 'SkillController@submitSkillCreate');
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('/jsonskill', 'JsonSkillController@decodeJson');

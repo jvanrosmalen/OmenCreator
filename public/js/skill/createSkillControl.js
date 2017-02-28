@@ -100,5 +100,30 @@ var createSkillControl = new function(){
 				$(".craft_equip_select_btn").addClass('disabled');
 			}
 		});
+		
+		// In case of craft equipment already selected, e.g. with an edit action
+		var craftEquipArray = new Array();
+
+		$(".craft_equipment_selection.craftEquipselected").each(function(){
+			var equip_id = $(this).data("id");
+			var craftEquipObj = {craftEquipId:equip_id};
+			
+			craftEquipArray.push(equip_id);
+		});
+
+		$("#craft_equipment_list_hidden").val(JSON.stringify(craftEquipArray));
+		
+		// In case of prereq skills already selected, e.g. with an edit action
+		var skillPrereqs1Array = new Array();
+		$("#prereqs_set1 .row").each(function(id, value){
+			skillPrereqs1Array.push(value.id);
+		});
+		$("#skill_prereqs_set1_list_hidden").val(JSON.stringify(skillPrereqs1Array));
+		
+		var skillPrereqs2Array = new Array();
+		$("#prereqs_set2 .row").each(function(id, value){
+			skillPrereqs2Array.push(value.id);
+		});
+		$("#skill_prereqs_set2_list_hidden").val(JSON.stringify(skillPrereqs2Array));
 	}
 }

@@ -52,6 +52,10 @@
 	background-color: RGBA(200, 200, 200, 0.3);
 }
 
+.input-group {
+	z-index: 0 !important;
+}
+
 table.table-fixedheader {
 	width: 100%;
 }
@@ -177,4 +181,8 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 
 .craft_equip_select_btn{
 	margin-bottom: 5px;
+}
+
+.edit-skill-btn {
+	z-index: 10 !important;
 }
