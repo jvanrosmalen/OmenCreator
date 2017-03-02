@@ -36,7 +36,7 @@
 	box-shadow: 1px 1px 10px black;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
+	margin-top: 50px;
 }
 
 .popup {
@@ -74,7 +74,7 @@ table.table-fixedheader>thead>tr:after, table.table-fixedheader>tbody>tr:after
 	clear: both;
 }
 
-table.table-fixedheader>tbody {
+#skill_select_table.table-fixedheader>tbody {
 	overflow-y: scroll;
 	height: 300px;
 }

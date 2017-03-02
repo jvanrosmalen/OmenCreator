@@ -3,21 +3,24 @@ var AjaxInterface = new function(){
 	
 	self.getSkillLevelsClasses = function(levels, classes, selected, callback){
 		$.ajax({
-			url: "jsonskill",
+			url: "/get_skill_levels_classes",
 			type: "GET",
 			data: {"levels":levels, "classes":classes, "selected":selected},
 			success: function(data){
 				callback(data);
 			},
 			error: function(data){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	};
 	
 	self.getFullSkillDetails = function(id, callback){
 		$.ajax({
-			url: "get_skill_details",
+			url: "/get_skill_details",
 			type: "GET",
 			data: {"id":id},
 			success: function(data){
@@ -37,7 +40,10 @@ var AjaxInterface = new function(){
 				callback(retSkill);
 			},
 			error: function(data){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}
@@ -80,7 +86,10 @@ var AjaxInterface = new function(){
 				callback(retData);
 			},
 			error: function(){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}
@@ -97,7 +106,10 @@ var AjaxInterface = new function(){
 				callback(retData);
 			},
 			error: function(){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}
@@ -114,7 +126,10 @@ var AjaxInterface = new function(){
 				callback(retData);
 			},
 			error: function(){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}
@@ -131,7 +146,10 @@ var AjaxInterface = new function(){
 				callback(retData);
 			},
 			error: function(){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}
@@ -153,7 +171,10 @@ var AjaxInterface = new function(){
 				callback(retData);
 			},
 			error: function(){
+				console.log("###########################");
 				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
 			}
 		});
 	}

@@ -2,8 +2,10 @@ var Create = new function(){
 	var self = this;
 	
 	self.addSkillPrereq = function(set){
-		$(".submitSkillSelected").attr("id", set);
-		$("#createSkillSelector").fadeIn();
+		if(!$(".button_"+set).hasClass("disabled")){
+			$(".submitSkillSelected").attr("id", set);
+			$("#createSkillSelector").fadeIn();
+		}
 		event.preventDefault();
 	};
 	
@@ -92,7 +94,8 @@ var Create = new function(){
 		AjaxInterface.getSkillLevelsClasses(skill_levels, class_levels, selected_skills, callback);
 	}
 	
-	self.filterPrereqSkills = function(e){
+	self.filterPrereqSkills = function(event){
+		event.preventDefault();
 		self.doFilterSkills(self.displayJsonPrereqSkills);
 	}
 	
@@ -132,7 +135,7 @@ var Create = new function(){
 		var tr = document.createElement("TR");
 
 		tr.setAttribute("id", skill.id);
-		tr.setAttribute("onclick", "Create.selectSkill(event);");
+		tr.setAttribute("onclick", "ShowAll.showSkillDetails(event);");
 		
 		var skillname = document.createElement("TD");
 		skillname.setAttribute("id", skill.name);
@@ -141,7 +144,7 @@ var Create = new function(){
 		tr.appendChild(skillname);
 
 		var descSmall = document.createElement("TD");
-		descSmall.setAttribute("class", "col-xs-5");
+		descSmall.setAttribute("class", "col-xs-4");
 		descSmall.appendChild(document.createTextNode(skill.descriptionSmall));
 		tr.appendChild(descSmall);
 		
@@ -166,6 +169,17 @@ var Create = new function(){
 		epcost.setAttribute("class", "col-xs-1 skill_ep_cost");
 		epcost.appendChild(document.createTextNode(skill.ep_cost));
 		tr.appendChild(epcost);
+		
+		var actions = document.createElement("TD");
+		actions.setAttribute("class", "col-xs-1");
+		var actions_a = document.createElement("A");
+		actions_a.setAttribute("href", "/create_skill/"+skill.id);
+		actions_a.setAttribute("class", "btn btn-info btn-xs edit-skill-btn");
+		var actions_span = document.createElement("SPAN");
+		actions_span.setAttribute("class", "glyphicon glyphicon-pencil");
+		actions_a.appendChild(actions_span);
+		actions.appendChild(actions_a);
+		tr.appendChild(actions);
 
 		tableBody.appendChild(tr);
 	}

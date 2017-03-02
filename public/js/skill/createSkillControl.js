@@ -116,13 +116,21 @@ var createSkillControl = new function(){
 		// In case of prereq skills already selected, e.g. with an edit action
 		var skillPrereqs1Array = new Array();
 		$("#prereqs_set1 .row").each(function(id, value){
-			skillPrereqs1Array.push(value.id);
+			var split_id = value.id.split("_")[1];
+			skillPrereqs1Array.push(split_id);
+			// And disable the skill in the skillSelector
+			$(".skillSelector tr#"+split_id).addClass("submitted");
+			$(".skillSelector tr#"+split_id).removeAttr('onclick');
+			
+			// Skills in set1 have been found. Enable button set2
+			$(".button_set2").removeClass('disabled');
 		});
 		$("#skill_prereqs_set1_list_hidden").val(JSON.stringify(skillPrereqs1Array));
 		
 		var skillPrereqs2Array = new Array();
 		$("#prereqs_set2 .row").each(function(id, value){
-			skillPrereqs2Array.push(value.id);
+			var split_id = value.id.split("_")[1];
+			skillPrereqs2Array.push(split_id);
 		});
 		$("#skill_prereqs_set2_list_hidden").val(JSON.stringify(skillPrereqs2Array));
 	}

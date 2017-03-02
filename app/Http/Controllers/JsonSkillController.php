@@ -6,14 +6,21 @@ use Request;
 use Response;
 use App\Skill;
 use DB;
+use View;
+use Session;
 
 class JsonSkillController extends Controller {
-	public function decodeJson() {
+	public function getSkillLevelsClassesJson() {
 		$skills = array();
 		
 		if(Request::has('levels') && Request::has('classes')){
 			$levels_filter = Request::input("levels", []);
 			$class_filter = Request::input("classes", []);
+			
+			// Store all filter info in session
+			session("levels_filter",$levels_filter);
+			session("class_filter",$class_filter);
+			
 			$skills = DB::table('skills')
 				->join('skill_levels', 'skills.skill_level_id', '=', 'skill_levels.id')
 				->join('player_class_skill', 'skills.id', '=', 'player_class_skill.skill_id')

@@ -19,11 +19,13 @@
 			@if ($skill == null)
  				<form id="createSkillForm" action="/create_skill_submit" method="POST">
  			@else
- 				<form id="createSkillForm" action="/create_skill_update" method="POST">
+ 				<form id="createSkillForm" action="/create_skill_update/{{$skill->id}}" method="POST">
  			@endif
 
-<!-- ******************* -->
-
+			<!-- ******************* -->
+			<!-- For Laravel CSRF administration -->
+			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+			<!-- ******************* -->
 
  			<ul class="nav nav-tabs">
 			  <li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>

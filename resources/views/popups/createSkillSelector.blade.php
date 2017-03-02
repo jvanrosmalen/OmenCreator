@@ -28,7 +28,7 @@
 				
 				<div class="row">
 					<div class="col-xs-10">
-					    <table class="table table-condensed table-fixedheader table-hover">
+					    <table id="skill_select_table" class="table table-condensed table-fixedheader table-hover">
 					        <thead>
 					            <tr>
 					                <th class="col-xs-5">

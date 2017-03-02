@@ -32,25 +32,26 @@
 
 		<div class="row">
 			<div class="col-xs-10">
-			    <table id="skill_table" class="table table-condensed table-hover sortable">
+			    <table id="skill_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 			        <thead>
 			            <tr>
-			                <th>
+			                <th class="col-xs-3">
 			                    Naam
 			                </th>
-			                <th>
+			                <th class="col-xs-4">
 			                	Korte Beschrijving
 			                </th>
-			                <th>
+			                <th class="col-xs-2">
 			                	Klasse
 			                </th>
-			                <th>
+			                <th class="col-xs-1">
 			                	Niveau
 			                </th>
-			                <th class="skill_ep_cost">
+			                <th class="col-xs-1">
 			                	EP
 			                </th>
-			                <th>
+			                <th class="col-xs-1">
+			                	Actie
 			                </th>
 			            </tr>
 			        </thead>
@@ -59,7 +60,7 @@
 				            @foreach ($skills as $skill)
 				                <tr id="{{ $skill->id }}" onclick="ShowAll.showSkillDetails(event);">
 				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
-				                    <td class="col-xs-5">{{ $skill->description_small }}</td>
+				                    <td class="col-xs-4">{{ $skill->description_small }}</td>
 				               		<td class="col-xs-2">
 				               		@foreach ($skill->player_classes as $player_class)
 				               			{{ $player_class }}
@@ -67,8 +68,8 @@
 				               		</td>
 				               		<td class="col-xs-1">{{ $skill->skill_level }}</td>
 				                    <td class="col-xs-1 skill_ep_cost">{{ $skill->ep_cost }}</td>
-				                    <td>
-				                    	<a href="/create_skill/{{$skill->id}}" class="btn btn-info btn-sm edit-skill-btn">
+				                    <td class="col-xs-1">
+				                    	<a href="/create_skill/{{$skill->id}}" class="btn btn-info btn-xs edit-skill-btn">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
         							</td>
