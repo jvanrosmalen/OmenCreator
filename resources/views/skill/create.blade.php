@@ -136,17 +136,17 @@
 						</div>
 						<div class='col-xs-10'>
 							@if ( $skill == null )
-								@foreach($playerraces as $playerrace)
-										<input tabindex="1" type="checkbox" name="playerrace[]" value="{{$playerrace->id}}"><span class="checkbox_text">{{$playerrace->race_name}}</span>
+								@foreach($races as $race)
+										<input tabindex="1" type="checkbox" name="race[]" value="{{$race->id}}"><span class="checkbox_text">{{$race->race_name}}</span>
 								@endforeach
 							@else
 								<?php 
-								foreach($playerraces as $playerrace){
-									if( in_array($playerrace->race_name, $skill->player_races )){
-										echo '<input tabindex="1" type="checkbox" name="playerrace[]" value="'.$playerrace->id.'" checked="checked"><span class="checkbox_text">'.$playerrace->race_name.'</span>';
+								foreach($races as $race){
+									if( in_array($race->race_name, $skill->races )){
+										echo '<input tabindex="1" type="checkbox" name="race[]" value="'.$race->id.'" checked="checked"><span class="checkbox_text">'.$race->race_name.'</span>';
 									}
 									else{
-										echo '<input tabindex="1" type="checkbox" name="playerrace[]" value="'.$playerrace->id.'"><span class="checkbox_text">'.$playerrace->race_name.'</span>';
+										echo '<input tabindex="1" type="checkbox" name="race[]" value="'.$race->id.'"><span class="checkbox_text">'.$race->race_name.'</span>';
 									}
 								}
 								?>

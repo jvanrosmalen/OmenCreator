@@ -172,13 +172,20 @@ var Create = new function(){
 		
 		var actions = document.createElement("TD");
 		actions.setAttribute("class", "col-xs-1");
-		var actions_a = document.createElement("A");
-		actions_a.setAttribute("href", "/create_skill/"+skill.id);
-		actions_a.setAttribute("class", "btn btn-info btn-xs edit-skill-btn");
-		var actions_span = document.createElement("SPAN");
-		actions_span.setAttribute("class", "glyphicon glyphicon-pencil");
-		actions_a.appendChild(actions_span);
-		actions.appendChild(actions_a);
+		var actions_update = document.createElement("A");
+		actions_update.setAttribute("href", "/create_skill/"+skill.id);
+		actions_update.setAttribute("class", "btn btn-info btn-xs edit-skill-btn");
+		var actions_btn_update = document.createElement("SPAN");
+		actions_btn_update.setAttribute("class", "glyphicon glyphicon-pencil");
+		actions_update.appendChild(actions_btn_update);
+		var actions_delete = document.createElement("A");
+		actions_delete.setAttribute("href", "/show_delete_skill/"+skill.id);
+		actions_delete.setAttribute("class", "btn btn-danger btn-xs edit-skill-btn");
+		var actions_btn_delete = document.createElement("SPAN");
+		actions_btn_delete.setAttribute("class", "glyphicon glyphicon-minus");
+		actions_delete.appendChild(actions_btn_delete);
+		actions.appendChild(actions_update);
+		actions.appendChild(actions_delete);
 		tr.appendChild(actions);
 
 		tableBody.appendChild(tr);

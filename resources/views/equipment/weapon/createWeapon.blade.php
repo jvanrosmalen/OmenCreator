@@ -17,6 +17,12 @@
 		@else
 		<form id="{{ ($weapon!=null?$weapon->id:-1) }}" action="/create_weapon_update/{{ $weapon->id }}" method="POST">
 		@endif
+
+			<!-- ******************* -->
+			<!-- For Laravel CSRF administration -->
+			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+			<!-- ******************* -->
+			
 			<div class='row well'>
 				<div class='col-xs-2'>Naam:</div>
 				<div class='col-xs-3'>

@@ -7,7 +7,7 @@ use App\PlayerClass;
 use App\Statistic;
 use App\SkillLevel;
 use App\Skill;
-use App\PlayerRace;
+use App\Race;
 use App\Income;
 use App\CraftEquipment;
 use Illuminate\Support\Facades\Input;
@@ -46,7 +46,7 @@ class SkillController extends Controller
 											"playerclasses"=>PlayerClass::all(),
 											"stats"=>Statistic::all(),
 											"levels"=>SkillLevel::all(),
-											"playerraces"=>PlayerRace::all(),
+											"races"=>Race::all(),
 											"craftequipments"=>$craftequipments,
 											"rules" => $rules,
 											"skill_rules" => $skill_rules,
@@ -89,7 +89,7 @@ class SkillController extends Controller
 											"playerclasses"=>PlayerClass::all(),
 											"stats"=>Statistic::all(),
 											"levels"=>SkillLevel::all(),
-											"playerraces"=>PlayerRace::all(),
+											"races"=>Race::all(),
 											"craftequipments"=>$craftequipments,
 											"rules" => $rules,
 											"skill_rules" => json_encode($skill_rules),
@@ -187,11 +187,11 @@ class SkillController extends Controller
 			}
 		}
 
-		$skill->callRules()->sync($call_rules_sync);
-		$skill->damageRules()->sync($dam_rules_sync);
-		$skill->resistanceRules()->sync($res_rules_sync);
-		$skill->statisticRules()->sync($stat_rules_sync);
-		$skill->wealthRules()->sync($wealth_rules_sync);
+		$newSkill->callRules()->sync($call_rules_sync);
+		$newSkill->damageRules()->sync($dam_rules_sync);
+		$newSkill->resistanceRules()->sync($res_rules_sync);
+		$newSkill->statisticRules()->sync($stat_rules_sync);
+		$newSkill->wealthRules()->sync($wealth_rules_sync);
 		
 		// Save class prereqs
  		$player_classes = Input::get('playerclass');
@@ -200,9 +200,9 @@ class SkillController extends Controller
  		}
 		
 		// Save race prereqs
-		$player_races = Input::get('playerrace');
-		if(is_array($player_races)){
- 			$newSkill->playerRaces()->sync($player_races,false);
+		$races = Input::get('race');
+		if(is_array($races)){
+ 			$newSkill->races()->sync($races,false);
 		}
 		
 		return $this->showCreateSkill();
@@ -309,9 +309,9 @@ class SkillController extends Controller
 		}
 	
 		// Save race prereqs
-		$player_races = Input::get('playerrace');
-		if(is_array($player_races)){
-			$skill->playerRaces()->sync($player_races,false);
+		$races = Input::get('race');
+		if(is_array($races)){
+			$skill->races()->sync($races,false);
 		}
 	
 		return $this->showAll();
@@ -319,10 +319,12 @@ class SkillController extends Controller
 	
 	public function showDeleteSkill($id){
 		$skill = Skill::find($id);
-		return view('/showDeleteSkill/', ['skill'=>$skill]);
+		return view('/skill/showdeleteskill', ['skill'=>$skill]);
 	}
 	
 	public function deleteSkill($id){
+		$skill = Skill::find($id);
+		$skill->delete();
 		
 		return $this->showAll();		
 	}

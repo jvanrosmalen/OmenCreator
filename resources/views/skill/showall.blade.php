@@ -72,6 +72,9 @@
 				                    	<a href="/create_skill/{{$skill->id}}" class="btn btn-info btn-xs edit-skill-btn">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
+				                    	<a href="/show_delete_skill/{{$skill->id}}" class="btn btn-danger btn-xs remove-skill-btn">
+          									<span class="glyphicon glyphicon-minus"></span> 
+        								</a>
         							</td>
 				                </tr>
 				            @endforeach

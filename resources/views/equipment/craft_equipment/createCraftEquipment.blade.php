@@ -20,6 +20,11 @@
 			<form id="{{ ($craft_equipment!=null?$craft_equipment->id:-1) }}" action="/create_craft_equipment_update/{{ $craft_equipment->id }}" method="POST">
 			@endif
 
+			<!-- ******************* -->
+			<!-- For Laravel CSRF administration -->
+			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+			<!-- ******************* -->
+			 
  			<ul class="nav nav-tabs">
 			  <li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
 			  <li><a id="tab2" data-toggle="tab" href="#optional">Optioneel</a></li>

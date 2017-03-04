@@ -1,0 +1,17 @@
+.race_search_input {
+	vertical-align: middle;
+}
+
+.race_desc {
+	width: 100%;
+	height: 150px;
+}
+
+.race_name_row {
+	padding: 8px !important;
+	margin-bottom: 10px !important;
+}
+
+.race_details {
+	display: none;
+}

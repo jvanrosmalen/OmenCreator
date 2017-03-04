@@ -68,7 +68,7 @@ var AjaxInterface = new function(){
 			);
 		
 		retSkill.classes = skill["player_classes"];
-		retSkill.races = skill["player_races"];
+		retSkill.races = skill["races"];
 		retSkill.craftEquipments = skill["craft_equipments"];
 		
 		return retSkill;

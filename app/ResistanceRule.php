@@ -25,6 +25,10 @@ class ResistanceRule extends Model
 	public function skills(){
 		return $this->belongsToMany('App\Skill');
 	}
+	
+	public function races(){
+		return $this->belongsToMany('App\Race');
+	}
 		
 	public function toString(){
 		return Resistance::find($this->resistance_id)->resistance_name." ".$this->rules_operator." ".$this->value;

@@ -3,7 +3,12 @@ var ShowAll = new function(){
 	
 	self.showSkillDetails = function(event){
 		// if the event was fired by the edit button, do nothing
-		if(!($(event.target).hasClass("edit-skill-btn")||$(event.target).hasClass("glyphicon-pencil"))){
+		if(!( $(event.target).hasClass("edit-skill-btn")
+				||$(event.target).hasClass("glyphicon-pencil")
+				||$(event.target).hasClass("remove-skill-btn")
+				||$(event.target).hasClass("glyphicon-minus")
+				)
+		  ){
 			var skillId = $(event.target).parents("tr").attr("id");
 			self.clearSkillDetails();
 			event.preventDefault();

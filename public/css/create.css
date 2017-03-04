@@ -186,3 +186,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 .edit-skill-btn {
 	z-index: 10 !important;
 }
+
+.remove-skill-btn {
+	z-index: 10 !important;
+}
