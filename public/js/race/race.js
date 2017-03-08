@@ -1,6 +1,6 @@
 var Race = new function(){
 	var self = this;
-
+	
 	self.addListeners = function(){
 		var races = $("#race_size").data('races');
 		

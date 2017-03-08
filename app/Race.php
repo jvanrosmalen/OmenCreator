@@ -16,15 +16,18 @@ class Race extends Model
     		'res_rules',
     		'stat_rules',
     		'wealth_rules',
+    		'race_skills',
     		'lp_torso',
     		'lp_limbs',
     		'willpower',
     		'status',
     		'focus',
-    		'trauma'
+    		'trauma',
+    		'prohibited_classes',
+    		'descent_classes'
     ];
     
-    public function skills(){
+    public function race_skills(){
     	return $this->belongsToMany('App\Skill');
     }
     
@@ -46,6 +49,14 @@ class Race extends Model
     
     public function wealthRules(){
     	return $this->belongsToMany('App\WealthRule');
+    }
+    
+    public function prohibitedClasses(){
+     	return $this->belongsToMany('App\PlayerClass','prohibited_player_class_race');
+    }
+    
+    public function descentClasses(){
+    	return $this->belongsToMany('App\PlayerClass','descent_player_class_race');
     }
     
     /**
@@ -190,5 +201,31 @@ class Race extends Model
     	}
     	 
     	return $basic_value;
+    }
+    
+    public function getRaceSkillsAttribute(){
+    	return Race::find($this->id)->race_skills()->get();
+    }
+    
+    public function getProhibitedClassesAttribute(){
+    	$retArray = array();
+    	$resultArray = Race::find($this->id)->prohibitedClasses()->get();
+    	
+    	foreach($resultArray as $i=>$result){
+    		array_push($retArray, $result->class_name);
+    	}
+    	
+    	return $retArray;
+    }
+    
+    public function getDescentClassesAttribute(){
+    	$retArray = array();
+    	$resultArray = Race::find($this->id)->descentClasses()->get();
+    	
+    	foreach($resultArray as $i=>$result){
+    		array_push($retArray, $result->class_name);
+    	}
+    	
+    	return $retArray;
     }
 }

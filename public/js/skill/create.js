@@ -308,6 +308,7 @@ var Create = new function(){
 		$("#skill_prereqs_"+set+"_list_hidden").val(JSON.stringify(skillPrereqsArray));
 		
 		// Now remove from view
+		var test = ".skillSelector tr#"+id;
 		var selectorSkill = $(".skillSelector tr#"+id);
 		if(selectorSkill.hasClass("submitted")){
 			selectorSkill.removeClass("submitted");

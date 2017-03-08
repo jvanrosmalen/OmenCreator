@@ -381,10 +381,10 @@
 			</form>
 		</div>
 		
-		@include('popups.createSkillSelector');
+		@include('popups.createSkillSelector', array('submitMethod'=>'Create.submitPrereqSkills(event)'))
 
 		<script>
-			createSkillTabControl.addTabButtonListeners();
+			CreateSkillTabControl.addTabButtonListeners();
 			createSkillControl.addCreateSkillListeners();
 		</script>
 		

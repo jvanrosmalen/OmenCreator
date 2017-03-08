@@ -12,7 +12,7 @@ class CrudPlayerRaceRules extends Migration {
 		
 		Schema::table ( 'races', function ($table) {
 			$table->text ( 'description' );
-			$table->boolean ( 'player_race' );
+			$table->boolean ( 'is_player_race' );
 		} );
 		
 		Schema::create ( 'call_rule_race', function (Blueprint $table) {

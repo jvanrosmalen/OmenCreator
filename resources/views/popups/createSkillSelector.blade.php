@@ -83,7 +83,7 @@
 			    
 				<div class="row">
 					<div>
-						<button id="" type="button" class="btn btn-success btn-lg btn-block submitSkillSelected" onclick="Create.submitPrereqSkills(event)">Selecteer Vaardigheid</button>
+						<button id="" type="button" class="btn btn-success btn-lg btn-block submitSkillSelected" onclick="{{$submitMethod}}">Selecteer Vaardigheid</button>
 					</div>
 				</div>
 				

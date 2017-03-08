@@ -30,6 +30,9 @@
 				</div>
 				<div id="{{$race->id}}" class="col-xs-8 detail_name">
 					{{ $race->race_name }}
+					@if($race->is_player_race)
+						 (Spelerras)
+					@endif
 				</div>
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-race-{{$race->id}} btn-update" role="button">Aanpassen</a>
@@ -91,7 +94,7 @@
 				<div class="row">
 					<div class="col-xs-1">
 					</div>
-					<div class="col-xs-6 rule_display">
+					<div class="col-xs-4 rule_display">
 						<b>Speciale regels (zijn al verwerkt in het profiel):</b><br>
 						@foreach($race->dam_rules as $dam_rule)
 							{{$dam_rule->toString()}}<br>
@@ -109,7 +112,41 @@
 							{{$wealth_rule->toString()}}<br>
 						@endforeach
 					</div>
+					<div class="col-xs-1"></div>
+					<div class="col-xs-4 rule_display">
+						<b>Afkomstklasses</b><br>
+						@forelse($race->descent_classes as $descent_class)
+						    {{$descent_class}}<br>
+						@empty
+						    Geen afkomstklasses<br>
+						@endforelse
+					</div>
 				</div>
+				
+				<br>
+				
+				<div class="row">
+					<div class="col-xs-1">
+					</div>
+					<div class="col-xs-4 rule_display">
+						<b>Rasvaardigheden:</b><br>
+						@foreach($race->race_skills as $race_skill)
+							{{$race_skill->name}}<br>
+						@endforeach
+					</div>
+					<div class="col-xs-1"></div>
+					<div class="col-xs-4 rule_display">
+						<b>Verboden klasses</b><br>
+						@forelse($race->prohibited_classes as $prohibited_class)
+						    {{$prohibited_class}}<br>
+						@empty
+						    Geen verboden klassen<br>
+						@endforelse
+					</div>
+				</div>
+				
+				<br>
+				
 			</div>
 		@endforeach
 		

@@ -28,8 +28,8 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis
 						Info</a></li>
-				<li><a id="tab2" data-toggle="tab" href="#optional">Optioneel</a></li>
-				<!-- 			  <li><a style="cursor:not-allowed" href="#optional">Optioneel</a></li>  -->
+				<li><a id="tab2" data-toggle="tab" href="#rules">Regels</a></li>
+				<li><a id="tab3" data-toggle="tab" href="#skills">Vaardigheden</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -43,10 +43,75 @@
 								name="race_name" style="width: 100%;"
 								value="{{ ($race!=null?$race->race_name:'') }}">
 						</div>
+						<div class='col-xs-2'>
+							@if( $race!=null && $race->is_player_race)
+								<input type='checkbox' name='isPlayerClass' value='isPlayerClass' checked="checked"><span class="checkbox_text">Spelerklasse</span>
+							@else
+								<input type='checkbox' name='isPlayerClass' value='isPlayerClass'><span class="checkbox_text">Spelerklasse</span>
+							@endif
+						</div>
 						<div class='col-xs-4 name_warning hidden'>Deze naam bestaat al.
 							Kies een andere.</div>
 					</div>
 
+					<div class="row well">
+						<div class="row">
+							<div class='col-xs-2'>
+								<b><em>Verboden</em></b> klasse:
+							</div>	
+							<div class='col-xs-10'>
+								@if ( $race == null )
+									@foreach($playerclasses as $playerclass)
+										@if($playerclass->class_name != "Algemeen")
+											<input tabindex="1" type="checkbox" name="prohibited_classes[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
+										@endif
+									@endforeach
+								@else
+									<?php 
+									foreach($playerclasses as $playerclass){
+										if($playerclass->class_name != "Algemeen"){
+											if( in_array($playerclass->class_name, $race->prohibited_classes )){
+												echo '<input tabindex="1" type="checkbox" name="prohibited_classes[]" value="'.$playerclass->id.'" checked="checked"><span class="checkbox_text">'.$playerclass->class_name.'</span>';
+											}
+											else{
+												echo '<input tabindex="1" type="checkbox" name="prohibited_classes[]" value="'.$playerclass->id.'"><span class="checkbox_text">'.$playerclass->class_name.'</span>';
+											}
+										}
+									}
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="row">
+							<div class='col-xs-2'>
+								Afkomst klasse:
+							</div>	
+							<div class='col-xs-10'>
+								@if ( $race == null )
+									@foreach($playerclasses as $playerclass)
+										@if($playerclass->class_name != "Algemeen")
+											<input class="descent_class_choice" tabindex="1" type="checkbox" name="descent_classes[]" value="{{$playerclass->id}}"><span class="checkbox_text">{{$playerclass->class_name}}</span>
+										@endif
+									@endforeach
+								@else
+									<?php 
+									foreach($playerclasses as $playerclass){
+										if($playerclass->class_name != "Algemeen"){
+											if( in_array($playerclass->class_name, $race->descent_classes )){
+												echo '<input tabindex="1" type="checkbox" name="descent_classes[]" value="'.$playerclass->id.'" checked="checked"><span class="checkbox_text">'.$playerclass->class_name.'</span>';
+											}
+											else{
+												echo '<input tabindex="1" type="checkbox" name="descent_classes[]" value="'.$playerclass->id.'"><span class="checkbox_text">'.$playerclass->class_name.'</span>';
+											}
+										}
+									}
+									?>
+
+								@endif
+							</div>
+						</div>
+					</div>	
+					
 					<div class="row well">
 						<div class="col-xs-2">Beschrijving:</div>
 						<div class="col-xs-7">
@@ -94,18 +159,58 @@
 					'previous'=>null, 'save'=>false, 'next'=>'tab2'))
 				</div>
 
-				<div id="optional" class="tab-pane fade">
+				<div id="rules" class="tab-pane fade">
 					@include('rules.addRulesInclude', array('rules'=>$rules,
-					'item_rules'=>$race_rules)) @include('layouts.tab_buttons',
-					array('tab'=>'tab2', 'previous'=>'tab1', 'save'=>true,
-					'next'=>null))</div>
-			</div>
-
+					'item_rules'=>$race_rules))
+					
+					@include('layouts.tab_buttons',
+					array('tab'=>'tab2', 'previous'=>'tab1', 'save'=>false,
+					'next'=>'tab3'))
+				</div>
+				
+				<div id="skills" class="tab-pane fade">
+				    <h3>Rasvaardigheden</h3>
+					
+					<div class="row well">
+						<div class="col-xs-2">Selecteer vaardigheden:</div>
+						<div class="col-xs-3">
+							<div id="race_skills" class="skill_prereqs">
+								@if ( $race != null )
+									<?php
+										foreach($race->race_skills as $race_skill){
+											echo '<div class="row" id="'.$race_skill->id.'" style="padding-top: 3px;padding-left: 3px">';
+											echo '<div class="col-xs-8">'.$race_skill->name."</div>";
+											echo '<div class="col-xs-3">';
+											echo '<button class="btn btn-xs pull-right">';
+											echo '<span class="glyphicon glyphicon-minus" id="'.$race_skill->id.'" onclick="CreateRaceControl.removeRaceSkill(event);">';
+											echo '</span>';
+											echo '</button>';
+											echo '</div>';
+											echo '</div>';
+										}
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-default" aria-label="Left Align" onclick = "CreateRaceControl.addRaceSkill();">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
+						</div>
+					</div>
+					
+					<input id="race_skills_list_hidden" name="race_skills_list" class="hidden">
+					
+					@include('layouts.tab_buttons',	array('tab'=>'tab3', 'previous'=>'tab2', 'save'=>true,
+					'next'=>null))
+				</div>
 		</form>
+	</div>
 
-</div>
-<script>
-				GenericEquipmentTabControl.addTabButtonListeners();
-			</script>
+	@include('popups.createSkillSelector', array('submitMethod'=>'CreateRaceControl.submitRaceSkills(event)'))
+
+	<script>
+		CreateSkillTabControl.addTabButtonListeners();
+	</script>
 @stop
 </html>

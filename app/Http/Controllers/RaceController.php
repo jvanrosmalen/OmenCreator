@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
-use App\Http\Requests;
+//use App\Http\Requests;
 use App\Race;
+use App\SkillLevel;
+use App\PlayerClass;
+use Request;
+use Illuminate\Support\Facades\Input;
 
 class RaceController extends Controller
 {
 	public function showCreateRace($id = -1){
 		$rules = RulesController::getAllRules();
 		$race_rules = null;
-	
+		
 		if($id < 0){
-			return view('race/createRace', ['race'=>null, 'rules' => $rules, 'race_rules' => $race_rules]);
+			return view('race/createRace', ['race'=>null,
+					'skilllevels' => SkillLevel::all(),
+					'playerclasses' => PlayerClass::all(),
+					'rules' => $rules,
+					'race_rules' => $race_rules
+			]);
 		}
 		else {
 			$race = Race::find($id);
@@ -31,7 +40,13 @@ class RaceController extends Controller
 					"wealth_rules"=>$race_wealth_rules
 			];
 				
-			return view('race/createRace', ['race'=>$race, 'rules' => $rules, 'race_rules'=> json_encode($race_rules)]);
+			return view('race/createRace', ['race'=>$race,
+					'skilllevels' => SkillLevel::all(),
+					'playerclasses' => PlayerClass::all(),
+					'rules' => $rules,
+					'race_rules'=> json_encode($race_rules)
+					
+			]);
 		}
 	}
 	
@@ -59,7 +74,16 @@ class RaceController extends Controller
 		if(!$race->wealth_rules->isEmpty()){
 			$race->wealthRules()->detach();
 		}
-	
+		if(!$race->race_skills->isEmpty()){
+			$race->race_kills()->detach();
+		}
+		if(!$race->prohibited_classes->isEmpty()){
+			$race->prohibitedClasses()->detach();
+		}
+		if(!$race->descent_classes->isEmpty()){
+			$race->descentClasses()->detach();
+		}
+		
 		// Delete generic race from DB table
 		$race->delete();
 		return $this->gotoShowAllRace();
@@ -73,6 +97,7 @@ class RaceController extends Controller
 	
 		$race->race_name = $_POST["race_name"];
 		$race->description = $_POST["race_desc"];
+		$race->is_player_race = isset($_POST['isPlayerClass']);
 		
 		// Now sync the pivot table.
 		$ruleArray = json_decode($_POST["rules_list"]);
@@ -112,7 +137,25 @@ class RaceController extends Controller
 		}
 	
 		$race->save();
-	
+
+		// Sync race skills
+		$skills_list = json_decode($_POST['race_skills_list']);
+		if(is_array($skills_list)){
+			$race->race_skills()->sync($skills_list);
+		}
+		
+		// Sync prohibited classes
+		$prohibited_classes_list = Input::get('prohibited_classes');
+		if(is_array($prohibited_classes_list)){
+			$race->prohibitedClasses()->sync($prohibited_classes_list);
+		}
+
+		// Sync prohibited classes
+		$descent_classes_list = Input::get('descent_classes');
+		if(is_array($descent_classes_list)){
+			$race->descentClasses()->sync($descent_classes_list);
+		}
+		
 		return $this->gotoShowAllRace();
 	}
 	
@@ -121,6 +164,7 @@ class RaceController extends Controller
 	
 		$newRace->name = $_POST["race_name"];
 		$newRace->description = $_POST["race_desc"];
+		$newRace->is_player_race = isset($_POST['isPlayerClass']);
 		
 		// First save the new race so it has an DB id.
 		$newRace->save();
@@ -143,7 +187,25 @@ class RaceController extends Controller
 				}
 			}
 		}
-	
+		
+		// Sync race skills
+		$skills_list = json_decode($_POST['race_skills_list']);
+		if(is_array($skills_list)){
+			$newRace->race_skills()->sync($skills_list);
+		}
+		
+		// Sync prohibited classes
+	 	$prohibited_classes_list = Input::get('prohibited_classes');
+ 		if(is_array($prohibited_classes_list)){
+ 			$newRace->prohibitedClasses()->sync($prohibited_classes_list);
+ 		}
+ 		
+ 		// Sync prohibited classes
+ 		$descent_classes_list = Input::get('descent_classes');
+ 		if(is_array($descent_classes_list)){
+ 			$newRace->descentClasses()->sync($descent_classes_list);
+ 		}
+		
 		return $this->gotoShowAllRace();
 	}
 	

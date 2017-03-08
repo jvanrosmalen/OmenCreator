@@ -11,4 +11,12 @@ class PlayerClass extends Model
     public function skills(){
     	return $this->belongsToMany('App\Skill');
     }
+    
+    public function prohibitedRaces(){
+    	return $this->belongsToMany('App\Race');
+    }
+    
+    public function descentRaces(){
+    	return $this->hasMany('App\Race', 'id', 'descent_class');
+    }
 }
