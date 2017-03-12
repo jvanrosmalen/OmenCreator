@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PlayerClass extends Model
 {
     public $timestamps = false;
-
+    protected $appends = [	'wealth_type'
+    ];
+    
     public function skills(){
     	return $this->belongsToMany('App\Skill');
     }
@@ -18,5 +20,9 @@ class PlayerClass extends Model
     
     public function descentRaces(){
     	return $this->hasMany('App\Race', 'id', 'descent_class');
+    }
+    
+    public function getWealthTypeAttribute(){
+    	return WealthType::find($this->wealth_type_id);
     }
 }

@@ -85,7 +85,7 @@ var AjaxInterface = new function(){
 				
 				callback(retData);
 			},
-			error: function(){
+			error: function(data){
 				console.log("###########################");
 				console.log("JSON error");
 				console.log(data.responseText);
@@ -105,7 +105,7 @@ var AjaxInterface = new function(){
 				
 				callback(retData);
 			},
-			error: function(){
+			error: function(data){
 				console.log("###########################");
 				console.log("JSON error");
 				console.log(data.responseText);
@@ -125,7 +125,7 @@ var AjaxInterface = new function(){
 				
 				callback(retData);
 			},
-			error: function(){
+			error: function(data){
 				console.log("###########################");
 				console.log("JSON error");
 				console.log(data.responseText);
@@ -145,7 +145,27 @@ var AjaxInterface = new function(){
 				
 				callback(retData);
 			},
-			error: function(){
+			error: function(data){
+				console.log("###########################");
+				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
+			}
+		});
+	}
+	
+	self.checkGenericEquipmentName = function(name, generic_equipment_id, callback){
+		$.ajax({
+			url: "/check_generic_equipment_name",
+			type: "GET",
+			data: {	"name":name,
+					"generic_equipment_id": generic_equipment_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				
+				callback(retData);
+			},
+			error: function(data){
 				console.log("###########################");
 				console.log("JSON error");
 				console.log(data.responseText);
@@ -170,7 +190,7 @@ var AjaxInterface = new function(){
 				
 				callback(retData);
 			},
-			error: function(){
+			error: function(data){
 				console.log("###########################");
 				console.log("JSON error");
 				console.log(data.responseText);

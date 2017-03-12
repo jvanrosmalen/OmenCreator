@@ -8,7 +8,8 @@
                 <div class="panel-heading">Hymir zegt:</div>
 
                 <div class="panel-body">
-                    Je bent ingelogd!
+                    De admin moet je registratie nog goedkeuren.<br>
+                    Probeer het later nog eens, of contacteer de admin.
                 </div>
             </div>
         </div>

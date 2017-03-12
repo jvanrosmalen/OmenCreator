@@ -1,0 +1,17 @@
+.class_search_input {
+	vertical-align: middle;
+}
+
+.class_desc {
+	width: 100%;
+	height: 150px;
+}
+
+.class_name_row {
+	padding: 8px !important;
+	margin-bottom: 10px !important;
+}
+
+.class_details {
+	display: none;
+}

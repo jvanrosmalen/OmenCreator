@@ -20,14 +20,19 @@
 	<link href="{{ URL::asset('css/create.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/equipment.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/showall.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/showalluser.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/mainstyle.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/rule.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/race.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/playerClass.css') }}" rel='stylesheet' type='text/css'>
+    <script src="{{ URL::asset('js/class/playerClass.js') }}"></script>
+    <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/createSkillTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/createSkillControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
+    <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/weapon/weapon.js') }}"></script>
@@ -58,23 +63,12 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a href="{{ url('/home') }}"><img src="{{ URL::asset('img/omen.png') }}" alt="Omen Creator"></a>
+                <a href="{{ url('/home') }}"><img class="nav_bar_png" src="{{ URL::asset('img/omen.png') }}" alt="Omen Creator"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                  Vaardigheden<span class="caret"></span>
@@ -108,29 +102,6 @@
                                 <li><a href="{{ url('/showall_craft_equipment') }}">Ambachtsuitrusting</a></li>
                                 <li><a href="{{ url('/showall_generic_equipment') }}">Algemene Uitrusting</a></li>
                             </ul>
-
-<!-- Example in case of submenu <ul class="dropdown-menu" role="menu"> -->
-<!--                                 <li class="menu-item dropdown dropdown-submenu"> -->
-<!--                                 	<a href="{{ url('/showall_equipment') }}" class="dropdown-toggle" data-toggle="dropdown">Overzicht Uitrusting</a> -->
-<!-- 		                            <ul class="dropdown-menu"> -->
-<!-- 		                                <li class="menu-item "> -->
-<!-- 		                                    <a href="{{ url('/showall_armor') }}">Overzicht Pantsers</a> -->
-<!-- 		                                </li> -->
-<!-- 		                                <li class="menu-item "> -->
-<!-- 		                                    <a href="{{ url('/showall_shield') }}">Overzicht Schilden</a> -->
-<!-- 		                                </li> -->
-<!-- 		                                <li class="menu-item "> -->
-<!-- 		                                    <a href="{{ url('/showall_weapon') }}">Overzicht Wapens</a> -->
-<!-- 		                                </li> -->
-<!-- 		                                <li class="menu-item "> -->
-<!-- 		                                    <a href="{{ url('/showall_craft_equipment') }}">Overzicht Ambachtsuitrusting</a> -->
-<!-- 		                                </li> -->
-<!-- 		                                <li class="menu-item "> -->
-<!-- 		                                    <a href="{{ url('/showall_general_equipment') }}">Overzicht Algemene Uitrusting</a> -->
-<!-- 		                                </li> -->
-<!-- 		                            </ul> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
                     </li>
 
                     <li class="dropdown">
@@ -142,6 +113,16 @@
                                 <li><a href="{{ url('/showall_race') }}">Overzicht Rassen</a></li>
                             </ul>
                     </li>
+
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 Klassen<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/showall_class') }}">Overzicht Klassen</a></li>
+                            </ul>
+                    </li>
                                         
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -150,6 +131,16 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/showall_rule') }}">Overzicht Bonusregels</a></li>
+                            </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 Gebruikers<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/showall_user') }}">Overzicht Gebruikers</a></li>
                             </ul>
                     </li>
                 </ul>

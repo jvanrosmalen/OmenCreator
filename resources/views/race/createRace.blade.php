@@ -45,9 +45,9 @@
 						</div>
 						<div class='col-xs-2'>
 							@if( $race!=null && $race->is_player_race)
-								<input type='checkbox' name='isPlayerClass' value='isPlayerClass' checked="checked"><span class="checkbox_text">Spelerklasse</span>
+								<input type='checkbox' name='isPlayerRace' value='isPlayerClass' checked="checked"><span class="checkbox_text">Spelerras</span>
 							@else
-								<input type='checkbox' name='isPlayerClass' value='isPlayerClass'><span class="checkbox_text">Spelerklasse</span>
+								<input type='checkbox' name='isPlayerRace' value='isPlayerClass'><span class="checkbox_text">Spelerras</span>
 							@endif
 						</div>
 						<div class='col-xs-4 name_warning hidden'>Deze naam bestaat al.
@@ -210,7 +210,7 @@
 	@include('popups.createSkillSelector', array('submitMethod'=>'CreateRaceControl.submitRaceSkills(event)'))
 
 	<script>
-		CreateSkillTabControl.addTabButtonListeners();
+		CreateRaceTabControl.addTabButtonListeners();
 	</script>
 @stop
 </html>

@@ -97,7 +97,7 @@ class RaceController extends Controller
 	
 		$race->race_name = $_POST["race_name"];
 		$race->description = $_POST["race_desc"];
-		$race->is_player_race = isset($_POST['isPlayerClass']);
+		$race->is_player_race = isset($_POST['isPlayerRace']);
 		
 		// Now sync the pivot table.
 		$ruleArray = json_decode($_POST["rules_list"]);
@@ -164,7 +164,7 @@ class RaceController extends Controller
 	
 		$newRace->name = $_POST["race_name"];
 		$newRace->description = $_POST["race_desc"];
-		$newRace->is_player_race = isset($_POST['isPlayerClass']);
+		$newRace->is_player_race = isset($_POST['isPlayerRace']);
 		
 		// First save the new race so it has an DB id.
 		$newRace->save();
