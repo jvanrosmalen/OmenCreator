@@ -100,6 +100,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/create_class_update/{id?}', 'ClassController@updateClass');
 	Route::get('/showall_class', array( 'as'=> 'showall_class', 'uses'=>'ClassController@showAllClass'));
 	Route::get('/check_class_name', 'JsonClassController@checkClassName');
+	Route::get('/get_prohibited_classes', 'JsonClassController@getProhibitedClasses');
 	
 	Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
 	Route::get('/create_rule', 'RulesController@showCreateRule');
@@ -115,6 +116,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/submit_user/{id?}', 'UserController@submitUser');
 	Route::get('/show_delete_user/{id?}', 'UserController@showDeleteUser');
 	Route::get('/delete_user/{id?}', 'UserController@deleteUser');
+	
+	Route::get('/create_player_character', 'CharacterController@showCreatePlayerCharacter');
+	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@showAllCharacter']);
 	
 	Route::auth();
 

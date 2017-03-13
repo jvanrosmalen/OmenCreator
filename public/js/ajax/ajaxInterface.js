@@ -198,4 +198,22 @@ var AjaxInterface = new function(){
 			}
 		});
 	}
+	
+	self.getProhibitedClasses = function(race_id, callback){
+		$.ajax({
+			url: "/get_prohibited_classes",
+			type: "GET",
+			data: {	"race_id":race_id},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				callback(retData);
+			},
+			error: function(data){
+				console.log("###########################");
+				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
+			}
+		});		
+	}
 }

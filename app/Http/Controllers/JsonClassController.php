@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Request;
+use App\Race;
+use Response;
 
 class JsonClassController extends Controller
 {
@@ -32,5 +34,17 @@ class JsonClassController extends Controller
 		}
 		
 		return Response::json(json_encode($retBool));
+	}
+	
+	public function getProhibitedClasses(){
+		$prohibitedClassesArray = ["test"];
+		
+		if(Request::has('race_id')){
+			$raceId = Request::input('race_id');
+			
+			$prohibitedClassesArray = Race::find($raceId)->prohibited_classes;
+		}
+		
+		return Response::json(json_encode($prohibitedClassesArray));
 	}
 }

@@ -25,13 +25,15 @@
 	<link href="{{ URL::asset('css/rule.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/race.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/playerClass.css') }}" rel='stylesheet' type='text/css'>
+    <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/class/playerClass.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/createSkillTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/createSkillControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
-    <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
@@ -69,6 +71,17 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                	<li class="dropdown">
+                		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        	Karakters<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                        	<li><a href="{{ url('create_player_character') }}">Cre&euml;er Spelerkarakter</a></li>
+                            <li><a href="{{ url('/showall_character') }}">Overzicht Karakters</a></li>
+                        </ul>
+                    </li>
+                
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                  Vaardigheden<span class="caret"></span>
