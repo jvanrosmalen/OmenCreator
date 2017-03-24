@@ -20,6 +20,7 @@ class Skill extends Model {
 							'skill_level',
 							'income_coin',
 							'player_classes',
+							'player_class_ids',
 							'races',
 							'statistic_prereq',
 							'skill_prereqs'
@@ -161,6 +162,18 @@ class Skill extends Model {
 			array_push($retArray, $result->class_name);
 		}
 		
+		return $retArray;
+	}
+	
+	public function getPlayerClassIdsAttribute()
+	{
+		$retArray = array();
+		$resultArray = Skill::find($this->id)->playerClasses()->get();
+	
+		foreach($resultArray as $i=>$result){
+			array_push($retArray, $result->id);
+		}
+	
 		return $retArray;
 	}
 	

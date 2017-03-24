@@ -25,6 +25,7 @@
 	<link href="{{ URL::asset('css/rule.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/race.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/playerClass.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/character.css') }}" rel='stylesheet' type='text/css'>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
@@ -48,6 +49,9 @@
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createCharacterControl.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
     <script src="{{ URL::asset('js/nicedit/nicEdit.js') }}"></script>
   

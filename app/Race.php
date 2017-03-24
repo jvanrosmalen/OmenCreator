@@ -24,7 +24,8 @@ class Race extends Model
     		'focus',
     		'trauma',
     		'prohibited_classes',
-    		'descent_classes'
+    		'descent_classes',
+    		'descent_class_ids'
     ];
     
     public function race_skills(){
@@ -226,6 +227,17 @@ class Race extends Model
     		array_push($retArray, $result->class_name);
     	}
     	
+    	return $retArray;
+    }
+    
+    public function getDescentClassIdsAttribute(){
+    	$retArray = array();
+    	$resultArray = Race::find($this->id)->descentClasses()->get();
+    	 
+    	foreach($resultArray as $i=>$result){
+    		array_push($retArray, $result->id);
+    	}
+    	 
     	return $retArray;
     }
 }

@@ -21,6 +21,7 @@ class AddCharacters extends Migration
     		$table->integer( 'ep_amount' )->unsigned();
     		$table->boolean( 'is_alive' );
     		$table->boolean( 'is_player_char' );
+    		$table->integer( 'nr_events_survived' )->unsigned();
     		$table->string( 'link_to_background' )->nullable();
     	} );
     	
@@ -34,12 +35,25 @@ class AddCharacters extends Migration
     		$table->integer( 'character_id' )->unsigned()->index();
     		$table->integer( 'skill_id' )->unsigned()->index();
     		$table->integer( 'purchase_ep_cost' );
+    		$table->date( 'purchased_on_date' );
     	} );
     	
    		Schema::table ( 'character_skill', function (Blueprint $table) {
    			$table->foreign ( 'character_id' )->references ( 'id' )->on ( 'characters' );
    			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' );
    		} );
+   		
+   		Schema::create( 'ep_assignment', function (Blueprint $table){
+   			$table->increments( 'id' )->index();
+   			$table->integer( 'amount' )->unsigned(); 
+   			$table->integer( 'character_id' )->unsigned();
+   			$table->date( 'assigned_on_date' );
+   			$table->text( 'reason' );
+   		});
+   		
+   		Schema::table( 'ep_assignment', function (Blueprint $table){
+   			$table->foreign( 'character_id' )->references('id')->on('characters');
+   		});
     }
 
     /**
@@ -49,6 +63,7 @@ class AddCharacters extends Migration
      */
     public function down()
     {
+    	Schema::drop('ep_assignment');
     	Schema::drop('character_skill');
         Schema::drop('characters');
     }

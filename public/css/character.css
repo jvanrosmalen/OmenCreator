@@ -1,0 +1,29 @@
+.number_input{
+	width: 40px;
+}
+
+#descent_race_skill_selected tbody{
+	width: 100%;
+	height: 150px;
+	background-color: #FFF;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-color: #AAA;
+	padding: 0px;
+}
+
+#descent_race_skill_options tbody{
+	width: 100%;
+	height: 150px;
+	background-color: #FFF;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-color: #AAA;
+	padding: 0px;
+}
+
+.descent_race_skill_select_btn{
+	margin-top:50px;
+}
+
+

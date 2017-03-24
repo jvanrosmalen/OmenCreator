@@ -19,15 +19,98 @@ var CreateCharacter = new function(){
 		$('#playerclass_race_first_warning').addClass('hidden');
 	}
 	
+	self.createTableRow = function(skill){
+		var tr = document.createElement("TR");
+
+		$(tr).data("id", skill.id);
+		$(tr).data("ep_cost", skill.ep_cost);
+		tr.setAttribute("oncontextmenu", "ShowAll.showSkillDetails(event);");
+		
+		var skillname = document.createElement("TD");
+		skillname.setAttribute("id", skill.name);
+		skillname.setAttribute("class", "skillname col-xs-7");
+		skillname.appendChild(document.createTextNode(skill.name));
+		tr.appendChild(skillname);
+		
+		var classes = document.createElement("TD");
+		classes.setAttribute("class", "col-xs-3");
+
+		var classStr = "";
+		var index = 0;
+		for(index = 0; index < (skill.player_classes.length - 1); index++){
+			classStr = classStr + skill.player_classes[index] + ", ";
+		}
+		classStr = classStr + skill.player_classes[index];
+		classes.appendChild(document.createTextNode(classStr));
+		tr.appendChild(classes);
+		
+		var epcost = document.createElement("TD");
+		epcost.setAttribute("class", "col-xs-1 skill_ep_cost");
+		epcost.appendChild(document.createTextNode(skill.ep_cost));
+		tr.appendChild(epcost);
+		
+		return tr;
+	}
+	
+	self.addSkillToOptionsTable = function(skill){
+		var tableBody = $('#descent_race_skill_options tbody')[0];
+		
+		var tr = CreateCharacter.createTableRow(skill);
+		tr.setAttribute("class", "descent_skill_option descent_skill_option_"+ skill.id);
+				
+		tableBody.appendChild(tr);
+	}
+	
+	self.addSkillToSelectedTable = function(skill){
+		var tableBody = $('#descent_race_skill_selected tbody')[0];
+		
+		var tr = CreateCharacter.createTableRow(skill);
+		tr.setAttribute("class", "descent_skill_selection descent_skill_selection_"+ skill.id +" hidden");
+				
+		tableBody.appendChild(tr);
+	}
+	
+	self.clearTable = function(table){
+		$('#'+table+' tbody tr').remove();
+	}
+	
+	self.handleDescentSkills = function(data){
+		CreateCharacter.clearTable('descent_race_skill_options');
+		CreateCharacter.clearTable('descent_race_skill_selected');
+		
+		// Clear the skills array just to be certain
+		$("#descent_skill_list_hidden").val(JSON.stringify(new Array()));
+		
+		for(var index in data){
+			CreateCharacter.addSkillToOptionsTable(data[index]);
+			CreateCharacter.addSkillToSelectedTable(data[index]);
+		}
+		
+		createCharacterControl.addDescentSkillListeners();
+	}
+	
 	self.handleRaceSelection = function(event){
 		event.preventDefault();
 		var selectedRaceId = $(event.target).val();
 		if(selectedRaceId != -1){
+			// Tab 'Basis Info' 
 			$('#playerclass_select').addClass('hidden');
 			AjaxInterface.getProhibitedClasses(selectedRaceId, CreateCharacter.handleProhibitedClasses);
+			
+			// Tab 'Afkomst'
+			$('#descent_race_first_warning').addClass('hidden');
+			$('#descent_race_selected').removeClass('hidden');
+			$('#descent_race_skills_to_select').removeClass('hidden');
+			AjaxInterface.getDescentSkills(selectedRaceId, CreateCharacter.handleDescentSkills);
 		}else{
+			// Tab 'Basis Info'
 			$('#playerclass_race_first_warning').removeClass('hidden');
 			$('#playerclass_select').addClass('hidden');
+			
+			// Tab 'Afkomst'
+			$('#descent_race_first_warning').removeClass('hidden');
+			$('#descent_race_selected').addClass('hidden');
+			$('#descent_race_skills_to_select').addClass('hidden');
 		}
 	}
 	
