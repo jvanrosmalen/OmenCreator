@@ -102,6 +102,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/check_class_name', 'JsonClassController@checkClassName');
 	Route::get('/get_prohibited_classes', 'JsonRaceController@getProhibitedClasses');
 	Route::get('/get_descent_skills', 'JsonRaceController@getDescentSkills');
+	Route::get('/get_class_skills', 'JsonClassController@getClassSkills');
 	
 	Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
 	Route::get('/create_rule', 'RulesController@showCreateRule');

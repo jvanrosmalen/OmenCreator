@@ -234,4 +234,23 @@ var AjaxInterface = new function(){
 			}
 		});		
 	}
+	
+	self.getClassSkills = function(class_id, charLevel, callback){
+		$.ajax({
+			url: "/get_class_skills",
+			type: "GET",
+			data: {	"class_id":class_id,
+					"char_level": charLevel},
+			success: function(jsondata){
+				var retData = JSON.parse(jsondata);
+				callback(retData);
+			},
+			error: function(data){
+				console.log("###########################");
+				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
+			}
+		});		
+	}
 }

@@ -70,15 +70,61 @@ var CreateCharacter = new function(){
 		tableBody.appendChild(tr);
 	}
 	
+	self.addSkillToClassOptionsTable = function(skill){
+		var tableBody = $('#character_class_skill_options tbody')[0];
+		
+		var tr = CreateCharacter.createTableRow(skill);
+		tr.setAttribute("class", "character_class_skill_option character_class_skill_option_"+ skill.id);
+				
+		tableBody.appendChild(tr);
+	}
+	
+	self.addSkillToClassSelectedTable = function(skill){
+		var tableBody = $('#character_class_skill_selected tbody')[0];
+		
+		var tr = CreateCharacter.createTableRow(skill);
+		tr.setAttribute("class", "character_class_skill_selection character_class_skill_selection_"+ skill.id +" hidden");
+				
+		tableBody.appendChild(tr);
+	}
+	
 	self.clearTable = function(table){
 		$('#'+table+' tbody tr').remove();
+	}
+	
+	self.survivedToLevel = function(nrSurvived){
+		var retVal = 1;
+		if(nrSurvived >= 3){
+			if(nrSurvived < 8){
+				retVal = 2;
+			}else if(nrSurvived < 15){
+				retVal = 3;
+			}else {
+				retVal = 4;
+			}
+		}
+		
+		return retVal;
+	}
+	
+	self.handleSurvivedChange = function(event){
+		event.preventDefault();
+		var nrSurvived = $(event.target).val();
+		var char_level = CreateCharacter.survivedToLevel(parseInt(nrSurvived));
+		var old_char_level = $('#char_level').val();
+		
+		if(char_level != old_char_level){
+			$("#char_level_name_"+old_char_level).addClass('hidden');
+			$("#char_level_name_"+char_level).removeClass('hidden');
+			$("#char_level").val(char_level);
+		}
 	}
 	
 	self.handleDescentSkills = function(data){
 		CreateCharacter.clearTable('descent_race_skill_options');
 		CreateCharacter.clearTable('descent_race_skill_selected');
 		
-		// Clear the skills array just to be certain
+		// Clear the decent skills array just to be certain
 		$("#descent_skill_list_hidden").val(JSON.stringify(new Array()));
 		
 		for(var index in data){
@@ -112,6 +158,48 @@ var CreateCharacter = new function(){
 			$('#descent_race_selected').addClass('hidden');
 			$('#descent_race_skills_to_select').addClass('hidden');
 		}
+	}
+
+	self.handleClassSkills = function(data){
+		CreateCharacter.clearTable('character_class_skill_options');
+		CreateCharacter.clearTable('character_class_skill_selected');
+		
+		// Clear the skills array just to be certain
+		$("#character_class_skill_list_hidden").val(JSON.stringify(new Array()));
+		
+		for(var index in data){
+			CreateCharacter.addSkillToClassOptionsTable(data[index]);
+			CreateCharacter.addSkillToClassSelectedTable(data[index]);
+		}
+		
+		createCharacterControl.addClassSkillListeners();
+	}
+	
+	self.handleClassSelection = function(event){
+		event.preventDefault();
+		var selectedClassId = $(event.target).val();
+		var charLevel = $('#char_level').val();
+		
+		if(selectedClassId != -1){
+			// Tab 'Vaardigheden'
+			$('#class_first_warning').addClass('hidden');
+			$('#class_selected').removeClass('hidden');
+			$('#class_skills_to_select').removeClass('hidden');
+			AjaxInterface.getClassSkills(selectedClassId, charLevel, CreateCharacter.handleClassSkills);
+		}else{
+			// Tab 'Vaardigheden'
+			$('#class_first_warning').removeClass('hidden');
+			$('#class_selected').addClass('hidden');
+			$('#class_skills_to_select').addClass('hidden');
+		}		
+	}
+	
+	self.handleEpInput = function(event){
+		event.preventDefault();
+		var epAmount = $(event.target).val();
+		
+		$(".total_character_ep").data("ep_amount", epAmount);
+		$(".total_character_ep").html(epAmount);
 	}
 	
 //	self.addRaceSkill = function(){

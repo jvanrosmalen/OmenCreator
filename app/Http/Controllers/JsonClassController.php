@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 
 use Request;
-use App\Race;
+use App\Skill;
 use Response;
 
 class JsonClassController extends Controller
@@ -34,5 +34,25 @@ class JsonClassController extends Controller
 		}
 		
 		return Response::json(json_encode($retBool));
+	}
+	
+	public function getClassSkills(){
+		$charLevel = 1;
+		
+		if(Request::has('char_level')){
+			$charLevel = Request::input('char_level');
+		}
+	
+		if(Request::has('class_id')){
+			// class in array. Put in 1 to also take into account all General skills
+			$classIdArray = [1];
+			$classIdArray[] = Request::input('class_id');
+			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+				$query->whereIn('id', $classIdArray);
+			})->where('skill_level_id','<=',$charLevel)
+			->get();
+		}
+	
+		return Response::json(json_encode($classSkills));
 	}
 }

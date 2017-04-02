@@ -2,19 +2,12 @@
 	width: 40px;
 }
 
-#descent_race_skill_selected tbody{
-	width: 100%;
-	height: 150px;
-	background-color: #FFF;
-	overflow-y: scroll;
-	border: 1px solid;
-	border-color: #AAA;
-	padding: 0px;
-}
-
+#character_class_skill_selected tbody,
+#character_class_skill_options tbody,
+#descent_race_skill_selected tbody,
 #descent_race_skill_options tbody{
 	width: 100%;
-	height: 150px;
+	height: 250px;
 	background-color: #FFF;
 	overflow-y: scroll;
 	border: 1px solid;
@@ -22,6 +15,7 @@
 	padding: 0px;
 }
 
+.character_class_skill_select_btn,
 .descent_race_skill_select_btn{
 	margin-top:50px;
 }
