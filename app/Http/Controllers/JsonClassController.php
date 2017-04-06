@@ -38,6 +38,9 @@ class JsonClassController extends Controller
 	
 	public function getClassSkills(){
 		$charLevel = 1;
+		$classSkills = [];
+		$nonClassSkills = [];
+		$allSkills = ['classSkills'=>[],'nonClassSkills'=>[]];
 		
 		if(Request::has('char_level')){
 			$charLevel = Request::input('char_level');
@@ -50,9 +53,23 @@ class JsonClassController extends Controller
 			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
 				$query->whereIn('id', $classIdArray);
 			})->where('skill_level_id','<=',$charLevel)
+			->orderBy('name', 'asc')
 			->get();
+			
+			$nonClassSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+				$query->whereNotIn('id', $classIdArray);
+			})->where('skill_level_id','<=',$charLevel)
+			->orderBy('name', 'asc')
+			->get();
+			
+			foreach ($nonClassSkills as $nonClassSkill	){
+				$nonClassSkill->ep_cost = $nonClassSkill->ep_cost*2; 				
+			}
 		}
 	
-		return Response::json(json_encode($classSkills));
+		$allSkills['classSkills'] = $classSkills;
+		$allSkills['nonClassSkills'] = $nonClassSkills;
+		
+		return Response::json(json_encode($allSkills));
 	}
 }

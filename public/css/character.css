@@ -4,6 +4,8 @@
 
 #character_class_skill_selected tbody,
 #character_class_skill_options tbody,
+#character_non_class_skill_selected tbody,
+#character_non_class_skill_options tbody,
 #descent_race_skill_selected tbody,
 #descent_race_skill_options tbody{
 	width: 100%;
@@ -16,8 +18,18 @@
 }
 
 .character_class_skill_select_btn,
+.character_non_class_skill_select_btn,
 .descent_race_skill_select_btn{
 	margin-top:50px;
+}
+
+.warning_not_entered{
+	color: red;
+	font-style: italic;
+}
+
+.italic_text{
+	font-style: italic;
 }
 
 

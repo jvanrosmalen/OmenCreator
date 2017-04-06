@@ -8,6 +8,8 @@ var CreateCharacterTabControl = new function(){
 		TabController.addPreviousButtonListener("tab3", "tab2");
 		TabController.addNextButtonListener("tab3", "tab4");
 		TabController.addPreviousButtonListener("tab4", "tab3");
+		TabController.addNextButtonListener("tab4", "tab5");
+		TabController.addPreviousButtonListener("tab5", "tab4");
 	}
 	
 	self.addSaveListener = function(){

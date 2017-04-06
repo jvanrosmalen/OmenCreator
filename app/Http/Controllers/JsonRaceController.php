@@ -57,6 +57,7 @@ class JsonRaceController extends Controller
 				Skill::whereHas('playerClasses',function($query) use( $descentClassIds){
 					$query->whereIn('id', $descentClassIds);
 				})->where('skill_level_id','=',1)
+				->orderBy('name', 'asc')
 				->get();
 		}
 	

@@ -30,6 +30,7 @@
 				<li><a id="tab2" data-toggle="tab" href="#descent_skills">Afkomst</a></li>
 				<li><a id="tab3" data-toggle="tab" href="#class_skills">Klasse Vaardigheden</a></li>
 				<li><a id="tab4" data-toggle="tab" href="#non_class_skills">Niet-Klasse Vaardigheden</a></li>
+				<li><a id="tab5" data-toggle="tab" href="#overview">Overzicht</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -39,7 +40,7 @@
 						<div class='col-xs-1'>Naam:</div>
 						<div class='col-xs-3'>
 							<input name="character_name" style="width: 100%;"
-								value="{{ ($character!=null?$character->character_name:'') }}">
+								value="{{ ($character!=null?$character->character_name:'') }}" onChange="CreateCharacter.handleNameChange(event)">
 						</div>
 						<div class='col-xs-3'>
 							# Omens Overleefd: <input class='number_input' type="number" name="nr_events_survived" min="0" value="0" onChange="CreateCharacter.handleSurvivedChange(event)"> 
@@ -64,7 +65,7 @@
 						<div class="col-xs-1"></div>
 						<div class="col-xs-1">Kies Ras:</div>
 						<div class="col-xs-2">
-							<select name='character_race' onChange="CreateCharacter.handleRaceSelection(event)">
+							<select id="race_selection" name='character_race' onChange="CreateCharacter.handleRaceSelection(event)">
 								<option value="-1">Geen keuze</option>
 								@foreach($races as $race)
 									<option value="{{$race->id}}">{{$race->race_name}}</option>
@@ -91,7 +92,7 @@
 							<div class="col-xs-1"></div>
 							<div class="col-xs-1">Start EP:</div>
 							<div class="col-xs-1">
-								<input class='number_input' type="number" name="start_ep" min="0" value='0' onChange="CreateCharacter.handleEpInput(event)">
+								<input id='input_start_ep' class='number_input' type="number" name="start_ep" min="0" value='0' onChange="CreateCharacter.handleEpInput(event)">
 							</div>
 							<div class='col-xs-1'></div>
 							<div class='col-xs-1'>Reden:</div> 
@@ -149,7 +150,8 @@
 						</div>
 						
 						<div class="row">
-							<div class="col-xs-1"></div>
+							<div class="col-xs-1">
+							</div>
 							
 							<div class="col-xs-4">
 								<table id="descent_race_skill_selected" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
@@ -203,7 +205,19 @@
 							    </table>
 							</div>
 							
-							<input type='hidden' id="descent_skill_list_hidden" name="descent_skill_list">
+							<input type='hidden' id="descent_skill_list_hidden" name="descent_skill_list" value="[]">
+						</div>
+						<div class='row'>
+							<div class='col-xs-2'>
+							</div>
+							<div class='col-xs-10'>
+								<div class='row'>
+									Reeds geselecteerd in andere tabbladen:
+								</div>
+								<div class='row'>
+									<span id='already_selected_descent_skills' class='warning_not_entered italic_text'>Geen</span>
+								</div>
+							</div>
 						</div>
 					</div>									    
 				    @include('layouts.tab_buttons',	array('tab'=>'tab2', 'previous'=>'tab1', 'save'=>false,
@@ -309,7 +323,19 @@
 							    </table>
 							</div>
 							
-							<input type='hidden' id="character_class_skill_list_hidden" name="descent_skill_list">
+							<input type='hidden' id="character_class_skill_list_hidden" name="character_class_skill_list" value="[]">
+						</div>
+						<div class='row'>
+							<div class='col-xs-2'>
+							</div>
+							<div class='col-xs-10'>
+								<div class='row'>
+									Reeds geselecteerd in andere tabbladen:
+								</div>
+								<div class='row'>
+									<span id='already_selected_class_skills' class='warning_not_entered italic_text'>Geen</span>
+								</div>
+							</div>
 						</div>
 					</div>
 					@include('layouts.tab_buttons',	array('tab'=>'tab3', 'previous'=>'tab2', 'save'=>false,
@@ -318,7 +344,7 @@
 				<div id="non_class_skills" class="tab-pane fade">
 				    <h3>Karaktervaardigheden (Niet-Klasse)</h3>
 					
-				    <div id='class_first_warning' class='row well'>
+				    <div id='non_class_first_warning' class='row well'>
 						<div class='row'>
 							<div class='col-xs-1'>
 							</div>
@@ -328,12 +354,13 @@
 						</div>				    	
 				    </div>
 				    
-				    <div id='class_selected' class='row well hidden'>
+				    <div id='non_class_selected' class='row well hidden'>
 						<div class='row'>
 							<div class='col-xs-1'>
 							</div>
 							<div class='col-xs-10'>
-								Selecteer uit onderstaande lijst de vaardigheden van jouw karakter.
+								Selecteer uit onderstaande lijst de vaardigheden van jouw karakter.<br>
+								<em>Opgepast: hieronder staan vaardigheden die buiten je klasse vallen. Deze kosten dubbel EP!</em>
 							</div>
 						</div>
 						<div class='row'>
@@ -345,7 +372,7 @@
 						</div>
 				    </div>
 				    
-				    <div id='class_skills_to_select' class='row well hidden'>
+				    <div id='non_class_skills_to_select' class='row well hidden'>
 						<div class='row'>
 							<div class='col-xs-1'>
 							</div>
@@ -363,7 +390,7 @@
 							<div class="col-xs-1"></div>
 							
 							<div class="col-xs-4">
-								<table id="character_class_skill_selected" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+								<table id="character_non_class_skill_selected" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 			        				<thead>
 			            				<tr>
 							                <th class="col-xs-7">
@@ -384,17 +411,17 @@
 							</div>
 							
 							<div class="col-xs-2 text-center">
-								<button type="button" class="btn btn-default character_class_skill_select_btn disabled" aria-label="Select Vaardigheid">
+								<button type="button" class="btn btn-default character_non_class_skill_select_btn disabled" aria-label="Select Vaardigheid">
 									<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 								</button>
 								<br>
-								<button type="button" class="btn btn-default character_class_skill_remove_btn disabled" aria-label="Verwijder Vaardigheid">
+								<button type="button" class="btn btn-default character_non_class_skill_remove_btn disabled" aria-label="Verwijder Vaardigheid">
 									<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
 								</button>
 							</div>
 							
 							<div class="col-xs-4">
-								<table id="character_class_skill_options" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+								<table id="character_non_class_skill_options" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 			        				<thead>
 			            				<tr>
 							                <th class="col-xs-7">
@@ -414,12 +441,126 @@
 							    </table>
 							</div>
 							
-							<input type='hidden' id="character_class_skill_list_hidden" name="descent_skill_list">
+							<input type='hidden' id="character_non_class_skill_list_hidden" name="character_non_class_skill_list" value="[]">
+						</div>
+						<div class='row'>
+							<div class='col-xs-2'>
+							</div>
+							<div class='col-xs-10'>
+								<div class='row'>
+									Reeds geselecteerd in andere tabbladen:
+								</div>
+								<div class='row'>
+									<span id='already_selected_non_class_skills' class='warning_not_entered italic_text'>Geen</span>
+								</div>
+							</div>
 						</div>
 					</div>
-					@include('layouts.tab_buttons',	array('tab'=>'tab3', 'previous'=>'tab3', 'save'=>true,
+					@include('layouts.tab_buttons',	array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>false,
+					'next'=>'tab5'))
+				</div>
+				<div id="overview" class="tab-pane fade in">
+					<h3>Overzicht</h3>
+					<div class='row well'>
+						<div class='row'>
+							<div class='col-xs-1'>
+							</div>
+							<div class='col-xs-6'>
+								<h4>Algemeen</h4>
+							</div>
+						</div>
+						<div class='row'>
+							<div class='col-xs-1'></div>
+							<div class='col-xs-1'>Naam:</div>
+							<div class='col-xs-2'>
+								<span id="overview_name" class="warning_not_entered">Niet ingevuld</span>
+							</div>
+							<div class='col-xs-1'>
+								#Omens: 
+							</div>
+							<div class='col-xs-2'>
+								<span id="overview_survived">0</span>
+							</div> 
+							<div class='col-xs-1'>
+								Niveau : 
+							</div>
+							<div class='col-xs-1'>	
+								<span id="overview_char_level">Debutant</span>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-1">
+								Spelerras: 
+							</div>
+							<div class="col-xs-2">
+								<span id="overview_race" class="warning_not_entered">Niet geselecteerd</span>
+							</div>
+							<div class="col-xs-1">
+								Klasse: 
+							</div>
+							<div class="col-xs-2">
+								<span id="overview_class" class="warning_not_entered">Niet geselecteerd</span>
+							</div>
+							<div class="col-xs-1">
+								Start EP: 
+							</div>
+							<div class="col-xs-1">
+								<span id="overview_start_ep">0</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row well">
+						<div class='row'>
+							<div class='col-xs-1'>
+							</div>
+							<div class='col-xs-6'>
+								<h4>Vaardigheden</h4>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-2">
+								Afkomstvaardigheden:
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<span id="overview_descent_skills" class="warning_not_entered">Niet geselecteerd</span>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-2">
+								Klasse Vaardigheden:
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<span id="overview_class_skills" class="warning_not_entered">Niet geselecteerd</span>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-2">
+								Niet-klasse Vaardigheden:
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<span id="overview_non_class_skills" class="warning_not_entered">Niet geselecteerd</span>
+							</div>
+						</div>
+					</div>
+						
+					@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>true,
 					'next'=>null))
 				</div>
+			</div>
 		</form>
 	</div>
 
