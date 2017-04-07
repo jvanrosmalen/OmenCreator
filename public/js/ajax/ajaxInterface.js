@@ -235,12 +235,13 @@ var AjaxInterface = new function(){
 		});		
 	}
 	
-	self.getClassSkills = function(class_id, charLevel, callback){
+	self.getClassSkills = function(class_id, charLevel, charRace, callback){
 		$.ajax({
 			url: "/get_class_skills",
 			type: "GET",
 			data: {	"class_id":class_id,
-					"char_level": charLevel},
+					"char_level": charLevel,
+					"char_race": charRace},
 			success: function(jsondata){
 				var retData = JSON.parse(jsondata);
 				callback(retData);

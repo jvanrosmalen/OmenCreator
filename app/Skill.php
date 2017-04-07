@@ -24,8 +24,6 @@ class Skill extends Model {
 							'races',
 							'statistic_prereq',
 							'skill_prereqs'
-// 							'skill_prereqs',
-// 							'is_prereq_to'
 						];
 	
 	public function save(array $options = []){
@@ -87,11 +85,6 @@ class Skill extends Model {
 		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skill_id', 'skills_prereq_id')->withPivot('prereq_set');
 	}
 	
-// 	public function isPrereqTo()
-// 	{
-// 		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skills_prereq_id', 'skill_id')->withPivot('prereq_set');
-// 	}
-	
 	/**
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB
@@ -100,11 +93,6 @@ class Skill extends Model {
 	{
 		return Skill::find($this->id)->skillPrereqs()->get();
 	}
-	
-// 	public function getIsPrereqToAttribute()
-// 	{
-// 		return Skill::find($this->id)->isPrereqTo()->get();
-// 	}
 	
 	public function getCallRulesAttribute()
 	{
@@ -177,16 +165,21 @@ class Skill extends Model {
 		return $retArray;
 	}
 	
+// 	public function getRacesAttribute()
+// 	{
+// 		$retArray = array();
+// 		$resultArray = Skill::find($this->id)->races()->get();
+		
+// 		foreach($resultArray as $i=>$result){
+// 			array_push($retArray, $result->race_name);
+// 		}
+		
+// 		return $retArray;
+// 	}
+	
 	public function getRacesAttribute()
 	{
-		$retArray = array();
-		$resultArray = Skill::find($this->id)->races()->get();
-		
-		foreach($resultArray as $i=>$result){
-			array_push($retArray, $result->race_name);
-		}
-		
-		return $retArray;
+		return Skill::find($this->id)->races()->get();
 	}
 	
 	public function getProfilePrereqsAttribute()

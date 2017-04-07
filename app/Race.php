@@ -205,7 +205,8 @@ class Race extends Model
     }
     
     public function getRaceSkillsAttribute(){
-    	return Race::find($this->id)->race_skills()->get();
+//     	return Race::find($this->id)->race_skills()->get();
+     	return [];
     }
     
     public function getProhibitedClassesAttribute(){

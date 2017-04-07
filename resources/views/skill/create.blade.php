@@ -142,7 +142,15 @@
 							@else
 								<?php 
 								foreach($races as $race){
-									if( in_array($race->race_name, $skill->races )){
+									$found = false;
+									
+									foreach($skill->races as $race_skill){
+										if($race_skill->id === $race->id){
+											$found = true;
+											break;
+										}
+									}
+									if( $found){
 										echo '<input tabindex="1" type="checkbox" name="race[]" value="'.$race->id.'" checked="checked"><span class="checkbox_text">'.$race->race_name.'</span>';
 									}
 									else{

@@ -95,9 +95,9 @@ var ShowAll = new function(){
 		if(skill.races.length > 0){
 			var raceText = "";
 			for(var index = 0; index < (skill.races.length-1); index++){
-				raceText = raceText + skill.races[index] + ", ";
+				raceText = raceText + skill.races[index].race_name + ", ";
 			}
-			raceText = raceText + skill.races[skill.races.length-1];
+			raceText = raceText + skill.races[skill.races.length-1].race_name;
 			$("#skill_races").html(raceText);
 			$("#skill_races_row").removeClass("hidden");
 		}

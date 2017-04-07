@@ -101,6 +101,72 @@ var createCharacterControl = new function(){
 		}
 	}
 	
+	self.checkStatPrereqs = function(skillData){
+		// check all stat prereqs
+		if($("#stat_"+skillData['statistic_prereq_id']).data('value')
+				>= skillData['statistic_prereq_amount']){
+			return true;
+		}else{
+			alert("Je moet minimaal "+ skillData['statistic_prereq_amount'] +
+					" " + $("#stat_"+skillData['statistic_prereq_id']+"_name").html().trim()+
+					" hebben om deze vaardigheid te kunnen selecteren");
+			
+			return false;
+		}
+	}
+	
+	self.checkSkillPrereqs = function(skillData){
+		var problem = false;
+		var problemArray = [];
+		
+		for(var i=0; i < skillData['skill_prereqs'].length; i++){
+			var prereq_skill = skillData['skill_prereqs'][i];
+			
+			// check if skill is in all hidden lists with skills
+			if( JSON.parse($("#descent_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
+			&&	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
+			&&  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
+			){
+				problem = true;
+				
+				if($(".character_class_skill_option_"+prereq_skill['id'])){
+					problemArray.push($(".character_class_skill_option_"+prereq_skill['id']+" .skillname").html());
+					continue;
+				}
+				
+				if($(".character_non_class_skill_option_"+prereq_skill['id'])){
+					problemArray.push($(".character_non_class_skill_option_"+prereq_skill['id']+" .skillname").html());
+					continue;
+				}
+			}
+		}
+		
+		if(problem){
+			// skill is not found
+			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
+			
+			warningStr += problemArray.join();
+			
+			alert(warningStr);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	self.checkAllPrereqs = function(skillData){
+		// check stat prereqs
+		if(!createCharacterControl.checkStatPrereqs(skillData)){
+			return false;
+		}
+		// check skill prereqs
+		if(!createCharacterControl.checkSkillPrereqs(skillData)){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	self.updateAlreadySelectedNonClassTab = function(){
 		var skillString = 
 			createCharacterControl.getSkillNameArrayFromTabs(
@@ -295,6 +361,9 @@ var createCharacterControl = new function(){
 				alert("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
 				return;
 			}
+			if(!createCharacterControl.checkAllPrereqs($(this).data())){
+				return;
+			}
 			
 			if($(this).hasClass("selected")){
 				$(this).removeClass("selected");
@@ -438,7 +507,10 @@ var createCharacterControl = new function(){
 				skill_ep_cost = skill_ep_cost + $(this).data('ep_cost');
 				
 				if(!createCharacterControl.checkSkillEp(skill_ep_cost)){
-					alert("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
+					alert("Je hebt niet genoeg EP voor deze vaardigheid.");
+					return;
+				}
+				if(!createCharacterControl.checkAllPrereqs($(this).data())){
 					return;
 				}
 			
@@ -576,7 +648,10 @@ var createCharacterControl = new function(){
 				skill_ep_cost = skill_ep_cost + $(this).data('ep_cost');
 				
 				if(!createCharacterControl.checkSkillEp(skill_ep_cost)){
-					alert("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
+					alert("Je hebt niet genoeg EP voor deze vaardigheid.");
+					return;
+				}
+				if(!createCharacterControl.checkAllPrereqs($(this).data())){
 					return;
 				}
 

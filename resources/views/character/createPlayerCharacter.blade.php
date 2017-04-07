@@ -62,29 +62,87 @@
 					</div>
 
 					<div class="row well">
-						<div class="col-xs-1"></div>
-						<div class="col-xs-1">Kies Ras:</div>
-						<div class="col-xs-2">
-							<select id="race_selection" name='character_race' onChange="CreateCharacter.handleRaceSelection(event)">
-								<option value="-1">Geen keuze</option>
-								@foreach($races as $race)
-									<option value="{{$race->id}}">{{$race->race_name}}</option>
-								@endforeach
-							</select>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-1">Kies Ras:</div>
+							<div class="col-xs-2">
+								<select id="race_selection" name='character_race' onChange="CreateCharacter.handleRaceSelection(event)">
+									<option value="-1"
+									data-lp_torso = "3"
+									data-lp_limbs = "2"
+									data-willpower = "2"
+									data-status = "0"
+									data-focus = "0"
+									data-trauma = "0"
+									>Geen keuze</option>
+									@foreach($races as $race)
+										<option value="{{$race->id}}"
+										 data-lp_torso = "{{$race->lp_torso}}"
+										 data-lp_limbs = "{{$race->lp_limbs}}"
+										 data-willpower = "{{$race->willpower}}"
+										 data-status = "{{$race->status}}"
+										 data-focus = "{{$race->focus}}"
+										 data-trauma = "{{$race->trauma}}"
+										 >{{$race->race_name}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="col-xs-2">Kies Klasse:</div>
+							<div class="col-xs-2">
+								<span id='playerclass_race_first_warning'><em>Kies eerst het ras</em></span>
+								<select id='playerclass_select' class='hidden' name='character_class' onChange="CreateCharacter.handleClassSelection(event)">
+									<option value="-1">Geen keuze</option>
+									@foreach($playerclasses as $playerclass)
+										@if($playerclass->class_name != "Algemeen")
+											<option id="{{$playerclass->class_name}}" value="{{$playerclass->id}}">{{$playerclass->class_name}}</option>
+										@endif
+									@endforeach
+								</select>
+							</div>
+							<div id='playerclass_prohibited_remark' class="col-xs-2">
+							</div>
 						</div>
-						<div class="col-xs-2">Kies Klasse:</div>
-						<div class="col-xs-2">
-							<span id='playerclass_race_first_warning'><em>Kies eerst het ras</em></span>
-							<select id='playerclass_select' class='hidden' name='character_class' onChange="CreateCharacter.handleClassSelection(event)">
-								<option value="-1">Geen keuze</option>
-								@foreach($playerclasses as $playerclass)
-									@if($playerclass->class_name != "Algemeen")
-										<option id="{{$playerclass->class_name}}" value="{{$playerclass->id}}">{{$playerclass->class_name}}</option>
-									@endif
-								@endforeach
-							</select>
-						</div>
-						<div id='playerclass_prohibited_remark' class="col-xs-2">
+
+						<div class="row">
+							<div class="col-xs-1">
+							</div>
+							<div class="col-xs-8">
+								<table class="table borderless detail_table">
+									<thead>
+								            <tr>
+								                <th id='stat_1_name'>
+								                    LP Torso
+								                </th>
+								                <th>
+								                	LP Ledematen
+								                </th>
+								                <th id='stat_2_name'>
+								                	Wilskracht
+								                </th>
+								                <th id='stat_3_name'>
+								                	Status
+								                </th>
+								                <th id='stat_4_name'>
+								                	Focus
+								                </th>
+								                <th>
+								                	Trauma
+								                </th>
+								            </tr>
+									</thead>
+									<tbody>
+										<tr>
+										<!-- Dirty, dirty, I know.... using magic numbers for stats -->
+											<td id='stat_1' class="overview_lp_torso" data-value='3'>3</td>
+											<td class="overview_lp_limbs" data-value='2'>2</td>
+											<td id='stat_2' class="overview_willpower" data-value='2'>2</td>
+											<td id='stat_3' class="overview_status" data-value='0'>0</td>
+											<td id='stat_4' class="overview_focus" data-value='0'>0</td>
+											<td class="overview_trauma" data-value='0'>0</td>
+										</tr>
+									</tbody>		
+								</table>
+							</div>
 						</div>
 					</div>
 
@@ -507,6 +565,47 @@
 							</div>
 							<div class="col-xs-1">
 								<span id="overview_start_ep">0</span>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-1">
+							</div>
+							<div class="col-xs-8">
+								<table class="table borderless detail_table">
+									<thead>
+								            <tr>
+								                <th>
+								                    LP Torso
+								                </th>
+								                <th>
+								                	LP Ledematen
+								                </th>
+								                <th>
+								                	Wilskracht
+								                </th>
+								                <th>
+								                	Status
+								                </th>
+								                <th>
+								                	Focus
+								                </th>
+								                <th>
+								                	Trauma
+								                </th>
+								            </tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="overview_lp_torso" data-value='3'>3</td>
+											<td class="overview_lp_limbs" data-value='2'>2</td>
+											<td class="overview_willpower" data-value='2'>2</td>
+											<td class="overview_status" data-value='0'>0</td>
+											<td class="overview_focus" data-value='0'>0</td>
+											<td class="overview_trauma" data-value='0'>0</td>
+										</tr>
+									</tbody>		
+								</table>
 							</div>
 						</div>
 					</div>

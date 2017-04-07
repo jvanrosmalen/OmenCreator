@@ -40,21 +40,54 @@ class JsonClassController extends Controller
 		$charLevel = 1;
 		$classSkills = [];
 		$nonClassSkills = [];
+		$charRace = -1;
 		$allSkills = ['classSkills'=>[],'nonClassSkills'=>[]];
 		
 		if(Request::has('char_level')){
 			$charLevel = Request::input('char_level');
+		}
+		if(Request::has('char_race')){
+			$charRace = Request::input('char_race');
 		}
 	
 		if(Request::has('class_id')){
 			// class in array. Put in 1 to also take into account all General skills
 			$classIdArray = [1];
 			$classIdArray[] = Request::input('class_id');
+// 			$collection = collect(
+// 					Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+// 						$query->whereIn('id', $classIdArray);
+// 					})
+// 					->whereNotIn($charRace, 'races')
+// 					->where('skill_level_id','<=',$charLevel)
+// 					->orderBy('name', 'asc')
+// 					->get()
+// 					);
+// 			$classSkills = $collection->merge(
+// 					Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+// 						$query->whereIn('id', $classIdArray);
+// 					})
+// 					->whereIn($charRace, 'races')
+// 					->where('skill_level_id','<=',$charLevel)
+// 					->orderBy('name', 'asc')
+// 					->get()
+// 					)->all();
 			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-				$query->whereIn('id', $classIdArray);
-			})->where('skill_level_id','<=',$charLevel)
-			->orderBy('name', 'asc')
-			->get();
+						$query->whereIn('id', $classIdArray);
+					})
+					->whereNotIn($charRace, 'races')
+					->where('skill_level_id','<=',$charLevel)
+					->orderBy('name', 'asc')
+					->get()
+					;
+					
+// 			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+// 				$query->whereIn('id', $classIdArray);
+// 			})
+// 			->where('skill_level_id','<=',$charLevel)
+// 			->orderBy('name', 'asc')
+// 			->get();
+			
 			
 			$nonClassSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
 				$query->whereNotIn('id', $classIdArray);

@@ -40,6 +40,7 @@ var CreateCharacter = new function(){
 		$(tr).data("ep_cost", skill.ep_cost);
 		$(tr).data("skill_prereqs", skill.skill_prereqs);
 		$(tr).data("res_rules", skill.res_rules);
+		$(tr).data("call_rules", skill.call_rules);
 		$(tr).data("stat_rules", skill.stat_rules);
 		$(tr).data("statistic_prereq_id", skill.statistic_prereq_id);
 		$(tr).data("statistic_prereq_amount", skill.statistic_prereq_amount);
@@ -207,6 +208,23 @@ var CreateCharacter = new function(){
 		$('.spent_character_ep').html('0');
 	}
 	
+	self.handleRaceStats = function(raceId){
+		var raceOption = $("#race_selection option[value="+raceId+"]");
+		
+		$(".overview_lp_torso").html(raceOption.data("lp_torso"));
+		$(".overview_lp_torso").data('value', raceOption.data("lp_torso"));
+		$(".overview_lp_limbs").html(raceOption.data("lp_limbs"));
+		$(".overview_lp_limbs").data('value', raceOption.data("lp_limbs"));
+		$(".overview_willpower").html(raceOption.data("willpower"));
+		$(".overview_willpower").data('value', raceOption.data("willpower"));
+		$(".overview_status").html(raceOption.data("status"));
+		$(".overview_status").data('value', raceOption.data("status"));
+		$(".overview_focus").html(raceOption.data("focus"));
+		$(".overview_focus").data('value', raceOption.data("focus"));
+		$(".overview_trauma").html(raceOption.data("trauma"));
+		$(".overview_trauma").data('value', raceOption.data("trauma"));
+	}
+	
 	self.handleRaceSelection = function(event){
 		event.preventDefault();
 		var selectedRaceId = $(event.target).val();
@@ -241,6 +259,7 @@ var CreateCharacter = new function(){
 			$('#overview_race').addClass("warning_not_entered");
 		}
 		
+		CreateCharacter.handleRaceStats(selectedRaceId);
 		CreateCharacter.hideAndClearSkillTabs();
 	}
 
@@ -286,6 +305,7 @@ var CreateCharacter = new function(){
 	self.doHandleClassSelection = function(){
 		var selectedClassId = $('#playerclass_select').val();
 		var charLevel = $('#char_level').val();
+		var selectedRace = $('#race_selection').val();
 		
 		if(selectedClassId != -1){
 			// Tab 'Klasse Vaardigheden'
@@ -303,7 +323,7 @@ var CreateCharacter = new function(){
 			$('#overview_class').removeClass("warning_not_entered");
 
 			// Get class and non-class skills
-			AjaxInterface.getClassSkills(selectedClassId, charLevel, CreateCharacter.handleClassSkills);
+			AjaxInterface.getClassSkills(selectedClassId, charLevel, selectedRace, CreateCharacter.handleClassSkills);
 		}else{
 			// Tab 'Klasse Vaardigheden'
 			$('#class_first_warning').removeClass('hidden');
