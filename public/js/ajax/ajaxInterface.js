@@ -56,8 +56,8 @@ var AjaxInterface = new function(){
 				skill["id"],
 				skill["name"],
 				skill["ep_cost"],
-				skill["level"],
-				skill["levelName"],
+				skill["skill_level_id"],
+				skill["skill_level"],
 				skill["description_small"],
 				skill["description_long"],
 				requiresMentor,
@@ -68,7 +68,7 @@ var AjaxInterface = new function(){
 			);
 		
 		retSkill.classes = skill["player_classes"];
-		retSkill.races = skill["races"];
+		retSkill.race_prereqs = skill["race_prereqs"];
 		retSkill.craftEquipments = skill["craft_equipments"];
 		
 		return retSkill;

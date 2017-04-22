@@ -144,8 +144,8 @@
 								foreach($races as $race){
 									$found = false;
 									
-									foreach($skill->races as $race_skill){
-										if($race_skill->id === $race->id){
+									foreach($skill->race_prereqs as $race_prereq){
+										if($race_prereq->id === $race->id){
 											$found = true;
 											break;
 										}

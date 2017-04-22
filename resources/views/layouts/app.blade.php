@@ -44,7 +44,7 @@
     <script src="{{ URL::asset('js/equipment/generic_equipment/genericEquipmentTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/generic_equipment/genericEquipment.js') }}"></script>
     <script src="{{ URL::asset('js/race/createRaceControl.js') }}"></script>
-    <script src="{{ URL::asset('js/race/raceTabControl.js') }}"></script>
+    <script src="{{ URL::asset('js/race/createRaceTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/race/race.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>

@@ -21,7 +21,7 @@ class Skill extends Model {
 							'income_coin',
 							'player_classes',
 							'player_class_ids',
-							'races',
+							'race_prereqs',
 							'statistic_prereq',
 							'skill_prereqs'
 						];
@@ -67,8 +67,12 @@ class Skill extends Model {
 		return $this->belongsToMany('App\PlayerClass');
 	}
 
-	public function races(){
-		return $this->belongsToMany('App\Race');
+	public function racePrereqs(){
+		return $this->belongsToMany('App\Race', 'race_prereq_skill', 'skill_id', 'race_id');
+	}
+	
+	public function raceSkillForRaces(){
+		return $this->belongsToMany('App\Race', 'race_race_skill', 'skill_id', 'race_id');
 	}
 	
 	public function profilePrereqs(){
@@ -165,21 +169,9 @@ class Skill extends Model {
 		return $retArray;
 	}
 	
-// 	public function getRacesAttribute()
-// 	{
-// 		$retArray = array();
-// 		$resultArray = Skill::find($this->id)->races()->get();
-		
-// 		foreach($resultArray as $i=>$result){
-// 			array_push($retArray, $result->race_name);
-// 		}
-		
-// 		return $retArray;
-// 	}
-	
-	public function getRacesAttribute()
+	public function getRacePrereqsAttribute()
 	{
-		return Skill::find($this->id)->races()->get();
+		return Skill::find($this->id)->racePrereqs()->get();
 	}
 	
 	public function getProfilePrereqsAttribute()

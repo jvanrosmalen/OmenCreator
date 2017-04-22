@@ -28,10 +28,6 @@ class Race extends Model
     		'descent_class_ids'
     ];
     
-    public function race_skills(){
-    	return $this->belongsToMany('App\Skill');
-    }
-    
     public function callRules(){
     	return $this->belongsToMany('App\CallRule');
     }
@@ -58,6 +54,14 @@ class Race extends Model
     
     public function descentClasses(){
     	return $this->belongsToMany('App\PlayerClass','descent_player_class_race');
+    }
+
+    public function raceSkills(){
+    	return $this->belongsToMany('App\Skill', 'race_race_skill', 'race_id', 'skill_id');
+    }
+    
+    public function prereqForSkills(){
+    	return $this->belongsToMany('App\Skill', 'race_prereq_skill', 'race_id', 'skill_id');
     }
     
     /**
@@ -205,8 +209,7 @@ class Race extends Model
     }
     
     public function getRaceSkillsAttribute(){
-//     	return Race::find($this->id)->race_skills()->get();
-     	return [];
+     	return Race::find($this->id)->raceSkills()->get();
     }
     
     public function getProhibitedClassesAttribute(){

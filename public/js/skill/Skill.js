@@ -18,6 +18,6 @@ function Skill(id, name, ep_cost, level, levelName,
 	this.skillPrereqs["set1"] = [];
 	this.skillPrereqs["set2"] = [];
 	this.classes = [];
-	this.races = [];
+	this.race_prereqs = [];
 	this.craftEquipments = [];
 }

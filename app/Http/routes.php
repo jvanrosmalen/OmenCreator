@@ -33,7 +33,7 @@ use App\SkillLevel;
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/skillshowall', 'SkillController@showAll');
+	Route::get('/skillshowall', array( 'as'=> 'skill_showall', 'uses'=>'SkillController@showAll'));
 	//Route::get('/create_skill', 'SkillController@showCreateSkill');
 	Route::get('/create_skill/{id?}', 'SkillController@showCreateSkill');
 	Route::post('/create_skill_submit', 'SkillController@submitSkillCreate');

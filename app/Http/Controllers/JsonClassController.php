@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use Request;
 use App\Skill;
+use App\Race;
+use App\PlayerClass;
 use Response;
 
 class JsonClassController extends Controller
@@ -40,60 +42,46 @@ class JsonClassController extends Controller
 		$charLevel = 1;
 		$classSkills = [];
 		$nonClassSkills = [];
-		$charRace = -1;
+		$charRace = [];
 		$allSkills = ['classSkills'=>[],'nonClassSkills'=>[]];
 		
 		if(Request::has('char_level')){
 			$charLevel = Request::input('char_level');
 		}
 		if(Request::has('char_race')){
-			$charRace = Request::input('char_race');
+			$charRace[] = Request::input('char_race');
 		}
 	
 		if(Request::has('class_id')){
-			// class in array. Put in 1 to also take into account all General skills
-			$classIdArray = [1];
 			$classIdArray[] = Request::input('class_id');
-// 			$collection = collect(
-// 					Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-// 						$query->whereIn('id', $classIdArray);
-// 					})
-// 					->whereNotIn($charRace, 'races')
-// 					->where('skill_level_id','<=',$charLevel)
-// 					->orderBy('name', 'asc')
-// 					->get()
-// 					);
-// 			$classSkills = $collection->merge(
-// 					Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-// 						$query->whereIn('id', $classIdArray);
-// 					})
-// 					->whereIn($charRace, 'races')
-// 					->where('skill_level_id','<=',$charLevel)
-// 					->orderBy('name', 'asc')
-// 					->get()
-// 					)->all();
+			
 			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-						$query->whereIn('id', $classIdArray);
+						$query->whereIn('id', $classIdArray)
+						->orWhere('id','=', 1);
 					})
-					->whereNotIn($charRace, 'races')
+					->where(function($query) use ($charRace){
+						$query->whereHas('racePrereqs', function($q)use($charRace)
+							{$q->whereIn( 'id', $charRace );})
+						->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+						}
+					)
 					->where('skill_level_id','<=',$charLevel)
 					->orderBy('name', 'asc')
 					->get()
 					;
-					
-// 			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-// 				$query->whereIn('id', $classIdArray);
-// 			})
-// 			->where('skill_level_id','<=',$charLevel)
-// 			->orderBy('name', 'asc')
-// 			->get();
-			
-			
-			$nonClassSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
-				$query->whereNotIn('id', $classIdArray);
-			})->where('skill_level_id','<=',$charLevel)
-			->orderBy('name', 'asc')
-			->get();
+			$nonClassSkills = Skill::whereDoesntHave('playerClasses',function($query) use( $classIdArray){
+					$query->whereIn('id', $classIdArray)
+						->orWhere('id','=',1);
+					})
+				->where(function($query) use ($charRace){
+						$query->whereHas('racePrereqs', function($q)use($charRace)
+						{$q->whereIn( 'id', $charRace );})
+						->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+							}
+						)
+				->where('skill_level_id','<=',$charLevel)
+				->orderBy('name', 'asc')
+				->get();
 			
 			foreach ($nonClassSkills as $nonClassSkill	){
 				$nonClassSkill->ep_cost = $nonClassSkill->ep_cost*2; 				

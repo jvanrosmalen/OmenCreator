@@ -202,7 +202,7 @@ class SkillController extends Controller
 		// Save race prereqs
 		$races = Input::get('race');
 		if(is_array($races)){
- 			$newSkill->races()->sync($races,false);
+ 			$newSkill->racePrereqs()->sync($races,false);
 		}
 		
 		return $this->showCreateSkill();
@@ -314,7 +314,9 @@ class SkillController extends Controller
 			$skill->races()->sync($races,false);
 		}
 	
-		return $this->showAll();
+		$url = route('skill_showall');
+		header("Location:".$url);
+		die();
 	}
 	
 	public function showDeleteSkill($id){
@@ -326,7 +328,9 @@ class SkillController extends Controller
 		$skill = Skill::find($id);
 		$skill->delete();
 		
-		return $this->showAll();		
+		$url = route('skill_showall');
+		header("Location:".$url);
+		die();		
 	}
 }
 ?>

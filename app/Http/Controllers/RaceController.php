@@ -141,7 +141,7 @@ class RaceController extends Controller
 		// Sync race skills
 		$skills_list = json_decode($_POST['race_skills_list']);
 		if(is_array($skills_list)){
-			$race->race_skills()->sync($skills_list);
+			$race->raceSkills()->sync($skills_list);
 		}
 		
 		// Sync prohibited classes
@@ -200,7 +200,7 @@ class RaceController extends Controller
  			$newRace->prohibitedClasses()->sync($prohibited_classes_list);
  		}
  		
- 		// Sync prohibited classes
+ 		// Sync descent classes
  		$descent_classes_list = Input::get('descent_classes');
  		if(is_array($descent_classes_list)){
  			$newRace->descentClasses()->sync($descent_classes_list);

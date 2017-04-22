@@ -199,7 +199,19 @@
 						</div>
 					</div>
 					
-					<input id="race_skills_list_hidden" name="race_skills_list" class="hidden">
+					@if ( $race == null )
+						<input id="race_skills_list_hidden" name="race_skills_list" class="hidden">
+					@else
+						<?php
+							$skills_array = [];
+							foreach($race->race_skills as $race_skill){
+								$skills_array[] = $race_skill->id;
+							}
+							$json_skills_array = json_encode($skills_array);
+						?>
+
+						<input id="race_skills_list_hidden" name="race_skills_list" class="hidden" value="{{$json_skills_array}}">
+					@endif
 					
 					@include('layouts.tab_buttons',	array('tab'=>'tab3', 'previous'=>'tab2', 'save'=>true,
 					'next'=>null))
@@ -210,7 +222,7 @@
 	@include('popups.createSkillSelector', array('submitMethod'=>'CreateRaceControl.submitRaceSkills(event)'))
 
 	<script>
-		CreateRaceTabControl.addTabButtonListeners();
+		createRaceTabControl.addTabButtonListeners();
 	</script>
 @stop
 </html>

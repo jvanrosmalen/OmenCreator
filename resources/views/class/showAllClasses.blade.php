@@ -25,6 +25,8 @@
 			</div>
 		</div>
 		@foreach ($classes as $class)
+<!-- 			Do this for each class except Algemeen. (Has id == 1) -->
+			@if($class->id != 1)
 			<div class="row well class_name_row">
 				<div class="col-xs-1">
 				</div>
@@ -63,6 +65,7 @@
 				
 				<br>
 			</div>
+			@endif
 		@endforeach
 		
 <!-- 	Trick to be able to access the count of class in the JS below -->

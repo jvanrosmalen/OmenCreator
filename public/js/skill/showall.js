@@ -92,13 +92,14 @@ var ShowAll = new function(){
 		$("#skill_income").html(incomeText);
 		
 		// Races indication
-		if(skill.races.length > 0){
-			var raceText = "";
-			for(var index = 0; index < (skill.races.length-1); index++){
-				raceText = raceText + skill.races[index].race_name + ", ";
+		if(skill.race_prereqs.length > 0){
+			var race_prereqs_name = new Array();
+			for(var index in skill.race_prereqs){
+				var race = skill.race_prereqs[index];
+				race_prereqs_name.push(race['race_name']);
 			}
-			raceText = raceText + skill.races[skill.races.length-1].race_name;
-			$("#skill_races").html(raceText);
+			
+			$("#skill_races").html(race_prereqs_name.join());
 			$("#skill_races_row").removeClass("hidden");
 		}
 		
