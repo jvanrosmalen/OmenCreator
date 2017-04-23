@@ -2,10 +2,6 @@
 <html>
 	@extends('layouts.app')
 	
-<head>
-	<script type="text/javascript" src="js/skill/showall.js"></script>
-</head>
-
 <body>
 	@section('content')
 	

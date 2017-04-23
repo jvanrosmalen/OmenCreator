@@ -35,6 +35,9 @@
     <script src="{{ URL::asset('js/skill/createSkillControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
+	<script src="{{ URL::asset('js/skill/createSkillgroup.js') }}"></script>
+	<script src="{{ URL::asset('js/skill/createSkillGroupControl.js') }}"></script>
+	<script src="{{ URL::asset('js/skill/showall.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script>
     <script src="{{ URL::asset('js/equipment/shield/shield.js') }}"></script>
@@ -93,7 +96,9 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/create_skill') }}">Cre&euml;er Vaardigheid</a></li>
+                                <li><a href="{{ url('/create_skillgroup') }}">Cre&euml;er Vaardigheidgroep</a></li>
                                 <li><a href="{{ url('/skillshowall') }}">Overzicht Vaardigheden</a></li>
+                                <li><a href="{{ url('/skillgroupshowall') }}">Overzicht Vaardigheidgroepen</a></li>
                             </ul>
                     </li>
 

@@ -89,6 +89,10 @@ class Skill extends Model {
 		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skill_id', 'skills_prereq_id')->withPivot('prereq_set');
 	}
 	
+	public function belongsToSkillGroups(){
+		return $this->belongsToMany('App\SkillGroup');
+	}
+	
 	/**
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB

@@ -19,8 +19,12 @@ class SkillController extends Controller
 	public function showAll(){
 		$session_array["levels_filter"] = Session::get("levels_filter");
 		$session_array["class_filter"] = Session::get("class_filter");
+		$skills = Skill::all()->sortBy(function($skill)
+		{
+			return sprintf('%-30s', $skill->name );
+		});
 
-		return view('/skill/showall', [ 	"skills"=>Skill::all(),
+		return view('/skill/showall', [ 	"skills"=>$skills,
 										"skilllevels" => SkillLevel::all(),
 										"playerclasses" => PlayerClass::all(),
 										"session_array" => $session_array
