@@ -119,8 +119,8 @@ var createSkillControl = new function(){
 			var split_id = value.id.split("_")[1];
 			skillPrereqs1Array.push(split_id);
 			// And disable the skill in the skillSelector
-			$(".skillSelector tr#"+split_id).addClass("submitted");
-			$(".skillSelector tr#"+split_id).removeAttr('onclick');
+			$("#skill_select_table tr#"+split_id).addClass("submitted");
+			$("#skill_select_table tr#"+split_id).removeAttr('onclick');
 			
 			// Skills in set1 have been found. Enable button set2
 			$(".button_set2").removeClass('disabled');

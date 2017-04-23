@@ -68,11 +68,11 @@
 								@if ( $skillgroup != null )
 									<?php
 										foreach($skillgroup->group_skills as $groupskill){
-											echo '<div class="row" id="groupskillrow_'.$groupskill->id.'" style="padding-top: 3px;padding-left: 3px">';
+											echo '<div class="row" id="entryRow_'.$groupskill->id.'" style="padding-top: 3px;padding-left: 3px">';
 											echo '<div class="col-xs-8">'.$groupskill->name."</div>";
 											echo '<div class="col-xs-3">';
 											echo '<button class="btn btn-xs pull-right">';
-											echo '<span class="glyphicon glyphicon-minus" id="groupskill_'.$groupskill->id.'" onclick="createSkillGroup.removeSkillGroupSkill(event);">';
+											echo '<span class="glyphicon glyphicon-minus" id="'.$groupskill->id.'" onclick="createSkillGroup.removeSkillGroupSkill(event);">';
 											echo '</span>';
 											echo '</button>';
 											echo '</div>';
@@ -105,8 +105,9 @@
 		@include('popups.createSkillSelector', array('submitMethod'=>'createSkillGroup.submitSkillGroupSkills(event)'))
 
 		<script>
-			createSkillGroupControl.addCreateSkillGroupListeners();
+			window.onLoad = createSkillGroupControl.addCreateSkillGroupListeners();
 		</script>
+		
 		
 		@endsection
 

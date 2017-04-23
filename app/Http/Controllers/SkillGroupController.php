@@ -39,4 +39,43 @@ class SkillGroupController extends Controller
 					]);
 		}
 	}
+	
+	public function submitSkillGroupCreate(){
+		// Save everything to skill group table
+		$newSkillGroup = new SkillGroup();
+		$newSkillGroup->name = $_POST["skillgroup_name"];
+		$newSkillGroup->desc_short = $_POST["desc_short"];
+	
+		$newSkillGroup->save();
+	
+		$skillgroup_id = $newSkillGroup->id;
+	
+		// Sync skills of skill group
+		$skills = json_decode($_POST['skillgroup_skills_list_hidden']);
+	
+		$newSkillGroup->skills()->sync($skills);
+	
+		$url = route('skillgroup_showall');
+		header("Location:".$url);
+		die();
+	}
+	
+	public function updateSkillGroup($id){
+		$skillGroup = SkillGroup::find($id);
+	
+		// Save everything to skillgroup table
+		$skillGroup->name = $_POST["skillgroup_name"];
+		$skillGroup->desc_short = $_POST["desc_short"];
+	
+		$skillGroup->save();
+	
+		// Sync skills of skill group
+		$skills = json_decode($_POST['skillgroup_skills_list_hidden']);
+	
+		$skillGroup->skills()->sync($skills);
+	
+		$url = route('skillgroup_showall');
+		header("Location:".$url);
+		die();
+	}
 }

@@ -17,7 +17,7 @@ class SkillGroup extends Model
     	return $this->belongsToMany('App\Skill');
     }
     
-    public function getAttributeGroupSkills(){
-    	return $this->skill();
+    public function getGroupSkillsAttribute(){
+    	return SkillGroup::find($this->id)->skills()->get();
     }
 }

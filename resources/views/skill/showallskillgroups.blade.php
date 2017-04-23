@@ -8,7 +8,7 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-7">
-				<h1>Overzicht Vaardigheden</h1>
+				<h1>Overzicht Vaardigheidgroepen</h1>
 			</div>
 					
 			<div class="col-xs-5">
