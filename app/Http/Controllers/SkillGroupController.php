@@ -78,4 +78,18 @@ class SkillGroupController extends Controller
 		header("Location:".$url);
 		die();
 	}
+	
+	public function showDeleteSkillGroup($id){
+		$skillGroup = SkillGroup::find($id);
+		return view('/skill/showdeleteskillgroup', ['skillgroup'=>$skillGroup]);
+	}
+	
+	public function deleteSkillGroup($id){
+		$skillGroup = SkillGroup::find($id);
+		$skillGroup->delete();
+	
+		$url = route('skillgroup_showall');
+		header("Location:".$url);
+		die();
+	}
 }

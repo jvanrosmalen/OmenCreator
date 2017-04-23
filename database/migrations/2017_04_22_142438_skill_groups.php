@@ -24,8 +24,8 @@ class SkillGroups extends Migration
 		});
 		
 		Schema::table('skill_skill_group', function (Blueprint $table) {
-   			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' );
-   			$table->foreign ( 'skill_group_id' )->references ( 'id' )->on ( 'skill_groups' );
+   			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' )->onDelete('cascade');
+   			$table->foreign ( 'skill_group_id' )->references ( 'id' )->on ( 'skill_groups' )->onDelete('cascade');
    		} );
     }
 

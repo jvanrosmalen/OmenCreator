@@ -43,7 +43,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/create_skill_update/{id}', 'SkillController@updateSkill');
 	Route::post('/create_skillgroup_update/{id}', 'SkillGroupController@updateSkillGroup');
 	Route::get('/show_delete_skill/{id}', 'SkillController@showDeleteSkill');
+	Route::get('/show_delete_skillgroup/{id}', 'SkillGroupController@showDeleteSkillGroup');
 	Route::get('/delete_skill/{id}', 'SkillController@deleteSkill');
+	Route::get('/delete_skillgroup/{id}', 'SkillGroupController@deleteSkillGroup');
 	Route::get('/home', 'HomeController@index');
 	Route::get('/', 'HomeController@index');
 	Route::get('/get_skill_levels_classes', 'JsonSkillController@getSkillLevelsClassesJson');
