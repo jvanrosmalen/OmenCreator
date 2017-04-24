@@ -7,6 +7,17 @@
 	background-color: #FFF;
 }
 
+.skillgroup_prereqs {
+	width: 100%;
+	height: 100px;
+	background-color: #FFF;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-color: #AAA;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
 #skillgroup_skills,
 .skill_prereqs {
 	width: 100%;
@@ -29,6 +40,7 @@
 	padding: 0px;
 }
 
+.skillGroupSelector,
 .skillSelector {
 	width: 1000px;
 	height: 550px;
@@ -75,6 +87,7 @@ table.table-fixedheader>thead>tr:after, table.table-fixedheader>tbody>tr:after
 	clear: both;
 }
 
+#skillgroup_select_table.table-fixedheader>tbody,
 #skill_select_table.table-fixedheader>tbody {
 	overflow-y: scroll;
 	height: 300px;
@@ -102,7 +115,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	word-wrap: break-word;
 }
 
-#submitSkillSelected {
+#submitSkillGroupSelected {
 	position: absolute;
 	bottom: 1%;
 	width: 98%;
@@ -110,12 +123,13 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	padding-top: 2px;
 }
 
-#createSkillSelector {
+#createSkillGroupSelector {
 	margin: 0;
 	margin-top: 10px;
 	padding: 0;
 }
 
+#createSkillGroupSelector .search-query,
 #createSkillSelector .search-query {
 	padding-right: 3px;
 	padding-right: 4px \9;
@@ -128,14 +142,17 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	border-radius: 3px;
 }
 
+#createSkillGroupSelector,
 #createSkillSelector h3 {
 	margin-top: 0px;
 }
 
+#skillGroupSelectorSearch,
 #skillSelectorSearch {
 	margin-bottom: 10px;
 }
 
+#skillGroupSelectorSearch button,
 #skillSelectorSearch button {
 	border: 0;
 	background: none;

@@ -17,6 +17,11 @@ class SkillGroup extends Model
     	return $this->belongsToMany('App\Skill');
     }
     
+    public function prereqForSkills()
+    {
+    	return $this->belongsToMany('App\SkillGroup', 'skill_skill_group_prereqs')->withPivot('prereq_set');
+    }
+    
     public function getGroupSkillsAttribute(){
     	return SkillGroup::find($this->id)->skills()->get();
     }

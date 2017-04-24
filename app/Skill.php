@@ -23,7 +23,8 @@ class Skill extends Model {
 							'player_class_ids',
 							'race_prereqs',
 							'statistic_prereq',
-							'skill_prereqs'
+							'skill_prereqs',
+							'skill_group_prereqs'
 						];
 	
 	public function save(array $options = []){
@@ -89,6 +90,11 @@ class Skill extends Model {
 		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skill_id', 'skills_prereq_id')->withPivot('prereq_set');
 	}
 	
+	public function skillGroupPrereqs()
+	{
+		return $this->belongsToMany('App\SkillGroup', 'skill_skill_group_prereqs')->withPivot('prereq_set');
+	}
+	
 	public function belongsToSkillGroups(){
 		return $this->belongsToMany('App\SkillGroup');
 	}
@@ -100,6 +106,11 @@ class Skill extends Model {
 	public function getSkillPrereqsAttribute()
 	{
 		return Skill::find($this->id)->skillPrereqs()->get();
+	}
+	
+	public function getSkillGroupPrereqsAttribute()
+	{
+		return Skill::find($this->id)->skillGroupPrereqs()->get();
 	}
 	
 	public function getCallRulesAttribute()

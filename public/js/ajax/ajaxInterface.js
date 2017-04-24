@@ -36,6 +36,14 @@ var AjaxInterface = new function(){
 						retSkill.skillPrereqs["set2"].push(AjaxInterface.createSkillFromJson(prereq));
 					}
 				}
+				for(var index in retData["skill"]["skill_group_prereqs"]){
+					var prereq = retData["skill"]["skill_group_prereqs"][index];
+					if(prereq["pivot"]["prereq_set"]===1){
+						retSkill.skillPrereqs["set1"].push(AjaxInterface.createSkillFromJson(prereq));
+					} else {
+						retSkill.skillPrereqs["set2"].push(AjaxInterface.createSkillFromJson(prereq));
+					}
+				}
 				
 				callback(retSkill);
 			},

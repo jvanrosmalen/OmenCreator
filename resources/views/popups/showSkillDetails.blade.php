@@ -28,7 +28,7 @@
 					<div class="col-xs-2 skill_detail">Beschrijving:</div>
 					<div class="col-xs-9" ><div id="skill_desc_long" contenteditable="true"></div></div>
 				</div>			
-				
+				<br>
 				<!-- Skill prereqs -->
 				<div class="row">
 					<div class="col-xs-2 skill_detail">Voorvereiste:</div>

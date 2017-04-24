@@ -13,6 +13,7 @@ use App\CraftEquipment;
 use Illuminate\Support\Facades\Input;
 use Request;
 use Session;
+use App\SkillGroup;
 
 class SkillController extends Controller
 {
@@ -54,6 +55,7 @@ class SkillController extends Controller
 											"craftequipments"=>$craftequipments,
 											"rules" => $rules,
 											"skill_rules" => $skill_rules,
+											"skill_groups" => SkillGroup::all(),
 											"session_array" => $session_array
 			]);
 		} else {
@@ -97,6 +99,7 @@ class SkillController extends Controller
 											"craftequipments"=>$craftequipments,
 											"rules" => $rules,
 											"skill_rules" => json_encode($skill_rules),
+											"skill_groups" => SkillGroup::all(),
 											"session_array" => $session_array
 			]);
 		}
@@ -156,6 +159,26 @@ class SkillController extends Controller
 		}
 		
 		$newSkill->skillPrereqs()->sync($prereqs_sync_array);
+		
+		// Sync skillgroup prereqs
+		$group_prereqs_set1 = json_decode($_POST['skillgroup_prereqs_set1_list']);
+		$group_prereqs_set2 = json_decode($_POST['skillgroup_prereqs_set2_list']);
+		
+		$group_prereqs_sync_array = array();
+		
+		if(is_array($group_prereqs_set1)){
+			foreach($group_prereqs_set1 as $group_prereqId){
+				$group_prereqs_sync_array[intval($group_prereqId)] = ['prereq_set'=>'1'];;
+			}
+		}
+
+		if(is_array($group_prereqs_set2)){
+			foreach($group_prereqs_set2 as $group_prereqId){
+				$group_prereqs_sync_array[intval($group_prereqId)] = ['prereq_set'=>'2'];
+			}
+		}
+		
+		$newSkill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
 		
 		// Sync craft equipment pivot table
 		$craftEquipmentArray = json_decode($_POST["craft_equipment_list"]);
@@ -266,6 +289,26 @@ class SkillController extends Controller
 		
 		$skill->skillPrereqs()->sync($prereqs_sync_array);
 	
+		// Sync skillgroup prereqs
+		$group_prereqs_set1 = json_decode($_POST['skillgroup_prereqs_set1_list']);
+		$group_prereqs_set2 = json_decode($_POST['skillgroup_prereqs_set2_list']);
+		
+		$group_prereqs_sync_array = array();
+		
+		if(is_array($group_prereqs_set1)){
+			foreach($group_prereqs_set1 as $group_prereqId){
+				$group_prereqs_sync_array[intval($group_prereqId)] = ['prereq_set'=>'1'];;
+			}
+		}
+
+		if(is_array($group_prereqs_set2)){
+			foreach($group_prereqs_set2 as $group_prereqId){
+				$group_prereqs_sync_array[intval($group_prereqId)] = ['prereq_set'=>'2'];
+			}
+		}
+		
+		$skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
+		
 		// Sync craft equipment pivot table
 		$craftEquipmentArray = json_decode($_POST["craft_equipment_list"]);
 	

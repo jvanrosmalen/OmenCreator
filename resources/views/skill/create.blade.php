@@ -319,65 +319,125 @@
 				</div>
 				
 				<div class="row well">
-					<div class="col-xs-2">Vaardigheid prereq:</div>
-					<div class="col-xs-3">
-						<div id="prereqs_set1" class="skill_prereqs">
-							@if ( $skill != null )
-								<?php
-									foreach($skill->skill_prereqs as $prereq){
-										if($prereq->pivot->prereq_set == 1){
-											echo '<div class="row" id="entryRow_'.$prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
-											echo '<div class="col-xs-8">'.$prereq->name."</div>";
-											echo '<div class="col-xs-3">';
-											echo '<button class="btn btn-xs pull-right">';
-											echo '<span class="glyphicon glyphicon-minus" id="set1_'.$prereq->id.'" onclick="Create.removePrereqSkill(event);">';
-											echo '</span>';
-											echo '</button>';
-											echo '</div>';
-											echo '</div>';
+					<div class="row">
+						<div class="col-xs-2">Vaardigheid prereq:</div>
+						<div class="col-xs-3">
+							<div id="prereqs_set1" class="skill_prereqs">
+								@if ( $skill != null )
+									<?php
+										foreach($skill->skill_prereqs as $prereq){
+											if($prereq->pivot->prereq_set == 1){
+												echo '<div class="row" id="entryRow_'.$prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
+												echo '<div class="col-xs-8">'.$prereq->name."</div>";
+												echo '<div class="col-xs-3">';
+												echo '<button class="btn btn-xs pull-right">';
+												echo '<span class="glyphicon glyphicon-minus" id="set1_'.$prereq->id.'" onclick="Create.removePrereqSkill(event);">';
+												echo '</span>';
+												echo '</button>';
+												echo '</div>';
+												echo '</div>';
+											}
 										}
-									}
-								?>
-							@endif
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn button_set1 btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq('set1');">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
+						</div>
+						<div class="col-xs-1"><b>OF</b></div>
+						<div class="col-xs-3">
+							<div id="prereqs_set2" class="skill_prereqs">
+								@if ( $skill != null )
+									<?php
+										foreach($skill->skill_prereqs as $prereq){
+											if($prereq->pivot->prereq_set == 2){
+												echo '<div class="row" id="entryRow_'.$prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
+												echo '<div class="col-xs-8">'.$prereq->name."</div>";
+												echo '<div class="col-xs-3">';
+												echo '<button class="btn btn-xs pull-right">';
+												echo '<span class="glyphicon glyphicon-minus" id="set2_'.$prereq->id.'" onclick="Create.removePrereqSkill(event);">';
+												echo '</span>';
+												echo '</button>';
+												echo '</div>';
+												echo '</div>';
+											}
+										}
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align" onclick = "Create.addSkillPrereq('set2');">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
 						</div>
 					</div>
-					<div class="col-xs-1">
-						<button type="button" class="btn button_set1 btn-default" aria-label="Left Align" onclick = "Create.addSkillPrereq('set1');">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						</button>
-					</div>
-					<div class="col-xs-1"><b>OF</b></div>
-					<div class="col-xs-3">
-						<div id="prereqs_set2" class="skill_prereqs">
-							@if ( $skill != null )
-								<?php
-									foreach($skill->skill_prereqs as $prereq){
-										if($prereq->pivot->prereq_set == 2){
-											echo '<div class="row" id="entryRow_'.$prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
-											echo '<div class="col-xs-8">'.$prereq->name."</div>";
-											echo '<div class="col-xs-3">';
-											echo '<button class="btn btn-xs pull-right">';
-											echo '<span class="glyphicon glyphicon-minus" id="set2_'.$prereq->id.'" onclick="Create.removePrereqSkill(event);">';
-											echo '</span>';
-											echo '</button>';
-											echo '</div>';
-											echo '</div>';
+					<br>
+					<div class="row">
+						<div class="col-xs-2">Vaardigheidgroep prereq:</div>
+						<div class="col-xs-3">
+							<div id="group_prereqs_set1" class="skillgroup_prereqs">
+								@if ( $skill != null )
+									<?php
+										foreach($skill->skill_group_prereqs as $group_prereq){
+											if($group_prereq->pivot->prereq_set == 1){
+												echo '<div class="row" id="entryRow_'.$group_prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
+												echo '<div class="col-xs-8">'.$group_prereq->name."</div>";
+												echo '<div class="col-xs-3">';
+												echo '<button class="btn btn-xs pull-right">';
+												echo '<span class="glyphicon glyphicon-minus" id="set1_'.$group_prereq->id.'" onclick="Create.removePrereqSkillGroup(event);">';
+												echo '</span>';
+												echo '</button>';
+												echo '</div>';
+												echo '</div>';
+											}
 										}
-									}
-								?>
-							@endif
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn button_set1 btn-default" aria-label="Left Align" onclick = "Create.addSkillGroupPrereq('set1');">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-3">
+							<div id="group_prereqs_set2" class="skillgroup_prereqs">
+								@if ( $skill != null )
+									<?php
+										foreach($skill->skill_group_prereqs as $group_prereq){
+											if($group_prereq->pivot->prereq_set == 2){
+												echo '<div class="row" id="entryRow_'.$group_prereq->id.'" style="padding-top: 3px;padding-left: 3px">';
+												echo '<div class="col-xs-8">'.$group_prereq->name."</div>";
+												echo '<div class="col-xs-3">';
+												echo '<button class="btn btn-xs pull-right">';
+												echo '<span class="glyphicon glyphicon-minus" id="set2_'.$group_prereq->id.'" onclick="Create.removePrereqSkillGroup(event);">';
+												echo '</span>';
+												echo '</button>';
+												echo '</div>';
+												echo '</div>';
+											}
+										}
+									?>
+								@endif
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align" onclick = "Create.addSkillGroupPrereq('set2');">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</button>
 						</div>
 					</div>
-					<div class="col-xs-1">
-						<button type="button" class="btn btn-default button_set2 disabled" aria-label="Left Align" onclick = "Create.addSkillPrereq('set2');">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						</button>
-					</div>
-					
 				</div>
 				
-				<input id="skill_prereqs_set1_list_hidden" name="skill_prereqs_set1_list" class="hidden">
-				<input id="skill_prereqs_set2_list_hidden" name="skill_prereqs_set2_list" class="hidden">
+				<input id="skill_prereqs_set1_list_hidden" name="skill_prereqs_set1_list" type="hidden" value="[]">
+				<input id="skill_prereqs_set2_list_hidden" name="skill_prereqs_set2_list" type="hidden" value="[]">
+				<input id="skillgroup_prereqs_set1_list_hidden" name="skillgroup_prereqs_set1_list" type="hidden" value="[]">
+				<input id="skillgroup_prereqs_set2_list_hidden" name="skillgroup_prereqs_set2_list" type="hidden" value="[]">
 				
 				@include('layouts.tab_buttons', array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>true, 'next'=>null))
 			  </div>
@@ -390,6 +450,7 @@
 		</div>
 		
 		@include('popups.createSkillSelector', array('submitMethod'=>'Create.submitPrereqSkills(event)'))
+		@include('popups.createSkillGroupSelector', array('submitMethod'=>'Create.submitPrereqSkillgroups(event)'))
 
 		<script>
 			CreateSkillTabControl.addTabButtonListeners();
