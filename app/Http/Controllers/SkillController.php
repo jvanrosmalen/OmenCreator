@@ -66,6 +66,7 @@ class SkillController extends Controller
 			$skill_res_rules = array();
 			$skill_stat_rules = array();
 			$skill_wealth_rules = array();
+			$skill_class_rules = array();
 			
 			if(isset($skill->dam_rules)){
 				$skill_dam_rules = $skill->dam_rules;
@@ -82,12 +83,16 @@ class SkillController extends Controller
 			if(isset($skill->wealth_rules)){
 				$skill_wealth_rules = $skill->wealth_rules;
 			}
+			if(isset($skill->class_rules)){
+				$skill_class_rules = $skill->class_rules;
+			}
 				
 			$skill_rules = [	"dam_rules"=>$skill_dam_rules,
 					"call_rules"=>$skill_call_rules,
 					"res_rules"=>$skill_res_rules,
 					"stat_rules"=>$skill_stat_rules,
-					"wealth_rules"=>$skill_wealth_rules
+					"wealth_rules"=>$skill_wealth_rules,
+					"class_rules"=>$skill_class_rules
 			];
 			
 			return view('skill/create', [	"skill"=>$skill,
@@ -197,6 +202,7 @@ class SkillController extends Controller
 		$res_rules_sync = array();
 		$stat_rules_sync = array();
 		$wealth_rules_sync = array();
+		$class_rules_sync = array();
 		
 		if($ruleArray!=null && $ruleArray!=''){
 			foreach($ruleArray as $rule){
@@ -210,6 +216,8 @@ class SkillController extends Controller
 					$stat_rules_sync[] = $rule->ruleId;
 				} elseif (strcasecmp( $rule->type, "wealth")==0){
 					$wealth_rules_sync[] = $rule->ruleId;
+				} elseif (strcasecmp( $rule->type, "class") == 0){
+					$class_rules_sync[] = $rule->ruleId;
 				}
 			}
 		}
@@ -219,6 +227,7 @@ class SkillController extends Controller
 		$newSkill->resistanceRules()->sync($res_rules_sync);
 		$newSkill->statisticRules()->sync($stat_rules_sync);
 		$newSkill->wealthRules()->sync($wealth_rules_sync);
+		$newSkill->classRules()->sync($class_rules_sync);
 		
 		// Save class prereqs
  		$player_classes = Input::get('playerclass');
@@ -326,6 +335,7 @@ class SkillController extends Controller
 		$res_rules_sync = array();
 		$stat_rules_sync = array();
 		$wealth_rules_sync = array();
+		$class_rules_sync = array();
 		
 		if($ruleArray!=null && $ruleArray!=''){
 			foreach($ruleArray as $rule){
@@ -339,6 +349,8 @@ class SkillController extends Controller
 					$stat_rules_sync[] = $rule->ruleId;
 				} elseif (strcasecmp( $rule->type, "wealth")==0){
 					$wealth_rules_sync[] = $rule->ruleId;
+				} elseif (strcasecmp( $rule->type, "class")==0){
+					$class_rules_sync[] = $rule->ruleId;
 				}
 			}
 		}
@@ -348,6 +360,7 @@ class SkillController extends Controller
 		$skill->resistanceRules()->sync($res_rules_sync);
 		$skill->statisticRules()->sync($stat_rules_sync);
 		$skill->wealthRules()->sync($wealth_rules_sync);
+		$skill->classRules()->sync($class_rules_sync);
 		
 		// Save class prereqs
 		$player_classes = Input::get('playerclass');

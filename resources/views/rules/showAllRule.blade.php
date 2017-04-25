@@ -238,6 +238,44 @@
 		
 <!-- 	END WEALTH RULES -->
 
+<!-- 	CLASS RULES -->
+		<?php $statCount = 0; ?>
+		<div id="classrules" class="row well rule_name_row">
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-8 detail_name">
+				Klasse Regels (
+					@foreach ($playerclasses as $playerclass)
+						@if ($playerclass->class_name != "Algemeen")
+							@if ($statCount != 0)
+								,
+							@endif
+							{{$playerclass->class_name}}
+							<?php $statCount++; ?>
+						@endif
+					@endforeach
+				)
+			</div>
+		</div>
+
+		<div id="class_rule_details" class="row rule_details">		
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-9">
+					<div class ="row well rule_header">Klasse</div>
+					<div class ="row">
+					@foreach ($classrules as $classrule)
+						<div id="classrule_{{$classrule->id}}" class="col-xs-7 rule_line">
+							{{ $classrule->toString() }}
+						</div>
+					@endforeach
+					</div>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
+		
+<!-- 	END CLASS RULES -->
 	</div>
 		
 	<script>Rule.addListeners()</script>

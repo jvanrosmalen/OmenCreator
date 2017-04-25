@@ -32,6 +32,12 @@ var Rule = new function(){
 				// Animation complete.
 			});
 		});
+
+		$("#classrules" ).click(function(event) {
+			$( "#class_rule_details" ).slideToggle( "fast", function() {
+				// Animation complete.
+			});
+		});
 	}
 
 	self.addRulesIncludeListeners = function(){
@@ -87,6 +93,17 @@ var Rule = new function(){
 			var sourceId = source.dataset.id;
 			
 			rulesInclude.addRulesIncludeListener(sourceId, "wealth");
+			$(source).addClass("disabled");
+		});
+		
+		$(".classRuleIncludeAdd").on("click", function(e){
+			e.preventDefault();
+			
+			var source = e.target || e.srcElement;
+			var rulesInclude = new RulesInclude();
+			var sourceId = source.dataset.id;
+			
+			rulesInclude.addRulesIncludeListener(sourceId, "class");
 			$(source).addClass("disabled");
 		});
 	}
@@ -170,6 +187,15 @@ var Rule = new function(){
 			rulesInclude.addRulesIncludeListener(wealth_rule['id'], "wealth");
 			$("#added_rules_list button").data('id', wealth_rule['id']);
 			$('.btn-ruleIncludeAdd-'+wealth_rule['id'] + '.wealthRuleIncludeAdd').addClass("disabled");
+		}
+		
+		for(var index = 0; index < itemRules['class_rules'].length; index++){
+			var class_rule = itemRules['class_rules'][index];
+			var rulesInclude = new RulesInclude();
+			
+			rulesInclude.addRulesIncludeListener(class_rule['id'], "class");
+			$("#added_rules_list button").data('id', class_rule['id']);
+			$('.btn-ruleIncludeAdd-'+class_rule['id'] + '.classRuleIncludeAdd').addClass("disabled");
 		}
 	}
 }

@@ -71,7 +71,7 @@ var createCharacterControl = new function(){
 		var skillStringArray2 = createCharacterControl.getSkillNameArrayFromTab(hidden_list2);
 
 		if( skillStringArray1.length > 0 || skillStringArray2.length > 0){
-			returnString = skillStringArray1.concat(skillStringArray2).sort().join();
+			returnString = skillStringArray1.concat(skillStringArray2).sort().join(', ');
 		}
 		
 		return returnString;
@@ -115,6 +115,12 @@ var createCharacterControl = new function(){
 		}
 	}
 	
+	self.hasSkill = function(skillId){
+		return (JSON.parse($("#descent_skill_list_hidden").val()).indexOf(skillId) >= 0
+				||	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(skillId) >= 0
+				||  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(skillId) >= 0);
+	}
+	
 	self.checkSkillPrereqs = function(skillData){
 		var problem = false;
 		var problemArray = [];
@@ -123,29 +129,40 @@ var createCharacterControl = new function(){
 			var prereq_skill = skillData['skill_prereqs'][i];
 			
 			// check if skill is in all hidden lists with skills
-			if( JSON.parse($("#descent_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
-			&&	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
-			&&  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(prereq_skill['id']) === -1
-			){
+			if(!createCharacterControl.hasSkill(prereq_skill['id'])){
 				problem = true;
 				
-				if($(".character_class_skill_option_"+prereq_skill['id'])){
-					problemArray.push($(".character_class_skill_option_"+prereq_skill['id']+" .skillname").html());
-					continue;
-				}
-				
-				if($(".character_non_class_skill_option_"+prereq_skill['id'])){
-					problemArray.push($(".character_non_class_skill_option_"+prereq_skill['id']+" .skillname").html());
-					continue;
+				problemArray.push(prereq_skill['name']);
+			}
+		}
+		
+		for(var i=0; i < skillData['skill_group_prereqs'].length; i++){
+			var prereq_skillgroup = skillData['skill_group_prereqs'][i];
+			
+			var groupProblem = true;
+			
+			for(var j=0; j < prereq_skillgroup['group_skills'].length; j++){
+				var prereq_skill = prereq_skillgroup['group_skills'][j];
+				// check if skill is in all hidden lists with skills
+				if(createCharacterControl.hasSkill(prereq_skill['id'])){
+					// Found one, so group is no problem.
+					groupProblem = false;
+					break;
 				}
 			}
+			
+			if(groupProblem){
+				problem = true;
+				problemArray.push(prereq_skillgroup['name']);
+			}
+
 		}
 		
 		if(problem){
 			// skill is not found
 			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
 			
-			warningStr += problemArray.join();
+			warningStr += problemArray.join('<br>');
 			
 			alert(warningStr);
 			return false;
@@ -219,7 +236,7 @@ var createCharacterControl = new function(){
 		var overviewSkillArray = createCharacterControl.getSkillNameArrayFromTab("descent_skill_list_hidden");
 		
 		if(overviewSkillArray.length > 0){
-			$("#overview_descent_skills").html(overviewSkillArray.join());
+			$("#overview_descent_skills").html(overviewSkillArray.join(', '));
 			$("#overview_descent_skills").removeClass("warning_not_entered");
 		}else{
 			$("#overview_descent_skills").html("Niet geselecteerd");
@@ -231,7 +248,7 @@ var createCharacterControl = new function(){
 		var overviewSkillArray = createCharacterControl.getSkillNameArrayFromTab("character_class_skill_list_hidden");
 		
 		if(overviewSkillArray.length > 0){
-			$("#overview_class_skills").html(overviewSkillArray.join());
+			$("#overview_class_skills").html(overviewSkillArray.join(', '));
 			$("#overview_class_skills").removeClass("warning_not_entered");
 		}else{
 			$("#overview_class_skills").html("Niet geselecteerd");
@@ -243,7 +260,7 @@ var createCharacterControl = new function(){
 		var overviewSkillArray = createCharacterControl.getSkillNameArrayFromTab("character_non_class_skill_list_hidden");
 		
 		if(overviewSkillArray.length > 0){
-			$("#overview_non_class_skills").html(overviewSkillArray.join());
+			$("#overview_non_class_skills").html(overviewSkillArray.join(', '));
 			$("#overview_non_class_skills").removeClass("warning_not_entered");
 		}else{
 			$("#overview_non_class_skills").html("Niet geselecteerd");

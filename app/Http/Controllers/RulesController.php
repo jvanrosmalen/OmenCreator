@@ -13,6 +13,8 @@ use App\CallRule;
 use App\WealthType;
 use App\DamageType;
 use App\CallType;
+use App\PlayerClass;
+use App\ClassRule;
 
 class RulesController extends Controller
 {
@@ -29,7 +31,9 @@ class RulesController extends Controller
 											"callrules"=> $rules['callRules'],
 											"callTypes"=> $rules['callTypes'],
 											"wealthTypes"=> $rules['wealthTypes'],
-											"wealthrules"=> $rules['wealthRules']
+											"wealthrules"=> $rules['wealthRules'],
+											"playerclasses"=>PlayerClass::all(),
+											"classrules"=> $rules['classRules']
 										]);
 	}
 	
@@ -59,6 +63,10 @@ class RulesController extends Controller
 		$rules['callTypes'] = CallType::all();
 		$rules['callRules'] = CallRule::all()->sortBy(function($rule){
 			return sprintf('%-30s%-30s', $rule->callType->call_name, $rule->rules_operator);
+		});
+		
+		$rules['classRules'] = ClassRule::all()->sortBy(function($rule){
+			return sprintf('%-30s', $rule->toString());
 		});
 		
 		return $rules;

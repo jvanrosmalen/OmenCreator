@@ -232,6 +232,43 @@
 			</div>
 		</div>
 <!-- END WEALTH RULES		 -->
+
+<!-- CLASS RULES -->
+		<?php $statCount=0; ?>
+		<div class='col-xs-2'></div>
+		
+		<div class='col-xs-10'>
+			<div id="classrules" class='well innerWell detail_name rule_name_row col-xs-12'>
+				Klasse Regels (
+					@foreach ($rules['classRules'] as $classRule)
+						@if ($statCount != 0)
+							,
+						@endif
+						{{$classRule->player_class->class_name}}
+						<?php $statCount++; ?>
+					@endforeach
+				)
+			</div>
+		
+			<div id="class_rule_details" class="row rule_details">		
+				<div class="row">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-4 innerBlock">
+						<div class ="row well innerWell rule_header">Klasse</div>
+						<div class ="row">
+						@foreach ($rules['classRules'] as $classRule)
+							<div id="classrule_{{$classRule->id}}" class="col-xs-8 rule_line">{{ $classRule->toString() }}</div>
+							<div class="col-xs-3">
+								<button class="btn btn-default btn-add btn-ruleIncludeAdd-{{$classRule->id}} classRuleIncludeAdd" data-id="{{$classRule->id}}">Toevoegen</button>
+							</div>						
+						@endforeach
+						</div>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+			</div>
+		</div>
+<!-- END CLASS RULES		 -->
 	</div>
 
 	<script>Rule.addListeners()</script>

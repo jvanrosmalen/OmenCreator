@@ -16,6 +16,7 @@ class Skill extends Model {
 							'dam_rules',
 							'stat_rules',
 							'wealth_rules',
+							'class_rules',
 							'res_rules',
 							'skill_level',
 							'income_coin',
@@ -54,6 +55,10 @@ class Skill extends Model {
 	
 	public function wealthRules(){
 		return $this->belongsToMany('App\WealthRule');
+	}
+	
+	public function classRules(){
+		return $this->belongsToMany('App\ClassRule');
 	}
 	
 	public function incomeCoin(){
@@ -136,6 +141,11 @@ class Skill extends Model {
 	public function getWealthRulesAttribute()
 	{
 		return Skill::find($this->id)->wealthRules()->get();
+	}
+	
+	public function getClassRulesAttribute()
+	{
+		return Skill::find($this->id)->classRules()->get();
 	}
 	
 	public function getIncomeCoinAttribute()

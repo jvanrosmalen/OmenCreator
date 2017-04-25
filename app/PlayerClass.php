@@ -10,6 +10,10 @@ class PlayerClass extends Model
     protected $appends = [	'wealth_type'
     ];
     
+    public function classRule(){
+    	return $this->hasOne('App\ClassRule');
+    }
+    
     public function skills(){
     	return $this->belongsToMany('App\Skill');
     }

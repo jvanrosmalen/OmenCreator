@@ -39,6 +39,7 @@ var CreateCharacter = new function(){
 		$(tr).data("id", skill.id);
 		$(tr).data("ep_cost", skill.ep_cost);
 		$(tr).data("skill_prereqs", skill.skill_prereqs);
+		$(tr).data("skill_group_prereqs", skill.skill_group_prereqs);
 		$(tr).data("res_rules", skill.res_rules);
 		$(tr).data("call_rules", skill.call_rules);
 		$(tr).data("stat_rules", skill.stat_rules);
