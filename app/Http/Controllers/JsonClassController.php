@@ -38,12 +38,12 @@ class JsonClassController extends Controller
 		return Response::json(json_encode($retBool));
 	}
 	
-	public function getClassSkills(){
+	public function getClassSkillsAndWealth(){
 		$charLevel = 1;
 		$classSkills = [];
 		$nonClassSkills = [];
 		$charRace = [];
-		$allSkills = ['classSkills'=>[],'nonClassSkills'=>[]];
+		$jsonRetData = ['classSkills'=>[],'nonClassSkills'=>[],'wealthId'=>1];
 		
 		if(Request::has('char_level')){
 			$charLevel = Request::input('char_level');
@@ -86,11 +86,20 @@ class JsonClassController extends Controller
 			foreach ($nonClassSkills as $nonClassSkill	){
 				$nonClassSkill->ep_cost = $nonClassSkill->ep_cost*2; 				
 			}
+			
+			$wealth_level = 1;
+			foreach($classIdArray as $classId){
+				if(PlayerClass::find($classId)->wealth_type_id > $wealth_level){
+					$wealth_level = PlayerClass::find($classId)->wealth_type_id;
+				}
+			}
+			
+			$jsonRetData['wealthId'] = $wealth_level;
 		}
 	
-		$allSkills['classSkills'] = $classSkills;
-		$allSkills['nonClassSkills'] = $nonClassSkills;
+		$jsonRetData['classSkills'] = $classSkills;
+		$jsonRetData['nonClassSkills'] = $nonClassSkills;
 		
-		return Response::json(json_encode($allSkills));
+		return Response::json(json_encode($jsonRetData));
 	}
 }

@@ -49,6 +49,40 @@ var createCharacterControl = new function(){
 		}
 	}
 	
+	self.getRulesForOverview = function(skill_id){
+		var retSkillArray = {
+				"class_rules":new Array(),
+				"res_rules":new Array(),
+				"stat_rules":new Array(),
+				"wealth_rules":new Array(),
+		};
+		
+		var skill = new Array();
+		
+		if($('.character_non_class_skill_option_'+skill_id).length){
+			skill = $('.character_non_class_skill_option_'+skill_id).data();
+		}else if($('.character_class_skill_option_'+skill_id).length){
+			skill = $('.character_class_skill_option_'+skill_id).data();
+		}
+		
+		if(skill != undefined && skill != null){
+			if("class_rules" in skill){
+				retSkillArray["class_rules"] = skill["class_rules"];
+			}
+			if("res_rules" in skill){
+				retSkillArray["res_rules"] = skill["res_rules"];
+			}
+			if("stat_rules" in skill){
+				retSkillArray["stat_rules"] = skill["stat_rules"];
+			}
+			if("wealth_rules" in skill){
+				retSkillArray["wealth_rules"] = skill["wealth_rules"];
+			}
+		}
+		
+		return retSkillArray;
+	}
+	
 	self.getSkillNameArrayFromTab = function(hidden_list){
 		var retStringArray = [];
 		
@@ -103,7 +137,7 @@ var createCharacterControl = new function(){
 	
 	self.checkStatPrereqs = function(skillData){
 		// check all stat prereqs
-		if($("#stat_"+skillData['statistic_prereq_id']).data('value')
+		if($("#overview_stat_"+skillData['statistic_prereq_id']).data('value')
 				>= skillData['statistic_prereq_amount']){
 			return true;
 		}else{
@@ -232,6 +266,125 @@ var createCharacterControl = new function(){
 		}
 	}
 
+	self.getOverviewRulesFromTab = function(hidden_list){
+		var retSkillArray = {
+				"class_rules":new Array(),
+				"res_rules":new Array(),
+				"stat_rules":new Array(),
+				"wealth_rules":new Array(),
+		};
+		
+		if($("#"+hidden_list).length > 0){
+			var skillIdArray = JSON.parse($("#"+hidden_list).val());
+		
+			if(skillIdArray.length != 0){
+				for(var i=0; i < skillIdArray.length; i++){
+					var rules = createCharacterControl.getRulesForOverview(skillIdArray[i]);
+					
+					retSkillArray["class_rules"] = retSkillArray["class_rules"].concat(rules["class_rules"]);
+					retSkillArray["res_rules"] = retSkillArray["res_rules"].concat(rules["res_rules"]);
+					retSkillArray["stat_rules"] = retSkillArray["stat_rules"].concat(rules["stat_rules"]);
+					retSkillArray["wealth_rules"] = retSkillArray["wealth_rules"].concat(rules["wealth_rules"]);
+				}
+			}
+		}
+		
+		return retSkillArray;
+	}
+	
+	self.updateResistanceRules = function(rules, sourceTab){
+		var resIdUpdateArray = new Array();
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			var newValue = 0;
+			
+			if(!(rule['resistance_id'] in resIdUpdateArray)){
+				resIdUpdateArray[rule['resistance_id']] = 0;
+			}
+			
+			if(rule['rules_operator'] == '+'){
+				resIdUpdateArray[rule['resistance_id']] =
+					resIdUpdateArray[rule['resistance_id']] + rule['value'];
+			}else if(rule['rules_operator'] == '-'){
+				resIdUpdateArray[rule['resistance_id']] =
+					resIdUpdateArray[rule['resistance_id']] - rule['value'];
+			}
+		}
+
+		// Clear and update everything
+		$.each($(".overview_res"), function(){
+			var resId = $(this).attr('id').split('_')[2];
+			
+			if(resId in resIdUpdateArray){
+				$("#overview_res_"+resId).data(sourceTab, resIdUpdateArray[resId]);
+			}else{
+				$("#overview_res_"+resId).data(sourceTab, 0);
+			}
+			
+			$(this).data('value', 0);
+			$(this).html(0);
+
+			var newTotal = $("#overview_res_"+resId).data('descent')
+				+ $("#overview_res_"+resId).data('class')
+				+ $("#overview_res_"+resId).data('nonclass');
+			
+			$("#overview_res_"+resId).data('value', newTotal);
+			$("#overview_res_"+resId).html(newTotal);
+		});
+	}
+	
+	self.updateStatisticRules = function(rules, sourceTab){
+		var statIdUpdateArray = new Array();
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			var newValue = 0;
+			
+			if(!(rule['statistic_id'] in statIdUpdateArray)){
+				statIdUpdateArray[rule['statistic_id']] = 0;
+			}
+			
+			if(rule['rules_operator'] == '+'){
+				statIdUpdateArray[rule['statistic_id']] =
+					statIdUpdateArray[rule['statistic_id']] + rule['value'];
+			}else if(rule['rules_operator'] == '-'){
+				statIdUpdateArray[rule['statistic_id']] =
+					statIdUpdateArray[rule['statistic_id']] - rule['value'];
+			}
+		}
+
+		// Clear and update everything
+		$.each($(".overview_stat"), function(){
+			var statId = $(this).attr('id').split('_')[2];
+			
+			if(statId != 11){
+				if(statId in statIdUpdateArray){
+					$("#overview_stat_"+statId).data(sourceTab, statIdUpdateArray[statId]);
+				}else{
+					$("#overview_stat_"+statId).data(sourceTab, 0);
+				}
+				
+				$(this).data('value', 0);
+				$(this).html(0);
+	
+				var newTotal = $("#overview_stat_"+statId).data('base')
+					+ $("#overview_stat_"+statId).data('descent')
+					+ $("#overview_stat_"+statId).data('class')
+					+ $("#overview_stat_"+statId).data('nonclass');
+				
+				$("#overview_stat_"+statId).data('value', newTotal);
+				$("#overview_stat_"+statId).html(newTotal);
+				
+				if(statId == 1){
+					// these are the torso lps. Also update limbs.
+					$("#overview_stat_11").data('value', (newTotal-1));
+					$("#overview_stat_11").html(newTotal-1);
+				}
+			}
+		});
+	}
+	
 	self.updateOverviewDescentSkills = function(){
 		var overviewSkillArray = createCharacterControl.getSkillNameArrayFromTab("descent_skill_list_hidden");
 		
@@ -242,6 +395,11 @@ var createCharacterControl = new function(){
 			$("#overview_descent_skills").html("Niet geselecteerd");
 			$("#overview_descent_skills").addClass("warning_not_entered");
 		}
+		
+		// Now update the overview for any special rules from the skills
+		var rules = createCharacterControl.getOverviewRulesFromTab("descent_skill_list_hidden");
+		createCharacterControl.updateResistanceRules(rules['res_rules'], 'descent');
+		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'descent');
 	}
 	
 	self.updateOverviewClassSkills = function(){
@@ -254,6 +412,11 @@ var createCharacterControl = new function(){
 			$("#overview_class_skills").html("Niet geselecteerd");
 			$("#overview_class_skills").addClass("warning_not_entered");
 		}
+
+		// Now update the overview for any special rules from the skills
+		var rules = createCharacterControl.getOverviewRulesFromTab("character_class_skill_list_hidden");
+		createCharacterControl.updateResistanceRules(rules['res_rules'], 'class');
+		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'class');
 	}
 	
 	self.updateOverviewNonClassSkills = function(){
@@ -266,6 +429,11 @@ var createCharacterControl = new function(){
 			$("#overview_non_class_skills").html("Niet geselecteerd");
 			$("#overview_non_class_skills").addClass("warning_not_entered");
 		}
+
+		// Now update the overview for any special rules from the skills
+		var rules = createCharacterControl.getOverviewRulesFromTab("character_non_class_skill_list_hidden");
+		createCharacterControl.updateResistanceRules(rules['res_rules'], 'nonclass');
+		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'nonclass');
 	}
 	
 	self.addDescentSkillListeners = function(){

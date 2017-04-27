@@ -209,21 +209,23 @@ var CreateCharacter = new function(){
 		$('.spent_character_ep').html('0');
 	}
 	
+	self.updateRaceStat = function(statId, value){
+		$("#base_stat_"+statId).html(value);
+		
+		$("#overview_stat_"+statId).html(value);
+		$("#overview_stat_"+statId).data('value', value);
+		$("#overview_stat_"+statId).data('base', value);
+	}
+	
 	self.handleRaceStats = function(raceId){
 		var raceOption = $("#race_selection option[value="+raceId+"]");
-		
-		$(".overview_lp_torso").html(raceOption.data("lp_torso"));
-		$(".overview_lp_torso").data('value', raceOption.data("lp_torso"));
-		$(".overview_lp_limbs").html(raceOption.data("lp_limbs"));
-		$(".overview_lp_limbs").data('value', raceOption.data("lp_limbs"));
-		$(".overview_willpower").html(raceOption.data("willpower"));
-		$(".overview_willpower").data('value', raceOption.data("willpower"));
-		$(".overview_status").html(raceOption.data("status"));
-		$(".overview_status").data('value', raceOption.data("status"));
-		$(".overview_focus").html(raceOption.data("focus"));
-		$(".overview_focus").data('value', raceOption.data("focus"));
-		$(".overview_trauma").html(raceOption.data("trauma"));
-		$(".overview_trauma").data('value', raceOption.data("trauma"));
+
+		CreateCharacter.updateRaceStat(1, raceOption.data("lp_torso"));
+		CreateCharacter.updateRaceStat(11, raceOption.data("lp_limbs"));
+		CreateCharacter.updateRaceStat(2, raceOption.data("willpower"));
+		CreateCharacter.updateRaceStat(3, raceOption.data("status"));
+		CreateCharacter.updateRaceStat(4, raceOption.data("focus"));
+		CreateCharacter.updateRaceStat(5, raceOption.data("trauma"));
 	}
 	
 	self.handleRaceSelection = function(event){
@@ -264,12 +266,42 @@ var CreateCharacter = new function(){
 		CreateCharacter.hideAndClearSkillTabs();
 	}
 
-	self.handleClassSkills = function(data){
+	self.getWealthType = function(wealthId){
+		var wealth_type = 'Arm';
+
+		// Get wealth string from hidden info
+		if(wealthId != -1){
+			$(".wealth_type").each(function(){
+				if($(this).data('id')== wealthId){
+					wealth_type = $(this).data('wealth_type');
+					
+					return false;
+				}
+			});
+		}
+		
+		return wealth_type;
+	}
+	
+	self.setBaseWealth = function(wealthId){
+		var wealthString = CreateCharacter.getWealthType(wealthId);
+		
+		$("#base_wealth").html(wealthString);
+		$("#overview_wealth").data('base', wealthId);
+		$("#overview_wealth").data('value', wealthId);
+		$("#overview_wealth").html(wealthString);
+	}
+	
+	self.handleClassSkillsAndWealth = function(data){
 		var classSkills = data['classSkills'];
 		var nonClassSkills = data['nonClassSkills'];
+		var wealthId = data['wealthId'];
 		
 		CreateCharacter.clearTable('character_class_skill_options');
 		CreateCharacter.clearTable('character_class_skill_selected');
+		
+		// Update wealth value
+		CreateCharacter.setBaseWealth(wealthId);
 		
 		// Clear the skills array just to be certain
 		$("#character_class_skill_list_hidden").val(JSON.stringify(new Array()));
@@ -324,7 +356,7 @@ var CreateCharacter = new function(){
 			$('#overview_class').removeClass("warning_not_entered");
 
 			// Get class and non-class skills
-			AjaxInterface.getClassSkills(selectedClassId, charLevel, selectedRace, CreateCharacter.handleClassSkills);
+			AjaxInterface.getClassSkillsAndWealth(selectedClassId, charLevel, selectedRace, CreateCharacter.handleClassSkillsAndWealth);
 		}else{
 			// Tab 'Klasse Vaardigheden'
 			$('#class_first_warning').removeClass('hidden');
@@ -339,6 +371,9 @@ var CreateCharacter = new function(){
 			// Tab 'Overzicht'
 			$('#overview_class').html("Niet geselecteerd");
 			$('#overview_class').addClass("warning_not_entered");
+
+			// Reset wealth value
+			CreateCharacter.setBaseWealth(-1);
 		}		
 	}
 	
@@ -360,87 +395,4 @@ var CreateCharacter = new function(){
 		// Tab 'Overzicht'
 		$("#overview_start_ep").html(epAmount);
 	}
-	
-//	self.addRaceSkill = function(){
-//		$("#createSkillSelector").fadeIn();
-//		event.preventDefault();
-//	};
-//	
-//	self.submitRaceSkills = function(e){
-//		var raceSkillsArray = new Array();
-//
-//		if($("#race_skills_list_hidden").val()){
-//			raceSkillsArray = JSON.parse($("#race_skills_list_hidden").val());
-//		}
-//		
-//		$(".selected").each(function(id, value){
-//			// Add entry in the correct prereq set.
-//			var entryRow = document.createElement("div");
-//			entryRow.setAttribute("class", "row");
-//			entryRow.setAttribute("id", "entryRow_"+value.id);
-//			entryRow.setAttribute("style", "padding-top: 3px;padding-left: 3px");
-//			var entryTdName = document.createElement("div");
-//			entryTdName.appendChild(document.createTextNode($("tr#"+value.id+ " .skillname").attr('id')));
-//			entryTdName.setAttribute("class", "col-xs-8");
-//			
-//			entryRow.appendChild(entryTdName);
-//			
-//			var entryTdRemoveButton = document.createElement("div");
-//			entryTdRemoveButton.setAttribute("class", "col-xs-3");
-//			var removeBtn = document.createElement("button");
-//			removeBtn.setAttribute("class", "btn btn-xs pull-right");
-//			var removeMinus = document.createElement("span");
-//			removeMinus.setAttribute("class", "glyphicon glyphicon-minus");
-//			removeMinus.setAttribute("id", "entryRow_"+value.id);
-//			removeMinus.setAttribute("onclick", "CreateRaceControl.removeRaceSkill(event);");
-//			
-//			removeBtn.appendChild(removeMinus);
-//			
-//			entryTdRemoveButton.appendChild(removeBtn);
-//			entryRow.appendChild(entryTdRemoveButton);
-//			
-//			$("tr#"+value.id).removeClass("selected");
-//			$("tr#"+value.id).addClass("submitted");
-//			$("tr#"+value.id).removeAttr('onclick');
-//			raceSkillsArray.push(value.id);
-//			$("#race_skills").append(entryRow);
-//		});
-//		
-//		$("#race_skills_list_hidden").val(JSON.stringify(raceSkillsArray));
-//		
-//		$("#skill_select_table .selected").removeClass("selected");
-//		
-//		Create.closeSkillSelector();	
-//	}
-//	
-//	self.removeRaceSkill = function(e){
-//		event.preventDefault();
-//		var compound_id = $(event.target).attr('id');
-//		var id = compound_id.split('_')[1];
-//		var raceSkillsArray = new Array();
-//
-//		// First clear the id out of the relevant selected prereqs list.
-//		if($("#race_skills_list_hidden").val()){
-//			raceSkillsArray = JSON.parse($("#race_skills_list_hidden").val());
-//		}
-//		
-//		for(var index in raceSkillsArray){
-//			if(raceSkillsArray[index] == id ){
-//				raceSkillsArray.splice(index,1);
-//				break;
-//			}
-//		}
-//
-//		$("#race_skills_list_hidden").val(JSON.stringify(raceSkillsArray));
-//		
-//		// Now remove from view
-//		var test = ".skillSelector tr#"+id;
-//		var selectorSkill = $(".skillSelector tr#"+id);
-//		if(selectorSkill.hasClass("submitted")){
-//			selectorSkill.removeClass("submitted");
-//			selectorSkill.attr('onclick', 'Create.selectSkill(event)');
-//		}
-//		
-//		$("#entryRow_"+id).remove();
-//	}
 }

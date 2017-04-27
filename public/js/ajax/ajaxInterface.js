@@ -243,9 +243,9 @@ var AjaxInterface = new function(){
 		});		
 	}
 	
-	self.getClassSkills = function(class_id, charLevel, charRace, callback){
+	self.getClassSkillsAndWealth = function(class_id, charLevel, charRace, callback){
 		$.ajax({
-			url: "/get_class_skills",
+			url: "/get_class_skills_and_wealth",
 			type: "GET",
 			data: {	"class_id":class_id,
 					"char_level": charLevel,

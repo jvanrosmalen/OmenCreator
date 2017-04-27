@@ -9,6 +9,8 @@ use App\SkillLevel;
 use App\PlayerClass;
 use App\Race;
 use App\Skill;
+use App\Resistance;
+use App\WealthType;
 
 class CharacterController extends Controller
 {
@@ -18,7 +20,9 @@ class CharacterController extends Controller
 					'skilllevels' => SkillLevel::all(),
 					'playerclasses' => PlayerClass::all(),
 					'races' => Race::all(),
-					'skills' => Skill::all()
+					'skills' => Skill::all(),
+					'resistances' => Resistance::all(),
+					'wealth_types' => WealthType::all()
 			]);
 		}	
     }

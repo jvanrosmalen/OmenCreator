@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+
+@section('content')
+
+<!-- 	Hidden information fields -->
+@foreach($wealth_types as $wealth_type)
+	<div class="wealth_type hidden" data-id="{{$wealth_type->id}}" data-wealth_type="{{$wealth_type->wealth_type}}"></div>
+@endforeach
+
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-12'>
@@ -64,7 +72,7 @@
 					<div class="row well">
 						<div class='row'>
 							<div class="col-xs-1"></div>
-							<div class="col-xs-1">Kies Ras:</div>
+							<div class="col-xs-1">Ras:</div>
 							<div class="col-xs-2">
 								<select id="race_selection" name='character_race' onChange="CreateCharacter.handleRaceSelection(event)">
 									<option value="-1"
@@ -87,7 +95,7 @@
 									@endforeach
 								</select>
 							</div>
-							<div class="col-xs-2">Kies Klasse:</div>
+							<div class="col-xs-1">Klasse:</div>
 							<div class="col-xs-2">
 								<span id='playerclass_race_first_warning'><em>Kies eerst het ras</em></span>
 								<select id='playerclass_select' class='hidden' name='character_class' onChange="CreateCharacter.handleClassSelection(event)">
@@ -99,6 +107,8 @@
 									@endforeach
 								</select>
 							</div>
+							<div class="col-xs-1">Welvaart:</div>
+							<div id="base_wealth" class="col-xs-2">Arm</div>
 							<div id='playerclass_prohibited_remark' class="col-xs-2">
 							</div>
 						</div>
@@ -133,12 +143,12 @@
 									<tbody>
 										<tr>
 										<!-- Dirty, dirty, I know.... using magic numbers for stats -->
-											<td id='stat_1' class="overview_lp_torso" data-value='3'>3</td>
-											<td class="overview_lp_limbs" data-value='2'>2</td>
-											<td id='stat_2' class="overview_willpower" data-value='2'>2</td>
-											<td id='stat_3' class="overview_status" data-value='0'>0</td>
-											<td id='stat_4' class="overview_focus" data-value='0'>0</td>
-											<td class="overview_trauma" data-value='0'>0</td>
+											<td id='base_stat_1'>3</td>
+											<td id='base_stat_11'>2</td>
+											<td id='base_stat_2'>2</td>
+											<td id='base_stat_3'>0</td>
+											<td id='base_stat_4'>0</td>
+											<td id='base_stat_5'>0</td>
 										</tr>
 									</tbody>		
 								</table>
@@ -150,7 +160,7 @@
 							<div class="col-xs-1"></div>
 							<div class="col-xs-1">Start EP:</div>
 							<div class="col-xs-1">
-								<input id='input_start_ep' class='number_input' type="number" name="start_ep" min="0" value='0' onChange="CreateCharacter.handleEpInput(event)">
+								<input id='input_start_ep' class='number_input' type="number" name="start_ep" min="0" value='15' onChange="CreateCharacter.handleEpInput(event)">
 							</div>
 							<div class='col-xs-1'></div>
 							<div class='col-xs-1'>Reden:</div> 
@@ -307,7 +317,7 @@
 							<div class='col-xs-1'>
 							</div>
 							<div class='col-xs-10'>
-								<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount='0'>0</span></h4>
+								<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount='15'>15</span></h4>
 							</div>
 						</div>
 				    </div>
@@ -425,7 +435,7 @@
 							<div class='col-xs-1'>
 							</div>
 							<div class='col-xs-10'>
-								<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount='0'>0</span></h4>
+								<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount='15'>15</span></h4>
 							</div>
 						</div>
 				    </div>
@@ -518,20 +528,21 @@
 					'next'=>'tab5'))
 				</div>
 				<div id="overview" class="tab-pane fade in">
-					<h3>Overzicht</h3>
 					<div class='row well'>
-						<div class='row'>
-							<div class='col-xs-1'>
-							</div>
-							<div class='col-xs-6'>
-								<h4>Algemeen</h4>
-							</div>
-						</div>
 						<div class='row'>
 							<div class='col-xs-1'></div>
 							<div class='col-xs-1'>Naam:</div>
-							<div class='col-xs-2'>
+							<div class='col-xs-9'>
 								<span id="overview_name" class="warning_not_entered">Niet ingevuld</span>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-1">
+								Start EP: 
+							</div>
+							<div class="col-xs-2">
+								<span id="overview_start_ep">15</span>
 							</div>
 							<div class='col-xs-1'>
 								#Omens: 
@@ -547,7 +558,8 @@
 							</div>
 						</div>
 						<div class='row'>
-							<div class="col-xs-1"></div>
+							<div class="col-xs-1">
+							</div>
 							<div class="col-xs-1">
 								Spelerras: 
 							</div>
@@ -561,10 +573,10 @@
 								<span id="overview_class" class="warning_not_entered">Niet geselecteerd</span>
 							</div>
 							<div class="col-xs-1">
-								Start EP: 
+								Welvaart:
 							</div>
-							<div class="col-xs-1">
-								<span id="overview_start_ep">0</span>
+							<div class="col-xs-2">
+								<span id="overview_wealth" data-base='1' data-descent='1' data-class='1' data-nonclass='1' data-value='1'>Arm</span>
 							</div>
 						</div>
 						
@@ -597,27 +609,75 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td class="overview_lp_torso" data-value='3'>3</td>
-											<td class="overview_lp_limbs" data-value='2'>2</td>
-											<td class="overview_willpower" data-value='2'>2</td>
-											<td class="overview_status" data-value='0'>0</td>
-											<td class="overview_focus" data-value='0'>0</td>
-											<td class="overview_trauma" data-value='0'>0</td>
+											<td id="overview_stat_1" class="overview_stat" data-base='3' data-descent='0' data-class='0' data-nonclass='0' data-value='3'>3</td>
+											<td id="overview_stat_11" class="overview_stat" data-value='2'>2</td>
+											<td id="overview_stat_2" class="overview_stat" data-base='2' data-descent='0' data-class='0' data-nonclass='0' data-value='2'>2</td>
+											<td id="overview_stat_3" class="overview_stat" data-base='0' data-descent='0' data-class='0' data-nonclass='0' data-value='0'>0</td>
+											<td id="overview_stat_4" class="overview_stat" data-base='0' data-descent='0' data-class='0' data-nonclass='0' data-value='0'>0</td>
+											<td id="overview_stat_5" class="overview_stat" data-base='0' data-descent='0' data-class='0' data-nonclass='0' data-value='0'>0</td>
 										</tr>
 									</tbody>		
 								</table>
 							</div>
 						</div>
-					</div>
-
-					<div class="row well">
 						<div class='row'>
 							<div class='col-xs-1'>
 							</div>
-							<div class='col-xs-6'>
-								<h4>Vaardigheden</h4>
+							<div class='col-xs-2'>
+								Resistenties
 							</div>
+							<div class="col-xs-3">
+								<table class="table borderless detail_table">
+									<thead>
+								            <tr>
+								                <th>
+								                    Angst
+								                </th>
+								                <th>
+								                	Diefstal
+								                </th>
+								                <th>
+								                	Trauma
+								                </th>
+								            </tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td id="overview_res_1" class="overview_fear_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+											<td id="overview_res_2" class="overview_theft_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+											<td id="overview_res_3" class="overview_trauma_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+										</tr>
+									</tbody>		
+								</table>
+							</div>							
+							<div class="col-xs-3">
+								<table class="table borderless detail_table">
+									<thead>
+								            <tr>
+								                <th>
+								                    Gif
+								                </th>
+								                <th>
+								                	Magie
+								                </th>
+								                <th>
+								                	Ziekte
+								                </th>
+								            </tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td id="overview_res_4" class="overview_poison_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+											<td id="overview_res_5" class="overview_magic_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+											<td id="overview_res_6" class="overview_disease_res overview_res" data-value='0' data-descent='0' data-class='0' data-nonclass='0'>0</td>
+										</tr>
+									</tbody>		
+								</table>
+							</div>							
 						</div>
+					</div>
+
+					<div class="row well">
 						<div class='row'>
 							<div class="col-xs-1"></div>
 							<div class="col-xs-2">
@@ -668,5 +728,6 @@
 	<script>
 		CreateCharacterTabControl.addTabButtonListeners();
 	</script>
+	
 @stop
 </html>
