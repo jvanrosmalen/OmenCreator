@@ -105,7 +105,11 @@
 							</div>
 						</div>
 						<div class="col-xs-3">
-							<input type='checkbox' name='secret_skill'> GEHEIME VAARDIGHEID
+							@if ( $skill != null && $skill->secret_skill)
+								<input type='checkbox' name='secret_skill' checked='checked'> GEHEIME VAARDIGHEID
+							@else
+								<input type='checkbox' name='secret_skill'> GEHEIME VAARDIGHEID
+							@endif
 						</div>
 					</div>
 				</div>
@@ -324,7 +328,11 @@
 					<div class="col-xs-2"> 
 						<select name='wealth_prereq'> 
 						@foreach($wealth_types as $wealth_type)
-							<option value="{{$wealth_type->id}}">{{$wealth_type->wealth_type}}</option>
+							@if( $skill != null && $skill->wealth_prereq_id == $wealth_type->id)
+								<option value="{{$wealth_type->id}}" selected>{{$wealth_type->wealth_type}}</option>
+							@else
+								<option value="{{$wealth_type->id}}">{{$wealth_type->wealth_type}}</option>
+							@endif
 						@endforeach
 						</select>
 					</div>
