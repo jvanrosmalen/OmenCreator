@@ -4,6 +4,12 @@
 	
 <body>
 	@section('content')
+
+	<!-- 	Hidden information fields -->
+	@foreach($wealth_types as $wealth_type)
+		<div class="wealth_type hidden" data-id="{{$wealth_type->id}}" data-wealth_type="{{$wealth_type->wealth_type}}"></div>
+	@endforeach
+
 	
 	<div class='container'>
 		<div class="row">

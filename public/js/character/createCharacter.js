@@ -46,6 +46,7 @@ var CreateCharacter = new function(){
 		$(tr).data("statistic_prereq_id", skill.statistic_prereq_id);
 		$(tr).data("statistic_prereq_amount", skill.statistic_prereq_amount);
 		$(tr).data("wealth_rules", skill.wealth_rules);
+		$(tr).data("wealth_prereq_id", skill.wealth_prereq_id);
 		
 		tr.setAttribute("oncontextmenu", "ShowAll.showSkillDetails(event);");
 		
@@ -260,6 +261,9 @@ var CreateCharacter = new function(){
 			// Tab 'Overzicht'
 			$('#overview_race').html("Niet geselecteerd");
 			$('#overview_race').addClass("warning_not_entered");
+			$('#overview_class').html("Niet geselecteerd");
+			$('#overview_class').addClass("warning_not_entered");
+			CreateCharacter.resetOverviewWealth();
 		}
 		
 		CreateCharacter.handleRaceStats(selectedRaceId);
@@ -290,6 +294,20 @@ var CreateCharacter = new function(){
 		$("#overview_wealth").data('base', wealthId);
 		$("#overview_wealth").data('value', wealthId);
 		$("#overview_wealth").html(wealthString);
+	}
+	
+	self.resetOverviewWealth = function(){
+		var wealthId = 1;
+		var wealthString = CreateCharacter.getWealthType(wealthId);
+		
+		$("#base_wealth").html(wealthString);
+		$("#overview_wealth").data('base', wealthId);
+		$("#overview_wealth").data('descent', wealthId);
+		$("#overview_wealth").data('class', wealthId);
+		$("#overview_wealth").data('nonclass', wealthId);
+		$("#overview_wealth").data('value', wealthId);
+		$("#overview_wealth").html(wealthString);
+		
 	}
 	
 	self.handleClassSkillsAndWealth = function(data){
@@ -373,7 +391,7 @@ var CreateCharacter = new function(){
 			$('#overview_class').addClass("warning_not_entered");
 
 			// Reset wealth value
-			CreateCharacter.setBaseWealth(-1);
+			CreateCharacter.setBaseWealth(1);
 		}		
 	}
 	

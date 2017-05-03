@@ -149,6 +149,38 @@ var createCharacterControl = new function(){
 		}
 	}
 	
+	self.checkWealthPrereqs = function(skillData){
+		// check wealth prereq. This is always just one rule.
+		var wealth_prereq_id = skillData['wealth_prereq_id'];
+		var current_wealth = $("#overview_wealth").data('value');
+		
+		if( current_wealth >= wealth_prereq_id){
+			// Prereq is ok.
+
+			// check if it is any use taking this skill.
+			// Is this char not already wealthy enough
+			if(skillData['wealth_rules'].length > 0){
+				if(skillData['wealth_rules'][0]['value_type_id'] <= current_wealth){
+					alert("Het nemen van deze vaardigheid heeft geen zin." +
+							" Je bent al minimaal "
+							+ CreateCharacter.getWealthType(skillData['wealth_rules'][0]['value_type_id'])
+							+ ".")
+							
+					return false;
+				}
+			}
+			
+			// It's useful to take this skill.
+			return true;
+		} else {
+			alert("Je moet minimaal "
+					+ CreateCharacter.getWealthType(wealth_prereq_id)
+					+ " zijn om deze vaardigheid te kunnen selecteren.");
+			
+			return false;
+		}
+	}
+	
 	self.hasSkill = function(skillId){
 		return (JSON.parse($("#descent_skill_list_hidden").val()).indexOf(skillId) >= 0
 				||	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(skillId) >= 0
@@ -212,6 +244,10 @@ var createCharacterControl = new function(){
 		}
 		// check skill prereqs
 		if(!createCharacterControl.checkSkillPrereqs(skillData)){
+			return false;
+		}
+		// check wealth prereqs
+		if(!createCharacterControl.checkWealthPrereqs(skillData)){
 			return false;
 		}
 		
@@ -385,6 +421,39 @@ var createCharacterControl = new function(){
 		});
 	}
 	
+	self.updateWealthRules = function(rules, sourceTab){
+		var statIdUpdateArray = new Array();
+		var newTabWealthId = 1;
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			
+			if(rule["value_type_id"] > newTabWealthId){
+				newTabWealthId = rule["value_type_id"]; 
+			}
+		}
+
+		$("#overview_wealth").data(sourceTab, newTabWealthId);
+		
+		// Clear and update everything
+		var newWealthValue = newTabWealthId;
+		if($("#overview_wealth").data('base') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('base');
+		} 
+		if($("#overview_wealth").data('descent') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		if($("#overview_wealth").data('class') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		if($("#overview_wealth").data('nonclass') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		
+		$("#overview_wealth").data('value', newWealthValue);
+		$("#overview_wealth").html(CreateCharacter.getWealthType(newWealthValue));
+	}
+	
 	self.updateOverviewDescentSkills = function(){
 		var overviewSkillArray = createCharacterControl.getSkillNameArrayFromTab("descent_skill_list_hidden");
 		
@@ -400,6 +469,7 @@ var createCharacterControl = new function(){
 		var rules = createCharacterControl.getOverviewRulesFromTab("descent_skill_list_hidden");
 		createCharacterControl.updateResistanceRules(rules['res_rules'], 'descent');
 		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'descent');
+		createCharacterControl.updateWealthRules(rules['wealth_rules'], 'descent');
 	}
 	
 	self.updateOverviewClassSkills = function(){
@@ -417,6 +487,7 @@ var createCharacterControl = new function(){
 		var rules = createCharacterControl.getOverviewRulesFromTab("character_class_skill_list_hidden");
 		createCharacterControl.updateResistanceRules(rules['res_rules'], 'class');
 		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'class');
+		createCharacterControl.updateWealthRules(rules['wealth_rules'], 'class');
 	}
 	
 	self.updateOverviewNonClassSkills = function(){
@@ -434,6 +505,7 @@ var createCharacterControl = new function(){
 		var rules = createCharacterControl.getOverviewRulesFromTab("character_non_class_skill_list_hidden");
 		createCharacterControl.updateResistanceRules(rules['res_rules'], 'nonclass');
 		createCharacterControl.updateStatisticRules(rules['stat_rules'], 'nonclass');
+		createCharacterControl.updateWealthRules(rules['wealth_rules'], 'nonclass');
 	}
 	
 	self.addDescentSkillListeners = function(){

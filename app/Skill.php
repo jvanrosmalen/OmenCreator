@@ -25,7 +25,8 @@ class Skill extends Model {
 							'race_prereqs',
 							'statistic_prereq',
 							'skill_prereqs',
-							'skill_group_prereqs'
+							'skill_group_prereqs',
+							'wealth_prereq'
 						];
 	
 	public function save(array $options = []){
@@ -67,6 +68,10 @@ class Skill extends Model {
 	
 	public function statisticPrereq(){
 		return $this->belongsTo('App\Statistic');
+	}
+	
+	public function wealthPrereq(){
+		return $this->belongsTo('App\WealthType', 'wealth_prereq_id');
 	}
 	
 	public function playerClasses(){
@@ -168,6 +173,11 @@ class Skill extends Model {
 		} else {
 			return "onbekende statistiek";
 		}
+	}
+	
+	public function getWealthPrereqAttribute()
+	{
+		return Skill::find($this->id)->wealthPrereq()->get();
 	}
 	
 	public function getPlayerClassesAttribute()

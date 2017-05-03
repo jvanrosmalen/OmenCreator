@@ -38,65 +38,74 @@
 			  <div id="base_info" class="tab-pane fade in active">
 			    <h3>Basis Informatie</h3>
 				<div class='row well'>
-					<div class='col-xs-2'>
-						Naam:
-					</div>
-					<div class='col-xs-3'>
-						@if( $skill == null )
-							<input type="text" name="skill_name" style="width: 100%;">
-						@else
-							<input type="text" name="skill_name" value="{{$skill->name}}" style="width: 100%;">
-						@endif
-					</div>
-					
-					<div class='col-xs-7'> 			
-						<div class='col-xs-1'>
-							Kosten:
-						</div>
+					<div class='row'>
 						<div class='col-xs-2'>
-							@if ( $skill == null )
-								<input type="number" name="ep_cost" min="1" max="6" value='1'> EP
-							@else
-								<input type="number" name="ep_cost" min="1" max="6" value='{{$skill->ep_cost}}'> EP
-							@endif
-						</div> 
-	
-						<div class= "col-xs-2">
-							Inkomsten:
+							Naam:
 						</div>
-						<div class="col-xs-3">
-							@if ( $skill == null )
-								<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
-								<select name='income_type'>
-									@foreach($coins as $coin)
-										<option value='{{$coin->id}}'>{{$coin->coin}}</option>
-									@endforeach
-								</select>
+						<div class='col-xs-5'>
+							@if( $skill == null )
+								<input type="text" name="skill_name" style="width: 100%;">
 							@else
-								<input type="number" name="income_amount" min="0" value='{{$skill->income_amount}}' style="width: 40px;">
-								<select name='income_type'>
-									@foreach($coins as $coin)
-										@if ( $coin->id != $skill->income_coin_id)
+								<input type="text" name="skill_name" value="{{$skill->name}}" style="width: 100%;">
+							@endif
+						</div>
+					</div>
+					<br>
+					<div class='row'>
+						<div class="col-xs-2">
+						</div>
+						<div class='col-xs-7'>
+							<div class='col-xs-1'>
+								Kosten:
+							</div>
+							<div class='col-xs-2'>
+								@if ( $skill == null )
+									<input type="number" name="ep_cost" min="1" max="6" value='1'> EP
+								@else
+									<input type="number" name="ep_cost" min="1" max="6" value='{{$skill->ep_cost}}'> EP
+								@endif
+							</div> 
+		
+							<div class= "col-xs-2">
+								Inkomsten:
+							</div>
+							<div class="col-xs-3">
+								@if ( $skill == null )
+									<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
+									<select name='income_type'>
+										@foreach($coins as $coin)
 											<option value='{{$coin->id}}'>{{$coin->coin}}</option>
+										@endforeach
+									</select>
+								@else
+									<input type="number" name="income_amount" min="0" value='{{$skill->income_amount}}' style="width: 40px;">
+									<select name='income_type'>
+										@foreach($coins as $coin)
+											@if ( $coin->id != $skill->income_coin_id)
+												<option value='{{$coin->id}}'>{{$coin->coin}}</option>
+											@else
+												<option value='{{$coin->id}}' selected>{{$coin->coin}}</option>
+											@endif
+										@endforeach
+									</select>
+								@endif
+							</div>
+												
+							<div class='col-xs-1'>Niveau:</div>
+							<div class='col-xs-3'>
+								<select name='skill_level'>
+									@foreach($levels as $level)
+										@if($skill!= null && $level->id != $skill->skill_level_id)
+											<option value='{{$level->id}}'>{{$level->skill_level}}</option>
 										@else
-											<option value='{{$coin->id}}' selected>{{$coin->coin}}</option>
+											<option value='{{$level->id}}' selected>{{$level->skill_level}}</option>
 										@endif
 									@endforeach
 								</select>
-							@endif
+							</div>
 						</div>
-											
-						<div class='col-xs-1'>Niveau:</div>
-						<div class='col-xs-3'>
-							<select name='skill_level'>
-								@foreach($levels as $level)
-									@if($skill!= null && $level->id != $skill->skill_level_id)
-										<option value='{{$level->id}}'>{{$level->skill_level}}</option>
-									@else
-										<option value='{{$level->id}}' selected>{{$level->skill_level}}</option>
-									@endif
-								@endforeach
-							</select>
+						<div class="col-xs-3">
+							<input type='checkbox' name='secret_skill'> GEHEIME VAARDIGHEID
 						</div>
 					</div>
 				</div>
@@ -309,13 +318,26 @@
 						@endif
 					</div>
 					
-					<div class="col-xs-3">
+					<div class="col-xs-2">
+						Welvaart prereq:
+					</div>
+					<div class="col-xs-2"> 
+						<select name='wealth_prereq'> 
+						@foreach($wealth_types as $wealth_type)
+							<option value="{{$wealth_type->id}}">{{$wealth_type->wealth_type}}</option>
+						@endforeach
+						</select>
+					</div>
+					
+					<div class="col-xs-2">
 						@if ( $skill != null && $skill->mentor_required)
 							<input tabindex="1" type="checkbox" name="mentor" checked='checked'><span class="checkbox_text">Mentor Vereist</span>
 						@else
 							<input tabindex="1" type="checkbox" name="mentor"><span class="checkbox_text">Mentor Vereist</span>
 						@endif
 					</div>
+					
+
 				</div>
 				
 				<div class="row well">

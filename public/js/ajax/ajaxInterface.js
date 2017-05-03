@@ -72,7 +72,8 @@ var AjaxInterface = new function(){
 				skill["income_amount"],
 				skill["income_coin"],
 				skill["statistic_prereq_amount"],
-				skill["statistic_prereq"]
+				skill["statistic_prereq"],
+				skill["wealth_prereq_id"]
 			);
 		
 		retSkill.classes = skill["player_classes"];

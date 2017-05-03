@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use Request;
 use Session;
 use App\SkillGroup;
+use App\WealthType;
 
 class SkillController extends Controller
 {
@@ -28,7 +29,9 @@ class SkillController extends Controller
 		return view('/skill/showall', [ 	"skills"=>$skills,
 										"skilllevels" => SkillLevel::all(),
 										"playerclasses" => PlayerClass::all(),
-										"session_array" => $session_array
+										"session_array" => $session_array,
+										'wealth_types' => WealthType::all()
+				
 		]);		
 	}
 	
@@ -56,7 +59,8 @@ class SkillController extends Controller
 											"rules" => $rules,
 											"skill_rules" => $skill_rules,
 											"skill_groups" => SkillGroup::all(),
-											"session_array" => $session_array
+											"session_array" => $session_array,
+											"wealth_types" => WealthType::all()
 			]);
 		} else {
 			// This is an update
@@ -105,7 +109,8 @@ class SkillController extends Controller
 											"rules" => $rules,
 											"skill_rules" => json_encode($skill_rules),
 											"skill_groups" => SkillGroup::all(),
-											"session_array" => $session_array
+											"session_array" => $session_array,
+											"wealth_types" => WealthType::all()
 			]);
 		}
 	}
@@ -121,11 +126,18 @@ class SkillController extends Controller
 		$profile_prereq_amount = $_POST["profile_prereq_amount"];
 		$profile_prereq = $_POST["profile_prereq"];
 		$mentor_required = false;
+		$secret_skill = false;
 		$mentor_check = Request::input('mentor');
+		$secret_check = Request::input('secret_skill');
+		$wealth_prereq = $_POST["wealth_prereq"];
 		
 		if($mentor_check != null && $mentor_check==="on")
 		{
 			$mentor_required = true;
+		}
+		if($secret_check != null && $secret_check==="on")
+		{
+			$secret_skill = true;
 		}
 		
 		// Save everything to skill table
@@ -140,6 +152,8 @@ class SkillController extends Controller
 		$newSkill->income_amount = $income_amount;
 		$newSkill->statistic_prereq_id = $profile_prereq;
 		$newSkill->statistic_prereq_amount = $profile_prereq_amount;
+		$newSkill->secret_skill = $secret_skill;
+		$newSkill->wealth_prereq_id = $wealth_prereq;
 		
 		$newSkill->save();
 		
@@ -258,12 +272,19 @@ class SkillController extends Controller
 		$profile_prereq = $_POST["profile_prereq"];
 		$mentor_required = false;
 		$mentor_check = Request::input('mentor');
-	
+		$secret_skill = false;
+		$secret_check = Request::input('secret_skill');
+		$wealth_prereq = $_POST["wealth_prereq"];
+		
 		if($mentor_check != null && $mentor_check==="on")
 		{
 			$mentor_required = true;
 		}
-	
+		if($secret_check != null && $secret_check==="on")
+		{
+			$secret_skill = true;
+		}
+		
 		// Save everything to skill table
 		$skill->name = $skill_name;
 		$skill->ep_cost = $ep_cost;
@@ -275,7 +296,9 @@ class SkillController extends Controller
 		$skill->income_amount = $income_amount;
 		$skill->statistic_prereq_id = $profile_prereq;
 		$skill->statistic_prereq_amount = $profile_prereq_amount;
-	
+		$skill->secret_skill = $secret_skill;
+		$skill->wealth_prereq_id = $wealth_prereq;
+		
 		$skill->save();
 	
 		// Sync prereqs
@@ -371,7 +394,7 @@ class SkillController extends Controller
 		// Save race prereqs
 		$races = Input::get('race');
 		if(is_array($races)){
-			$skill->races()->sync($races,false);
+			$skill->racePrereqs()->sync($races,false);
 		}
 	
 		$url = route('skill_showall');

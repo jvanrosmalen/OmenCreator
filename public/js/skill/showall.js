@@ -78,7 +78,11 @@ var ShowAll = new function(){
 				prereqText = prereqText + skill.skillPrereqs["set2"][index].name;
 			}
 		}
-			
+		
+		if(skill.wealthPrereqId > 1){
+			prereqText = "Welvaart is " + CreateCharacter.getWealthType(skill.wealthPrereqId);
+		}
+		
 		
 		if(prereqText.length > 0){
 			$("#skill_prereqs").html(prereqText);

@@ -1,6 +1,6 @@
 function Skill(id, name, ep_cost, level, levelName,
 		descriptionSmall, descriptionLong,	mentorRequired,
-		incomeAmount, incomeCoin, statPrereqAmount, statPrereq){
+		incomeAmount, incomeCoin, statPrereqAmount, statPrereq, wealthPrereqId){
 	this.id = id;
 	this.name = name;
 	this.ep_cost = ep_cost;
@@ -13,6 +13,7 @@ function Skill(id, name, ep_cost, level, levelName,
 	this.incomeCoin = incomeCoin;
 	this.statPrereqAmount = statPrereqAmount;
 	this.statPrereq = statPrereq;
+	this.wealthPrereqId = wealthPrereqId;
 	
 	this.skillPrereqs = [];
 	this.skillPrereqs["set1"] = [];
