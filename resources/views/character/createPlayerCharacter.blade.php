@@ -724,6 +724,7 @@
 	</div>
 
 	@include('popups.createSkillSelector', array('submitMethod'=>'createCharacterControl.submitCharacterSkills(event)'))
+	@include('popups.showErrorMessage')
 
 	<script>
 		CreateCharacterTabControl.addTabButtonListeners();

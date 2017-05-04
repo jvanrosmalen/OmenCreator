@@ -412,7 +412,7 @@ var CreateCharacter = new function(){
 		// check if value not under spent EP
 		if(epAmount < oldEpAmount){
 			$('#input_start_ep').val(oldEpAmount);
-			alert('De EP kan niet verder verlaagd worden omdat je al teveel vaardigheden hebt geselecteerd');
+			ErrorMessage.showErrorMessage('De EP kan niet verder verlaagd worden omdat je al teveel vaardigheden hebt geselecteerd');
 			return;
 		}
 		

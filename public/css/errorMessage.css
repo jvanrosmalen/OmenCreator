@@ -1,0 +1,14 @@
+.errorMessage {
+	width: 500px;
+	height: 150px;
+	position: relative;
+	background-color: white;
+	box-shadow: 1px 1px 10px black;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+}
+
+#errorHeader {
+	margin-top:5px;
+}

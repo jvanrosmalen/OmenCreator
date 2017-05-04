@@ -21,19 +21,6 @@
 	font-weight: bold;
 }
 
-.popup {
-	display: none;
-}
-
-.popup .wrapper {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0px;
-	top: 0px;
-	background-color: RGBA(200, 200, 200, 0.3);
-}
-
 #showSkillDetails {
 	margin-bottom: 10px;
 }

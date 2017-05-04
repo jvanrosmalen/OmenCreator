@@ -141,7 +141,8 @@ var createCharacterControl = new function(){
 				>= skillData['statistic_prereq_amount']){
 			return true;
 		}else{
-			alert("Je moet minimaal "+ skillData['statistic_prereq_amount'] +
+			ErrorMessage.showErrorMessage(
+					"Je moet minimaal "+ skillData['statistic_prereq_amount'] +
 					" " + $("#stat_"+skillData['statistic_prereq_id']+"_name").html().trim()+
 					" hebben om deze vaardigheid te kunnen selecteren");
 			
@@ -161,7 +162,7 @@ var createCharacterControl = new function(){
 			// Is this char not already wealthy enough
 			if(skillData['wealth_rules'].length > 0){
 				if(skillData['wealth_rules'][0]['value_type_id'] <= current_wealth){
-					alert("Het nemen van deze vaardigheid heeft geen zin." +
+					ErrorMessage.showErrorMessage("Het nemen van deze vaardigheid heeft geen zin." +
 							" Je bent al minimaal "
 							+ CreateCharacter.getWealthType(skillData['wealth_rules'][0]['value_type_id'])
 							+ ".")
@@ -173,7 +174,7 @@ var createCharacterControl = new function(){
 			// It's useful to take this skill.
 			return true;
 		} else {
-			alert("Je moet minimaal "
+			ErrorMessage.showErrorMessage("Je moet minimaal "
 					+ CreateCharacter.getWealthType(wealth_prereq_id)
 					+ " zijn om deze vaardigheid te kunnen selecteren.");
 			
@@ -295,7 +296,7 @@ var createCharacterControl = new function(){
 					warningStr += " OF " + problem2Array.join(', ');
 				}
 				
-				alert(warningStr);
+				ErrorMessage.showErrorMessage(warningStr);
 				return false;
 			}
 		}
@@ -679,7 +680,7 @@ var createCharacterControl = new function(){
 			skill_ep_cost = skill_ep_cost + $(this).data('ep_cost');
 			
 			if(!createCharacterControl.checkDescentEp(skill_ep_cost)){
-				alert("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
+				ErrorMessage.showErrorMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
 				return;
 			}
 			if(!createCharacterControl.checkAllPrereqs($(this).data())){
@@ -828,7 +829,7 @@ var createCharacterControl = new function(){
 				skill_ep_cost = skill_ep_cost + $(this).data('ep_cost');
 				
 				if(!createCharacterControl.checkSkillEp(skill_ep_cost)){
-					alert("Je hebt niet genoeg EP voor deze vaardigheid.");
+					ErrorMessage.showErrorMessage("Je hebt niet genoeg EP voor deze vaardigheid.");
 					return;
 				}
 				if(!createCharacterControl.checkAllPrereqs($(this).data())){
@@ -969,7 +970,7 @@ var createCharacterControl = new function(){
 				skill_ep_cost = skill_ep_cost + $(this).data('ep_cost');
 				
 				if(!createCharacterControl.checkSkillEp(skill_ep_cost)){
-					alert("Je hebt niet genoeg EP voor deze vaardigheid.");
+					ErrorMessage.showErrorMessage("Je hebt niet genoeg EP voor deze vaardigheid.");
 					return;
 				}
 				if(!createCharacterControl.checkAllPrereqs($(this).data())){
