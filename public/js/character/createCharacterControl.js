@@ -193,6 +193,7 @@ var createCharacterControl = new function(){
 		var problemArray = [];
 		var problem2Array = [];
 		var skillSet2Array = [];
+		var skillGroupSet2Array = [];
 		
 		for(var i=0; i < skillData['skill_prereqs'].length; i++){
 			var prereq_skill = skillData['skill_prereqs'][i];
@@ -227,6 +228,11 @@ var createCharacterControl = new function(){
 		for(var i=0; i < skillData['skill_group_prereqs'].length; i++){
 			var prereq_skillgroup = skillData['skill_group_prereqs'][i];
 			
+			if(prereq_skillgroup['pivot']['prereq_set'] == 2){
+				skillGroupSet2Array.push(prereq_skill);
+				continue;				
+			}
+			
 			var groupProblem = true;
 			
 			for(var j=0; j < prereq_skillgroup['group_skills'].length; j++){
@@ -243,7 +249,31 @@ var createCharacterControl = new function(){
 				problem = true;
 				problemArray.push(prereq_skillgroup['name']);
 			}
-
+		}
+		
+		if(problem && skillGroupSet2Array.length > 0){
+			// There is skillgroup in the second skill set for prereqs. Check if 
+			// those prereqs are met.
+			for(var i=0; i < skillGroupSet2Array.length; i++){
+				var prereq_skillgroup2 = skillGroupSet2Array[i];
+				
+				var group2Problem = true;
+				
+				for(var j=0; j < skillGroupSet2Array.length; j++){
+					var prereq_skill = skillGroupSet2Array[j];
+					// check if skill is in all hidden lists with skills
+					if(createCharacterControl.hasSkill(prereq_skill['id'])){
+						// Found one, so group is no problem.
+						group2Problem = false;
+						break;
+					}
+				}
+				
+				if(group2Problem){
+					problem2 = true;
+					problem2Array.push(prereq_skillgroup2['name']);
+				}
+			}
 		}
 		
 		if(!problem){
