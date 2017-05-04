@@ -189,16 +189,38 @@ var createCharacterControl = new function(){
 	
 	self.checkSkillPrereqs = function(skillData){
 		var problem = false;
+		var problem2 = false;
 		var problemArray = [];
+		var problem2Array = [];
+		var skillSet2Array = [];
 		
 		for(var i=0; i < skillData['skill_prereqs'].length; i++){
 			var prereq_skill = skillData['skill_prereqs'][i];
+			
+			if(prereq_skill['pivot']['prereq_set'] == 2){
+				skillSet2Array.push(prereq_skill);
+				continue;
+			}
 			
 			// check if skill is in all hidden lists with skills
 			if(!createCharacterControl.hasSkill(prereq_skill['id'])){
 				problem = true;
 				
 				problemArray.push(prereq_skill['name']);
+			}
+		}
+		
+		if(problem && skillSet2Array.length > 0){
+			// There is a second skill set for prereqs. Check if 
+			// those prereqs are met.
+			for(var i=0; i < skillSet2Array.length; i++){
+				var prereq_skill = skillSet2Array[i];
+				
+				if(!createCharacterControl.hasSkill(prereq_skill['id'])){
+					problem2  = true;
+					
+					problem2Array.push(prereq_skill['name']);
+				}
 			}
 		}
 		
@@ -224,17 +246,29 @@ var createCharacterControl = new function(){
 
 		}
 		
-		if(problem){
-			// skill is not found
-			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
-			
-			warningStr += problemArray.join('<br>');
-			
-			alert(warningStr);
-			return false;
+		if(!problem){
+			// no problem in first set.
+			return true;
 		}
-		
-		return true;
+		else {
+			if(!problem2 && skillSet2Array.length > 0){
+				// there is a set2 that has been met.
+				// all is well after all.
+				return true;
+			} else {
+				// skill is not found
+				var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
+				
+				warningStr += problemArray.join(', ');
+				
+				if(problem2){
+					warningStr += " OF " + problem2Array.join(', ');
+				}
+				
+				alert(warningStr);
+				return false;
+			}
+		}
 	}
 	
 	self.checkAllPrereqs = function(skillData){

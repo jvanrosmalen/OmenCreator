@@ -386,12 +386,21 @@ var CreateCharacter = new function(){
 			$('#non_class_skills_to_select').addClass('hidden');
 
 			// Tab 'Overzicht'
-			// Tab 'Overzicht'
 			$('#overview_class').html("Niet geselecteerd");
 			$('#overview_class').addClass("warning_not_entered");
 
+			// clear any text of previously selected skills
+			$('#overview_class_skills').html("Niet geselecteerd");
+			$('#overview_class_skills').addClass("warning_not_entered");
+			$('#overview_non_class_skills').html("Niet geselecteerd");
+			$('#overview_non_class_skills').addClass("warning_not_entered");
+			
 			// Reset wealth value
 			CreateCharacter.setBaseWealth(1);
+			
+			// Clear skill lists
+			$('#character_class_skill_list_hidden').val("[]");
+			$('#character_non_class_skill_list_hidden').val("[]");
 		}		
 	}
 	
