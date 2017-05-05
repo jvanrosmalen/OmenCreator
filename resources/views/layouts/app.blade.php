@@ -30,6 +30,7 @@
 	<link href="{{ URL::asset('css/errorMessage.css') }}" rel='stylesheet' type='text/css'>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createPlayerCharBasicInfo.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/class/playerClass.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
@@ -54,10 +55,11 @@
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
-    <script src="{{ URL::asset('js/layouts/errorMessage.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterControl.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
+    <script src="{{ URL::asset('js/popups/playerSelector.js') }}"></script>
+    <script src="{{ URL::asset('js/popups/errorMessage.js') }}"></script>
     <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
     <script src="{{ URL::asset('js/nicedit/nicEdit.js') }}"></script>
   
@@ -88,6 +90,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                         	<li><a href="{{ url('create_player_character') }}">Cre&euml;er Spelerkarakter</a></li>
+                        	<li><a href="{{ url('create_player_character_basic_info') }}">Cre&euml;er Spelerkarakter Test</a></li>
                             <li><a href="{{ url('/showall_character') }}">Overzicht Karakters</a></li>
                         </ul>
                     </li>

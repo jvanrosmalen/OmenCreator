@@ -40,6 +40,7 @@
 	padding: 0px;
 }
 
+.selectPlayer,
 .skillGroupSelector,
 .skillSelector {
 	width: 1000px;
@@ -87,6 +88,7 @@ table.table-fixedheader>thead>tr:after, table.table-fixedheader>tbody>tr:after
 	clear: both;
 }
 
+#player_select_table.table-fixedheader>tbody,
 #skillgroup_select_table.table-fixedheader>tbody,
 #skill_select_table.table-fixedheader>tbody {
 	overflow-y: scroll;
@@ -123,12 +125,14 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	padding-top: 2px;
 }
 
+#selectPlayer,
 #createSkillGroupSelector {
 	margin: 0;
 	margin-top: 10px;
 	padding: 0;
 }
 
+#selectPlayer .search-query,
 #createSkillGroupSelector .search-query,
 #createSkillSelector .search-query {
 	padding-right: 3px;
@@ -142,16 +146,19 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	border-radius: 3px;
 }
 
+#selectPlayer,
 #createSkillGroupSelector,
 #createSkillSelector h3 {
 	margin-top: 0px;
 }
 
+#playerSelectorSearch,
 #skillGroupSelectorSearch,
 #skillSelectorSearch {
 	margin-bottom: 10px;
 }
 
+#playerSelectorSearch button,
 #skillGroupSelectorSearch button,
 #skillSelectorSearch button {
 	border: 0;

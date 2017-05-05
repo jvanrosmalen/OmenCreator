@@ -2,6 +2,10 @@
 	width: 40px;
 }
 
+.float-right{
+	float: right;
+}
+
 #character_class_skill_selected tbody,
 #character_class_skill_options tbody,
 #character_non_class_skill_selected tbody,

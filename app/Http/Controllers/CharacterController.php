@@ -11,6 +11,7 @@ use App\Race;
 use App\Skill;
 use App\Resistance;
 use App\WealthType;
+use App\User;
 
 class CharacterController extends Controller
 {
@@ -25,6 +26,19 @@ class CharacterController extends Controller
 					'wealth_types' => WealthType::all()
 			]);
 		}	
+    }
+    
+    public function showCreatePlayerCharBasicInfo($jsonInfo = null){
+    	if($jsonInfo == null){
+    		return view('character/createPlayerCharBasicInfo',
+    				[
+    					'users' => User::all(),
+    					'skilllevels' => SkillLevel::all(),
+    					'playerclasses' => PlayerClass::all(),
+    					'races' => Race::all(),
+						'wealth_types' => WealthType::all()
+    				]);    		
+    	}
     }
     
     public function showAllCharacter(){

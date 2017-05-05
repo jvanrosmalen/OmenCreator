@@ -102,4 +102,23 @@ class JsonClassController extends Controller
 		
 		return Response::json(json_encode($jsonRetData));
 	}
+	
+	public function getClassWealth(){
+		$jsonRetData = ['wealthId'=>1];
+	
+		if(Request::has('class_id')){
+			$classIdArray[] = Request::input('class_id');
+				
+			$wealth_level = 1;
+			foreach($classIdArray as $classId){
+				if(PlayerClass::find($classId)->wealth_type_id > $wealth_level){
+					$wealth_level = PlayerClass::find($classId)->wealth_type_id;
+				}
+			}
+				
+			$jsonRetData['wealthId'] = $wealth_level;
+		}
+	
+		return Response::json(json_encode($jsonRetData));
+	}
 }

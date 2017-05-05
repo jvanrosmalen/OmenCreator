@@ -109,6 +109,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/get_prohibited_classes', 'JsonRaceController@getProhibitedClasses');
 	Route::get('/get_descent_skills', 'JsonRaceController@getDescentSkills');
 	Route::get('/get_class_skills_and_wealth', 'JsonClassController@getClassSkillsAndWealth');
+	Route::get('/get_class_wealth', 'JsonClassController@getClassWealth');
 	
 	Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'));
 	Route::get('/create_rule', 'RulesController@showCreateRule');
@@ -124,8 +125,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/submit_user/{id?}', 'UserController@submitUser');
 	Route::get('/show_delete_user/{id?}', 'UserController@showDeleteUser');
 	Route::get('/delete_user/{id?}', 'UserController@deleteUser');
-	
+		
 	Route::get('/create_player_character', 'CharacterController@showCreatePlayerCharacter');
+	Route::get('/create_player_character_basic_info', 'CharacterController@showCreatePlayerCharBasicInfo');
 	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@showAllCharacter']);
 	
 	Route::auth();
