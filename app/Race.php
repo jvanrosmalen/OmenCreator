@@ -17,6 +17,7 @@ class Race extends Model
     		'stat_rules',
     		'wealth_rules',
     		'race_skills',
+    		'race_skill_ids',
     		'lp_torso',
     		'lp_limbs',
     		'willpower',
@@ -210,6 +211,17 @@ class Race extends Model
     
     public function getRaceSkillsAttribute(){
      	return Race::find($this->id)->raceSkills()->get();
+    }
+    
+    public function getRaceSkillIdsAttribute(){
+    	$retArray = array();
+    	$resultArray = Race::find($this->id)->raceSkills()->get();
+    	
+    	foreach($resultArray as $i=>$result){
+    		array_push($retArray, $result->id);
+    	}
+    	
+    	return $retArray;
     }
     
     public function getProhibitedClassesAttribute(){

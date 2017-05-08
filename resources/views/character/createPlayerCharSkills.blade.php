@@ -107,6 +107,36 @@
 							</table>
 						</div>
 					</div>
+					
+					<div class="row">
+						<div class="col-xs-1">
+						</div>
+						<div class="col-xs-2">
+							Rasvaardigheden:
+						</div>
+						<div class="col-xs-6 race_skills">
+							<span>
+								@php
+									$race_skills_array = array();
+									
+									foreach($char_race->race_skills as $race_skill){
+										$race_skills_array[] = $race_skill->name; 
+									}
+									
+									$race_skills_string = join(", ", $race_skills_array);
+									
+									echo $race_skills_string;
+									
+									// This is to be used for the hidden input field right below.
+									$race_skill_ids_array = json_encode($char_race->race_skill_ids);
+								@endphp
+								<input
+									type='hidden'
+									id="race_skill_list_hidden"
+									name="race_skill_list" value="{{$race_skill_ids_array}}">
+							</span>
+						</div>
+					</div>
 				</div>
 
 				<div class="row well">
@@ -188,6 +218,7 @@
 						        		<tr class="descent_skill_selection descent_skill_selection_{{$skill->id}} hidden"
 						        			data-id="{{$skill->id}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
 						        			data-res_rules = "{{$skill->res_rules}}"
@@ -256,6 +287,7 @@
 						        		<tr class="descent_skill_option descent_skill_option_{{$skill->id}}"
 						        			data-id="{{$skill->id}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
 						        			data-res_rules = "{{$skill->res_rules}}"
@@ -267,7 +299,6 @@
 						        			data-wealth_prereq_id = "{{$skill->wealth_prereq_id}}"
 						        			oncontextmenu = "ShowAll->showSkillDetails(event);"
 						        			onclick="CreatePlayerCharSkills.descentSkillOptionListener(event);">
-						        			
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
@@ -286,6 +317,17 @@
 						</div>
 						
 						<input type='hidden' id="descent_skill_list_hidden" name="descent_skill_list" value="[]">
+					</div>
+					<div class='row'>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-10">
+							<div class='row'>
+								Rasvaardigheden:
+							</div>
+							<div class='row italic_text'>
+								{{$race_skills_string}}
+							</div>
+						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-2'>
@@ -362,6 +404,7 @@
 						        		<tr class="character_class_skill_selection character_class_skill_selection_{{$skill->id}} hidden"
 						        			data-id="{{$skill->id}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
 						        			data-res_rules = "{{$skill->res_rules}}"
@@ -430,6 +473,7 @@
 						        		<tr class="character_class_skill_option character_class_skill_option_{{$skill->id}}"
 						        			data-id="{{$skill->id}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
 						        			data-res_rules = "{{$skill->res_rules}}"
@@ -460,6 +504,17 @@
 						</div>
 						
 						<input type='hidden' id="character_class_skill_list_hidden" name="character_class_skill_list" value="[]">
+					</div>
+					<div class='row'>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-10">
+							<div class='row'>
+								Rasvaardigheden:
+							</div>
+							<div class='row italic_text'>
+								{{$race_skills_string}}
+							</div>
+						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-2'>
@@ -537,6 +592,7 @@
 						        		<tr class="character_non_class_skill_selection character_non_class_skill_selection_{{$skill->id}} hidden"
 						        			data-id="{{$skill->id}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
 						        			data-res_rules = "{{$skill->res_rules}}"
@@ -604,6 +660,7 @@
 						        	@foreach($skills['nonClassSkills'] as $skill)
 						        		<tr class="character_non_class_skill_option character_non_class_skill_option_{{$skill->id}}"
 						        			data-id="{{$skill->id}}"
+						        			data-mentor_required = "{{$skill->mentor_required}}"
 						        			data-ep_cost = "{{$skill->ep_cost}}"
 						        			data-skill_prereqs = "{{ $skill->skill_prereqs}}"
 						        			data-skill_group_prereqs = "{{$skill->skill_group_prereqs}}"
@@ -635,6 +692,17 @@
 						</div>
 						
 						<input type='hidden' id="character_non_class_skill_list_hidden" name="character_non_class_skill_list" value="[]">
+					</div>
+					<div class='row'>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-10">
+							<div class='row'>
+								Rasvaardigheden:
+							</div>
+							<div class='row italic_text'>
+								{{$race_skills_string}}
+							</div>
+						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-2'>
@@ -807,6 +875,18 @@
 					<div class='row'>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-2">
+							Rasvaardigheden:
+						</div>
+					</div>
+					<div class='row'>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-10">
+							{{$race_skills_string}}
+						</div>
+					</div>
+					<div class='row'>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-2">
 							Afkomstvaardigheden:
 						</div>
 					</div>
@@ -850,6 +930,12 @@
 	</form>
 </div>	
 @include('popups.showErrorMessage')
+@include('popups.showPromptMessage')
+
+	<script>
+		CreatePlayerCharTabControl.addTabButtonListeners();
+		CreatePlayerCharSkills.initialize();
+	</script>
 
 @stop
 </html>

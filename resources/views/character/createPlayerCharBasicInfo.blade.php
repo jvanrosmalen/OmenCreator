@@ -141,6 +141,29 @@
 					</table>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-1">
+				</div>
+				<div class="col-xs-2">
+					Rasvaardigheden:
+				</div>
+				<div class="col-xs-6 race_skills">
+					<span id="race_skills_no_race"><em>Kies eerst het ras</em></span>
+					@foreach($races as $race)
+						<span id="race_skills_{{$race->id}}" class="hidden">
+							@php
+								$skills_array = array();
+								
+								foreach($race->race_skills as $race_skill){
+									$skills_array[] = $race_skill->name; 
+								}
+								
+								echo join(", ", $skills_array);
+							@endphp
+						</span>
+					@endforeach
+				</div>
+			</div>
 		</div>
 
 		<div class="row well">

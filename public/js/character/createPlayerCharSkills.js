@@ -1,6 +1,24 @@
 var CreatePlayerCharSkills = new function(){
 	var self = this;
+	// currentCaller and currentListenerType are needed in case of 
+	// mentorRequired skill selection in the function 'optionListener'
+	var currentCaller = null;
+	var currentListenerType = null;
 	
+	self.initialize = function(){
+		// Remove all race skills from the option lists.
+		var skill_array = JSON.parse($("#race_skill_list_hidden").val());
+		
+		for(var i=0; i < skill_array.length; i++){
+			$(".decent_skill_selection_"+skill_array[i]).remove();
+			$(".character_class_skill_selection_"+skill_array[i]).remove();
+			$(".character_non_class_skill_selection_"+skill_array[i]).remove();
+			
+			$(".decent_skill_option_"+skill_array[i]).remove();
+			$(".character_class_skill_option_"+skill_array[i]).remove();
+			$(".character_non_class_skill_option_"+skill_array[i]).remove();
+		}
+	}
 	
 	self.checkDescentEp = function(ep_cost){
 		return ($("#spent_descent_ep").data('ep_amount') + ep_cost) <=
@@ -70,7 +88,8 @@ var CreatePlayerCharSkills = new function(){
 	self.hasSkill = function(skillId){
 		return (JSON.parse($("#descent_skill_list_hidden").val()).indexOf(skillId) >= 0
 				||	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(skillId) >= 0
-				||  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(skillId) >= 0);
+				||  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(skillId) >= 0
+				||  JSON.parse($("#race_skill_list_hidden").val()).indexOf(skillId) >= 0);
 	}
 	
 	// ****************************
@@ -328,8 +347,21 @@ var CreatePlayerCharSkills = new function(){
 			return;
 		}
 		
-		$(caller).addClass("selected");
-		$("."+listenerType+"_skill_select_btn").removeClass('disabled');
+		if($(caller).data('mentor_required')){
+			currentCaller = caller;
+			currentListenerType = listenerType;
+			
+			PromptMessage.showPromptMessage("Deze vaardigheid vereist een mentor. " +
+					"Heeft de speler toestemming deze vaardigheid aan te schaffen?", self.doSelectCallerActivateBtn);
+		}else{
+			$(caller).addClass("selected");
+			$("."+listenerType+"_skill_select_btn").removeClass('disabled');
+		}
+	}
+	
+	self.doSelectCallerActivateBtn = function(){
+		$(currentCaller).addClass("selected");
+		$("."+currentListenerType+"_skill_select_btn").removeClass('disabled');
 	}
 	
 	self.selectButtonListener = function(event, listenerType){
@@ -353,7 +385,7 @@ var CreatePlayerCharSkills = new function(){
 			}
 			
 			$("."+listenerType+"_skill_option_"+skill_id).removeClass("selected");
-			$("."+listenerType+"descent_skill_option_"+skill_id).addClass("hidden");
+			$("."+listenerType+"_skill_option_"+skill_id).addClass("hidden");
 			$("."+listenerType+"_skill_selection_"+skill_id).removeClass("hidden");
 			$("."+listenerType+"_skill_selection_"+skill_id).addClass("skillSelected");
 			

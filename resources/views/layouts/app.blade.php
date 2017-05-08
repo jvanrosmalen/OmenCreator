@@ -28,9 +28,11 @@
 	<link href="{{ URL::asset('css/character.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/popup.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/errorMessage.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/promptMessage.css') }}" rel='stylesheet' type='text/css'>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
     <script src="{{ URL::asset('js/character/createPlayerCharBasicInfo.js') }}"></script>
+    <script src="{{ URL::asset('js/character/createPlayerCharTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/character/createPlayerCharSkills.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/class/playerClass.js') }}"></script>
@@ -61,6 +63,7 @@
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/popups/playerSelector.js') }}"></script>
     <script src="{{ URL::asset('js/popups/errorMessage.js') }}"></script>
+    <script src="{{ URL::asset('js/popups/promptMessage.js') }}"></script>
     <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
     <script src="{{ URL::asset('js/nicedit/nicEdit.js') }}"></script>
   

@@ -81,10 +81,17 @@ var CreatePlayerCharBasicInfo = new function(){
 			// Tab 'Basis Info' 
 			$('#playerclass_select').addClass('hidden');
 			AjaxInterface.getProhibitedClasses(selectedRaceId, self.handleProhibitedClasses);
+			
+			$('.race_skills span').addClass('hidden');
+			$('#race_skills_'+selectedRaceId).removeClass('hidden');
+			
 		}else{
 			// Tab 'Basis Info'
 			$('#playerclass_race_first_warning').removeClass('hidden');
 			$('#playerclass_select').addClass('hidden');
+			
+			$('.race_skills span').addClass('hidden');
+			$('#race_skills_no_race').removeClass('hidden');
 			
 			// Reset wealth value
 			self.setBaseWealth(1);
