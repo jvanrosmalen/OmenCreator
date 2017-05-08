@@ -1,0 +1,789 @@
+var CreatePlayerCharSkills = new function(){
+	var self = this;
+	
+	
+	self.checkDescentEp = function(ep_cost){
+		return ($("#spent_descent_ep").data('ep_amount') + ep_cost) <=
+									$("#total_descent_ep").data('ep_amount');
+	}
+	
+	self.updateDescentEP = function(value){
+		$("#spent_descent_ep").data('ep_amount', value );
+		$("#spent_descent_ep").html(value);
+	}
+	
+	self.addDescentEp = function(ep_cost){
+		var newValue = $("#spent_descent_ep").data('ep_amount') + ep_cost;
+		self.updateDescentEP(newValue);
+	}
+	
+	self.removeDescentEp = function(ep_cost){
+		var newValue = $("#spent_descent_ep").data('ep_amount') - ep_cost;
+		self.updateDescentEP(newValue);
+	}
+	
+	self.checkSkillEp = function(ep_cost){
+		return ($(".spent_character_ep").data('ep_amount') + ep_cost) <=
+			$(".total_character_ep").data('ep_amount');
+	}
+	
+	self.updateSkillEP = function(value){
+		$(".spent_character_ep").data('ep_amount', value );
+		$(".spent_character_ep").html(value);
+	}
+	
+	self.removeSkillEp = function(ep_cost){
+		var newValue = $(".spent_character_ep").data('ep_amount') - ep_cost;
+		self.updateSkillEP(newValue);
+	}
+
+	self.addSkillEp = function(ep_cost){
+		var newValue = $(".spent_character_ep").data('ep_amount') + ep_cost;
+		self.updateSkillEP(newValue);
+	}
+	
+	self.getWealthType = function(wealthId){
+		var wealth_type = 'Arm';
+
+		// Get wealth string from hidden info
+		if(wealthId != -1){
+			$(".wealth_type").each(function(){
+				if($(this).data('id')== wealthId){
+					wealth_type = $(this).data('wealth_type');
+					
+					return false;
+				}
+			});
+		}
+		
+		return wealth_type;
+	}
+	
+	self.getNameOfSkill = function(skill_id){
+		if($('.character_non_class_skill_option_'+skill_id).length){
+			return $('.character_non_class_skill_option_'+skill_id+' td.skillname').html();
+		}else if($('.character_class_skill_option_'+skill_id).length){
+			return $('.character_class_skill_option_'+skill_id+' td.skillname').html();
+		}
+	}
+	
+	self.hasSkill = function(skillId){
+		return (JSON.parse($("#descent_skill_list_hidden").val()).indexOf(skillId) >= 0
+				||	JSON.parse($("#character_class_skill_list_hidden").val()).indexOf(skillId) >= 0
+				||  JSON.parse($("#character_non_class_skill_list_hidden").val()).indexOf(skillId) >= 0);
+	}
+	
+	// ****************************
+	// Prereq checking functions
+	// ****************************
+	self.checkAllPrereqs = function(skillData){
+		// check stat prereqs
+		if(!self.checkStatPrereqs(skillData)){
+			return false;
+		}
+		// check skill prereqs
+		if(!self.checkSkillPrereqs(skillData)){
+			return false;
+		}
+		// check wealth prereqs
+		if(!self.checkWealthPrereqs(skillData)){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	self.checkSkillPrereqs = function(skillData){
+		var problem = false;
+		var problem2 = false;
+		var problemArray = [];
+		var problem2Array = [];
+		var skillSet2Array = [];
+		var skillGroupSet2Array = [];
+		
+		for(var i=0; i < skillData['skill_prereqs'].length; i++){
+			var prereq_skill = skillData['skill_prereqs'][i];
+			
+			if(prereq_skill['pivot']['prereq_set'] == 2){
+				skillSet2Array.push(prereq_skill);
+				continue;
+			}
+			
+			// check if skill is in all hidden lists with skills
+			if(!self.hasSkill(prereq_skill['id'])){
+				problem = true;
+				
+				problemArray.push(prereq_skill['name']);
+			}
+		}
+		
+		if(problem && skillSet2Array.length > 0){
+			// There is a second skill set for prereqs. Check if 
+			// those prereqs are met.
+			for(var i=0; i < skillSet2Array.length; i++){
+				var prereq_skill = skillSet2Array[i];
+				
+				if(!self.hasSkill(prereq_skill['id'])){
+					problem2  = true;
+					
+					problem2Array.push(prereq_skill['name']);
+				}
+			}
+		}
+		
+		for(var i=0; i < skillData['skill_group_prereqs'].length; i++){
+			var prereq_skillgroup = skillData['skill_group_prereqs'][i];
+			
+			if(prereq_skillgroup['pivot']['prereq_set'] == 2){
+				skillGroupSet2Array.push(prereq_skill);
+				continue;				
+			}
+			
+			var groupProblem = true;
+			
+			for(var j=0; j < prereq_skillgroup['group_skills'].length; j++){
+				var prereq_skill = prereq_skillgroup['group_skills'][j];
+				// check if skill is in all hidden lists with skills
+				if(self.hasSkill(prereq_skill['id'])){
+					// Found one, so group is no problem.
+					groupProblem = false;
+					break;
+				}
+			}
+			
+			if(groupProblem){
+				problem = true;
+				problemArray.push(prereq_skillgroup['name']);
+			}
+		}
+		
+		if(problem && skillGroupSet2Array.length > 0){
+			// There is skillgroup in the second skill set for prereqs. Check if 
+			// those prereqs are met.
+			for(var i=0; i < skillGroupSet2Array.length; i++){
+				var prereq_skillgroup2 = skillGroupSet2Array[i];
+				
+				var group2Problem = true;
+				
+				for(var j=0; j < skillGroupSet2Array.length; j++){
+					var prereq_skill = skillGroupSet2Array[j];
+					// check if skill is in all hidden lists with skills
+					if(self.hasSkill(prereq_skill['id'])){
+						// Found one, so group is no problem.
+						group2Problem = false;
+						break;
+					}
+				}
+				
+				if(group2Problem){
+					problem2 = true;
+					problem2Array.push(prereq_skillgroup2['name']);
+				}
+			}
+		}
+		
+		if(!problem){
+			// no problem in first set.
+			return true;
+		}
+		else {
+			if(!problem2 && skillSet2Array.length > 0){
+				// there is a set2 that has been met.
+				// all is well after all.
+				return true;
+			} else {
+				// skill is not found
+				var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
+				
+				warningStr += problemArray.join(', ');
+				
+				if(problem2){
+					warningStr += " OF " + problem2Array.join(', ');
+				}
+				
+				ErrorMessage.showErrorMessage(warningStr);
+				return false;
+			}
+		}
+	}
+	
+	self.checkStatPrereqs = function(skillData){
+		// check all stat prereqs
+		if($("#overview_stat_"+skillData['statistic_prereq_id']).data('value')
+				>= skillData['statistic_prereq_amount']){
+			return true;
+		}else{
+			ErrorMessage.showErrorMessage(
+					"Je moet minimaal "+ skillData['statistic_prereq_amount'] +
+					" " + $("#stat_"+skillData['statistic_prereq_id']+"_name").html().trim()+
+					" hebben om deze vaardigheid te kunnen selecteren");
+			
+			return false;
+		}
+	}
+	
+	self.checkWealthPrereqs = function(skillData){
+		// check wealth prereq. This is always just one rule.
+		var wealth_prereq_id = skillData['wealth_prereq_id'];
+		var current_wealth = $("#overview_wealth").data('value');
+		
+		if( current_wealth >= wealth_prereq_id){
+			// Prereq is ok.
+
+			// check if it is any use taking this skill.
+			// Is this char not already wealthy enough
+			if(skillData['wealth_rules'].length > 0){
+				if(skillData['wealth_rules'][0]['value_type_id'] <= current_wealth){
+					ErrorMessage.showErrorMessage("Het nemen van deze vaardigheid heeft geen zin." +
+							" Je bent al minimaal "
+							+ self.getWealthType(skillData['wealth_rules'][0]['value_type_id'])
+							+ ".")
+							
+					return false;
+				}
+			}
+			
+			// It's useful to take this skill.
+			return true;
+		} else {
+			ErrorMessage.showErrorMessage("Je moet minimaal "
+					+ self.getWealthType(wealth_prereq_id)
+					+ " zijn om deze vaardigheid te kunnen selecteren.");
+			
+			return false;
+		}
+	}
+	
+	// ****************************
+	// Listener functions
+	// ****************************
+	
+	// Generic listener helper functions
+
+	// listenerType - "descent", "class", "non_class"
+	self.selectionListener = function(event, listenerType){
+		var caller = $(event.target).closest('tr');
+
+		$("."+listenerType+"_skill_option.selected").each(function(){
+			$(caller).removeClass("selected");
+		});
+		$("."+listenerType+"_skill_select_btn").addClass('disabled');
+
+		if($(caller).hasClass("selected")){
+			$(caller).removeClass("selected");
+		}else{
+			$(caller).addClass("selected");
+		}
+		
+		if($("."+listenerType+"_skill_selection.selected").length > 0){
+			// there are selections
+			$("."+listenerType+"_skill_remove_btn").removeClass('disabled');
+		} else {
+			// no selections found
+			$("."+listenerType+"_skill_remove_btn").addClass('disabled');
+		}
+	}
+	
+	self.optionListener = function(event, listenerType){
+		// get calling tr
+		var caller = $(event.target).closest('tr');
+		
+		$("."+listenerType+"_skill_selection.selected").each(function(){
+			$(caller).removeClass("selected");
+		});
+		$("."+listenerType+"_skill_remove_btn").addClass('disabled');
+		
+		if($(caller).hasClass("selected")){
+			$(caller).removeClass("selected");
+			
+			if($("."+listenerType+"_skill_option.selected").length <= 0){
+				// no selections remaining.
+				$("."+listenerType+"_skill_select_btn").addClass('disabled');
+			}
+			return;
+		}
+		
+		var skill_ep_cost = 0;
+		
+		// First add all the ep from the skills already selected
+		$("."+listenerType+"_skill_option.selected").each(function(){
+			skill_ep_cost = skill_ep_cost + $(caller).data('ep_cost');
+		});
+		// Add the ep from the skill that the user tries to select.
+		skill_ep_cost = skill_ep_cost + $(caller).data('ep_cost');
+		
+		if(listenerType == "descent"){
+			if(!self.checkDescentEp(skill_ep_cost)){
+				ErrorMessage.showErrorMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
+				return;
+			}
+		} else {
+			if(!self.checkSkillEp(skill_ep_cost)){
+				ErrorMessage.showErrorMessage("Je hebt niet genoeg punten voor deze vaardigheid.");
+				return;
+			}			
+		}
+		
+		if(!self.checkAllPrereqs($(caller).data())){
+			return;
+		}
+		
+		$(caller).addClass("selected");
+		$("."+listenerType+"_skill_select_btn").removeClass('disabled');
+	}
+	
+	self.selectButtonListener = function(event, listenerType){
+		if($(this).hasClass("disabled")){
+			return;
+		}
+
+		var skillArray = new Array();
+
+		if($("#"+listenerType+"_skill_list_hidden").val()){
+			skillArray = JSON.parse($("#"+listenerType+"_skill_list_hidden").val());
+		}
+		
+		$("."+listenerType+"_skill_option.selected").each(function(){
+			var skill_id = $(this).data("id");
+			
+			if(listenerType === "descent"){
+				self.addDescentEp($(this).data('ep_cost'));
+			} else {
+				self.addSkillEp($(this).data('ep_cost'));
+			}
+			
+			$("."+listenerType+"_skill_option_"+skill_id).removeClass("selected");
+			$("."+listenerType+"descent_skill_option_"+skill_id).addClass("hidden");
+			$("."+listenerType+"_skill_selection_"+skill_id).removeClass("hidden");
+			$("."+listenerType+"_skill_selection_"+skill_id).addClass("skillSelected");
+			
+			skillArray.push(skill_id);
+		});
+
+		$("#"+listenerType+"_skill_list_hidden").val(JSON.stringify(skillArray));
+
+		$("."+listenerType+"_skill_select_btn").addClass('disabled');		
+	}
+	
+	self.removeButtonListener = function(event, listenerType){
+		if($(this).hasClass("disabled")){
+			return;
+		}
+		
+		var skillArray = JSON.parse($("#"+listenerType+"_skill_list_hidden").val());
+		
+		$("."+listenerType+"_skill_selection.selected").each(function(){
+			var skill_id = $(this).data("id");
+			
+			if(listenerType === "descent"){
+				self.removeDescentEp($(this).data('ep_cost'));
+			} else {
+				self.removeSkillEp($(this).data('ep_cost'));
+			}
+			
+			$("."+listenerType+"_skill_selection_"+skill_id).removeClass("selected");
+			$("."+listenerType+"_skill_selection_"+skill_id).removeClass("skillSelected");
+			$("."+listenerType+"_skill_selection_"+skill_id).addClass("hidden");
+			$("."+listenerType+"_skill_option_"+skill_id).removeClass("hidden");
+
+			for(var index=0; index < skillArray.length; index++){
+				if(skillArray[index]==skill_id){
+					skillArray.splice(index, 1);
+					$("#"+listenerType+"_skill_list_hidden").val(JSON.stringify(skillArray));
+				}
+			}
+		});
+		
+		$("."+listenerType+"_skill_remove_btn").addClass('disabled');		
+	}
+	
+	// Descent skill listeners
+	self.descentSkillSelectionListener = function(event){
+		self.selectionListener(event, "descent");
+	}
+	
+	self.descentSkillSelectButtonListener = function(event){
+		self.selectButtonListener(event, "descent");
+		
+		// Update overviews in other tabs
+		self.updateAlreadySelectedClassTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateOverviewDescentSkills();
+	}
+	
+	self.descentSkillRemoveButtonListener = function(event){
+		self.removeButtonListener(event, "descent");
+
+		// Update overviews in other tabs
+		self.updateAlreadySelectedClassTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateOverviewDescentSkills();
+	}
+	
+	self.descentSkillOptionListener = function(event){
+		self.optionListener(event, "descent");
+	}
+	
+	// Class skill listeners
+	self.classSkillSelectionListener = function(){
+		self.selectionListener(event, "character_class");
+	}
+	
+	self.classSkillSelectButtonListener = function(){
+		self.selectButtonListener(event, "character_class");
+		
+		// Update overviews in other tabs
+		self.updateAlreadySelectedDescentTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateOverviewClassSkills();
+	}
+	
+	self.classSkillRemoveButtonListener = function(event){
+		self.removeButtonListener(event, "character_class");
+
+		// Update overviews in other tabs
+		self.updateAlreadySelectedDescentTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateOverviewClassSkills();
+	}
+	
+	self.classSkillOptionListener = function(event){
+		self.optionListener(event, "character_class");
+	}
+	
+	// Non Class skill listeners
+	self.nonClassSkillSelectionListener = function(){
+		self.selectionListener(event, "character_non_class");
+	}
+	
+	self.nonClassSkillSelectButtonListener = function(){
+		self.selectButtonListener(event, "character_non_class");
+		
+		// Update overviews in other tabs
+		self.updateAlreadySelectedClassTab();
+		self.updateAlreadySelectedDescentTab();
+		self.updateOverviewNonClassSkills();
+	}
+	
+	self.nonClassSkillRemoveButtonListener = function(event){
+		self.removeButtonListener(event, "character_non_class");
+
+		// Update overviews in other tabs
+		self.updateAlreadySelectedClassTab();
+		self.updateAlreadySelectedDescentTab();
+		self.updateOverviewNonClassSkills();
+	}
+	
+	self.nonClassSkillOptionListener = function(event){
+		self.optionListener(event, "character_non_class");
+	}
+	
+	// ****************************
+	// Functions to update information on other tabs
+	// ****************************
+	self.updateAlreadySelectedClassTab = function(){
+		var skillString = 
+			self.getSkillNameArrayFromTabs(
+					'descent_skill_list_hidden',
+					'character_non_class_skill_list_hidden');
+		$('#already_selected_class_skills').html(skillString);
+		if(skillString != 'Geen'){
+			$('#already_selected_class_skills').removeClass('warning_not_entered');
+		}else{
+			$('#already_selected_class_skills').addClass('warning_not_entered');
+		}
+		
+		// now hide/show all skills selected in other tabs
+		var totalSkillArray = JSON.parse($("#descent_skill_list_hidden").val()).concat(JSON.parse($("#character_non_class_skill_list_hidden").val()));
+		$('.character_class_skill_option').removeClass('hidden');
+		for(var i=0; i < totalSkillArray.length; i++){
+			$('.character_class_skill_option_'+totalSkillArray[i]).addClass('hidden');
+		}
+		var classSkills = JSON.parse($("#character_class_skill_list_hidden").val());
+		for(var i=0; i < classSkills.length; i++){
+			$('.character_class_skill_option_'+classSkills[i]).addClass('hidden');
+		}
+	}
+	
+	self.updateAlreadySelectedNonClassTab = function(){
+		var skillString = 
+			self.getSkillNameArrayFromTabs(
+					'descent_skill_list_hidden',
+					'character_class_skill_list_hidden');
+		$('#already_selected_non_class_skills').html(skillString);
+		if(skillString != 'Geen'){
+			$('#already_selected_non_class_skills').removeClass('warning_not_entered');
+		}else{
+			$('#already_selected_non_class_skills').addClass('warning_not_entered');
+		}	
+
+		// now hide/show all skills selected in other tabs
+		var totalSkillArray = JSON.parse($("#descent_skill_list_hidden").val()).concat(JSON.parse($("#character_class_skill_list_hidden").val()));
+		$('.character_non_class_skill_option').removeClass('hidden');
+		for(var i=0; i < totalSkillArray.length; i++){
+			$('.character_non_class_skill_option_'+totalSkillArray[i]).addClass('hidden');
+		}
+		var nonClassSkills = JSON.parse($("#character_non_class_skill_list_hidden").val());
+		for(var i=0; i < nonClassSkills.length; i++){
+			$('.character_non_class_skill_option_'+nonClassSkills[i]).addClass('hidden');
+		}
+	}
+
+	self.updateAlreadySelectedDescentTab = function(){
+		var skillString = 
+			self.getSkillNameArrayFromTabs(
+					'character_non_class_skill_list_hidden',
+					'character_class_skill_list_hidden');
+		$('#already_selected_descent_skills').html(skillString);
+		if(skillString != 'Geen'){
+			$('#already_selected_descent_skills').removeClass('warning_not_entered');
+		}else{
+			$('#already_selected_descent_skills').addClass('warning_not_entered');
+		}		
+
+		// now hide/show all skills selected in other tabs
+		var totalSkillArray = JSON.parse($("#character_class_skill_list_hidden").val()).concat(JSON.parse($("#character_non_class_skill_list_hidden").val()));
+		$('.descent_skill_option').removeClass('hidden');
+		for(var i=0; i < totalSkillArray.length; i++){
+			$('.descent_skill_option_'+totalSkillArray[i]).addClass('hidden');
+		}
+		var descentSkills = JSON.parse($("#descent_skill_list_hidden").val());
+		for(var i=0; i < descentSkills.length; i++){
+			$('.descent_skill_option_'+descentSkills[i]).addClass('hidden');
+		}
+	}
+	
+	self.getSkillNameArrayFromTab = function(hidden_list){
+		var retStringArray = [];
+		
+		if($("#"+hidden_list).length > 0){
+			var skillArray = JSON.parse($("#"+hidden_list).val());
+		
+			if(skillArray.length != 0){
+				for(var i=0; i < skillArray.length; i++){
+					retStringArray.push(self.getNameOfSkill(skillArray[i]));
+				}
+			}
+		}
+		
+		return retStringArray.sort();
+	}
+	
+	self.getSkillNameArrayFromTabs = function(hidden_list1, hidden_list2){
+		var returnString = 'Geen';
+		var skillStringArray1 = self.getSkillNameArrayFromTab(hidden_list1);
+		var skillStringArray2 = self.getSkillNameArrayFromTab(hidden_list2);
+
+		if( skillStringArray1.length > 0 || skillStringArray2.length > 0){
+			returnString = skillStringArray1.concat(skillStringArray2).sort().join(', ');
+		}
+		
+		return returnString;
+	}
+	
+	self.updateOverviewDescentSkills = function(){
+		var overviewSkillArray = self.getSkillNameArrayFromTab("descent_skill_list_hidden");
+		
+		if(overviewSkillArray.length > 0){
+			$("#overview_descent_skills").html(overviewSkillArray.join(', '));
+			$("#overview_descent_skills").removeClass("warning_not_entered");
+		}else{
+			$("#overview_descent_skills").html("Niet geselecteerd");
+			$("#overview_descent_skills").addClass("warning_not_entered");
+		}
+		
+		// Now update the overview for any special rules from the skills
+		var rules = self.getOverviewRulesFromTab("descent_skill_list_hidden");
+		self.updateResistanceRules(rules['res_rules'], 'descent');
+		self.updateStatisticRules(rules['stat_rules'], 'descent');
+		self.updateWealthRules(rules['wealth_rules'], 'descent');
+	}
+	
+	self.updateOverviewClassSkills = function(){
+		var overviewSkillArray = self.getSkillNameArrayFromTab("character_class_skill_list_hidden");
+		
+		if(overviewSkillArray.length > 0){
+			$("#overview_class_skills").html(overviewSkillArray.join(', '));
+			$("#overview_class_skills").removeClass("warning_not_entered");
+		}else{
+			$("#overview_class_skills").html("Niet geselecteerd");
+			$("#overview_class_skills").addClass("warning_not_entered");
+		}
+
+		// Now update the overview for any special rules from the skills
+		var rules = self.getOverviewRulesFromTab("character_class_skill_list_hidden");
+		self.updateResistanceRules(rules['res_rules'], 'class');
+		self.updateStatisticRules(rules['stat_rules'], 'class');
+		self.updateWealthRules(rules['wealth_rules'], 'class');
+	}
+	
+	self.updateOverviewNonClassSkills = function(){
+		var overviewSkillArray = self.getSkillNameArrayFromTab("character_non_class_skill_list_hidden");
+		
+		if(overviewSkillArray.length > 0){
+			$("#overview_non_class_skills").html(overviewSkillArray.join(', '));
+			$("#overview_non_class_skills").removeClass("warning_not_entered");
+		}else{
+			$("#overview_non_class_skills").html("Niet geselecteerd");
+			$("#overview_non_class_skills").addClass("warning_not_entered");
+		}
+
+		// Now update the overview for any special rules from the skills
+		var rules = self.getOverviewRulesFromTab("character_non_class_skill_list_hidden");
+		self.updateResistanceRules(rules['res_rules'], 'nonclass');
+		self.updateStatisticRules(rules['stat_rules'], 'nonclass');
+		self.updateWealthRules(rules['wealth_rules'], 'nonclass');
+	}
+	
+	self.updateResistanceRules = function(rules, sourceTab){
+		var resIdUpdateArray = new Array();
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			var newValue = 0;
+			
+			if(!(rule['resistance_id'] in resIdUpdateArray)){
+				resIdUpdateArray[rule['resistance_id']] = 0;
+			}
+			
+			if(rule['rules_operator'] == '+'){
+				resIdUpdateArray[rule['resistance_id']] =
+					resIdUpdateArray[rule['resistance_id']] + rule['value'];
+			}else if(rule['rules_operator'] == '-'){
+				resIdUpdateArray[rule['resistance_id']] =
+					resIdUpdateArray[rule['resistance_id']] - rule['value'];
+			}
+		}
+
+		// Clear and update everything
+		$.each($(".overview_res"), function(){
+			var resId = $(this).attr('id').split('_')[2];
+			
+			if(resId in resIdUpdateArray){
+				$("#overview_res_"+resId).data(sourceTab, resIdUpdateArray[resId]);
+			}else{
+				$("#overview_res_"+resId).data(sourceTab, 0);
+			}
+			
+			$(this).data('value', 0);
+			$(this).html(0);
+
+			var newTotal = $("#overview_res_"+resId).data('descent')
+				+ $("#overview_res_"+resId).data('class')
+				+ $("#overview_res_"+resId).data('nonclass');
+			
+			$("#overview_res_"+resId).data('value', newTotal);
+			$("#overview_res_"+resId).html(newTotal);
+		});
+	}
+	
+	self.updateStatisticRules = function(rules, sourceTab){
+		var statIdUpdateArray = new Array();
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			var newValue = 0;
+			
+			if(!(rule['statistic_id'] in statIdUpdateArray)){
+				statIdUpdateArray[rule['statistic_id']] = 0;
+			}
+			
+			if(rule['rules_operator'] == '+'){
+				statIdUpdateArray[rule['statistic_id']] =
+					statIdUpdateArray[rule['statistic_id']] + rule['value'];
+			}else if(rule['rules_operator'] == '-'){
+				statIdUpdateArray[rule['statistic_id']] =
+					statIdUpdateArray[rule['statistic_id']] - rule['value'];
+			}
+		}
+
+		// Clear and update everything
+		$.each($(".overview_stat"), function(){
+			var statId = $(this).attr('id').split('_')[2];
+			
+			if(statId != 11){
+				if(statId in statIdUpdateArray){
+					$("#overview_stat_"+statId).data(sourceTab, statIdUpdateArray[statId]);
+				}else{
+					$("#overview_stat_"+statId).data(sourceTab, 0);
+				}
+				
+				$(this).data('value', 0);
+				$(this).html(0);
+	
+				var newTotal = $("#overview_stat_"+statId).data('base')
+					+ $("#overview_stat_"+statId).data('descent')
+					+ $("#overview_stat_"+statId).data('class')
+					+ $("#overview_stat_"+statId).data('nonclass');
+				
+				$("#overview_stat_"+statId).data('value', newTotal);
+				$("#overview_stat_"+statId).html(newTotal);
+				
+				if(statId == 1){
+					// these are the torso lps. Also update limbs.
+					$("#overview_stat_11").data('value', (newTotal-1));
+					$("#overview_stat_11").html(newTotal-1);
+				}
+			}
+		});
+	}
+	
+	self.updateWealthRules = function(rules, sourceTab){
+		var statIdUpdateArray = new Array();
+		var newTabWealthId = 1;
+		
+		for(var i=0;i<rules.length;i++){
+			var rule = rules[i];
+			
+			if(rule["value_type_id"] > newTabWealthId){
+				newTabWealthId = rule["value_type_id"]; 
+			}
+		}
+
+		$("#overview_wealth").data(sourceTab, newTabWealthId);
+		
+		// Clear and update everything
+		var newWealthValue = newTabWealthId;
+		if($("#overview_wealth").data('base') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('base');
+		} 
+		if($("#overview_wealth").data('descent') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		if($("#overview_wealth").data('class') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		if($("#overview_wealth").data('nonclass') > newWealthValue){
+			newWealthValue = $("#overview_wealth").data('descent');
+		} 
+		
+		$("#overview_wealth").data('value', newWealthValue);
+		$("#overview_wealth").html(CreateCharacter.getWealthType(newWealthValue));
+	}
+	
+	self.getOverviewRulesFromTab = function(hidden_list){
+		var retSkillArray = {
+				"class_rules":new Array(),
+				"res_rules":new Array(),
+				"stat_rules":new Array(),
+				"wealth_rules":new Array(),
+		};
+		
+		if($("#"+hidden_list).length > 0){
+			var skillIdArray = JSON.parse($("#"+hidden_list).val());
+		
+			if(skillIdArray.length != 0){
+				for(var i=0; i < skillIdArray.length; i++){
+					var rules = createCharacterControl.getRulesForOverview(skillIdArray[i]);
+					
+					retSkillArray["class_rules"] = retSkillArray["class_rules"].concat(rules["class_rules"]);
+					retSkillArray["res_rules"] = retSkillArray["res_rules"].concat(rules["res_rules"]);
+					retSkillArray["stat_rules"] = retSkillArray["stat_rules"].concat(rules["stat_rules"]);
+					retSkillArray["wealth_rules"] = retSkillArray["wealth_rules"].concat(rules["wealth_rules"]);
+				}
+			}
+		}
+		
+		return retSkillArray;
+	}
+}

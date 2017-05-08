@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Race;
 use App\SkillLevel;
 use App\PlayerClass;
+use App\Skill;
 use Request;
 use Illuminate\Support\Facades\Input;
 
@@ -221,5 +222,21 @@ class RaceController extends Controller
 		$url = route('showall_race');
 		header("Location:".$url);
 		die();
+	}
+	
+	public static function getDescentSkills($raceId){
+		$descendSkillsArray = ["default"];
+
+		if($raceId != null){
+			$descentClassIds = Race::find($raceId)->descent_class_ids;
+			$descendSkillsArray =
+			Skill::whereHas('playerClasses',function($query) use( $descentClassIds){
+				$query->whereIn('id', $descentClassIds);
+			})->where('skill_level_id','=',1)
+			->orderBy('name', 'asc')
+			->get();
+		}
+	
+		return $descendSkillsArray;
 	}
 }

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\SkillLevel;
 use App\PlayerClass;
 use App\WealthType;
+use App\Skill;
 
 use Illuminate\Support\Facades\Input;
 
@@ -82,4 +83,63 @@ class ClassController extends Controller
 		header("Location:".$url);
 		die();
 	}    //
+	
+	public static function getClassSkills($charLevel, $char_race, $classIdArray){
+		$classSkills = [];
+		$nonClassSkills = [];
+		$charRace = array();
+		$charRace[] = $char_race;
+		$retData = ['classSkills'=>[],'nonClassSkills'=>[]];
+	
+		if(sizeof($classIdArray) > 0){
+			$classSkills = Skill::whereHas('playerClasses',function($query) use( $classIdArray){
+				$query->whereIn('id', $classIdArray)
+				->orWhere('id','=', 1);
+			})
+			->where(function($query) use ($charRace){
+				$query->whereHas('racePrereqs', function($q)use($charRace)
+				{$q->whereIn( 'id', $charRace );})
+				->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+			}
+			)
+			->where('skill_level_id','<=',$charLevel)
+			->orderBy('name', 'asc')
+			->get()
+			;
+			$nonClassSkills = Skill::whereDoesntHave('playerClasses',function($query) use( $classIdArray){
+				$query->whereIn('id', $classIdArray)
+				->orWhere('id','=',1);
+			})
+			->where(function($query) use ($charRace){
+				$query->whereHas('racePrereqs', function($q)use($charRace)
+				{$q->whereIn( 'id', $charRace );})
+				->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+			}
+			)
+			->where('skill_level_id','<=',$charLevel)
+			->orderBy('name', 'asc')
+			->get();
+	
+			foreach ($nonClassSkills as $nonClassSkill	){
+				$nonClassSkill->ep_cost = $nonClassSkill->ep_cost*2;
+			}
+		}
+	
+		$retData['classSkills'] = $classSkills;
+		$retData['nonClassSkills'] = $nonClassSkills;
+	
+		return $retData;
+	}
+	
+	public static function getWealthTypeFromClassArray($classIdArray){
+		$wealth_level = 1;
+
+		foreach($classIdArray as $classId){
+			if(PlayerClass::find($classId)->wealth_type_id > $wealth_level){
+				$wealth_level = PlayerClass::find($classId)->wealth_type_id;
+			}
+		}
+		
+		return WealthType::find($wealth_level);
+	}
 }
