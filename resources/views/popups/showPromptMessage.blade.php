@@ -24,12 +24,12 @@
 					<div class="col-xs-3">
 					</div>
 					<div class="col-xs-2">
-						<button id="prompt_succes" type="button" class="btn btn-border" onclick="PromptMessage.promptSuccess();">Ja</button>
+						<button id="prompt_succes" type="button" class="btn btn-border btn-success" onclick="PromptMessage.promptSuccess();">Ja</button>
 					</div>
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-2">
-						<button id="prompt_failure" type="button" class="btn btn-border" onclick="PromptMessage.promptFailure();">Nee</button>
+						<button id="prompt_failure" type="button" class="btn btn-border btn-warning" onclick="PromptMessage.promptFailure();">Nee</button>
 					</div>
 				</div>
 			</div>

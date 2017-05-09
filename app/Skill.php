@@ -113,9 +113,38 @@ class Skill extends Model {
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB
 	 */
-	public function getSkillPrereqsAttribute()
+	public function getFullSkillPrereqs()
 	{
 		return Skill::find($this->id)->skillPrereqs()->get();
+	}
+
+	public function getSkillPrereqsAttribute()
+	{
+		// To save loading time, only send id, name and pivot value
+		// for each prereq entry
+		return Skill::find($this->id)
+								->skillPrereqs()
+								->select(['id','name'])
+								->get()
+								->each(function($row){
+									$row->setHidden(
+											['craft_equipments',
+											'call_rules',
+											'dam_rules',
+											'stat_rules',
+											'wealth_rules',
+											'class_rules',
+											'res_rules',
+											'skill_level',
+											'income_coin',
+											'player_classes',
+											'player_class_ids',
+											'race_prereqs',
+											'statistic_prereq',
+											'skill_prereqs',
+											'skill_group_prereqs',
+											'wealth_prereq']);
+									});
 	}
 	
 	public function getSkillGroupPrereqsAttribute()
