@@ -192,6 +192,7 @@
 	</form>
 
 	@include('popups.showErrorMessage')
+	@include('popups.showLoaderMessage')
 	@include('popups.selectPlayer', array('submitMethod'=>'CreatePlayerCharBasicInfo.submitPlayerSelection(event)', 'users'=>$users))
 @stop
 </html>

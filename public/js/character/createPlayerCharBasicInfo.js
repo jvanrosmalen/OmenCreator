@@ -33,6 +33,8 @@ var CreatePlayerCharBasicInfo = new function(){
 			event.preventDefault();
 			return;
 		}
+		
+		LoaderMessage.showLoaderMessage("het smeden van de lijsten met vaardigheden duurt een aantal seconden.");
 	}
 	
 	self.submitPlayerSelection = function(event){
