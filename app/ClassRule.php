@@ -16,7 +16,10 @@ class ClassRule extends Model
 	}
 	
 	public function getPlayerClassAttribute(){
-		return ClassRule::find($this->id)->playerClass()->get()[0];
+		return ClassRule::find($this->id)
+							->playerClass()
+							->select('id','class_name','wealth_type_id')
+							->get()[0];
 	}
 	
 	public function getPlayerClassById(){

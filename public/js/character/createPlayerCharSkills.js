@@ -357,6 +357,8 @@ var CreatePlayerCharSkills = new function(){
 			$(caller).addClass("selected");
 			$("."+listenerType+"_skill_select_btn").removeClass('disabled');
 		}
+		
+		self.checkAndUpdateForClassRules($(caller).data());
 	}
 	
 	self.doSelectCallerActivateBtn = function(){
@@ -513,6 +515,10 @@ var CreatePlayerCharSkills = new function(){
 	// ****************************
 	// Functions to update information on other tabs
 	// ****************************
+	self.checkAndUpdateForClassRules = function(skillData){
+		
+	}
+	
 	self.updateAlreadySelectedClassTab = function(){
 		var skillString = 
 			self.getSkillNameArrayFromTabs(
@@ -670,6 +676,10 @@ var CreatePlayerCharSkills = new function(){
 	self.updateResistanceRules = function(rules, sourceTab){
 		var resIdUpdateArray = new Array();
 		
+		if(rules.length <= 0){
+			return;
+		}
+		
 		for(var i=0;i<rules.length;i++){
 			var rule = rules[i];
 			var newValue = 0;
@@ -711,6 +721,10 @@ var CreatePlayerCharSkills = new function(){
 	
 	self.updateStatisticRules = function(rules, sourceTab){
 		var statIdUpdateArray = new Array();
+		
+		if(rules.length <= 0){
+			return;
+		}
 		
 		for(var i=0;i<rules.length;i++){
 			var rule = rules[i];
@@ -764,6 +778,10 @@ var CreatePlayerCharSkills = new function(){
 		var statIdUpdateArray = new Array();
 		var newTabWealthId = 1;
 		
+		if(rules.length <= 0){
+			return;
+		}
+		
 		for(var i=0;i<rules.length;i++){
 			var rule = rules[i];
 			
@@ -790,7 +808,7 @@ var CreatePlayerCharSkills = new function(){
 		} 
 		
 		$("#overview_wealth").data('value', newWealthValue);
-		$("#overview_wealth").html(CreateCharacter.getWealthType(newWealthValue));
+		$("#overview_wealth").html(self.getWealthType(newWealthValue));
 	}
 	
 	self.getOverviewRulesFromTab = function(hidden_list){
@@ -806,13 +824,47 @@ var CreatePlayerCharSkills = new function(){
 		
 			if(skillIdArray.length != 0){
 				for(var i=0; i < skillIdArray.length; i++){
-					var rules = createCharacterControl.getRulesForOverview(skillIdArray[i]);
+					var rules = self.getRulesForOverview(skillIdArray[i]);
 					
 					retSkillArray["class_rules"] = retSkillArray["class_rules"].concat(rules["class_rules"]);
 					retSkillArray["res_rules"] = retSkillArray["res_rules"].concat(rules["res_rules"]);
 					retSkillArray["stat_rules"] = retSkillArray["stat_rules"].concat(rules["stat_rules"]);
 					retSkillArray["wealth_rules"] = retSkillArray["wealth_rules"].concat(rules["wealth_rules"]);
 				}
+			}
+		}
+		
+		return retSkillArray;
+	}
+	
+	self.getRulesForOverview = function(skill_id){
+		var retSkillArray = {
+				"class_rules":new Array(),
+				"res_rules":new Array(),
+				"stat_rules":new Array(),
+				"wealth_rules":new Array(),
+		};
+		
+		var skill = new Array();
+		
+		if($('.character_non_class_skill_option_'+skill_id).length){
+			skill = $('.character_non_class_skill_option_'+skill_id).data();
+		}else if($('.character_class_skill_option_'+skill_id).length){
+			skill = $('.character_class_skill_option_'+skill_id).data();
+		}
+		
+		if(skill != undefined && skill != null){
+			if("class_rules" in skill){
+				retSkillArray["class_rules"] = skill["class_rules"];
+			}
+			if("res_rules" in skill){
+				retSkillArray["res_rules"] = skill["res_rules"];
+			}
+			if("stat_rules" in skill){
+				retSkillArray["stat_rules"] = skill["stat_rules"];
+			}
+			if("wealth_rules" in skill){
+				retSkillArray["wealth_rules"] = skill["wealth_rules"];
 			}
 		}
 		
