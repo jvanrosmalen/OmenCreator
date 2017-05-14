@@ -60,7 +60,9 @@
 						</div>
 						<div class="col-xs-1">Klasse:</div>
 						<div class="col-xs-2">
-							<input type='hidden' name='character_class' value='{{$char_class->id}}'>
+							<input id="input_character_class" type='hidden' name='character_class' value='{{$char_class->id}}'>
+							<div id="char_class_ids" class="hidden"
+								 data-value='@php echo json_encode($char_class_id_array);@endphp'></div>
 							<span>{{$char_class->class_name}}</span>
 						</div>
 						<div class="col-xs-1">Welvaart:</div>
@@ -235,7 +237,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp
@@ -304,7 +307,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp
@@ -389,13 +393,13 @@
 							<table id="character_class_skill_selected" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 		        				<thead>
 		            				<tr>
-						                <th class="col-xs-7">
+						                <th data-field="name" class="col-xs-7">
 						                    Naam
 						                </th>
-						                <th class="col-xs-3">
+						                <th data-field="player_class" class="col-xs-3">
 						                	Klasse
 						                </th>
-						                <th class="col-xs-2">
+						                <th data-field="ep" class="col-xs-2">
 						                	EP
 						                </th>
 						            </tr>
@@ -423,7 +427,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp
@@ -459,13 +464,13 @@
 							<table id="character_class_skill_options" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 		        				<thead>
 		            				<tr>
-						                <th class="col-xs-7">
+						                <th data-field="name" class="col-xs-7">
 						                    Naam
 						                </th>
-						                <th class="col-xs-3">
+						                <th data-field="player_class" class="col-xs-3">
 						                	Klasse
 						                </th>
-						                <th class="col-xs-2">
+						                <th data-field="ep" class="col-xs-2">
 						                	EP
 						                </th>
 						            </tr>
@@ -493,7 +498,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp
@@ -579,13 +585,13 @@
 							<table id="character_non_class_skill_selected" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 		        				<thead>
 		            				<tr>
-						                <th class="col-xs-7">
+						                <th data-field="name" class="col-xs-7">
 						                    Naam
 						                </th>
-						                <th class="col-xs-3">
+						                <th data-field="player_class" class="col-xs-3">
 						                	Klasse
 						                </th>
-						                <th class="col-xs-2">
+						                <th data-field="ep" class="col-xs-2">
 						                	EP
 						                </th>
 						            </tr>
@@ -613,7 +619,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp
@@ -649,13 +656,13 @@
 							<table id="character_non_class_skill_options" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 		        				<thead>
 		            				<tr>
-						                <th class="col-xs-7">
+						                <th data-field="name" class="col-xs-7">
 						                    Naam
 						                </th>
-						                <th class="col-xs-3">
+						                <th data-field="player_class" class="col-xs-3">
 						                	Klasse
 						                </th>
-						                <th class="col-xs-2">
+						                <th data-field="ep" class="col-xs-2">
 						                	EP
 						                </th>
 						            </tr>
@@ -683,7 +690,8 @@
 						        			<td id="{{$skill->name}}" class="skillname col-xs-7">
 						        				{{$skill->name}}
 						        			</td>
-						        			<td class="col-xs-3">
+						        			<td class="player_classes col-xs-3" data-value="
+						        				@php echo json_encode($skill->player_class_ids);@endphp">
 						        				@php
 						        					echo join(", ", $skill->player_classes);
 						        				@endphp

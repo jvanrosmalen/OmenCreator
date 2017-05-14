@@ -78,6 +78,7 @@ class CharacterController extends Controller
     					'char_level' => SkillLevel::find($char_level),
     					'char_race' => Race::find($race_id),
     					'char_class' => PlayerClass::find($class_id),
+    					'char_class_id_array' => $classIdArray
     			]
 		);
     }

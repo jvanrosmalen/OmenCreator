@@ -4,6 +4,7 @@ var CreatePlayerCharSkills = new function(){
 	// mentorRequired skill selection in the function 'optionListener'
 	var currentCaller = null;
 	var currentListenerType = null;
+	var low_spent_ep_ok = false;
 	
 	self.initialize = function(){
 		// Remove all race skills from the option lists.
@@ -18,6 +19,43 @@ var CreatePlayerCharSkills = new function(){
 			$(".character_class_skill_option_"+skill_array[i]).remove();
 			$(".character_non_class_skill_option_"+skill_array[i]).remove();
 		}
+		
+		// add method to save button
+		$("#save").attr("onclick",'CreatePlayerCharSkills.submitSkills(event)');
+	}
+	
+	self.submitSkills = function(event){
+		if($("#spent_descent_ep").data("ep_amount") 
+				< $("#total_descent_ep").data("ep_amount")){
+			// Some descent EP has not been spent
+			ErrorMessage.showErrorMessage("Je hebt nog afkomstpunten niet besteed." +
+					" Selecteer nog meer afkomstvaardigheden.");
+			event.preventDefault();
+			return;
+		}
+		
+		if($(".spent_character_ep").data("ep_amount") 
+				> $(".total_character_ep").data("ep_amount")){
+			// Too much EP spent.
+			ErrorMessage.showErrorMessage("Je hebt teveel EP gespendeerd. " +
+					"Verwijder een aantal vaardigheden.");
+			event.preventDefault();
+			return;
+		}
+		
+		// Construc below is to stop button event until user has been
+		// asked if low EP amount is ok.
+		if(!low_spent_ep_ok){
+			event.preventDefault();
+			
+			PromptMessage.showPromptMessage("Je hebt minder EP besteed dan toegestaan. " +
+					"Wil je dit karakter toch opslaan?", self.doTriggerSaveBtn);			
+		}
+	}
+	
+	self.doTriggerSaveBtn = function(){
+		low_spent_ep_ok = true;
+		$("#save").trigger('click');
 	}
 	
 	self.checkDescentEp = function(ep_cost){
@@ -357,8 +395,6 @@ var CreatePlayerCharSkills = new function(){
 			$(caller).addClass("selected");
 			$("."+listenerType+"_skill_select_btn").removeClass('disabled');
 		}
-		
-		self.checkAndUpdateForClassRules($(caller).data());
 	}
 	
 	self.doSelectCallerActivateBtn = function(){
@@ -372,6 +408,7 @@ var CreatePlayerCharSkills = new function(){
 		}
 
 		var skillArray = new Array();
+		var classRulePlayerClassArray = new Array();
 
 		if($("#"+listenerType+"_skill_list_hidden").val()){
 			skillArray = JSON.parse($("#"+listenerType+"_skill_list_hidden").val());
@@ -392,11 +429,18 @@ var CreatePlayerCharSkills = new function(){
 			$("."+listenerType+"_skill_selection_"+skill_id).addClass("skillSelected");
 			
 			skillArray.push(skill_id);
+			var class_rules = $(this).data('class_rules');
+			
+			for(var i = 0; i < class_rules.length; i++){
+				classRulePlayerClassArray.push(class_rules[i]['player_class']);
+			}
 		});
 
 		$("#"+listenerType+"_skill_list_hidden").val(JSON.stringify(skillArray));
 
-		$("."+listenerType+"_skill_select_btn").addClass('disabled');		
+		$("."+listenerType+"_skill_select_btn").addClass('disabled');
+		
+		self.updateForSelectedClassRules(classRulePlayerClassArray);
 	}
 	
 	self.removeButtonListener = function(event, listenerType){
@@ -405,6 +449,7 @@ var CreatePlayerCharSkills = new function(){
 		}
 		
 		var skillArray = JSON.parse($("#"+listenerType+"_skill_list_hidden").val());
+		var classRulePlayerClassArray = new Array();
 		
 		$("."+listenerType+"_skill_selection.selected").each(function(){
 			var skill_id = $(this).data("id");
@@ -426,9 +471,17 @@ var CreatePlayerCharSkills = new function(){
 					$("#"+listenerType+"_skill_list_hidden").val(JSON.stringify(skillArray));
 				}
 			}
+			
+			var class_rules = $(this).data('class_rules');
+			
+			for(var i = 0; i < class_rules.length; i++){
+				classRulePlayerClassArray.push(class_rules[i]['player_class']);
+			}
 		});
 		
-		$("."+listenerType+"_skill_remove_btn").addClass('disabled');		
+		$("."+listenerType+"_skill_remove_btn").addClass('disabled');
+		
+		self.updateForRemovedClassRules(classRulePlayerClassArray);
 	}
 	
 	// Descent skill listeners
@@ -515,8 +568,212 @@ var CreatePlayerCharSkills = new function(){
 	// ****************************
 	// Functions to update information on other tabs
 	// ****************************
-	self.checkAndUpdateForClassRules = function(skillData){
+	self.updateForSelectedClassRules = function(classRulePlayerClassArray){
+		if(classRulePlayerClassArray.length <= 0){
+			return;
+		}
 		
+		var classIdArray = new Array();
+		classIdArray.push(JSON.parse($("#char_class_ids").data('value')));
+		
+		// get all player classes
+		for(var i=0; i < classRulePlayerClassArray.length; i++){
+			if(classIdArray.indexOf(classRulePlayerClassArray[i]['id']) < 0){
+				classIdArray.push(classRulePlayerClassArray[i]['id']);
+			}
+		}
+
+		// for lazy purposes, remember the current character class ids
+		$("#char_class_ids").data('value', JSON.stringify(classIdArray));
+		
+		// check if a skill in the non-class lists is now a class skill.
+		// if so: move to class skills.
+		$.each($("#character_non_class_skill_options .character_non_class_skill_option"), function(){
+			if(self.isClassSkill(this, classIdArray)){
+				var skill_id = $(this).data("id");
+				
+				// move entry from options to class skills
+				var skill_tr_option = $(".character_non_class_skill_option_"+skill_id);
+				$(skill_tr_option).removeClass("character_non_class_skill_option_"+skill_id);
+				$(skill_tr_option).removeClass("character_non_class_skill_option");
+				$(skill_tr_option).addClass("character_class_skill_option_"+skill_id);
+				$(skill_tr_option).addClass("character_class_skill_option");
+				$(skill_tr_option).attr("onclick",
+						"CreatePlayerCharSkills.classSkillOptionListener(event)"
+					);
+				$("#character_class_skill_options").append(skill_tr_option);
+				
+				// adjust ep_cost
+				var ep_value = $(skill_tr_option).data("ep_cost")/2;
+				$(skill_tr_option).data("ep_cost", ep_value);
+				$(skill_tr_option).find(".skill_ep_cost").html(""+ep_value);
+
+				// move entry from selections to class skills
+				var skill_tr_selection = $(".character_non_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).removeClass("character_non_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).removeClass("character_non_class_skill_selection");
+				$(skill_tr_selection).addClass("character_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).addClass("character_class_skill_selection");
+				$(skill_tr_selection).attr("onclick",
+					"CreatePlayerCharSkills.classSkillSelectionListener(event)"
+					);
+				$("#character_class_skill_selected").append(skill_tr_selection);
+
+				// adjust ep_cost
+				var ep_value = $(skill_tr_selection).data("ep_cost")/2;
+				$(skill_tr_selection).data("ep_cost", ep_value);
+				$(skill_tr_selection).find(".skill_ep_cost").html(""+ep_value);
+				
+				// Now check if that skill might have been selected already,
+				// and move the entry from one hidden list to the other.
+				var class_skill_id_list = JSON.parse($("#character_class_skill_list_hidden").val());
+				var non_class_skill_id_list = JSON.parse($("#character_non_class_skill_list_hidden").val());
+				var indexOfSkill = non_class_skill_id_list.indexOf(skill_id);
+				if(indexOfSkill >= 0){
+					// skill was selected
+					// remove from non_class. Add to class
+					non_class_skill_id_list.splice(indexOfSkill, 1);
+					class_skill_id_list.push(skill_id);
+					
+					$("#character_class_skill_list_hidden").val(JSON.stringify(class_skill_id_list));
+					$("#character_non_class_skill_list_hidden").val(JSON.stringify(non_class_skill_id_list));
+				}
+			}
+		} );
+
+		// Re-sort the tables
+//		$("#character_class_skill_options th[data-field='name']").click();
+//		$("#character_class_skill_selected th[data-field='name']").click();
+//		$("#character_non_class_skill_options th[data-field='name']").click();
+//		$("#character_non_class_skill_selected th[data-field='name']").click();
+		
+		// re-calculate the spent EP
+		var total_spent_ep = 0;
+		$.each($("#character_non_class_skill_selected .skillSelected"), function(){
+			total_spent_ep += $(this).data("ep_cost");
+		});
+		$.each($("#character_class_skill_selected .skillSelected"), function(){
+			total_spent_ep += $(this).data("ep_cost");
+		});
+		
+		self.updateSkillEP(total_spent_ep);
+	}
+	
+	self.updateForRemovedClassRules = function(classRulePlayerClassArray){
+		if(classRulePlayerClassArray.length <= 0){
+			return;
+		}
+		
+		var classIdArray = new Array();
+		classIdArray.push(JSON.parse($("#input_character_class").val()));
+		
+		// get any additional classes from the already selected skills
+		// not marked for removal
+		$.each( $("#character_class_skill_selected .skillSelected").not(".selected"), function(){
+			var class_rules = $(this).data("class_rules");
+			for(var i=0; i < class_rules.length; i++){
+				classIdArray.push(class_rules[i]['id']);				
+			}
+		});
+		
+		// for lazy purposes, remember the current character class ids
+		$("#char_class_ids").data('value', JSON.stringify(classIdArray));
+
+		// check if a skill in the class lists is no longer a class skill.
+		// if so: move to non class skills.
+		$.each($("#character_class_skill_selected .character_class_skill_selection"), function(){
+			if(!(self.isClassSkill(this, classIdArray))){
+				var skill_id = $(this).data("id");
+				
+				// move entry from options to class skills
+				var skill_tr_option = $(".character_class_skill_option_"+skill_id);
+				$(skill_tr_option).removeClass("character_class_skill_option_"+skill_id);
+				$(skill_tr_option).removeClass("character_class_skill_option");
+				$(skill_tr_option).addClass("character_non_class_skill_option_"+skill_id);
+				$(skill_tr_option).addClass("character_non_class_skill_option");
+				$(skill_tr_option).attr("onclick",
+					"CreatePlayerCharSkills.nonClassSkillOptionListener(event)"
+					);
+				$("#character_non_class_skill_options").append(skill_tr_option);
+				
+				// adjust ep_cost
+				var ep_value = $(skill_tr_option).data("ep_cost")*2;
+				$(skill_tr_option).data("ep_cost", ep_value);
+				$(skill_tr_option).find(".skill_ep_cost").html(""+ep_value);
+
+				// move entry from selections to class skills
+				var skill_tr_selection = $(".character_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).removeClass("character_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).removeClass("character_class_skill_selection");
+				$(skill_tr_selection).addClass("character_non_class_skill_selection_"+skill_id);
+				$(skill_tr_selection).addClass("character_non_class_skill_selection");
+				$(skill_tr_selection).attr("onclick",
+					"CreatePlayerCharSkills.nonClassSkillSelectionListener(event)"
+					);
+				$("#character_non_class_skill_selected").append(skill_tr_selection);
+				
+				// adjust ep_cost
+				var ep_value = $(skill_tr_selection).data("ep_cost")*2;
+				$(skill_tr_selection).data("ep_cost", ep_value);
+				$(skill_tr_selection).find(".skill_ep_cost").html(""+ep_value);
+
+				// Now check if that skill might have been selected already,
+				// and move the entry from one hidden list to the other.
+				var class_skill_id_list = JSON.parse($("#character_class_skill_list_hidden").val());
+				var non_class_skill_id_list = JSON.parse($("#character_non_class_skill_list_hidden").val());
+				var indexOfSkill = class_skill_id_list.indexOf(skill_id);
+				if(indexOfSkill >= 0){
+					// skill was selected
+					// remove from non_class. Add to class
+					class_skill_id_list.splice(indexOfSkill, 1);
+					non_class_skill_id_list.push(skill_id);
+					
+					$("#character_class_skill_list_hidden").val(JSON.stringify(class_skill_id_list));
+					$("#character_non_class_skill_list_hidden").val(JSON.stringify(non_class_skill_id_list));
+				}				
+			}
+		} );
+
+		// Re-sort the tables
+//		$("#character_non_class_skill_options th[data-field='name']").click();
+//		$("#character_non_class_skill_selected th[data-field='name']").click();
+//		$("#character_class_skill_options th[data-field='name']").click();
+//		$("#character_class_skill_selected th[data-field='name']").click();
+		
+		// re-calculate the spent EP
+		var total_spent_ep = 0;
+		$.each($("#character_non_class_skill_selected .skillSelected"), function(){
+			total_spent_ep += $(this).data("ep_cost");
+		});
+		$.each($("#character_class_skill_selected .skillSelected"), function(){
+			total_spent_ep += $(this).data("ep_cost");
+		});
+		
+		self.updateSkillEP(total_spent_ep);
+		
+		if($(".spent_character_ep").data('ep_amount') >
+			$(".total_character_ep").data('ep_amount')){
+			// due to increase in non-class skill cost, the character
+			// now has more spent EP that he actually has.
+			// Fire warning and disable save button.
+			ErrorMessage.showErrorMessage("Je hebt teveel EP door toegenomen kosten van Niet-klasse Vaardigheden. " +
+					"Totdat je onder je toegestane EP-niveau zit, kan je dit karakter niet opslaan.");
+		}
+		
+	}
+	
+	self.isClassSkill = function(skillTableRow, classIdArray){
+		skillClassIdArray = JSON.parse($(skillTableRow).find(".player_classes").data('value'));
+		
+		for(var i=0; i < classIdArray.length; i++){
+			// Check for index 1 is for General skills
+			if(skillClassIdArray.indexOf(classIdArray[i]) >= 0
+			  || skillClassIdArray.indexOf(1) >= 0){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	self.updateAlreadySelectedClassTab = function(){
