@@ -21,6 +21,10 @@
 		<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 		<!-- ******************* -->
 		
+		<!-- Hidden stuff for data transfer -->
+		<input type='hidden' name='player_id' value="{{$basic_info['player_id']}}">
+		<input type='hidden' name='start_ep' value="{{$basic_info['start_ep']}}">
+		
 		<ul class="nav nav-tabs">
 			<li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
 			<li><a id="tab2" data-toggle="tab" href="#descent_skills">Afkomst</a></li>
