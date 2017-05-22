@@ -163,6 +163,8 @@ class CharacterController extends Controller
     	
     	$epAssign->save();
     	
-    	return view('/');    	
+    	$url = route('show_spark_start', ['charId' => $newChar->id]);
+		header("Location:".$url);
+		die();  	
     }
 }

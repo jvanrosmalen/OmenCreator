@@ -219,7 +219,7 @@ class RaceController extends Controller
 	}
 	
 	public function gotoShowAllRace(){
-		$url = route('showall_race');
+		$url = route('show_spark');
 		header("Location:".$url);
 		die();
 	}

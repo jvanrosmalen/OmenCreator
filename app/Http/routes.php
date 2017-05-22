@@ -132,6 +132,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/create_character_submit_skills', 'CharacterController@doCreatePlayerChar');
 	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@showAllCharacter']);
 	
+	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart']);
+	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice']);
+	Route::get('/show_spark_random/{charId?}', ['as'=>'show_spark_random', 'uses'=>'SparkController@showSparkRandom']);
+	
 	Route::auth();
 
     Route::get('/home', 'HomeController@index');

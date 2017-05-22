@@ -31,6 +31,7 @@ class SecretSkillWealthPrereq extends Migration
     {
         Schema::table('skills', function($table)
 		{
+    		$table->dropForeign(['wealth_prereq_id']);
     		$table->dropColumn('wealth_prereq_id');
     		$table->dropColumn('secret_skill');
 		});

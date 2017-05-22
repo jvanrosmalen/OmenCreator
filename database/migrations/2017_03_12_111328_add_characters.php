@@ -39,8 +39,8 @@ class AddCharacters extends Migration
     	} );
     	
    		Schema::table ( 'character_skill', function (Blueprint $table) {
-   			$table->foreign ( 'character_id' )->references ( 'id' )->on ( 'characters' );
-   			$table->foreign ( 'skill_id' )->references ( 'id' )->on ( 'skills' );
+   			$table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+   			$table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
    		} );
    		
    		Schema::create( 'ep_assignment', function (Blueprint $table){
