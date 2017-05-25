@@ -1,3 +1,4 @@
+#char_table.table-fixedheader>tbody,
 #skill_table.table-fixedheader>tbody {
 	overflow-y: scroll;
 	height: 480px

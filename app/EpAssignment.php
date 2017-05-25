@@ -7,7 +7,7 @@ use App\Character;
 
 class EpAssignment extends Model
 {
-    public function character(){
+    public function characters(){
     	return $this->belongsTo("App\Character");
 	}
 }

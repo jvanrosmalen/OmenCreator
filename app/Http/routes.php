@@ -130,7 +130,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/create_player_character_basic_info', 'CharacterController@showCreatePlayerCharBasicInfo');
 	Route::post('/create_character_submit_basic_info', 'CharacterController@showCreatePlayerCharSkills');
 	Route::post('/create_character_submit_skills', 'CharacterController@doCreatePlayerChar');
-	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@showAllCharacter']);
+	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@doShowAllPlayerChars']);
+	Route::get('/show_character/{charId?}', ['as'=>'show_character', 'uses'=>'CharacterController@doShowPlayerChar']);
 	
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart']);
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice']);

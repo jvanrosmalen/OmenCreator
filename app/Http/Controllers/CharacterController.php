@@ -85,8 +85,18 @@ class CharacterController extends Controller
 		);
     }
     
-    public function showAllCharacter(){
-    	return view('/');
+    public function showAllCharacters(){
+    	$url = route('showall_character');
+    	header("Location:".$url);
+    	die();
+    }
+    
+    public function doShowAllPlayerChars(){
+    	return view('character/showAllPlayerChar', ['characters'=> Character::all()]);
+    }
+    
+    public function doShowPlayerChar($charId){
+    	return view('character/showPlayerChar', ['character'=>Character::find($charId)]);
     }
     
     public function doCreatePlayerChar(){

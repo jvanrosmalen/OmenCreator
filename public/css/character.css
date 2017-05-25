@@ -36,4 +36,14 @@
 	font-style: italic;
 }
 
+.show-char-btn,
+.remove-char-btn,
+.edit-char-btn {
+	z-index: 10 !important;
+}
 
+.kill-char-btn{
+	z-index: 10 !important;
+	background-color: #444 !important;
+	border-color: #000 !important;
+}
