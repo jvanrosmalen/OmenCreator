@@ -91,6 +91,29 @@ class CharacterController extends Controller
     	die();
     }
     
+    public function showKillCharacter($charId){
+    	return view('character/showKillCharacter', ['character' => Character::find($charId)]);
+    }
+    
+    public function doKillCharacter($charId){
+    	$character = Character::find($charId);
+		$character->is_alive = false;
+    	$character->save();
+    	
+    	$this->showAllCharacters();
+    }
+
+    public function showDeleteCharacter($charId){
+    	return view('character/showDeleteCharacter', ['character' => Character::find($charId)]);
+    }
+    
+    public function doDeleteCharacter($charId){
+    	$character = Character::find($charId);
+    	$character->delete();
+    	 
+    	$this->showAllCharacters();
+    }
+    
     public function doShowAllPlayerChars(){
     	return view('character/showAllPlayerChar', ['characters'=> Character::all()]);
     }

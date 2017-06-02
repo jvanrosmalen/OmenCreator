@@ -130,6 +130,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/create_player_character_basic_info', 'CharacterController@showCreatePlayerCharBasicInfo');
 	Route::post('/create_character_submit_basic_info', 'CharacterController@showCreatePlayerCharSkills');
 	Route::post('/create_character_submit_skills', 'CharacterController@doCreatePlayerChar');
+	Route::get('/show_kill_character/{charId?}', 'CharacterController@showKillCharacter');
+	Route::get('/kill_character/{charId?}', 'CharacterController@doKillCharacter');
+	Route::get('/show_delete_character/{charId?}', 'CharacterController@showDeleteCharacter');
+	Route::get('/delete_character/{charId?}', 'CharacterController@doDeleteCharacter');
 	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@doShowAllPlayerChars']);
 	Route::get('/show_character/{charId?}', ['as'=>'show_character', 'uses'=>'CharacterController@doShowPlayerChar']);
 	

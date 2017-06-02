@@ -72,10 +72,10 @@
 				                    	<a href="/create_skill/test" class="btn btn-info btn-xs edit-char-btn">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
-				                    	<a href="/show_delete_skill/test" class="btn btn-danger btn-xs kill-char-btn">
+				                    	<a href="/show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn">
           									<span class="glyphicon glyphicon-thumbs-down"></span> 
         								</a>
-				                    	<a href="/show_delete_skill/test" class="btn btn-danger btn-xs remove-char-btn">
+				                    	<a href="/show_delete_character/{{$character->id}}" class="btn btn-danger btn-xs remove-char-btn">
           									<span class="glyphicon glyphicon-minus"></span> 
         								</a>
         							</td>
