@@ -96,7 +96,10 @@ class CharacterController extends Controller
     }
     
     public function doShowPlayerChar($charId){
-    	return view('character/showPlayerChar', ['character'=>Character::find($charId)]);
+    	$character = Character::find($charId);
+    	return view('character/showPlayerChar', ['character'=>$character,
+    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray()
+    	]);
     }
     
     public function doCreatePlayerChar(){
@@ -112,6 +115,9 @@ class CharacterController extends Controller
     	$newChar->is_alive = true;
     	$newChar->is_player_char = true;
     	$newChar->nr_events_survived = $_POST['nr_events_survived'];
+    	
+    	$sparkArray = Character::getSparkArray();
+    	$newChar->spark_data = json_encode($sparkArray);    	
     	
     	$newChar->save();
     	
@@ -164,7 +170,7 @@ class CharacterController extends Controller
     	
     	// sync character skills
     	$newChar->skills()->sync($allCharSkillSyncArray);
-		
+    	
     	// now add ep assignment
     	$epAssign = new EpAssignment();
     	$epAssign->amount = $_POST['start_ep'];

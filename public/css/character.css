@@ -6,6 +6,21 @@
 	float: right;
 }
 
+.overview_header_row{
+	margin-top:20px;
+	font-weight: bold;
+}
+
+#char_skill_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 250px
+}
+
+
+.overview_table_header{
+	font-weight: normal !important;
+}
+
 #character_class_skill_selected tbody,
 #character_class_skill_options tbody,
 #character_non_class_skill_selected tbody,
