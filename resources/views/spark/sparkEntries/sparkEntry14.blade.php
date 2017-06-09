@@ -4,23 +4,27 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<h3>Levensvonk: Zakgeld</h3>
+				<h3>Levensvonk: {{$title}}</h3>
 			</div>
 		</div>
 
-		<form action="/spark_submit/14" method="POST">
+		<form action="/spark_submit/{{$sparkIndex}}" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
 			
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
+			<input type="hidden" name="amount" value="{{$amount}}">
+			
 			<div class="row well">
 				<div class="col-xs-1">
 				</div>
 				<div class="col-xs-10">
 					Je hebt een klein beetje zakgeld kunnen opsparen.<br>
-					Je ontvangt {{amount}} Brons.			
+					Je ontvangt {{$amount}} Brons.			
 				</div>
 				<div class="col-xs-1">
 				</div>

@@ -4,16 +4,19 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<h3>Levensvonk: Allergische Reactie</h3>
+				<h3>Levensvonk: {{$title}}</h3>
 			</div>
 		</div>
 
-		<form action="/spark_submit/1" method="POST">
+		<form action="/spark_submit/{{$sparkIndex}}" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
+			
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
 			
 			<div class="row well">
 				<div class="col-xs-1">
@@ -43,11 +46,11 @@
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-8"> 
-						<input type="radio" name="race" value="0" checked="checked"> Trollen<br>
-  						<input type="radio" name="race" value="1"> Lijken<br>
-  						<input type="radio" name="race" value="2"> Glashtynn<br>			
-  						<input type="radio" name="race" value="3"> Spinnen<br>			
-  						<input type="radio" name="race" value="4"> Paddestoelen<br>			
+						<input type="radio" name="allergicTo" value="Trollen" checked="checked"> Trollen<br>
+  						<input type="radio" name="allergicTo" value="Lijken"> Lijken<br>
+  						<input type="radio" name="allergicTo" value="Glashtynn"> Glashtynn<br>			
+  						<input type="radio" name="allergicTo" value="Spinnen"> Spinnen<br>			
+  						<input type="radio" name="allergicTo" value="Paddestoelen"> Paddestoelen<br>			
 					</div>
 					<div class="col-xs-2">
 					</div>

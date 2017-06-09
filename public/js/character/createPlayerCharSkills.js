@@ -43,7 +43,7 @@ var CreatePlayerCharSkills = new function(){
 			return;
 		}
 		
-		// Construc below is to stop button event until user has been
+		// Construct below is to stop button event until user has been
 		// asked if low EP amount is ok.
 		if(!low_spent_ep_ok){
 			event.preventDefault();

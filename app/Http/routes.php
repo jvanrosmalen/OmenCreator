@@ -140,6 +140,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart']);
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice']);
 	Route::get('/show_spark_random/{charId?}', ['as'=>'show_spark_random', 'uses'=>'SparkController@showSparkRandom']);
+	Route::post('/spark_submit/{sparkId?}', ['as'=>'spark_submit', 'uses'=>'SparkController@submitSpark']);
 	
 	Route::auth();
 

@@ -15,6 +15,9 @@
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
 			
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
+			
 			<div class="row well">
 				<div class="col-xs-1">
 				</div>

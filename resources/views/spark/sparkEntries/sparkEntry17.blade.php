@@ -4,16 +4,19 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<h3>Levensvonk: Po&euml;zie 1</h3>
+				<h3>Levensvonk: {{$title}}</h3>
 			</div>
 		</div>
 
-		<form action="/spark_submit/17" method="POST">
+		<form action="/spark_submit/{{$sparkIndex}}" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
+			
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
 			
 			<div class="row well">
 				<div class='row'>
@@ -40,9 +43,9 @@
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-8">
-						<input type="radio" name="art" value="0"  checked="checked"> Epos<br>
-  						<input type="radio" name="art" value="1"> Ode<br>
-  						<input type="radio" name="art" value="2"> Satire<br>			
+						<input type="radio" name="art_choice" value="Epos"  checked="checked"> Epos<br>
+  						<input type="radio" name="art_choice" value="Ode"> Ode<br>
+  						<input type="radio" name="art_choice" value="Satire"> Satire<br>			
 					</div>
 					<div class="col-xs-2">
 					</div>

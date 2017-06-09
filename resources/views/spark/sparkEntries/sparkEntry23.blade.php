@@ -4,18 +4,20 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<h3>Levensvonk: Grondstoffen 2</h3>
+				<h3>Levensvonk: {{$title}}</h3>
 			</div>
 		</div>
 
-		<form action="/spark_submit/23" method="POST">
+		<form action="/spark_submit/{{$sparkIndex}}" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
 			
-			<input type='hidden' name='resource_string' value={{$resourceString}}>
+			<input type='hidden' name='resource_string' value="{{$resourceString}}">
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
 			
 			<div class="row well">
 				<div class="col-xs-1">
@@ -24,7 +26,7 @@
 					Ook al ben je geen handelaar (of net wel), je hebt ergens 
 					in het verleden wat grondstoffen (D3) kunnen ruilen en/of kopen 
 					die je nog bijhebt.<br>
-					Je ontvangt grondstoffen van het type: '{{$resourceString}}' 		
+					Je ontvangt grondstoffen van het type: {{$resourceString}} 		
 				</div>
 				<div class="col-xs-1">
 				</div>

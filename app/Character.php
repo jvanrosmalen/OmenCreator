@@ -19,12 +19,12 @@ class Character extends Model
 	const STAT_FOCUS		= 5;
 	const STAT_TRAUMA		= 6;
 	
-	const RES_FEAR	 		= 7;
-	const RES_THEFT 		= 8;
-	const RES_TRAUMA		= 9;
-	const RES_POISON		= 10;
-	const RES_MAGIC			= 11;
-	const RES_DISEASE		= 12;
+	const RES_FEAR	 		= 1;
+	const RES_THEFT 		= 2;
+	const RES_TRAUMA		= 3;
+	const RES_POISON		= 4;
+	const RES_MAGIC			= 5;
+	const RES_DISEASE		= 6;
 	
 	public $timestamps = false;
     protected $appends = [	'skills',	
@@ -154,6 +154,23 @@ class Character extends Model
     	return SkillLevel::find($charLevel)->skill_level;
     }
     
+    public function getCharLevelId(){
+    	$nrSurvived = Character::find($this->id)->nr_events_survived;
+    	$charLevel = 1;
+    	
+    	if($nrSurvived >= 3){
+    		if($nrSurvived < 8){
+    			$charLevel = 2;
+    		}else if($nrSurvived < 15){
+    			$charLevel = 3;
+    		}else {
+    			$charLevel = 4;
+    		}
+    	}
+    	 
+    	return $charLevel;
+    }
+    
     public function getPlayerClassesListString(){
     	$classNameList = Array();
     	$myChar = Character::find($this->id);
@@ -169,6 +186,23 @@ class Character extends Model
     	}
     	
     	return join(', ', $classNameList);
+    }
+    
+    public function getPlayerClassesIdArray(){
+    	$classIdList = Array();
+    	$myChar = Character::find($this->id);
+    	 
+    	$classIdList[] = $myChar->playerClass()->get()[0]->id;
+    	$skillsWithClass = Character::find($this->id)->skills()
+    	->has('ClassRules')->get();
+    	 
+    	foreach($skillsWithClass as $skill){
+    		foreach($skill->class_rules as $classRule){
+    			$classIdList[] = $classRule->player_class->id;
+    		}
+    	}
+    	 
+    	return $classIdList;
     }
     
     public function getSpentEpAmount(){
@@ -392,8 +426,12 @@ class Character extends Model
 			
 			$epcost = $skill->pivot->purchase_ep_cost;
 			
-			if($skill->pivot->is_descent_skill){
+			if($skill->pivot->is_descent_skill && $epcost > 0){
 				$epcost = $epcost." (Afkomst)";
+			}
+			
+			if($epcost <= 0){
+				$epcost = "Gratis";
 			}
 			
 			$retArray[] = ['id' => $skill->id,
@@ -415,9 +453,69 @@ class Character extends Model
 		return $retArray;
     }
     
+    public function hasAllPrereqs($skill){
+    	// Get all character skills
+    	$skillSet = Character::find($this->id)->skills;
+    	// For easy handling, make an array with just the ids.
+    	$skillSetIds = array();
+     	foreach($skillSet as $skillSetSkill){
+    		$skillSetIds[] = $skillSetSkill->id;
+    	}
+    	
+    	// Now add the race skills
+    	$raceSkills = Character::find($this->id)->char_race->race_skills;
+    	foreach($raceSkills as $raceSkill){
+    		$skillSetIds[] = $raceSkill->id;
+    	}
+    	
+    	// Get all skill prereqs and make set arrays.
+    	$skillPrereqs = $skill->skill_prereqs;
+    	$skillPrereqsIdsSet1 = array();
+    	$skillPrereqsIdsSet2 = array();
+    	 
+    	foreach($skillPrereqs as $skillPrereq){
+    		if($skillPrereq->pivot->prereq_set == 1){
+    			$skillPrereqsIdsSet1[] = $skillPrereq->id; 
+    		}
+    		if($skillPrereq->pivot->prereq_set == 2){
+    			$skillPrereqsIdsSet2[] = $skillPrereq->id; 
+    		}
+    	}
+    	
+    	// Check set1.
+    	$validSet1 = true;
+    	foreach($skillPrereqsIdsSet1 as $skillPrereqIdSet1){
+    		if(!in_array($skillPrereqIdSet1, $skillSetIds)){
+    			// The prereq is not in the character skill set.
+    			$validSet1 = false;
+    			break;
+    		}
+    	}
+    	
+    	$validSet2 = true;
+    	// Check set 2 only if 1 has failed.
+    	if(!$validSet1){
+    		foreach($skillPrereqsIdsSet2 as $skillPrereqIdSet2){
+    			if(!in_array($skillPrereqIdSet2, $skillSetIds)){
+    				// The prereq is not in the character skill set.
+    				$validSet2 = false;
+    				break;
+    			}
+    		}
+    	}
+    	
+    	// TODO Also check prereq sets
+    	
+    	if($validSet1 || $validSet2){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
     public static function getSparkArray(){
-    	$retSparkArray = ['roll'=>0,
-    			'text'=>"",
+    	$retSparkArray = ['title'=>"",
+    			'text'=>array(),
     			'money'=>0,
     			'trauma'=>0,
     			'income_bonus'=>0,
@@ -427,13 +525,11 @@ class Character extends Model
     	]; 
     	
     	foreach(Statistic::all() as $statistic){
-    		$retSparkArray['statistics'][$statistic->id] =
-    			$statistic->statistic_name;
+    		$retSparkArray['statistics'][$statistic->id] = 0;
     	}
     	
     	foreach(Resistance::all() as $resistance){
-    		$retSparkArray['resistances'][$resistance->id] =
-    			$resistance->resistance_name;
+    		$retSparkArray['resistances'][$resistance->id] = 0;
     	}
     	
     	return $retSparkArray;
@@ -603,35 +699,15 @@ class Character extends Model
     }
     
     private function getSparkStatBonus($statConstant){
-    	$statString = "";
     	$retVal = 0;
     	 
-    	switch($statConstant){
-    		case self::STAT_LP_TORSO:
-    			$statString = "lp_torso";
-    			break;
-    		case self::STAT_LP_LIMBS:
-    			$statString = "lp_limbs";
-    			break;
-    		case self::STAT_WILLPOWER:
-    			$statString = "willpower";
-    			break;
-    		case self::STAT_STATUS:
-    			$statString = "status";
-    			break;
-    		case self::STAT_FOCUS:
-    			$statString = "focus";
-    			break;
-    		case self::STAT_TRAUMA:
-    			$statString = "trauma";
-    			break;
-    		default:
-    			break;
+    	$spark_data = json_decode(Character::find($this->id)->spark_data);
+    	if(isset($spark_data->statistics->$statConstant)){
+    		$retVal += $spark_data->statistics->$statConstant;
     	}
     	
-    	$spark_data = json_decode(Character::find($this->id)->spark_data);
-    	if(is_array($spark_data) && isset($spark_data['statistics'][$statString])){
-    		$retVal += $spark_data['statistics'][$statString];
+    	if($statConstant == self::STAT_TRAUMA){
+    		$retVal += $spark_data->trauma;
     	}
     	
     	return $retVal;
@@ -639,34 +715,10 @@ class Character extends Model
     
     private function getSparkResBonus($resConstant){
     	$retVal = 0;
-    	$resString = "dummy";
-    	 
-    	switch($resConstant){
-    		case self::RES_FEAR:
-    			$resString = "fear";
-    			break;
-    		case self::RES_THEFT:
-    			$resString = "theft";
-    			break;
-    		case self::RES_TRAUMA:
-    			$resString = "trauma";
-    			break;
-    		case self::RES_POISON:
-    			$resString = "poison";
-    			break;
-    		case self::RES_MAGIC:
-    			$resString = "magic";
-    			break;
-    		case self::RES_DISEASE:
-    			$resString = "disease";
-    			break;
-    		default:
-    			break;
-    	}
-    	 
+
     	$spark_data = json_decode(Character::find($this->id)->spark_data);
-    	if(is_array($spark_data) && isset($spark_data['resistances'][$resString])){
-    		$retVal += $spark_data['resistances'][$resString];
+    	if(isset($spark_data->resistances->$resConstant)){
+    		$retVal += $spark_data->resistances->$resConstant;
     	}
     	 
     	return $retVal;

@@ -157,6 +157,25 @@
 				</table>
 			</div>							
 		</div>
+		<div class="row overview_header_row">
+			@php
+				$sparkData = json_decode($character->spark_data);
+			@endphp
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-5">
+				Levensvonk - {{$sparkData->title}}
+			</div>		
+		</div>
+		<div class="row">
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-5">
+				@foreach($sparkData->text as $sparkLine)
+					{{$sparkLine}}<br>
+				@endforeach
+			</div>
+		</div>
 	</div>
 
 	<div class="row">

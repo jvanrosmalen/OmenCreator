@@ -26,7 +26,7 @@
 		<div class='row well'>
 			<div class='col-xs-1'>Spelernaam:</div>
 			<div class='col-xs-3'>
-				<input id='basic_info_player_name' name='player_name' type='text' style='width:100%' readonly placeholder='Selecteer speler'>
+				<input id='basic_info_player_name' name='player_name' type='text' style='width:100%' readonly placeholder='Selecteer speler met knop hiernaast'>
 				<input id='basic_info_player_id' name='player_id' type='hidden' value='-1'>
 			</div>
 			<div class='col-xs-2'>

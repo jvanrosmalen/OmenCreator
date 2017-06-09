@@ -134,7 +134,7 @@ class CharacterController extends Controller
     	$newChar->player_class_id = $_POST['character_class'];
     	$newChar->race_id = $_POST['character_race'];
     	$newChar->user_id = $_POST['player_id'];
-    	$newChar->ep_amount = $_POST['start_ep'];
+    	$newChar->ep_amount = $_POST ['start_ep'];
     	$newChar->is_alive = true;
     	$newChar->is_player_char = true;
     	$newChar->nr_events_survived = $_POST['nr_events_survived'];

@@ -4,7 +4,7 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<h3>Levensvonk: Phobia</h3>
+				<h3>Levensvonk: {{$title}}</h3>
 			</div>
 		</div>
 
@@ -14,6 +14,9 @@
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 			<!-- ******************* -->
+			
+			<input type="hidden" name="charId" value="{{$charId}}">
+			<input type="hidden" name="sparkIndex" value="{{$sparkIndex}}">
 			
 			<div class="row well">
 				<div class="col-xs-1">
@@ -40,13 +43,13 @@
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-8">
-						<input type="radio" name="race" value="0"  checked="checked"> Trollen<br>
-  						<input type="radio" name="race" value="1"> Glashtynn<br>
-  						<input type="radio" name="race" value="2"> Ondoden<br>			
-  						<input type="radio" name="race" value="3"> Geesten<br>			
-  						<input type="radio" name="race" value="4"> Wolven<br>			
-  						<input type="radio" name="race" value="4"> Spinnen<br>			
-  						<input type="radio" name="race" value="4"> Bhanda Korr<br>			
+						<input type="radio" name="scaredOf" value="Trollen"  checked="checked"> Trollen<br>
+  						<input type="radio" name="scaredOf" value="Glashtynn"> Glashtynn<br>
+  						<input type="radio" name="scaredOf" value="Ondoden"> Ondoden<br>			
+  						<input type="radio" name="scaredOf" value="Geesten"> Geesten<br>			
+  						<input type="radio" name="scaredOf" value="Wolven"> Wolven<br>			
+  						<input type="radio" name="scaredOf" value="Spinnen"> Spinnen<br>			
+  						<input type="radio" name="scaredOf" value="Bhanda Kor"> Bhanda Korr<br>			
 					</div>
 					<div class="col-xs-2">
 					</div>
