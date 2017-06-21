@@ -989,7 +989,7 @@ class SparkController extends Controller
 			'end'=>84,
 			'title'=>'Kwaliteitsvoorwerp',
 			'shortText'=>'Een voorwerp van het karakter is een kwaliteitsvoorwerp.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Een door jou aangekocht stuk uitrusting wordt gratis opgewaardeerd naar Kwaliteit.']
 			],
 		52=>['start'=>85,
 			'end'=>85,

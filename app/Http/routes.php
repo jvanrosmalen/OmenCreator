@@ -136,6 +136,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_character/{charId?}', 'CharacterController@doDeleteCharacter');
 	Route::get('/showall_character', ['as'=>'showall_character', 'uses'=>'CharacterController@doShowAllPlayerChars']);
 	Route::get('/show_character/{charId?}', ['as'=>'show_character', 'uses'=>'CharacterController@doShowPlayerChar']);
+	Route::get('/show_edit_character/{charId?}', ['as'=>'show_edit_character', 'uses'=>'CharacterController@showEditPlayerChar']);
+	Route::post('/edit_character_submit', ['as'=>'edit_character_submit', 'uses'=>'CharacterController@editPlayerCharSubmit']);
 	
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart']);
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice']);

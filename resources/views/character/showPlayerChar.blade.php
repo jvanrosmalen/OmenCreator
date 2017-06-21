@@ -22,7 +22,7 @@
 				EP: 
 			</div>
 			<div class="col-xs-2">
-				<span>{{$character->getSpentEpAmount()}}/{{$character->ep_amount}}</span>
+				<span>{{$character->getSpentEpAmount()}}/{{$character->ep_amount+$character->descent_ep_amount}}</span>
 			</div>
 			<div class='col-xs-1'>
 				#Omens: 

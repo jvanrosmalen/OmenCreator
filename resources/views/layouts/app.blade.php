@@ -36,6 +36,7 @@
     <script src="{{ URL::asset('js/character/createPlayerCharTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/character/createPlayerCharSkills.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
+    <script src="{{ URL::asset('js/character/editPlayerChar.js') }}"></script>
     <script src="{{ URL::asset('js/class/playerClass.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/createSkillTabControl.js') }}"></script>

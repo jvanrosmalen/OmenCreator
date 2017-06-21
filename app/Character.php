@@ -50,7 +50,7 @@ class Character extends Model
     public function skills(){
     	return $this->belongsToMany('App\Skill')
     		->withTimeStamps()
-    		->withPivot('purchase_ep_cost','is_descent_skill');
+    		->withPivot('purchase_ep_cost','is_descent_skill','is_out_of_class_skill');
     }
     
     public function myEpAssigments(){
@@ -99,7 +99,36 @@ class Character extends Model
 		}
     }
     
-    public function getEpAssignmentsAttribute(){
+   	public function getCharDescentSkills(){
+   		return Character::find($this->id)->skills()
+   					->wherePivot('purchase_ep_cost', '!=', '0')
+   					->wherePivot('is_descent_skill', true)
+   					->wherePivot('is_out_of_class_skill', false)
+   					->get();
+   	}
+    
+   	public function getCharNonClassSkills(){
+   		return Character::find($this->id)->skills()
+   					->wherePivot('purchase_ep_cost', '!=', '0')
+   					->wherePivot('is_descent_skill', false)
+   					->wherePivot('is_out_of_class_skill', true)
+   					->get();
+   	}
+   	
+   	public function getCharClassSkills(){
+   		return Character::find($this->id)->skills()
+   					->wherePivot('purchase_ep_cost', '!=', '0')
+   					->wherePivot('is_descent_skill', false)
+   					->wherePivot('is_out_of_class_skill', false)
+   					->get();
+   	}
+   	
+   	public function getCharFreeSkills(){
+   		return Character::find($this->id)->skills()
+   		->wherePivot('purchase_ep_cost', 0)->get();
+   	}
+   	
+   	public function getEpAssignmentsAttribute(){
 //     	return Character::find($this->id)->myEpAssigments()->get();
     	return null;
     }
@@ -212,6 +241,17 @@ class Character extends Model
     		$epAmount += $skill->pivot->purchase_ep_cost;
     	}
     	
+    	return $epAmount;
+    }
+    
+    public function getSpentDescentEpAmount(){
+    	$epAmount = 0;
+    	 
+    	foreach(Character::find($this->id)->skills()
+    			->wherePivot('is_descent_skill', true)->get() as $skill){
+    		$epAmount += $skill->pivot->purchase_ep_cost;
+    	}
+    	 
     	return $epAmount;
     }
     
@@ -384,16 +424,30 @@ class Character extends Model
     	return $retVal;
     }
     
-    public function getWealthStringAttribute(){
+    public function getWealthTypeId(){
     	$wealthId =
-    		PlayerClass::find(Character::find($this->id)->player_class_id)->wealth_type_id;
+    	PlayerClass::find(Character::find($this->id)->player_class_id)->wealth_type_id;
     	$skillsWithWealth = Character::find($this->id)->skills()->has('WealthRules')->get();
-    	
+    	 
     	foreach($skillsWithWealth as $skill){
     		if($wealthId < $skill->wealth_rules[0]->value_type_id){
     			$wealthId = $skill->wealth_rules[0]->value_type_id;
     		}
     	}
+    	
+    	return $wealthId;
+    }
+    
+    public function getWealthStringAttribute(){
+    	$wealthId = $this->getWealthTypeId();
+//     		PlayerClass::find(Character::find($this->id)->player_class_id)->wealth_type_id;
+//     	$skillsWithWealth = Character::find($this->id)->skills()->has('WealthRules')->get();
+    	
+//     	foreach($skillsWithWealth as $skill){
+//     		if($wealthId < $skill->wealth_rules[0]->value_type_id){
+//     			$wealthId = $skill->wealth_rules[0]->value_type_id;
+//     		}
+//     	}
     	
     	return WealthType::find($wealthId)->wealth_type;
     }
@@ -519,6 +573,7 @@ class Character extends Model
     			'money'=>0,
     			'trauma'=>0,
     			'income_bonus'=>0,
+    			'descent_ep'=>0,
     			'wealth_bonus' => 0,
     			'statistics'=> array(),
     			'resistances'=> array()

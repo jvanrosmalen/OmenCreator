@@ -125,6 +125,49 @@ class CharacterController extends Controller
     	]);
     }
     
+    public function showEditPlayerChar($charId){
+    	$character = Character::find($charId);
+    	$char_descent_skills = $character->getCharDescentSkills();
+    	$char_class_skills = $character->getCharClassSkills();
+    	$char_non_class_skills = $character->getCharNonClassSkills();
+    	$char_free_skills = $character->getCharFreeSkills();
+    	
+    	$char_descent_skills_ids = array();
+    	foreach($char_descent_skills as $descent_skill){
+    		$char_descent_skills_ids[] = $descent_skill->id;
+    	}
+    	$char_class_skills_ids = array();
+    	foreach($char_class_skills as $class_skill){
+    		$char_class_skills_ids[] = $class_skill->id;
+    	}
+    	$char_non_class_skills_ids = array();
+    	foreach($char_non_class_skills as $non_class_skill){
+    		$char_non_class_skills_ids[] = $non_class_skill->id;
+    	}
+    	$char_free_skills_ids = array();
+    	foreach($char_free_skills as $free_skill){
+    		$char_free_skills_ids[] = $free_skill->id;
+    	}
+    	 
+    	
+
+    	$classIdArray = $character->getPlayerClassesIdArray();
+    	 
+    	$allClassSkills = ClassController::getClassSkills($character->getCharLevelId(), $character->char_race->id, $classIdArray);
+    	$charWealthType = ClassController::getWealthTypeFromClassArray($classIdArray);
+    	$allDescentSkills = RaceController::getDescentSkills($character->char_race->id);
+    	
+    	return view('character/showEditPlayerChar', ['character'=>$character,
+    			'char_descent_skills_ids' => json_encode($char_descent_skills_ids),
+    			'char_class_skills_ids' => json_encode($char_class_skills_ids),
+    			'char_non_class_skills_ids' => json_encode($char_non_class_skills_ids),
+    			'char_free_skills_ids' => json_encode($char_free_skills_ids),
+    			'skills' => $allClassSkills,
+    			'descent_skills' => $allDescentSkills,
+    			'wealth_types'=> WealthType::all()
+    	]);
+    }
+    
     public function doCreatePlayerChar(){
     	// TODO: check on everything as save.
     	
@@ -138,6 +181,7 @@ class CharacterController extends Controller
     	$newChar->is_alive = true;
     	$newChar->is_player_char = true;
     	$newChar->nr_events_survived = $_POST['nr_events_survived'];
+    	$newChar->descent_ep_amount = 3;
     	
     	$sparkArray = Character::getSparkArray();
     	$newChar->spark_data = json_encode($sparkArray);    	
@@ -159,7 +203,8 @@ class CharacterController extends Controller
     		foreach($raceSkillIds as $raceSkillId){
     			$allCharSkillSyncArray[intval($raceSkillId)] =
     				[	'purchase_ep_cost'=>'0',
-    					'is_descent_skill'=> false
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> false
     				];
     		}
     	}
@@ -168,7 +213,8 @@ class CharacterController extends Controller
     		foreach($descentSkillIds as $descentSkillId){
     			$allCharSkillSyncArray[intval($descentSkillId)] =
     			[	'purchase_ep_cost'=>Skill::find(intval($descentSkillId))->ep_cost,
-    				'is_descent_skill'=> true
+    				'is_descent_skill'=> true,
+    				'is_out_of_class_skill'=> false
     			];
     		}
     	}
@@ -177,7 +223,8 @@ class CharacterController extends Controller
     		foreach($classSkillIds as $classSkillId){
     			$allCharSkillSyncArray[intval($classSkillId)] =
     			[	'purchase_ep_cost'=>Skill::find(intval($classSkillId))->ep_cost,
-    					'is_descent_skill'=> false
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> false
     			];
     		}
     	}
@@ -186,7 +233,8 @@ class CharacterController extends Controller
     		foreach($nonClassSkillIds as $nonClassSkillId){
     			$allCharSkillSyncArray[intval($nonClassSkillId)] =
     			[	'purchase_ep_cost'=>2*(Skill::find(intval($nonClassSkillId))->ep_cost),
-    					'is_descent_skill'=> false
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> true
     			];
     		}
     	}
@@ -205,5 +253,66 @@ class CharacterController extends Controller
     	$url = route('show_spark_start', ['charId' => $newChar->id]);
 		header("Location:".$url);
 		die();  	
+    }
+    
+    public function editPlayerCharSubmit(){
+    	$character = Character::find($_POST['char_id']);
+
+    	$raceSkillIds = json_decode($_POST['race_skill_list']);
+    	$descentSkillIds = json_decode($_POST['descent_skill_list']);
+    	$classSkillIds = json_decode($_POST['character_class_skill_list']);
+    	$nonClassSkillIds = json_decode($_POST['character_non_class_skill_list']);
+    	$allCharSkillIds = array_merge($raceSkillIds,
+    			$descentSkillIds,
+    			$classSkillIds,
+    			$nonClassSkillIds);
+    	
+    	$allCharSkillSyncArray = array();
+    	 
+    	if(is_array($raceSkillIds)){
+    		foreach($raceSkillIds as $raceSkillId){
+    			$allCharSkillSyncArray[intval($raceSkillId)] =
+    			[	'purchase_ep_cost'=>'0',
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> false
+    			];
+    		}
+    	}
+    	 
+    	if(is_array($descentSkillIds)){
+    		foreach($descentSkillIds as $descentSkillId){
+    			$allCharSkillSyncArray[intval($descentSkillId)] =
+    			[	'purchase_ep_cost'=>Skill::find(intval($descentSkillId))->ep_cost,
+    					'is_descent_skill'=> true,
+    					'is_out_of_class_skill'=> false
+    			];
+    		}
+    	}
+    	 
+    	if(is_array($classSkillIds)){
+    		foreach($classSkillIds as $classSkillId){
+    			$allCharSkillSyncArray[intval($classSkillId)] =
+    			[	'purchase_ep_cost'=>Skill::find(intval($classSkillId))->ep_cost,
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> false
+    			];
+    		}
+    	}
+    	 
+    	if(is_array($nonClassSkillIds)){
+    		foreach($nonClassSkillIds as $nonClassSkillId){
+    			$allCharSkillSyncArray[intval($nonClassSkillId)] =
+    			[	'purchase_ep_cost'=>2*(Skill::find(intval($nonClassSkillId))->ep_cost),
+    					'is_descent_skill'=> false,
+    					'is_out_of_class_skill'=> true
+    			];
+    		}
+    	}
+    	 
+    	// sync character skills
+    	$character->skills()->sync($allCharSkillSyncArray);
+    	$url = route('show_character', ['charId' => $character->id]);
+    	header("Location:".$url);
+    	die();;
     }
 }

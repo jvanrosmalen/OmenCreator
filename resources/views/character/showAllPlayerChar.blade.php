@@ -69,7 +69,7 @@
 				                    	<a href="/show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
           									<span class="glyphicon glyphicon-eye-open"></span> 
         								</a>
-				                    	<a href="/create_skill/test" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan">
+				                    	<a href="/show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
 				                    	<a href="/show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">

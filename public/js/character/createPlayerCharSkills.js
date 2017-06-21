@@ -45,7 +45,10 @@ var CreatePlayerCharSkills = new function(){
 		
 		// Construct below is to stop button event until user has been
 		// asked if low EP amount is ok.
-		if(!low_spent_ep_ok){
+		
+		if($(".spent_character_ep").data("ep_amount") 
+				< $(".total_character_ep").data("ep_amount")
+				&& !low_spent_ep_ok){
 			event.preventDefault();
 			
 			PromptMessage.showPromptMessage("Je hebt minder EP besteed dan toegestaan. " +
