@@ -22,8 +22,8 @@ var EditPlayerChar = new function(){
 		
 		// Make visible all selected non-class skills
 		for(var index=0; index < class_non_skill_ids_list.length; index++ ){
-			$("#character_non_class_skill_selected .character_non_class_skill_selection_"+class_skill_ids_list[index]).removeClass('hidden');
-			var option = $("#character_non_class_skill_options .character_non_class_skill_option_"+class_skill_ids_list[index]);
+			$("#character_non_class_skill_selected .character_non_class_skill_selection_"+class_non_skill_ids_list[index]).removeClass('hidden');
+			var option = $("#character_non_class_skill_options .character_non_class_skill_option_"+class_non_skill_ids_list[index]);
 			option.addClass('hidden');
 		}
 		

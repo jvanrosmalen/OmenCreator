@@ -155,7 +155,7 @@ class CharacterController extends Controller
     	 
     	$allClassSkills = ClassController::getClassSkills($character->getCharLevelId(), $character->char_race->id, $classIdArray);
     	$charWealthType = ClassController::getWealthTypeFromClassArray($classIdArray);
-    	$allDescentSkills = RaceController::getDescentSkills($character->char_race->id);
+    	$allDescentSkills = $character->getDescentSkills();
     	
     	return view('character/showEditPlayerChar', ['character'=>$character,
     			'char_descent_skills_ids' => json_encode($char_descent_skills_ids),
@@ -188,6 +188,11 @@ class CharacterController extends Controller
     	
     	$newChar->save();
     	
+    	// Save descent classes to allow them to be changed by that one
+    	// Spark entry
+    	$newChar->descentClasses()->sync(Race::find($newChar->race_id)->descent_class_ids);
+    	
+    	// Handle all selected skills
     	$raceSkillIds = json_decode($_POST['race_skill_list']);
     	$descentSkillIds = json_decode($_POST['descent_skill_list']);
     	$classSkillIds = json_decode($_POST['character_class_skill_list']);
@@ -315,4 +320,6 @@ class CharacterController extends Controller
     	header("Location:".$url);
     	die();;
     }
+    
+
 }

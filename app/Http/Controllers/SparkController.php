@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Character;
 use App\Race;
 use App\Skill;
+use App\EpAssignment;
+use App\PlayerClass;
 
 class SparkController extends Controller
 {
@@ -187,6 +189,36 @@ class SparkController extends Controller
 			$sparkArray['text'] = ["Je ontvangt gratis de kennisvaardigheid &#39;".
 					Skill::find($selectedSkillId)->name."&#39;"];
 			break;
+		case 52:
+			$character->descent_ep_amount = $character->descent_ep_amount + 1;
+			$character->spark_data = json_encode($sparkArray);
+			
+			$epAssignment = new EpAssignment();
+			$epAssignment->amount = 1;
+			$epAssignment->reason = 'Levensvonk: Afkomst Specialisatie 1';
+			$epAssignment->character_id = $character->id;
+			$epAssignment->save();
+			
+			$character->save();
+
+			$url = route('show_edit_character', ['charId' => $charId]);
+			header("Location:".$url);
+			die();
+				
+			break;
+		case 54:
+			$sparkArray['money'] = 100;
+			break;
+		case 57:
+			$excludeDescentClassId = $_POST['excludeDescentClassId'];
+			$includeDescentClassId = $_POST['includeDescentClassId'];
+			$changes = $character->changeDescentClassFromTo($excludeDescentClassId, $includeDescentClassId);
+			$sparkArray['text'] = ["Je hebt de afkomstklasse ".
+					PlayerClass::find($excludeDescentClassId)->class_name.
+					" vervangen door de afkomstklasse ".
+					PlayerClass::find($includeDescentClassId)->class_name.
+					"."];
+			break;
 		default:
 			break;
 		}	
@@ -212,7 +244,7 @@ class SparkController extends Controller
 		}
 		
 		// For testing
-		$sparkIndex = 50;
+		$sparkIndex = 57;
 		
 		switch($sparkIndex){
 			case 1:
@@ -378,13 +410,30 @@ class SparkController extends Controller
 					}
 				}
 					
-				return view('spark/sparkEntries/sparkEntry50',
+				return view('spark/sparkEntries/sparkEntry'.$sparkIndex,
 						['sparkIndex'=>$sparkIndex,
 						'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
 						'raceKnowSkills'=>$raceKnowSkills,
 						'charKnowSkills'=>$charKnowSkills,
 						'classKnowSkills'=>$classKnowSkills,
 						'charId'=>$charId]);				
+				break;
+			case 57:
+				$character = Character::find($charId);
+				$char_descent_classes_ids =
+					$character->charRace()->get()[0]->descent_class_ids;
+    			$char_descent_classes =
+    				PlayerClass::find($char_descent_classes_ids);
+    			$char_descent_options =
+    				PlayerClass::whereNotIn('id', $char_descent_classes_ids)->
+    					where('class_name', '!=', 'Algemeen')->get();
+				return view('spark/sparkEntries/sparkEntry'.$sparkIndex,
+						['sparkIndex'=>$sparkIndex,
+						'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
+						'classes'=>PlayerClass::all(),
+						'char_descent_classes'=> $char_descent_classes,
+						'char_descent_options'=> $char_descent_options,
+						'charId'=>$charId]);
 				break;
 			default:
 				return view('spark/sparkEntries/sparkEntryTextOnly',
@@ -886,16 +935,16 @@ class SparkController extends Controller
 			'end'=>62,
 			'title'=>'Heilig Reliek 2',
 			'shortText'=>'Het karakter bezit een reliek.',
-			'text'=>['Je bent in het bezit van een klein reliek toegewijd aan jouw geloof.',
+			'text'=>['Je bent in het bezit van een reliek toegewijd aan jouw geloof.',
 					'Je ontvangt een Niveau 2 Reliek.']
 			],
 		37=>['start'=>63,
 			'end'=>64,
 			'title'=>'Voorouderlijk Anker 2',
 			'shortText'=>'Het karakter bezit een Anker.',
-			'text'=>['Je bent in het bezit van een klein Anker dat ooit van je 
-					voorouders geweest is. Het is gebonden aan jouw familie door  
-					een Spiritist van lang vervlogen tijden.',
+			'text'=>['Je bent in het bezit van een Anker dat ooit van je'.
+					' voorouders geweest is. Het is gebonden aan jouw familie door'.
+					' een Spiritist van lang vervlogen tijden.',
 					'Je ontvangt een Niveau 2 Anker.']
 			],
 		38=>['start'=>65,
@@ -995,31 +1044,37 @@ class SparkController extends Controller
 			'end'=>85,
 			'title'=>'Afkomst specialisatie 1',
 			'shortText'=>'Het karakter krijgt +1 afkomstpunt te spenderen.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Afkomstpunt dat je in de Afkomst Klasse mag spenderen.']
 			],
 		53=>['start'=>86,
 			'end'=>86,
 			'title'=>'Lady Killer/Jaw Dropper',
 			'shortText'=>'Het karakter krijgt +1 Status tegen het andere geslacht.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Status. Deze is niet op je sheet meegenomen in je status score!'.
+					' Je mag deze enkel gebruiken in sociale aanvallen / verdedigen tegen het'.
+					' andere geslacht.']
 			],
 		54=>['start'=>87,
 			'end'=>87,
 			'title'=>'Klein Fortuin',
 			'shortText'=>'Het karakter ontvangt +1 Goud.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Goud.']
 			],
 		55=>['start'=>88,
 			'end'=>88,
 			'title'=>'Heilig Reliek 3',
 			'shortText'=>'Het karakter bezit een machtig reliek.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je bent in het bezit van een machtig reliek toegewijd aan jouw geloof.',
+					'Je ontvangt een Niveau 3 Reliek.']
 			],
 		56=>['start'=>89,
 			'end'=>89,
 			'title'=>'Voorouderlijk Anker 3',
 			'shortText'=>'Het karakter bezit een machtig Anker.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je bent in het bezit van een machtig Anker dat ooit van je'.
+					' voorouders geweest is. Het is gebonden aan jouw familie door'.
+					' een Spiritist van lang vervlogen tijden.',
+					'Je ontvangt een Niveau 3 Anker.']
 			],
 		57=>['start'=>90,
 			'end'=>90,

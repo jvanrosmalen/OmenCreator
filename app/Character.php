@@ -53,6 +53,10 @@ class Character extends Model
     		->withPivot('purchase_ep_cost','is_descent_skill','is_out_of_class_skill');
     }
     
+    public function descentClasses(){
+    	return $this->belongsToMany('App\PlayerClass', 'character_descent_class');
+    }
+    
     public function myEpAssigments(){
     	return $this->hasMany('App\EpAssignment');
     }
@@ -67,6 +71,10 @@ class Character extends Model
     
     public function playerClass(){
     	return $this->belongsTo('App\PlayerClass', 'player_class_id', 'id');
+    }
+    
+    public function getDescentClasses(){
+    	return Character::find($this->id)->descentClasses()->get();
     }
     
     public function getSkillsAttribute(){
@@ -98,6 +106,8 @@ class Character extends Model
 									});
 		}
     }
+    
+    
     
    	public function getCharDescentSkills(){
    		return Character::find($this->id)->skills()
@@ -590,9 +600,182 @@ class Character extends Model
     	return $retSparkArray;
     }
     
+    public function getDescentSkills(){
+    	$charRace = array();
+    	$descentClassIds = array();
+    	$descendSkillsArray = ["default"];
+    
+    	$character = Character::find($this->id);
+    	$descentClasses = $character->getDescentClasses();
+    	foreach($descentClasses as $descentClass){
+    		$descentClassIds[] = $descentClass->id;
+    	}
+    	$charRace[] = $character->race_id;
+    	$descendSkillsArray =
+    	Skill::whereHas('playerClasses',function($query) use( $descentClassIds){
+    		$query->whereIn('id', $descentClassIds);
+    	})
+    	->where(function($query) use ($charRace){
+    		$query->whereHas('racePrereqs', function($q)use($charRace)
+    		{$q->whereIn( 'id', $charRace );})
+    		->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+    	}
+    	)->where('skill_level_id','=',1)
+    	->orderBy('name', 'asc')
+    	->get();
+    
+    	return $descendSkillsArray;
+    }
+    
+    public function changeDescentClassFromTo($excludeClassId, $includeClassId){
+    	$descentClassIds = array($includeClassId);
+    	
+    	$character = Character::find($this->id);
+    	$descentClasses = $character->getDescentClasses();
+    	foreach($descentClasses as $descentClass){
+    		if($descentClass->id != $excludeClassId){
+    			$descentClassIds[] = $descentClass->id;
+    		}
+    	}
+    	$character->descentClasses()->sync($descentClassIds);
+    	$this->handleDescentChange($descentClassIds);
+    }
+    
     //*****************************************************
     // Private functions
     //*****************************************************
+    private function handleDescentChange($newDescentClassIds){
+    	$character = Character::find($this->id);
+    	// Keep track of changes in a string array
+    	$changes = array();
+    	
+    	// Get all descent skills and check if they still are.
+		$descentSkills = $character->skills()->wherePivot('is_descent_skill',true)->get();
+		// Keep track of new amount of descentEp
+		$descentEp = 0;
+		foreach($descentSkills as $descentSkill){
+			$isDescentSkill = false;
+			
+			foreach($descentSkill->player_class_ids as $classId){
+				if(in_array($classId, $newDescentClassIds)){
+					// This remains a descentSkill
+					$isDescentSkill = true;
+					$descentEp += $descentSkill->ep_cost;
+					break;
+				}
+			}
+			
+			if($isDescentSkill){
+				// continue to next skill
+				continue;
+			}
+			
+			// This skill is no longer a descentSkill. Check if it's a class skill,
+			// if not, make it a non-class skill.
+			if(in_array($character->player_class_id, $descentSkill->player_class_ids)){
+				// It's a player class skill
+				$character->skills()->updateExistingPivot($descentSkill->id,
+						['is_descent_skill'=>false], true);
+				$changes[] = "De vaardigheid ".$descentSkill->name." is voortaan een klasse vaardigheid.";
+			}else{
+				// It's a non player class skill
+				$newEpValue = $descentSkill->ep_cost * 2;
+				$character->skills()->updateExistingPivot($descentSkill->id,
+						['is_descent_skill'=>false, 
+						 'is_out_of_class_skill'=>true,
+						 'purchase_ep_cost'=>$newEpValue
+						], true);
+				$changes[] = "De vaardigheid ".$descentSkill->name." is voortaan een niet-klasse vaardigheid".
+					" en kost dus dubbel EP om te behouden.";
+			}
+		}
+		
+		// If there is still descent EP to be spent, check all other skills if one
+		// might become a descent skill
+		if($descentEp < $character->descent_ep_amount){
+			// First check all non-class skills. They get you the most profit.
+			$nonClassOptions = $character->skills()->
+				wherePivot('is_descent_skill', false)->
+				wherePivot('is_out_of_class_skill', true)->
+				wherePivot('purchase_ep_cost', '>', '0')->get();
+			
+			$responseStrings = $this->checkForDescentSkills($nonClassOptions, $newDescentClassIds);
+			array_merge($changes, $responseStrings);
+			
+			// Check if there still is a surplus. If so, check the class skills
+			if(($character->descent_ep_amount -
+					$character->getSpentDescentEpAmount()) > 0){
+				$classOptions = $character->skills()->
+				wherePivot('is_descent_skill', false)->
+				wherePivot('is_out_of_class_skill', false)->
+				wherePivot('purchase_ep_cost', '>', '0')->get();
+					
+				$responseStrings = $this->checkForDescentSkills($classOptions, $newDescentClassIds);
+				array_merge($changes, $responseStrings);
+			}
+			
+			return $changes;
+		}
+    }
+    
+    private function checkForDescentSkills($skillOptionArray, $newDescentClassIds){
+    	$descentOptions = array();
+    	$changes = array();
+    	$character = Character::find($this->id);
+		
+    	foreach($skillOptionArray as $skill){
+    		foreach($skill->player_class_ids as $classId){
+    			if(in_array($classId, $newDescentClassIds)){
+    				// This could be a descentSkill. Add to option array.
+    				$descentOptions[] = $skill;
+    				break;
+    			}
+    		}
+    	}
+    		
+    	if(sizeof($descentOptions) > 0){
+    		// A number of skills could be made descent skill
+    		$descentEpSurplus = $character->descent_ep_amount - 
+    							$character->getSpentDescentEpAmount();
+    		// Counter to avoid deadlock in case of no further options
+    		$breakoutCounter = 2*$character->descent_ep_amount;
+    		// Change counter to search of the next skill with highest ep cost
+    		$epChangeCounter = 0;
+    	
+    		while($descentEpSurplus > 0 && $breakoutCounter > 0){
+    			$optionFound = false;
+    				
+    			foreach($descentOptions as $index=>$skillOption){
+    				if($skillOption->ep_cost == ($descentEpSurplus - $epChangeCounter)){
+    					// This one is going to be the one. It eats up the entire
+    					// surplus in one go.
+    					$character->skills()->updateExistingPivot($skillOption->id,
+    							['is_descent_skill'=>true,
+    							'is_out_of_class_skill'=>false,
+    							'purchase_ep_cost'=>$skillOption->ep_cost
+    							], true);
+    					$changes[] = "De vaardigheid ".$skillOption->name.
+    					" is voortaan een afkomstvaardigheid";
+    						
+    					$optionFound = true;
+    					unset($descentOptions[$index]);
+    					break;
+    				}
+    			}
+    				
+    			if(!$optionFound){
+    				$epChangeCounter++;
+    			}
+    				
+    			$descentEpSurplus = $character->descent_ep_amount -
+    								$character->getSpentDescentEpAmount();
+    			$breakoutCounter--;
+    		}
+    	}
+    		
+    	return $changes;    	
+    }
+    
     private function getRaceStat($statConstant){
     	$retVal = -10;
     	

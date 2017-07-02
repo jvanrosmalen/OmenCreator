@@ -229,10 +229,18 @@ class RaceController extends Controller
 
 		if($raceId != null){
 			$descentClassIds = Race::find($raceId)->descent_class_ids;
+			$charRace = array();
+			$charRace[] = $raceId;
 			$descendSkillsArray =
 			Skill::whereHas('playerClasses',function($query) use( $descentClassIds){
 				$query->whereIn('id', $descentClassIds);
-			})->where('skill_level_id','=',1)
+			})
+			->where(function($query) use ($charRace){
+				$query->whereHas('racePrereqs', function($q)use($charRace)
+				{$q->whereIn( 'id', $charRace );})
+				->orWhereHas('racePrereqs', function($q){$q;}, '<', 1);
+			}
+			)->where('skill_level_id','=',1)
 			->orderBy('name', 'asc')
 			->get();
 		}
