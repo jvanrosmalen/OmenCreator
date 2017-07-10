@@ -638,7 +638,8 @@ class Character extends Model
     		}
     	}
     	$character->descentClasses()->sync($descentClassIds);
-    	$this->handleDescentChange($descentClassIds);
+    	
+    	return $this->handleDescentChange($descentClassIds);
     }
     
     //*****************************************************
@@ -700,7 +701,7 @@ class Character extends Model
 				wherePivot('purchase_ep_cost', '>', '0')->get();
 			
 			$responseStrings = $this->checkForDescentSkills($nonClassOptions, $newDescentClassIds);
-			array_merge($changes, $responseStrings);
+			$changes = array_merge($changes, $responseStrings);
 			
 			// Check if there still is a surplus. If so, check the class skills
 			if(($character->descent_ep_amount -
@@ -711,11 +712,11 @@ class Character extends Model
 				wherePivot('purchase_ep_cost', '>', '0')->get();
 					
 				$responseStrings = $this->checkForDescentSkills($classOptions, $newDescentClassIds);
-				array_merge($changes, $responseStrings);
+				$changes = array_merge($changes, $responseStrings);
 			}
-			
-			return $changes;
 		}
+		
+		return $changes;
     }
     
     private function checkForDescentSkills($skillOptionArray, $newDescentClassIds){
@@ -940,8 +941,30 @@ class Character extends Model
     	$retVal = 0;
     	 
     	$spark_data = json_decode(Character::find($this->id)->spark_data);
-    	if(isset($spark_data->statistics->$statConstant)){
-    		$retVal += $spark_data->statistics->$statConstant;
+    	$stat_index = -1;
+    	
+    	// Conversion to DB ids
+    	switch($statConstant){
+    		case self::STAT_FOCUS:
+    			$stat_index =
+    				Statistic::where('statistic_name','=','Focus')->get()[0]->id;
+    			break;
+    		case self::STAT_STATUS:
+    			$stat_index =
+    				Statistic::where('statistic_name','=','Status')->get()[0]->id;
+    			break;
+    		case self::STAT_WILLPOWER:
+    			$stat_index =
+    				Statistic::where('statistic_name','=','Wilskracht')->get()[0]->id;
+    			break;
+    		case self::STAT_LP_TORSO:
+    			$stat_index =
+    				Statistic::where('statistic_name','=','Levenspunten')->get()[0]->id;
+    			break;
+    	}
+    	
+    	if(isset($spark_data->statistics->$stat_index)){
+    		$retVal += $spark_data->statistics->$stat_index;
     	}
     	
     	if($statConstant == self::STAT_TRAUMA){

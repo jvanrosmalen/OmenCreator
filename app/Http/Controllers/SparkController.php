@@ -10,6 +10,7 @@ use App\Race;
 use App\Skill;
 use App\EpAssignment;
 use App\PlayerClass;
+use App\Statistic;
 
 class SparkController extends Controller
 {
@@ -218,6 +219,43 @@ class SparkController extends Controller
 					" vervangen door de afkomstklasse ".
 					PlayerClass::find($includeDescentClassId)->class_name.
 					"."];
+			// Save everything now because this is the only entry that needs
+			// an extra screen to display info.
+			$character->spark_data = json_encode($sparkArray);
+			$character->save();
+			
+			return view('spark/sparkEntries/sparkEntry57Feedback',
+					['sparkIndex'=>$sparkIndex,
+					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
+					'text'=>$sparkArray['text'],
+					'charId'=>$charId,
+					'changes'=>$changes
+					]);
+			break;
+		case 58:
+			$sparkArray['statistics']
+				[Statistic::where('statistic_name','=','Focus')->get()[0]->id] = 1;
+			break;
+		case 59:
+			$character->ep_amount += 1;
+			$character->save();
+
+			$url = route('show_edit_character', ['charId' => $charId]);
+			header("Location:".$url);
+			die();
+			
+			break;
+		case 60:
+			$sparkArray['statistics']
+				[Statistic::where('statistic_name','=','Levenspunten')->get()[0]->id] = 1;			
+			break;
+		case 61:
+			$sparkArray['statistics']
+				[Statistic::where('statistic_name','=','Wilskracht')->get()[0]->id] = 1;			
+			break;
+		case 62:
+			$sparkArray['statistics']
+				[Statistic::where('statistic_name','=','Focus')->get()[0]->id] = 2;
 			break;
 		default:
 			break;
@@ -244,7 +282,7 @@ class SparkController extends Controller
 		}
 		
 		// For testing
-		$sparkIndex = 57;
+		$sparkIndex = 62;
 		
 		switch($sparkIndex){
 			case 1:
@@ -1086,31 +1124,33 @@ class SparkController extends Controller
 			'end'=>91,
 			'title'=>'Uitzonderlijke Energie 1',
 			'shortText'=>'Het karakter krijgt +1 Focus.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Focus. Dit is geen vaardigheid.']
 			],
 		59=>['start'=>92,
 			'end'=>92,
 			'title'=>'Uitzonderlijke Ervaring 1',
 			'shortText'=>'Het karakter krijgt +1 EP.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je hebt reeds ervaring als avonturier. Je ontvangt +1 EP.',
+					'Hierna opent een pagina waar je deze extra EP onmiddelijk kan besteden.'
+			]
 			],
 		60=>['start'=>93,
 			'end'=>93,
 			'title'=>'Uitzonderlijke Gezondheid',
 			'shortText'=>'Het karakter krijgt +1 LP.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Levenspunt per locatie. Dit is geen vaardigheid.']
 			],
 		61=>['start'=>94,
 			'end'=>94,
 			'title'=>'Uitzonderlijke Wilskracht',
 			'shortText'=>'Het karakter krijgt +1 Wilskracht.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Wilskracht. Dit is geen vaardigheid.']
 			],
 		62=>['start'=>95,
 			'end'=>95,
 			'title'=>'Uitzonderlijke Energie 2',
 			'shortText'=>'Het karakter krijgt +2 Focus.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +2 Focus. Dit is geen vaardigheid.']
 			],
 		63=>['start'=>96,
 			'end'=>96,
