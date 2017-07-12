@@ -435,15 +435,19 @@ class Character extends Model
     }
     
     public function getWealthTypeId(){
+    	$character = Character::find($this->id);
     	$wealthId =
-    	PlayerClass::find(Character::find($this->id)->player_class_id)->wealth_type_id;
-    	$skillsWithWealth = Character::find($this->id)->skills()->has('WealthRules')->get();
+    	PlayerClass::find($character->player_class_id)->wealth_type_id;
+    	$skillsWithWealth = $character->skills()->has('WealthRules')->get();
     	 
     	foreach($skillsWithWealth as $skill){
     		if($wealthId < $skill->wealth_rules[0]->value_type_id){
     			$wealthId = $skill->wealth_rules[0]->value_type_id;
     		}
     	}
+    	
+    	$spark_data = json_decode($character->spark_data);
+    	$wealthId += $spark_data->wealth_bonus;
     	
     	return $wealthId;
     }

@@ -153,7 +153,7 @@ class CharacterController extends Controller
 
     	$classIdArray = $character->getPlayerClassesIdArray();
     	 
-    	$allClassSkills = ClassController::getClassSkills($character->getCharLevelId(), $character->char_race->id, $classIdArray);
+    	$allClassSkills = ClassController::getClassSkills($character->getCharLevelId(), $character->char_race->id, $classIdArray, $character->id);
     	$charWealthType = ClassController::getWealthTypeFromClassArray($classIdArray);
     	$allDescentSkills = $character->getDescentSkills();
     	

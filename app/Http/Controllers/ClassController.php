@@ -7,6 +7,7 @@ use App\SkillLevel;
 use App\PlayerClass;
 use App\WealthType;
 use App\Skill;
+use App\Character;
 
 use Illuminate\Support\Facades\Input;
 
@@ -84,7 +85,7 @@ class ClassController extends Controller
 		die();
 	}    //
 	
-	public static function getClassSkills($charLevel, $char_race, $classIdArray){
+	public static function getClassSkills($charLevel, $char_race, $classIdArray, $charId = -1){
 		$classSkills = [];
 		$nonClassSkills = [];
 		$charRace = array();
@@ -106,6 +107,29 @@ class ClassController extends Controller
 			->orderBy('name', 'asc')
 			->get()
 			;
+			
+			// $sparkSkillIds is needed to exclude skills from the non-class
+			// skills later.
+			$sparkSkillIds = [];
+			
+			if($charId > -1){
+				// Check if this character might have thrown a 100 (Ontwaking) on his Spark table
+				// If so, add three skills to his class skills
+				$sparkSkills = [];
+				$character = Character::find($charId);
+				$sparkData = json_decode($character->spark_data);
+				if(strcasecmp($sparkData->title, 'Ontwaking') == 0){
+					$sparkSkills = Skill::where('name', '=', 'Geestesoog')
+						->orWhere('name', '=', 'Primaire Gave I')
+						->orWhere('name', '=', 'Roep der Natuur')
+						->get();
+					$classSkills = $classSkills->merge($sparkSkills)->sortBy('name');
+					foreach($sparkSkills as $sparkSkill){
+						$sparkSkillIds[] = $sparkSkill->id;
+					}
+				}
+			}
+			
 			$nonClassSkills = Skill::whereDoesntHave('playerClasses',function($query) use( $classIdArray){
 				$query->whereIn('id', $classIdArray)
 				->orWhere('id','=',1);
@@ -117,6 +141,7 @@ class ClassController extends Controller
 			}
 			)
 			->where('skill_level_id','<=',$charLevel)
+			->whereNotIn('id',$sparkSkillIds)
 			->orderBy('name', 'asc')
 			->get();
 	

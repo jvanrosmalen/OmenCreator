@@ -11,6 +11,7 @@ use App\Skill;
 use App\EpAssignment;
 use App\PlayerClass;
 use App\Statistic;
+use App\WealthType;
 
 class SparkController extends Controller
 {
@@ -257,6 +258,45 @@ class SparkController extends Controller
 			$sparkArray['statistics']
 				[Statistic::where('statistic_name','=','Focus')->get()[0]->id] = 2;
 			break;
+		case 63:
+			$sparkArray['statistics']
+				[Statistic::where('statistic_name','=','Status')->get()[0]->id] = 1;
+			break;
+		case 64:
+			$character->descent_ep_amount += 2;
+			$character->save();
+			
+			$url = route('show_edit_character', ['charId' => $charId]);
+			header("Location:".$url);
+			die();
+							
+			break;
+		case 65:
+			$character->ep_amount += 2;
+			$character->save();
+
+			$url = route('show_edit_character', ['charId' => $charId]);
+			header("Location:".$url);
+			die();
+			break;
+		case 66:
+			$wealth_rich =
+				WealthType::where('wealth_type', '=', 'rijk')->get()[0]->id;
+			if($character->getWealthTypeId() < $wealth_rich){
+				// Character is not yet Rich. Add wealth_bonus
+				$sparkArray['wealth_bonus'] = 1;
+			}else{
+				$sparkArray['money'] = 1000;
+			}
+			break;
+		case 67:
+			$character->spark_data = json_encode($sparkArray);
+			$character->save();
+			
+			$url = route('show_edit_character', ['charId' => $charId]);
+			header("Location:".$url);
+			die();
+			break;
 		default:
 			break;
 		}	
@@ -280,9 +320,6 @@ class SparkController extends Controller
 				break;
 			}
 		}
-		
-		// For testing
-		$sparkIndex = 62;
 		
 		switch($sparkIndex){
 			case 1:
@@ -1156,31 +1193,37 @@ class SparkController extends Controller
 			'end'=>96,
 			'title'=>'Uitzonderlijk Charisma/Leiderschap',
 			'shortText'=>'Het karakter krijgt +1 Status.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +1 Status. Dit is geen vaardigheid.']
 			],
 		64=>['start'=>97,
 			'end'=>97,
 			'title'=>'Afkomst Specialisatie 1',
 			'shortText'=>'Het karakter krijgt +2 Afkomstpunten.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je ontvangt +2 Afkomstpunten die je in de Afkomst Klasse mag spenderen.',
+					'Hierna opent een pagina waar je deze extra EP onmiddelijk kan besteden.']
 			],
 		65=>['start'=>98,
 			'end'=>98,
 			'title'=>'Uitzonderlijke Ervaring 2',
 			'shortText'=>'Het karakter krijgt +2 EP.',
-			'text'=>['Er is een foutje opgetreden.']
-			],
+			'text'=>['Je hebt reeds ervaring als avonturier. Je ontvangt +2 EP.',
+					'Hierna opent een pagina waar je deze extra EP onmiddelijk kan besteden.']
+				],
 		66=>['start'=>99,
 			'end'=>99,
 			'title'=>'Uitzonderlijke Welvaart',
 			'shortText'=>'Het karakter is rijker dan normaal.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je rijkdom gaat met 1 niveau omhoog. Dit is geen vaardigheid.',
+					'Indien je al rijk bent ontvang je direct +10 Goud.']
 			],
 		67=>['start'=>100,
 			'end'=>100,
-			'title'=>'Ontwaking!',
+			'title'=>'Ontwaking',
 			'shortText'=>'Het karakter is geboren met magisch potentieel.',
-			'text'=>['Er is een foutje opgetreden.']
+			'text'=>['Je bent geboren met magisch potentieel en mag &eacute;&eacute;n van volgende vaardigheden later aankopen:',
+					'Geestesoog &#45; Primaire Gave &#45; Roep der Natuur',
+					'ongeacht je huidige gekozen klasse.',
+					'Indien je al Ontwaakte hebt gekozen, kun je dus twee magie-strekkingen volgen!']
 			]
 	];
 	
