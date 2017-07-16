@@ -281,4 +281,23 @@ var AjaxInterface = new function(){
 			}
 		});		
 	}
+	
+	self.getCombatSheet = function(char_id){
+		$.ajax({
+			url: "/get_combat_sheet",
+			type: "GET",
+			data: {	"char_id":char_id},
+			success: function(jsondata){
+				var blob=new Blob([jsondata], {type: 'application/pdf'});
+				var url = URL.createObjectURL(blob);
+				window.open(url);
+			},
+			error: function(data){
+				console.log("###########################");
+				console.log("JSON error: get combat sheet");
+				console.log(data.responseText);
+				console.log("###########################");
+			}
+		});		
+	}
 }

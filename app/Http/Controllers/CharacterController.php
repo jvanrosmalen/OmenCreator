@@ -14,6 +14,8 @@ use App\WealthType;
 use App\User;
 use App\Character;
 use App\EpAssignment;
+use Dompdf\Dompdf;
+use Storage;
 
 class CharacterController extends Controller
 {
@@ -321,5 +323,34 @@ class CharacterController extends Controller
     	die();;
     }
     
+	public function generateCombatSheet(Request $request){
+		$data='';
+		$char_id = null;
 
+		if($request->has('char_id')){
+			$char_id = $request->input('char_id');
+			
+			if($char_id > 1){
+				$dompdf = new Dompdf();
+				$dompdf->loadHtml('hello world');
+				
+				// (Optional) Setup the paper size and orientation
+				$dompdf->setPaper('A4', 'landscape');
+				
+				// Render the HTML as PDF
+				$dompdf->render();
+				
+				// Output the generated PDF to Browser
+				$dompdf->stream();
+				
+				$character = Character::find($char_id);
+				$output = $dompdf->output();
+				
+				return response()->json($output);
+			}
+			else{				
+				return response()->json('Unknown char id for combat sheet', 500);
+			}
+		}
+	}
 }

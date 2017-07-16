@@ -6,8 +6,13 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-xs-12'>
+		<div class='col-xs-5'>
 			<h3>{{$character->name}} (Speler: {{$character->char_user->name}})</h3>
+		</div>
+		<div class='col-xs-7'>
+			<div class='col-xs-4 pull-right'>
+				<button id="btnCreateCombatSheet" type="button" class="btn btn-default btn-block" onclick="AjaxInterface.getCombatSheet({{$character->id}})">Cre&euml;er Combatsheet</button>
+			</div>
 		</div>
 	</div>
 
