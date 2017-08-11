@@ -93,6 +93,9 @@ var ShowAll = new function(){
 		if(skill.incomeAmount>0){
 			incomeText = skill.incomeAmount + " " + skill.incomeCoin; 
 		}
+		if(skill.craft_skill){
+			incomeText = incomeText + " (ambachtsvaardigheid)";
+		}
 		$("#skill_income").html(incomeText);
 		
 		// Races indication

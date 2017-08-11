@@ -127,8 +127,10 @@ class SkillController extends Controller
 		$profile_prereq = $_POST["profile_prereq"];
 		$mentor_required = false;
 		$secret_skill = false;
+		$craft_skill = false;
 		$mentor_check = Request::input('mentor');
 		$secret_check = Request::input('secret_skill');
+		$craft_check = Request::input('craft_skill');
 		$wealth_prereq = $_POST["wealth_prereq"];
 		
 		if($mentor_check != null && $mentor_check==="on")
@@ -138,6 +140,10 @@ class SkillController extends Controller
 		if($secret_check != null && $secret_check==="on")
 		{
 			$secret_skill = true;
+		}
+		if($craft_check != null && $craft_check==="on")
+		{
+			$craft_skill = true;
 		}
 		
 		// Save everything to skill table
@@ -153,6 +159,7 @@ class SkillController extends Controller
 		$newSkill->statistic_prereq_id = $profile_prereq;
 		$newSkill->statistic_prereq_amount = $profile_prereq_amount;
 		$newSkill->secret_skill = $secret_skill;
+		$newSkill->craft_skill = $craft_skill;
 		$newSkill->wealth_prereq_id = $wealth_prereq;
 		
 		$newSkill->save();
@@ -274,15 +281,21 @@ class SkillController extends Controller
 		$mentor_check = Request::input('mentor');
 		$secret_skill = false;
 		$secret_check = Request::input('secret_skill');
+		$craft_skill = false;
+		$craft_check = Request::input('craft_skill');
 		$wealth_prereq = $_POST["wealth_prereq"];
 		
 		if($mentor_check != null && $mentor_check==="on")
 		{
 			$mentor_required = true;
 		}
-		if($secret_check != null && $secret_check==="on")
+			if($secret_check != null && $secret_check==="on")
 		{
 			$secret_skill = true;
+		}
+		if($craft_check != null && $craft_check==="on")
+		{
+			$craft_skill = true;
 		}
 		
 		// Save everything to skill table
@@ -297,6 +310,7 @@ class SkillController extends Controller
 		$skill->statistic_prereq_id = $profile_prereq;
 		$skill->statistic_prereq_amount = $profile_prereq_amount;
 		$skill->secret_skill = $secret_skill;
+		$skill->craft_skill = $craft_skill;
 		$skill->wealth_prereq_id = $wealth_prereq;
 		
 		$skill->save();

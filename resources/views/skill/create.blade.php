@@ -49,16 +49,21 @@
 								<input type="text" name="skill_name" value="{{$skill->name}}" style="width: 100%;">
 							@endif
 						</div>
+						<div class="col-xs-3">
+							@if ( $skill != null && $skill->secret_skill)
+								<input type='checkbox' name='secret_skill' checked='checked'> GEHEIME VAARDIGHEID
+							@else
+								<input type='checkbox' name='secret_skill'> GEHEIME VAARDIGHEID
+							@endif
+						</div>
 					</div>
 					<br>
 					<div class='row'>
 						<div class="col-xs-2">
 						</div>
-						<div class='col-xs-7'>
-							<div class='col-xs-1'>
-								Kosten:
-							</div>
+						<div class='col-xs-10'>
 							<div class='col-xs-2'>
+								Kosten:
 								@if ( $skill == null )
 									<input type="number" name="ep_cost" min="1" max="6" value='1'> EP
 								@else
@@ -66,10 +71,20 @@
 								@endif
 							</div> 
 		
-							<div class= "col-xs-2">
-								Inkomsten:
+							<div class='col-xs-3'>Niveau:
+								<select name='skill_level'>
+									@foreach($levels as $level)
+										@if($skill!= null && $level->id != $skill->skill_level_id)
+											<option value='{{$level->id}}'>{{$level->skill_level}}</option>
+										@else
+											<option value='{{$level->id}}' selected>{{$level->skill_level}}</option>
+										@endif
+									@endforeach
+								</select>
 							</div>
-							<div class="col-xs-3">
+
+							<div class= "col-xs-6">
+								Inkomsten:
 								@if ( $skill == null )
 									<input type="number" name="income_amount" min="0" value='0' style="width: 40px;">
 									<select name='income_type'>
@@ -89,27 +104,13 @@
 										@endforeach
 									</select>
 								@endif
+								&ensp;
+								@if ( $skill != null && $skill->craft_skill)
+									<input type='checkbox' name='craft_skill' checked='checked'> Ambachtsvaardigheid
+								@else
+									<input type='checkbox' name='craft_skill'> Ambachtsvaardigheid
+								@endif
 							</div>
-												
-							<div class='col-xs-1'>Niveau:</div>
-							<div class='col-xs-3'>
-								<select name='skill_level'>
-									@foreach($levels as $level)
-										@if($skill!= null && $level->id != $skill->skill_level_id)
-											<option value='{{$level->id}}'>{{$level->skill_level}}</option>
-										@else
-											<option value='{{$level->id}}' selected>{{$level->skill_level}}</option>
-										@endif
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							@if ( $skill != null && $skill->secret_skill)
-								<input type='checkbox' name='secret_skill' checked='checked'> GEHEIME VAARDIGHEID
-							@else
-								<input type='checkbox' name='secret_skill'> GEHEIME VAARDIGHEID
-							@endif
 						</div>
 					</div>
 				</div>

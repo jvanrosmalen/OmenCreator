@@ -646,6 +646,160 @@ class Character extends Model
     	return $this->handleDescentChange($descentClassIds);
     }
     
+    public function moneyAmountToString($amount){
+    	$retStr = "geen";
+    	
+    	if($amount > 0){
+    		// check for bronze
+    		if($amount%10 > 0){
+    			$retStr = "".($amount%10)." brons";
+    		}else{
+    			$retStr = "";
+    		}
+    		
+    		// check for silver
+    		$amount = ($amount - $amount%10)/10;
+    		if($amount > 0 && $amount%10 > 0){
+    			$retStr = "".($amount%10)." zilver  ".$retStr;
+    		}
+    		
+    		// check for gold
+    	    $amount = ($amount - $amount%10)/10;
+    		if($amount > 0){
+    			$retStr = "".$amount." goud  ".$retStr;
+    		}
+    	}
+    	
+    	return $retStr;
+    }
+    
+    public function getIncome(){
+    	// income is returned in copper pieces
+    	$income = 0;
+    	
+    	$character = Character::find($this->id);
+    	$wealthType = $character->getWealthTypeId();
+    	
+    	switch($wealthType){
+    		case 2:
+    			// Character is middleclass
+    			$income = 10;
+    			break;
+    		case 3:
+    			// Character is wealthy
+    			$income = 50;
+    			break;
+    		case 4:
+   				// Character is rich
+    			$income = 500;
+    			break;
+    		case 1:
+    			// Character is poor
+    		default:
+    			break;
+    	}
+    	
+    	// now check for all skills that get you more income
+    	// First check all skills that generate income but are also
+    	// craft skills. Of these, only the one generating the highest
+    	// income is counted
+    	$highestIncomeSkill = Character::find($this->id)
+								->skills()
+								->select(['id','name','income_coin_id','income_amount'])
+ 								->where('craft_skill', true)
+ 								->where('income_amount', '>', '0')
+ 								->orderBy('income_coin_id', 'desc')
+ 								->orderBy('income_amount', 'desc')
+								->first();
+
+		if($highestIncomeSkill != null){
+			switch($highestIncomeSkill->income_coin_id){
+				case 1:
+					// coin is copper
+					$income = $income + $highestIncomeSkill->income_amount; 
+					break;
+				case 2:
+					// coin is silver
+					$income = $income + 10*$highestIncomeSkill->income_amount; 
+					break;
+				case 3:
+					// coin is gold
+					$income = $income + 100*$highestIncomeSkill->income_amount; 
+					break;
+				default:
+					break;
+			}
+		}
+		
+		// Other income skills, not necessarily craft skills
+		$incomeSkills = Character::find($this->id)
+							->skills()
+							->select(['id','name','income_coin_id','income_amount'])
+							->where('craft_skill', false)
+							->where('income_amount', '>', '0')
+							->orderBy('income_coin_id', 'desc')
+							->orderBy('income_amount', 'desc')
+							->get();
+		
+		foreach($incomeSkills as $incomeSkill){
+			switch($incomeSkill->income_coin_id){
+				case 1:
+					// coin is copper
+					$income = $income + $incomeSkill->income_amount;
+					break;
+				case 2:
+					// coin is silver
+					$income = $income + 10*$incomeSkill->income_amount;
+					break;
+				case 3:
+					// coin is gold
+					$income = $income + 100*$incomeSkill->income_amount;
+					break;
+				default:
+					break;
+			}			
+		}
+		
+		return $income;
+    }
+    
+    public function getStartCapital(){
+    	// start capital is returned in coppers
+    	$startCap = 0;
+    	 
+    	$character = Character::find($this->id);
+    	$wealthType = $character->getWealthTypeId();
+    	 
+    	switch($wealthType){
+    		case 1:
+    			// Character is poor
+    			$startCap = 10;
+    			break;
+    		case 2:
+    			// Character is middleclass
+    			$startCap = 100;
+    			break;
+    		case 3:
+    			// Character is wealthy
+    			$startCap = 500;
+    			break;
+    		case 4:
+    			// Character is rich
+    			$startCap = 5000;
+    			break;
+    		default:
+    			break;
+    	}
+    	
+    	// Check for extra start capital from spark roll
+    	$spark_data = json_decode($character->spark_data);
+    	if(isset($spark_data->money)){
+    		$startCap = $startCap + $spark_data->money;
+    	}
+    	
+    	return $startCap;
+    }
+    
     //*****************************************************
     // Private functions
     //*****************************************************
