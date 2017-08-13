@@ -9,6 +9,9 @@
 	@foreach($wealth_types as $wealth_type)
 		<div class="wealth_type hidden" data-id="{{$wealth_type->id}}" data-wealth_type="{{$wealth_type->wealth_type}}"></div>
 	@endforeach
+	@foreach($skilllevels as $skilllevel)
+		<div class="skill_level hidden" id="skill_level_{{$skilllevel->id}}" data-skill_level="{{$skilllevel->skill_level}}"></div>
+	@endforeach
 
 	
 	<div class='container'>

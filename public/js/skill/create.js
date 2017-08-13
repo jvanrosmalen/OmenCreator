@@ -200,7 +200,8 @@ var Create = new function(){
 
 		var skilllevel = document.createElement("TD");
 		skilllevel.setAttribute("class", "col-xs-1");
-		skilllevel.appendChild(document.createTextNode(skill.levelName));
+		// Find skill level in the hidden data fields on this page
+		skilllevel.appendChild(document.createTextNode($("#skill_level_"+skill.level).data('skill_level')));
 		tr.appendChild(skilllevel);
 		
 		var epcost = document.createElement("TD");

@@ -23,7 +23,7 @@ class UserController extends Controller
 		$user = User::find($id);
 		
 		if(Auth::user()->id == $id && !$user_is_admin){
-			return view('/user/errorRemoveOwnAdmin',["user"=>$user]);
+			return view('/user/errorDeleteOwnAdmin',["user"=>$user]);
 		}else{
 			$user->is_story_telling = isset($_POST['isStoryTelling']);
 			$user->is_admin = $user_is_admin;
