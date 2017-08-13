@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class SystemRepMiddleware
 {
@@ -15,10 +16,10 @@ class SystemRepMiddleware
      */
     public function handle($request, Closure $next)
     {
-    	if(!Auth::guest() && Auth::user()->isSystemRep){
+    	if(!Auth::guest() && (Auth::user()->is_system_rep || Auth::user()->is_admin)){
     		return $next($request);	
     	}
     	
-        return redirect('/');
+        return redirect('/illegal_link');
     }
 }

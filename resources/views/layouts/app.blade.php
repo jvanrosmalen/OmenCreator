@@ -8,7 +8,7 @@
     <title>Omen Creator</title>
 
     <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
 	<!-- Styles -->
@@ -69,6 +69,7 @@
     <script src="{{ URL::asset('js/popups/loaderMessage.js') }}"></script>
     <script src="{{ URL::asset('js/libraries/sorttable.js') }}"></script>
     <script src="{{ URL::asset('js/nicedit/nicEdit.js') }}"></script>
+    <script src="{{ URL::asset('js/user/myProfile.js') }}"></script>
   
     <style>
         body {
@@ -90,39 +91,38 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                	@if(!Auth::guest())
                 	<li class="dropdown">
                 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         	Karakters<span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                        	<li><a href="{{ url('my_playerchar') }}">Mijn Spelerkarakter</a></li>
+<!--                         	<li><a href="{{ url('my_extras') }}">Mijn Figurantrollen</a></li> -->
+                        	@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+                        	<hr>
                         	<li><a href="{{ url('create_player_character_basic_info') }}">Cre&euml;er Spelerkarakter</a></li>
                             <li><a href="{{ url('/showall_character') }}">Overzicht Karakters</a></li>
+                            @endif
                         </ul>
                     </li>
                 
+                	@if( Auth::user()->is_story_telling || Auth::user()->is_system_rep || Auth::user()->is_admin)
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                  Vaardigheden<span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                            	@if( Auth::user()->is_system_rep || Auth::user()->is_admin)
                                 <li><a href="{{ url('/create_skill') }}">Cre&euml;er Vaardigheid</a></li>
                                 <li><a href="{{ url('/create_skillgroup') }}">Cre&euml;er Vaardigheidgroep</a></li>
+                                @endif
                                 <li><a href="{{ url('/skillshowall') }}">Overzicht Vaardigheden</a></li>
                                 <li><a href="{{ url('/skillgroupshowall') }}">Overzicht Vaardigheidgroepen</a></li>
                             </ul>
                     </li>
-
-<!--                     <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                 Spelersrassen<span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/showall_races') }}">Overzicht Spelersrassen</a></li>
-                            </ul>
-                    </li> -->
 
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -157,6 +157,7 @@
                                 <li><a href="{{ url('/showall_class') }}">Overzicht Klassen</a></li>
                             </ul>
                     </li>
+
                                         
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -167,7 +168,9 @@
                                 <li><a href="{{ url('/showall_rule') }}">Overzicht Bonusregels</a></li>
                             </ul>
                     </li>
+                    @endif
                     
+                    @if( Auth::user()->is_admin)
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                  Gebruikers<span class="caret"></span>
@@ -177,6 +180,8 @@
                                 <li><a href="{{ url('/showall_user') }}">Overzicht Gebruikers</a></li>
                             </ul>
                     </li>
+                    @endif
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -192,6 +197,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                            	<li><a href="{{ url('/my_profile') }}"><i class="fa fa-btn fa-user-o"></i>Mijn Profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

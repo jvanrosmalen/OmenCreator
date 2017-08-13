@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
 
-class AdminMiddleware
+class StoryTelling
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,6 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-    	if(!Auth::guest() && Auth::user()->is_admin){
-    		return $next($request);	
-    	}
-    	
-        return redirect('/illegal_link');
+        return $next($request);
     }
 }
-?>

@@ -16,6 +16,7 @@ use App\Character;
 use App\EpAssignment;
 use Dompdf\Dompdf;
 use Storage;
+use Auth;
 
 class CharacterController extends Controller
 {
@@ -125,6 +126,27 @@ class CharacterController extends Controller
     	return view('character/showPlayerChar', ['character'=>$character,
     			'overview_skills_string_array' => $character->getOverviewSkillsStringArray()
     	]);
+    }
+    
+    public function showMyCharacter(){
+    	$user = Auth::user();
+    	
+    	if($user != null){
+    		$character = Character::where('user_id', '=', $user->id )
+    			->where('is_alive', true)
+    			->where('is_player_char', true)
+    			->first();
+    		
+    		if($character != null){
+		    	return view('character/showPlayerChar', ['character'=>$character,
+		    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray()
+		    	]);
+    		}else{
+    			return view('character/showNoPlayerChar');
+    		}
+    	}else{
+    		return redirect('/illegal_link');
+    	}
     }
     
     public function showEditPlayerChar($charId){

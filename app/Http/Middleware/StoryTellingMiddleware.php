@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class StoryTellingMiddleware
 {
@@ -15,10 +16,10 @@ class StoryTellingMiddleware
      */
     public function handle($request, Closure $next)
     {
-    	if(!Auth::guest() && Auth::user()->isStoryTelling){
+    	if(!Auth::guest() && (Auth::user()->is_story_telling || Auth::user()->is_admin)){
     		return $next($request);	
     	}
     	
-        return redirect('/');
+        return redirect('/illegal_link');
     }
 }

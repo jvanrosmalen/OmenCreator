@@ -267,5 +267,7 @@
 	</div>
 </div>
 
+@include('popups.showSkillDetails');
+
 @stop
 </html>

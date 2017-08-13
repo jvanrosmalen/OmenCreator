@@ -50,5 +50,8 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'isStoryTelling' => \App\Http\Middleware\StoryTellingMiddleware::class,
+        'isSystemRep' => \App\Http\Middleware\SystemRepMiddleware::class,
     ];
 }

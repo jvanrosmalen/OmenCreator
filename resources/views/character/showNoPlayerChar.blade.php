@@ -7,11 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Hymir zegt:</div>
 
-                <div class="panel-body">
-                    Welkom in mijn hallen, dappere held!
+                <div class="panel-body text-center">
+                    Je hebt op dit moment geen actief spelerkarakter.
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 @endsection

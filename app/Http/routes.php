@@ -121,7 +121,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_delete_rule_resistance/{id?}', 'RulesController@showDeleteRuleResistance');
 	Route::get('/delete_rule_resistance/{id?}', 'RulesController@deleteRuleResistance');
 	
-	Route::get('/showall_user', ['as'=>'showall_user', 'uses' => 'UserController@showAll']);
+	Route::get('/showall_user', ['as'=>'showall_user', 'uses' => 'UserController@showAll'])->middleware('isAdmin');
 	Route::post('/submit_user/{id?}', 'UserController@submitUser');
 	Route::get('/show_delete_user/{id?}', 'UserController@showDeleteUser');
 	Route::get('/delete_user/{id?}', 'UserController@deleteUser');
@@ -139,6 +139,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_edit_character/{charId?}', ['as'=>'show_edit_character', 'uses'=>'CharacterController@showEditPlayerChar']);
 	Route::post('/edit_character_submit', ['as'=>'edit_character_submit', 'uses'=>'CharacterController@editPlayerCharSubmit']);
 	Route::get('/get_combat_sheet','CharacterController@generateCombatSheet');
+	Route::get('/my_playerchar', 'CharacterController@showMyCharacter');
+	Route::get('/my_extras', 'CharacterController@showMyExtras');
 	
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart']);
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice']);
@@ -146,8 +148,21 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/spark_submit/{sparkId?}', ['as'=>'spark_submit', 'uses'=>'SparkController@submitSpark']);
 	
 	Route::auth();
-
-    Route::get('/home', 'HomeController@index');
+	Route::get('/illegal_link', array( 'as'=> 'illegal_link', 'uses'=>function () {
+		return view('/auth/illegal_link');
+	}));
+	
+	Route::get('/my_profile', 'UserController@showProfile');
+	Route::post('/new_username_submit', 'UserController@changeUserName');
+	Route::post('/new_email_submit', 'UserController@changeUserEmail');
+	Route::post('/new_password_submit', 'UserController@changeUserPassword');
+	Route::get('/password_error', ['as'=>'password_error', 'uses'=>function(){return view('/user/errorWrongPassword');}]);
+	Route::get('/new_password_error', ['as'=>'new_password_error', 'uses'=>function(){return view('/user/errorNewPassword');}]);
+	Route::get('/new_passwords_not_equal_error', ['as'=>'new_passwords_not_equal_error', 'uses'=>function(){return view('/user/errorNewPasswordsNotEqual');}]);
+	Route::get('/profile_change_successful', ['as'=>'profile_change_successful', 'uses'=>function(){return view('/user/successChangeProfile');}]);
+	Route::get('/profile_name_change_error', ['as'=>'profile_name_change_error', 'uses'=>function(){return view('/user/profileNameChangeError');}]);
+	Route::get('/profile_email_change_error', ['as'=>'profile_email_change_error', 'uses'=>function(){return view('/user/profileEmailChangeError');}]);
+	Route::get('/home', 'HomeController@index');
 });
 
 // Route::group(['middleware' => 'web'], function () {
