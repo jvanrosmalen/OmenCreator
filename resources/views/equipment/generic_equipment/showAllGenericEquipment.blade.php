@@ -5,9 +5,11 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<span class="overview_header">Algemene Uitrusting</span>
+				@if($user->is_admin || $user->is_system_rep)
 				<a href="/create_generic_equipment" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
+				@endif
 			</div>
 		
 			<div class="col-xs-3">
@@ -31,12 +33,14 @@
 				<div id="{{$generic_equipment->id}}" class="col-xs-8 detail_name">
 					{{ $generic_equipment->name }}
 				</div>
+				@if($user->is_admin || $user->is_system_rep)
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-generic-equipment-{{$generic_equipment->id}} btn-update" role="button">Aanpassen</a>
 				</div>
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-generic-equipment-{{$generic_equipment->id}} btn-delete" role="button">Verwijderen</a>
 				</div>
+				@endif
 			</div>
 			<div id="generic_equipment_detail_{{$generic_equipment->id}}" class="row equipment_details">
 				<div class="row">
@@ -64,24 +68,26 @@
 								<tr>
 									<td class="detail_name">Prijs</td>
 									@if(isset($generic_equipment->price_normal)
-										&& $generic_equipment->price_normal!=null
-										&& !strcasecmp($generic_equipment->price_normal,"")
-										&& $generic_equipment->price_normal!=0
-										&& !strcasecmp($generic_equipment->price_normal, "-"))
+										&& $generic_equipment->price_normal>0
+										)
 									<td class="detail_rating">{{$generic_equipment->price_normal}}</td>
 									@else
 									<td class="detail_rating">Nvt</td>
 									@endif
 									@if(isset($generic_equipment->price_good)
-										&& $generic_equipment->price_good!=null
-										&& !strcasecmp($generic_equipment->price_good,"")
-										&& $generic_equipment->price_good!=0
-										&& !strcasecmp($generic_equipment->price_good, "-"))
+										&& $generic_equipment->price_good>0
+										)
 									<td class="detail_rating">{{$generic_equipment->price_good}}</td>
 									@else
 									<td class="detail_rating">Nvt</td>
 									@endif
+									@if(isset($generic_equipment->price_master)
+										&& $generic_equipment->price_master>0
+										)
 									<td class="detail_rating">{{$generic_equipment->price_master}}</td>
+									@else
+									<td class="detail_rating">Nvt</td>
+									@endif
 								</tr>
 							</tbody>		
 						</table>
@@ -108,8 +114,18 @@
 						@foreach($generic_equipment->wealth_rules as $wealth_rule)
 							{{$wealth_rule->toString()}}<br>
 						@endforeach
+						@if(
+							count($generic_equipment->dam_rules) == 0 &&
+							count($generic_equipment->call_rules) == 0 &&
+							count($generic_equipment->res_rules) == 0 &&
+							count($generic_equipment->stat_rules) == 0 &&
+							count($generic_equipment->wealth_rules) == 0
+						)
+						<em>geen</em>
+						@endif
 					</div>
 				</div>
+				<br>
 			</div>
 		@endforeach
 		

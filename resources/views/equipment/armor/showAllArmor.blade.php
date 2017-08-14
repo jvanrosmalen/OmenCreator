@@ -5,9 +5,11 @@
 		<div class="row">
 			<div class="col-xs-5">
 				<span class="overview_header">Overzicht Pantsers</span>
+				@if($user->is_admin || $user->is_system_rep)
 				<a href="/create_armor" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
+				@endif
 			</div>
 		
 			<div class="col-xs-4">
@@ -31,12 +33,14 @@
 				<div id="{{$armor->id}}" class="col-xs-8 detail_name">
 					{{ $armor->name }}
 				</div>
+				@if($user->is_admin || $user->is_system_rep)
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-armor-{{$armor->id}} btn-update" role="button">Aanpassen</a>
 				</div>
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-armor-{{$armor->id}} btn-delete" role="button">Verwijderen</a>
 				</div>
+				@endif
 			</div>
 			<div id="armor_detail_{{$armor->id}}" class="row equipment_details">
 				<div class="row">
@@ -62,9 +66,27 @@
 							<tbody>
 								<tr>
 									<td class="detail_name">Prijs</td>
-									<td class="detail_rating">{{$armor->price_normal}}</td>
-									<td class="detail_rating">{{$armor->price_good}}</td>
-									<td class="detail_rating">{{$armor->price_master}}</td>
+									<td class="detail_rating">
+									@if ($armor->price_normal > 0)
+									{{$armor->price_normal}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->price_good > 0)
+									{{$armor->price_good}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->price_master > 0)
+									{{$armor->price_master}}
+									@else
+									nvt
+									@endif
+									</td>
 								</tr>
 							</tbody>		
 						</table>
@@ -84,15 +106,51 @@
 							<tbody>
 								<tr>
 									<td class="detail_name">Pantser</td>
-									<td class="detail_rating">{{$armor->armor_normal}}</td>
-									<td class="detail_rating">{{$armor->armor_good}}</td>
-									<td class="detail_rating">{{$armor->armor_master}}</td>
+									<td class="detail_rating">
+									@if ($armor->armor_normal > 0)
+									{{$armor->armor_normal}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->armor_good > 0)
+									{{$armor->armor_good}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->armor_master > 0)
+									{{$armor->armor_master}}
+									@else
+									nvt
+									@endif
+									</td>
 								</tr>
 								<tr>
 									<td class="detail_name">Structuur</td>
-									<td class="detail_rating">{{$armor->structure_normal}}</td>
-									<td class="detail_rating">{{$armor->structure_good}}</td>
-									<td class="detail_rating">{{$armor->structure_master}}</td>
+									<td class="detail_rating">
+									@if ($armor->structure_normal > 0)
+									{{$armor->structure_normal}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->structure_good > 0)
+									{{$armor->structure_good}}
+									@else
+									nvt
+									@endif
+									</td>
+									<td class="detail_rating">
+									@if ($armor->structure_master > 0)
+									{{$armor->structure_master}}
+									@else
+									nvt
+									@endif
+									</td>
 								</tr>
 							</tbody>		
 						</table>

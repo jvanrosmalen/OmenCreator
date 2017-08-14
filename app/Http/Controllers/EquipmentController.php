@@ -7,6 +7,7 @@ use App\Shield;
 use App\Weapon;
 use App\CraftEquipment;
 use App\GenericEquipment;
+use Auth;
 
 class EquipmentController extends Controller
 {
@@ -78,7 +79,10 @@ class EquipmentController extends Controller
 			{
 			    return $armor->name;
 			});
-		return view('equipment/armor/showAllArmor', [ "armors"=>$armors]);
+		
+		return view('equipment/armor/showAllArmor', [ "armors"=>$armors,
+				'user'=>Auth::user()
+		]);
 	}
 
 	public function gotoShowAllArmor(){
@@ -156,7 +160,10 @@ class EquipmentController extends Controller
 			{
 			    return $shield->name;
 			});
-		return view('equipment/shield/showAllShield', [ "shields"=>$shields]);
+		return view('equipment/shield/showAllShield',
+				[ "shields"=>$shields,
+				'user' => Auth::user()
+				]);
 	}
 
 	public function gotoShowAllShield(){
@@ -221,7 +228,10 @@ class EquipmentController extends Controller
 			{
 			    return $weapon->name;
 			});
-		return view('equipment/weapon/showAllWeapon', [ "weapons"=>$weapons]);
+		return view('equipment/weapon/showAllWeapon',
+				[ "weapons"=>$weapons,
+				"user"=>Auth::user()
+				]);
 	}
 
 	public function gotoShowAllWeapon(){
@@ -260,7 +270,10 @@ class EquipmentController extends Controller
 	
 	public function showDeleteCraftEquipment($id = -1){
 		$craft_equipment = CraftEquipment::find($id);
-		return view('equipment/craft_equipment/showDeleteCraftEquipment', ['craft_equipment'=>$craft_equipment]);
+		
+		return view('equipment/craft_equipment/showDeleteCraftEquipment',
+				['craft_equipment'=>$craft_equipment
+				]);
 	}
 	
 	public function deleteCraftEquipment($id = -1){
@@ -377,7 +390,10 @@ class EquipmentController extends Controller
 		{
 			return $craft_equipment->name;
 		});
-		return view('equipment/craft_equipment/showAllCraftEquipment', [ "craft_equipments"=>$craft_equipments]);
+		return view('equipment/craft_equipment/showAllCraftEquipment',
+				[ "craft_equipments"=>$craft_equipments,
+				"user"=>Auth::user()
+				]);
 	}
 	
 	public function gotoShowAllCraftEquipment(){
@@ -537,7 +553,10 @@ class EquipmentController extends Controller
 		{
 			return $generic_equipment->name;
 		});
-		return view('equipment/generic_equipment/showAllGenericEquipment', [ "generic_equipments"=>$generic_equipments]);
+		return view('equipment/generic_equipment/showAllGenericEquipment',
+				[ "generic_equipments"=>$generic_equipments,
+				"user"=>Auth::user()
+				]);
 	}
 	
 	public function gotoShowAllGenericEquipment(){

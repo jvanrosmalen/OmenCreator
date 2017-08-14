@@ -5,9 +5,11 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<span class="overview_header">Overzicht Ambachtsuitrusting</span>
+				@if($user->is_admin || $user->is_system_rep)
 				<a href="/create_craft_equipment" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
+				@endif
 			</div>
 		
 			<div class="col-xs-3">
@@ -31,12 +33,14 @@
 				<div id="{{$craft_equipment->id}}" class="col-xs-8 detail_name">
 					{{ $craft_equipment->name }}
 				</div>
+				@if($user->is_admin || $user->is_system_rep)
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-craft-equipment-{{$craft_equipment->id}} btn-update" role="button">Aanpassen</a>
 				</div>
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-craft-equipment-{{$craft_equipment->id}} btn-delete" role="button">Verwijderen</a>
 				</div>
+				@endif
 			</div>
 			<div id="craft_equipment_detail_{{$craft_equipment->id}}" class="row equipment_details">
 				<div class="row">
@@ -92,8 +96,18 @@
 						@foreach($craft_equipment->wealth_rules as $wealth_rule)
 							{{$wealth_rule->toString()}}<br>
 						@endforeach
+						@if(
+							count($craft_equipment->dam_rules) == 0 &&
+							count($craft_equipment->call_rules) == 0 &&
+							count($craft_equipment->res_rules) == 0 &&
+							count($craft_equipment->stat_rules) == 0 &&
+							count($craft_equipment->wealth_rules) == 0
+						)
+						<em>geen</em>
+						@endif
 					</div>
 				</div>
+				<br>
 			</div>
 		@endforeach
 		

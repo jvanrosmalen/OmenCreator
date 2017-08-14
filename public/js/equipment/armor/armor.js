@@ -47,7 +47,7 @@ var Armor = new function(){
 			});
 		}
 		
-		$(".armor_name_row").each(function(){
+		$(".equipment_name_row").each(function(){
 			var armorname = $(this).find(".detail_name").text().toLowerCase();
 			
 			if(armorname.indexOf(value) > -1){

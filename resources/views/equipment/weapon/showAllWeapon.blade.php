@@ -5,9 +5,11 @@
 		<div class="row">
 			<div class="col-xs-5">
 				<span class="overview_header">Overzicht Wapens</span>
+				@if($user->is_admin || $user->is_system_rep)
 				<a href="/create_weapon" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
+				@endif
 			</div>
 		
 			<div class="col-xs-4">
@@ -31,12 +33,14 @@
 				<div id="{{$weapon->id}}" class="col-xs-8 detail_name">
 					{{ $weapon->name }}
 				</div>
+				@if($user->is_admin || $user->is_system_rep)
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-weapon-{{$weapon->id}} btn-update" role="button">Aanpassen</a>
 				</div>
 				<div class="col-xs-1">
 					<a href="#" class="btn btn-default btn-weapon-{{$weapon->id}} btn-delete" role="button">Verwijderen</a>
 				</div>
+				@endif
 			</div>
 			<div id="weapon_detail_{{$weapon->id}}" class="row equipment_details">
 				<div class="row">

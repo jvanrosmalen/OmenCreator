@@ -8,12 +8,26 @@
 			</div>
 		</div>
 
+		<br>
 		<div class="row">
 		</div>
-		
+
+		@if(count($craft_equipment->skills) > 0)
+		<div class="row">
+			<div class='col-xs-10 col-xs-offset-1'>
+				Deze ambachtsuitrusting wordt gebruikt voor de volgende vaardigheden:<br>
+				<ul>
+				@foreach($craft_equipment->skills as $skill)
+					<li>{{$skill->name}}</li>
+				@endforeach
+				</ul>
+			</div>
+		</div>
+		@endif
+				
 		<div class="row well warning-text">
 			<div class="col-xs-12">
-				Ben je er zeker van dat je onderstaande ambachtsuitrusting wilt verwijderen
+				Ben je er zeker van dat de ambachtsuitrusting <em>{{ $craft_equipment->name }}</em> wilt verwijderen
 				uit de database?
 			</div>		
 		</div>
@@ -21,70 +35,6 @@
 		<div class="row">
 		</div>
 		
-		<div class="row well equipment_name_row">
-			<div class="col-xs-1">
-			</div>
-			<div id="{{$craft_equipment->id}}" class="col-xs-8 detail_name">
-				{{ $craft_equipment->name }}
-			</div>
-		</div>
-		
-		<div id="craft_equipment_detail_{{$craft_equipment->id}}" class="row">
-			<div class="row">
-				<div class="col-xs-1">
-				</div>
-				<div class="col-xs-9">
-					{!! Blade::compileString($craft_equipment->description); !!}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-1">
-				</div>
-				<div class="col-xs-4">
-					<table class="table borderless detail_table">
-						<thead>
-							<tr>
-								<td></td>
-								<td class="detail_name detail_rating">Normaal</td>
-								<td class="detail_name detail_rating">Goed</td>
-								<td class="detail_name detail_rating">Meesterlijk</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="detail_name">Prijs</td>
-								<td class="detail_rating">{{$craft_equipment->price}}</td>
-								<td class="detail_rating">Nvt</td>
-								<td class="detail_rating">Nvt</td>
-							</tr>
-						</tbody>		
-					</table>
-				</div>
-			</div>
-
-				<div class="row">
-					<div class="col-xs-1">
-					</div>
-					<div class="col-xs-6 rule_display">
-						<b>Speciale regels:</b><br>
-						@foreach($craft_equipment->dam_rules as $dam_rule)
-							{{$dam_rule->toString()}}<br>
-						@endforeach
-						@foreach($craft_equipment->call_rules as $call_rule)
-							{{$call_rule->toString()}}<br>
-						@endforeach
-						@foreach($craft_equipment->res_rules as $res_rule)
-							{{$res_rule->toString()}}<br>
-						@endforeach
-						@foreach($craft_equipment->stat_rules as $stat_rule)
-							{{$stat_rule->toString()}}<br>
-						@endforeach
-						@foreach($craft_equipment->wealth_rules as $wealth_rule)
-							{{$wealth_rule->toString()}}<br>
-						@endforeach
-					</div>
-				</div>
-					
 			<div class="row button-row">
 				<div class="col-xs-3"></div>
 				<div class="col-xs-2">
