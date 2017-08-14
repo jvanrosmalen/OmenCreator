@@ -58,7 +58,31 @@ var Create = new function(){
 			}
 		});
 	};
-	
+
+	self.skillGroupSearch = function(){
+		var value = $("#skillGroupSearchInput").val().toLowerCase();
+		
+		if(value == 'undefined' || value == ""){
+			$("#skillgroups > hidden").each(function(){
+				$(this).removeClass("hidden");
+			});
+		}
+		
+		$("#skillgroups > tr").each(function(){
+			var skillgroupname = $(this).find(".skillgroupname").attr('id').toLowerCase();
+			
+			if(skillgroupname.indexOf(value) > -1){
+				if($(this).hasClass("hidden")){
+					$(this).removeClass("hidden");
+				}
+			} else {
+				if(!$(this).hasClass("selected")){
+					$(this).addClass("hidden");
+				}
+			}
+		});
+	};
+
 	self.selectSkill = function(e){
 		event.preventDefault();
 

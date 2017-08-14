@@ -29,6 +29,7 @@ class JsonSkillController extends Controller {
 				->whereIn('player_class_id', $class_filter)
 				->select('skills.*', 'skill_levels.skill_level as levelName', 'player_classes.class_name as player_classes')
 				->groupBy('skills.id')
+				->orderBy('name')
 				->get();
 
 			// skills can have more than one player_class

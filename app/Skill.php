@@ -109,6 +109,16 @@ class Skill extends Model {
 		return $this->belongsToMany('App\SkillGroup');
 	}
 	
+	public function  prereqOfSkills(){
+		return $this->belongsToMany('App\Skill', 'skill_skill_prereqs', 'skills_prereq_id', 'skill_id')->withPivot('prereq_set');
+	}
+	
+	public function belongsToCharacters(){
+		return $this->belongsToMany('App\Character')
+		->withTimeStamps()
+		->withPivot('purchase_ep_cost','is_descent_skill','is_out_of_class_skill');
+	}
+	
 	/**
 	 * Functions to return various rules through the model
 	 * without them being saved in the DB
@@ -264,6 +274,14 @@ class Skill extends Model {
 		}
 	
 		return $retArray;
+	}
+	
+	public function isPrereqOf(){
+		return Skill::find($this->id)->prereqOfSkills()->get();
+	}
+	
+	public function ownedByPlayers(){
+		return Skill::find($this->id)->belongsToCharacters()->get();
 	}
 	
 	// BELOW IS OLD CODE WITHOUT PROPER ORM USED

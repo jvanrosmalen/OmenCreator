@@ -418,7 +418,12 @@ class SkillController extends Controller
 	
 	public function showDeleteSkill($id){
 		$skill = Skill::find($id);
-		return view('/skill/showdeleteskill', ['skill'=>$skill]);
+		$prereqOf = $skill->isPrereqOf();
+		$ownedBy = $skill->ownedByPlayers();
+		return view('/skill/showdeleteskill', ['skill'=>$skill,
+				'prereqOf' =>$prereqOf,
+				'ownedBy' => $ownedBy
+		]);
 	}
 	
 	public function deleteSkill($id){

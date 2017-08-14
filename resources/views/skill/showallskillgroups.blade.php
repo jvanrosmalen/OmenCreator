@@ -15,7 +15,7 @@
 <!--    				<div id="skillSelectorSearch"> -->
    				<div>
    					<div class="input-group col-md-12">
-                    	<input id="skillSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken (Geselecteerde items blijven getoond)" onchange="Create.skillSearch();"/>
+                    	<input id="skillGroupSearchInput"  type="text" class="search-query form-control" placeholder="Zoek op naam of onderdeel van naam" onchange="Create.skillGroupSearch();"/>
                         <span class="input-group-btn">
                            	<button class="btn btn-danger" type="button">
                                	<span class=" glyphicon glyphicon-search"></span>

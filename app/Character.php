@@ -173,7 +173,7 @@ class Character extends Model
     }
     
     public function getCharUserAttribute(){
-    	return Character::find($this->id)->charUser()->get()[0];
+    	return Character::find($this->id)->charUser()->first();
     }
     
     public function getCharLevelAttribute(){
