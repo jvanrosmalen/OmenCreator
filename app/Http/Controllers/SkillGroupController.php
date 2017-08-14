@@ -81,7 +81,9 @@ class SkillGroupController extends Controller
 	
 	public function showDeleteSkillGroup($id){
 		$skillGroup = SkillGroup::find($id);
-		return view('/skill/showdeleteskillgroup', ['skillgroup'=>$skillGroup]);
+		$prereqForSkills = $skillGroup->isPrereqForSkills();
+		return view('/skill/showdeleteskillgroup', ['skillgroup'=>$skillGroup,
+				'prereqForSkills'=>$prereqForSkills]);
 	}
 	
 	public function deleteSkillGroup($id){

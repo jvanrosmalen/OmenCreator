@@ -7,8 +7,18 @@
 				<span class="overview_header">Verwijder Vaardigheidgroep</span>
 			</div>
 		</div>
-
+		<br>
 		<div class="row">
+			@if(count($prereqForSkills) > 0)
+				<div class='col-xs-10 col-xs-offset-1'>
+					Deze vaardigheidgroep is een prereq voor de volgende vaardigheden:
+					<ul>
+					@foreach($prereqForSkills as $skill)
+						<li>{{$skill->name}}</li>
+					@endforeach
+					</ul>
+				</div>
+			@endif
 		</div>
 		
 		<div class="row well warning-text">

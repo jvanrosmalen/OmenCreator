@@ -19,7 +19,7 @@ class SkillGroup extends Model
     
     public function prereqForSkills()
     {
-    	return $this->belongsToMany('App\SkillGroup', 'skill_skill_group_prereqs')->withPivot('prereq_set');
+    	return $this->belongsToMany('App\Skill', 'skill_skill_group_prereqs','skill_group_id','skill_id')->withPivot('prereq_set');
     }
     
     public function getFullGroupSkillsDetail(){
@@ -50,5 +50,9 @@ class SkillGroup extends Model
 											'skill_group_prereqs',
 											'wealth_prereq']);
 									});
+    }
+    
+    public function isPrereqForSkills(){
+    	return Skillgroup::find($this->id)->prereqForSkills()->get();
     }
 }
