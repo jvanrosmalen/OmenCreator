@@ -140,6 +140,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/get_combat_sheet','CharacterController@generateCombatSheet')->middleware('auth');
 	Route::get('/my_playerchar', 'CharacterController@showMyCharacter')->middleware('auth');
 // 	Route::get('/my_extras', 'CharacterController@showMyExtras');
+	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');
+	Route::get('/raise_character/{charId?}', 'CharacterController@doRaiseCharacter')->middleware('isAdmin');
+	
 	
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart'])->middleware('isStoryTelling');
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice'])->middleware('isStoryTelling');

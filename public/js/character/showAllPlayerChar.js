@@ -3,25 +3,26 @@ var ShowAllPlayerChar = new function(){
 	
 	self.playerSearch = function(){
 		// TODO
-		var value = $("#skillSearchInput").val().toLowerCase();
+		var value = $("#playerSearchInput").val().toLowerCase();
 		
 		if(value == 'undefined' || value == ""){
-			$("#skills > hidden").each(function(){
+			$("#all_chars .hidden").each(function(){
 				$(this).removeClass("hidden");
 			});
+			return;
 		}
 		
-		$("#skills > tr").each(function(){
-			var skillname = $(this).find(".skillname").attr('id').toLowerCase();
+		$("#all_chars .charname").each(function(){
+			var charname = $(this).attr('id').toLowerCase();
+			var tableRow = $(this).closest('tr');
+			var playername = $(this).closest('tr').find('.playername').attr('id').toLowerCase();
 			
-			if(skillname.indexOf(value) > -1){
-				if($(this).hasClass("hidden")){
-					$(this).removeClass("hidden");
+			if(charname.indexOf(value) > -1 || playername.indexOf(value) > -1){
+				if(tableRow.hasClass("hidden")){
+					tableRow.removeClass("hidden");
 				}
 			} else {
-				if(!$(this).hasClass("selected") && !$(this).hasClass("submitted")){
-					$(this).addClass("hidden");
-				}
+				tableRow.addClass("hidden");
 			}
 		});
 	};

@@ -95,7 +95,8 @@ class CharacterController extends Controller
     }
     
     public function showKillCharacter($charId){
-    	return view('character/showKillCharacter', ['character' => Character::find($charId)]);
+    	return view('character/showKillCharacter',
+    			['character' => Character::find($charId)]);
     }
     
     public function doKillCharacter($charId){
@@ -106,6 +107,19 @@ class CharacterController extends Controller
     	$this->showAllCharacters();
     }
 
+    public function showRaiseCharacter($charId){
+    	return view('character/showRaiseCharacter',
+    			['character' => Character::find($charId)]);
+    }
+
+    public function doRaiseCharacter($charId){
+    	$character = Character::find($charId);
+    	$character->is_alive = true;
+    	$character->save();
+    	 
+    	$this->showAllCharacters();
+    }    
+    
     public function showDeleteCharacter($charId){
     	return view('character/showDeleteCharacter', ['character' => Character::find($charId)]);
     }
@@ -118,7 +132,24 @@ class CharacterController extends Controller
     }
     
     public function doShowAllPlayerChars(){
-    	return view('character/showAllPlayerChar', ['characters'=> Character::all()]);
+    	$user = Auth::user();
+    	$active_chars = Character::where('is_alive', true)
+    						->where('is_player_char', true)
+    						->where('is_active', true)
+    						->get();
+    	$inactive_chars = Character::where('is_alive', true)
+    						->where('is_player_char', true)
+    						->where('is_active', false)
+    						->get();
+    	$dead_chars = Character::where('is_alive', false)
+    						->where('is_player_char', true)
+    						->get();
+    	return view('character/showAllPlayerChar',
+    			['active_chars'=> $active_chars,
+    			'inactive_chars'=> $inactive_chars,
+    			'dead_chars'=>$dead_chars,
+    			'user'=>$user
+    			]);
     }
     
     public function doShowPlayerChar($charId){
