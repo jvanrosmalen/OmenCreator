@@ -19,8 +19,11 @@ class SparkController extends Controller
 		return view('spark/sparkStart', ['charId'=>$charId]);
 	}
 	
-	public function showSparkChose($charId){
-		
+	public function showSparkChoice($charId){
+		return view('spark/sparkChoice',
+				['char'=>Character::find($charId),
+				'sparkTable'=>$this->SPARK_TABLE
+				]);
 	}
 	
 	public function submitSpark($sparkId){
@@ -309,8 +312,16 @@ class SparkController extends Controller
 		die();
 	}
 	
-	public function showSparkRandom($charId){
+	public function handleSparkChoice(){
+		return $this->showSparkRandom($_POST['charId'], $_POST['selectedSpark']);
+	}
+	
+	public function showSparkRandom($charId, $sparkRollInput=-1){
 		$sparkRoll = rand(1, 100);
+		if($sparkRollInput > 0){
+			$sparkRoll = $sparkRollInput;
+		}
+		
 		$sparkIndex = 0;
 		
 		foreach($this->SPARK_TABLE as $i=>$spark){

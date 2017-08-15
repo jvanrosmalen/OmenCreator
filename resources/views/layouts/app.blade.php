@@ -59,6 +59,7 @@
     <script src="{{ URL::asset('js/race/race.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rulesInclude.js') }}"></script>
     <script src="{{ URL::asset('js/rule/rule.js') }}"></script>
+    <script src="{{ URL::asset('js/spark/sparkChoice.js') }}"></script>
     <script src="{{ URL::asset('js/layouts/tabController.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterControl.js') }}"></script>
@@ -158,7 +159,7 @@
                             </ul>
                     </li>
 
-                                        
+                    @if(Auth::user()->is_system_rep || Auth::user()->is_admin)                    
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                  Bonusregels<span class="caret"></span>
@@ -168,6 +169,7 @@
                                 <li><a href="{{ url('/showall_rule') }}">Overzicht Bonusregels</a></li>
                             </ul>
                     </li>
+                    @endif
                     @endif
                     
                     @if( Auth::user()->is_admin)

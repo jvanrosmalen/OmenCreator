@@ -1,3 +1,8 @@
+#spark_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 400px
+}
+
 #char_table.table-fixedheader>tbody,
 #skill_table.table-fixedheader>tbody {
 	overflow-y: scroll;
