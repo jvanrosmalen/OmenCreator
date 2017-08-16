@@ -48,64 +48,100 @@
 	
 	<div class="row">
 		<div class='row'>
-			<div class="col-xs-8 col-xs-offset-2"><h4>EP Overzicht</h4></div>
+			<div class="col-xs-8 col-xs-offset-2"><h4>EP Overzicht - ({{$character->getSpentEpAmount()}}/{{$character->getTotalEpAmount()}})</h4></div>
 		</div>
 		<div class='row'>
-				<div class="col-xs-8 col-xs-offset-2">
-					<table id="char_ep_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
-						<thead>
-							<tr>
-								<th class="col-xs-2">
-									Datum
-								</th>
-								<th class="col-xs-2">
-									Aantal EP
-								</th>
-								<th class="col-xs-7">
-									Beschrijving
-								</th>
-								<th class="col-xs-1">
-									Actie
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($character->ep_assignments as $assignment)
-							<tr id="{{ $assignment->id }}">
-								<td id="{{$assignment->id}}" class="col-xs-2">
-									<?php
-									$createDate = new DateTime($assignment->created_at);
+			<div class="col-xs-8 col-xs-offset-2">
+				<table id="char_ep_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+					<thead>
+						<tr>
+							<th class="col-xs-2">
+								Datum
+							</th>
+							<th class="col-xs-2">
+								Aantal EP
+							</th>
+							<th class="col-xs-7">
+								Beschrijving
+							</th>
+							<th class="col-xs-1">
+								Actie
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $first = true;?>
+						@foreach($character->ep_assignments as $assignment)
+							@if($first)
+								<tr id="{{ $assignment->id }}">
+									<td id="{{$assignment->id}}" class="col-xs-2">
+										<?php
+										$first = false;
+										$createDate = new DateTime($assignment->created_at);
+										$stripped = $createDate->format('Y-m-d');
+										?>
+										{{$stripped}}
+									</td>
+									<td class="col-xs-2">
+										{{$assignment->amount}}
+									</td>
+									<td class="col-xs-7">
+										{{$assignment->reason}}
+									</td>
+									<td class="col-xs-1">
+																				
+									</td>
+								</tr>
+								<tr id="{{ $assignment->id }}">
+									<td id="{{$assignment->id}}" class="col-xs-2">
+										{{$stripped}}
+									</td>
+									<td class="col-xs-2">
+										{{$character->descent_ep_amount}}
+									</td>
+									<td class="col-xs-7">
+										Afkomst EP
+									</td>
+									<td class="col-xs-1">
+									</td>
+								</tr>
+							@else
+								<tr id="{{ $assignment->id }}">
+									<td id="{{$assignment->id}}" class="col-xs-2">
+										<?php
+										$createDate = new DateTime($assignment->created_at);
+										
+										$stripped = $createDate->format('Y-m-d');
+										?>
+										{{$stripped}}
+									</td>
+									<td class="col-xs-2">
+										{{$assignment->amount}}
+									</td>
+									<td class="col-xs-7">
+										{{$assignment->reason}}
+									</td>
+									<td class="col-xs-1">
 									
-									$stripped = $createDate->format('Y-m-d');
-									?>
-									{{$stripped}}
-								</td>
-								<td class="col-xs-2">
-									{{$assignment->amount}}
-								</td>
-								<td class="col-xs-7">
-									{{$assignment->reason}}
-								</td>
-								<td class="col-xs-1">
-								
-								<form action='/remove_character_ep' method='POST'>
-									<!-- ******************* -->
-									<!-- For Laravel CSRF administration -->
-									<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-									<!-- ******************* -->
-		
-									<input name='charId' type='hidden' value='{{$character->id}}'>
-									<input name='assignmentId' type='hidden' value='{{ $assignment->id }}'>
-		
-									<button type='submit' class="btn btn-default btn-danger btn-xs glyphicon glyphicon-minus" data-toggle="tooltip" title="Verwijder EP">
-									</button>
-								</form>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
+									<form action='/remove_character_ep' method='POST'>
+										<!-- ******************* -->
+										<!-- For Laravel CSRF administration -->
+										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+										<!-- ******************* -->
+			
+										<input name='charId' type='hidden' value='{{$character->id}}'>
+										<input name='assignmentId' type='hidden' value='{{ $assignment->id }}'>
+			
+										<button type='submit' class="btn btn-default btn-danger btn-xs glyphicon glyphicon-minus" data-toggle="tooltip" title="Verwijder EP">
+										</button>
+									</form>
+									</td>
+								</tr>
+							@endif
+						@endforeach
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	

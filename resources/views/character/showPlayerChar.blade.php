@@ -19,6 +19,7 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
 		<li><a id="tab2" data-toggle="tab" href="#skills">Vaardigheden</a></li>
+		<li><a id="tab3" data-toggle="tab" href="#ep_overview">EP Overzicht</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -253,6 +254,83 @@
 					</table>
 				</div>
 			</div>
+		</div>
+		<div id="ep_overview" class="tab-pane fade">
+			<br>
+		<div class='row'>
+			<div class="col-xs-8 col-xs-offset-2"><h4>EP Overzicht - ({{$character->getSpentEpAmount()}}/{{$character->getTotalEpAmount()}})</h4></div>
+		</div>
+		<div class='row'>
+				<div class="col-xs-6 col-xs-offset-2">
+					<table id="char_ep_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+						<thead>
+							<tr>
+								<th class="col-xs-3">
+									Datum
+								</th>
+								<th class="col-xs-3">
+									Aantal EP
+								</th>
+								<th class="col-xs-6">
+									Beschrijving
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php $first = true;?>
+							@foreach($character->ep_assignments as $assignment)
+								@if($first)
+									<tr id="{{ $assignment->id }}">
+										<td id="{{$assignment->id}}" class="col-xs-3">
+											<?php
+											$first = false;
+											$createDate = new DateTime($assignment->created_at);
+											$stripped = $createDate->format('Y-m-d');
+											?>
+											{{$stripped}}
+										</td>
+										<td class="col-xs-3">
+											{{$assignment->amount}}
+										</td>
+										<td class="col-xs-6">
+											{{$assignment->reason}}
+										</td>
+									</tr>
+									<tr id="{{ $assignment->id }}">
+										<td id="{{$assignment->id}}" class="col-xs-3">
+											{{$stripped}}
+										</td>
+										<td class="col-xs-3">
+											{{$character->descent_ep_amount}}
+										</td>
+										<td class="col-xs-6">
+											Afkomst EP
+										</td>
+									</tr>
+								@else
+									<tr id="{{ $assignment->id }}">
+										<td id="{{$assignment->id}}" class="col-xs-3">
+											<?php
+											$createDate = new DateTime($assignment->created_at);
+											
+											$stripped = $createDate->format('Y-m-d');
+											?>
+											{{$stripped}}
+										</td>
+										<td class="col-xs-3">
+											{{$assignment->amount}}
+										</td>
+										<td class="col-xs-6">
+											{{$assignment->reason}}
+										</td>
+									</tr>
+								@endif
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+		</div>
+
 		</div>
 	</div>
 	<br>

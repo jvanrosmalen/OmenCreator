@@ -253,6 +253,10 @@ class Character extends Model
     	return $epAmount;
     }
     
+    public function getTotalEpAmount(){
+    	return $this->ep_amount + $this->descent_ep_amount;
+    }
+    
     public function getSpentDescentEpAmount(){
     	$epAmount = 0;
     	 
