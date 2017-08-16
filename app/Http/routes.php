@@ -142,7 +142,10 @@ Route::group(['middleware' => ['web']], function () {
 // 	Route::get('/my_extras', 'CharacterController@showMyExtras');
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');
 	Route::get('/raise_character/{charId?}', 'CharacterController@doRaiseCharacter')->middleware('isAdmin');
-	
+	Route::get('/show_character_ep/{charId?}', ['as'=>'show_character_ep', 'uses'=>'CharacterController@showCharEp'])->middleware('isStoryTelling');
+	Route::post('/remove_character_ep', ['as'=>'remove_character_ep', 'uses'=>'CharacterController@removeCharEp'])->middleware('isStoryTelling');
+	Route::post('/do_character_add_ep', ['as'=>'do_character_add_ep', 'uses'=>'CharacterController@doCharAddEp'])->middleware('isStoryTelling');
+// 	Route::post('/do_character_remove_ep', ['as'=>'do_character_remove_ep', 'uses'=>'CharacterController@doCharRemoveEp'])->middleware('isStoryTelling');
 	
 	Route::get('/show_spark_start/{charId?}', ['as'=>'show_spark_start', 'uses'=>'SparkController@showSparkStart'])->middleware('isStoryTelling');
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice'])->middleware('isStoryTelling');

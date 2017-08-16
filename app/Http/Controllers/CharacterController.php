@@ -237,6 +237,7 @@ class CharacterController extends Controller
     	$newChar->is_player_char = true;
     	$newChar->nr_events_survived = $_POST['nr_events_survived'];
     	$newChar->descent_ep_amount = 3;
+    	$newChar->is_active = true;
     	
     	$sparkArray = Character::getSparkArray();
     	$newChar->spark_data = json_encode($sparkArray);    	
@@ -405,5 +406,82 @@ class CharacterController extends Controller
 				return response()->json('Unknown char id for combat sheet', 500);
 			}
 		}
+	}
+	
+	public function showCharEp($charId){
+		return view('/character/showCharacterEp',
+				['character'=>Character::find($charId)]);
+	}
+	
+	public function removeCharEp(){
+		$charId = $_POST['charId'];
+		$assignId = $_POST['assignmentId'];
+		
+		$character = Character::find($charId);
+		$ep_assignment = EpAssignment::find($assignId);
+		
+		if($character == null || $ep_assignment==null){
+			$this->showAllCharacters();
+		}
+		
+		$ep_assignment->delete();
+		
+		// Update Ep for character
+		$count = 0;
+		foreach($character->ep_assignments as $assignment){
+			$count += $assignment->amount;
+		}
+		$character->ep_amount = $count;
+		$character->save();
+		
+		return view('/character/showCharRemoveEpSuccess',
+				[ 'character'=>$character,
+				'ep_assignment'=>$ep_assignment
+				]);
+	}
+	
+	public function doCharAddEp(){
+		$charId = $_POST['charId'];
+		$ep_amount = $_POST['ep_amount'];
+		$ep_reason = $_POST['ep_reason'];
+		$event_survived = $_POST['event_survived'];
+		$character = Character::find($charId);
+		
+		foreach($character->ep_assignments as $assignment){
+			if(strcmp($assignment->reason, $ep_reason)==0
+					&& $assignment->amount == $ep_amount
+					&& (strtotime(date("Y-m-d")) - strtotime($assignment->created_at)) < 300
+			){
+				// Probably the same assignment, due to reload or something.
+				// return immediately without updating character
+				return view('/character/showCharacterAddEpSuccess',
+						['character'=>$character,
+								'ep_amount'=>$ep_amount,
+								'ep_reason'=>$ep_reason,
+								'ep_total'=>($character->ep_amount + $character->descent_ep_amount)
+						]);
+			}
+		}
+		
+		$character->ep_amount = $character->ep_amount + $ep_amount; 
+		
+		if($event_survived){
+			$character->nr_events_survived = $character->nr_events_survived + 1;
+			$character->save();
+		}
+		
+		$epAssign = new EpAssignment();
+		$epAssign->amount = $ep_amount;
+		$epAssign->reason = $ep_reason;
+		$epAssign->character_id = $charId;
+		 
+		$epAssign->save();
+		
+		return view('/character/showCharacterAddEpSuccess',
+				['character'=>$character,
+				'ep_amount'=>$ep_amount,
+				'ep_reason'=>$ep_reason,
+				'ep_total'=>($character->ep_amount + $character->descent_ep_amount)
+				]);
 	}
 }

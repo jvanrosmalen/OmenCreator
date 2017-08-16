@@ -80,7 +80,10 @@
 				                    	<a href="/show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
 		   									<span class="glyphicon glyphicon-eye-open"></span> 
 		   								</a>
-				                    	<a href="/show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan">
+				                    	<a href="/show_character_ep/{{$character->id}}" class="btn btn-success btn-xs show-add-ep-btn" data-toggle="tooltip" title="Bekijk EP">
+		   									<span class="glyphicon glyphicon-arrow-up"></span> 
+		   								</a>
+				                    	<a href="/show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>
 				                    	<a href="/show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">
@@ -225,5 +228,8 @@
 			</div>
 		</div>
 	</div>
+
+	@include('popups.showLoaderMessage')
+
 @stop
 </html>

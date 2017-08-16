@@ -64,7 +64,12 @@
 			        <tbody id="skills">
 				            @foreach ($skills as $skill)
 				                <tr id="{{ $skill->id }}" onclick="ShowAll.showSkillDetails(event);">
-				                    <td id="{{$skill->name}}" class="skillname col-xs-3">{{ $skill->name }}</td>
+				                    <td id="{{$skill->name}}" class="skillname col-xs-3">
+				                    	{{ $skill->name }}
+				                    	@if($skill->secret_skill)
+				                    		 - <i class='fa fa-user-secret fa-lg' data-toggle="tooltip" title="Geheime vaardigheid"></i>
+				                    	@endif
+				                    </td>
 				                    <td class="col-xs-4">{{ $skill->description_small }}</td>
 				               		<td class="col-xs-2">
 				               		@foreach ($skill->player_classes as $player_class)

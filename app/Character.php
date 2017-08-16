@@ -139,8 +139,7 @@ class Character extends Model
    	}
    	
    	public function getEpAssignmentsAttribute(){
-//     	return Character::find($this->id)->myEpAssigments()->get();
-    	return null;
+    	return Character::find($this->id)->myEpAssigments()->get();
     }
     
     public function getCharRaceAttribute(){

@@ -26,4 +26,8 @@ var ShowAllPlayerChar = new function(){
 			}
 		});
 	};
+	
+	self.doUpdateCharacter = function(){
+		LoaderMessage.showLoaderMessage("het smeden van de lijsten met vaardigheden duurt een aantal seconden.");
+	}
 }

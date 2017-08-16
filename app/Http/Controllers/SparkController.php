@@ -267,6 +267,7 @@ class SparkController extends Controller
 			break;
 		case 64:
 			$character->descent_ep_amount += 2;
+			$character->spark_data = json_encode($sparkArray);
 			$character->save();
 			
 			$url = route('show_edit_character', ['charId' => $charId]);

@@ -88,6 +88,6 @@ document {
     border: 1px solid #d1d1d1;
 }
 
-.hidden {
-	display: none;
+.input_number_field{
+    width: 40px;
 }
