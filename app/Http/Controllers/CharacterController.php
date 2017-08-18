@@ -385,8 +385,10 @@ class CharacterController extends Controller
 			$char_id = $request->input('char_id');
 			
 			if($char_id > 1){
+				$character = Character::find($char_id);
+				
 				$dompdf = new Dompdf();
-				$dompdf->loadHtml('hello world');
+				$dompdf->loadHtml(view('/character/charCombatSheet',['character'=>$character]));
 				
 				// (Optional) Setup the paper size and orientation
 				$dompdf->setPaper('A4', 'landscape');
@@ -397,7 +399,6 @@ class CharacterController extends Controller
 				// Output the generated PDF to Browser
 				$dompdf->stream();
 				
-				$character = Character::find($char_id);
 				$output = $dompdf->output();
 				
 				return response()->json($output);

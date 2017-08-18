@@ -1,0 +1,127 @@
+/* To remove margins in DOMPDF  */
+@page { margin: 0px; }
+body { margin: 0px; }
+
+/* The rest */
+.landscape_a4 {
+	width: 29.6cm;
+	height: 20.7cm;
+	margin:0;
+	padding:0.3cm;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0px;
+	left:0px;
+}
+
+.page{
+	box-sizing: border-box;
+}
+
+.left_page{
+	position:absolute;
+	top:0.3cm;
+	left:0.3cm;
+}
+
+.right_page{
+	position:absolute;
+	top:0.3cm;
+	right:-0.3cm;
+}
+
+.dashed{
+	border:dashed 1px #A3A3A3;
+}
+
+.heavy_outline{
+	border:solid 2px black !important;
+}
+
+.heavy_top{
+	border-top:solid 2px black !important;
+}
+
+.heavy_bottom{
+	border-bottom:solid 2px black !important;
+}
+
+.heavy_left{
+	border-left:solid 2px black !important;
+}
+
+.heavy_right{
+	border-right:solid 2px black !important;
+}
+
+.light_outline{
+	border:solid 1px black !important;
+}
+
+.light_top{
+	border-top:solid 1px black !important;
+}
+
+.light_bottom{
+	border-bottom:solid 1px black !important;
+}
+
+.light_left{
+	border-left:solid 1px black !important;
+}
+
+.light_right{
+	border-right:solid 1px black !important;
+}
+
+table{
+	border-collapse: collapse;
+	box-sizing: border-box;
+	margin:0px;
+	padding: 0px;
+}
+
+tr {
+	margin:0px;
+	padding: 0px;
+}
+
+td{
+	margin:0px;
+	padding: 0px;
+	height: 23px;
+	width: 27px;
+}
+
+/* Needed because DOMPDF cannot handle rowspan */
+.height_3_row{
+	height: 69px;
+}
+
+.height_5_row{
+	height: 115px;
+}
+
+.text_centered{
+	text-align: center;
+}
+
+.text_left{
+	margin-left: 10px !important;
+}
+
+.large_text_centered_heigth_3{
+	text-align: center;
+	line-height: 69px;
+	vertical-align: middle;
+	font-size: 40px;
+}
+
+.thin_circle {
+	border:solid 1px black;
+	border-radius: 8px;
+	width: 16px;
+	height: 16px;
+	margin: auto;
+	vertical-align:middle;
+}
