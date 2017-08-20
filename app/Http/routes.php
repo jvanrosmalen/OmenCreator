@@ -169,6 +169,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/profile_name_change_error', ['as'=>'profile_name_change_error', 'uses'=>function(){return view('/user/profileNameChangeError');}])->middleware('auth');
 	Route::get('/profile_email_change_error', ['as'=>'profile_email_change_error', 'uses'=>function(){return view('/user/profileEmailChangeError');}])->middleware('auth');
 	Route::get('/home', 'HomeController@index');
+	
+// 	Plopje
+// 	Route::get('/combat_sheet_test/{charId?}', 'CharacterController@combatSheetTest');
 });
 
 // Route::group(['middleware' => 'web'], function () {

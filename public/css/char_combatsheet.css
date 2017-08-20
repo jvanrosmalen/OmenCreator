@@ -1,10 +1,11 @@
 /* To remove margins in DOMPDF  */
 @page { margin: 0px; }
-body { margin: 0px; }
+body { margin: 0px;
+}
 
 /* The rest */
 .landscape_a4 {
-	width: 29.6cm;
+	width: 29.1cm;
 	height: 20.7cm;
 	margin:0;
 	padding:0.3cm;
@@ -20,14 +21,14 @@ body { margin: 0px; }
 
 .left_page{
 	position:absolute;
-	top:0.3cm;
-	left:0.3cm;
+	top:0.4cm;
+	left:0.4cm;
 }
 
 .right_page{
 	position:absolute;
-	top:0.3cm;
-	right:-0.3cm;
+	top:0.4cm;
+	left:14.9cm;
 }
 
 .dashed{
@@ -74,6 +75,30 @@ body { margin: 0px; }
 	border-right:solid 1px black !important;
 }
 
+.dashed_top{
+	border-top:dashed 1px #A3A3A3;
+}
+
+.dashed_bottom{
+	border-bottom:dashed 1px #A3A3A3;
+}
+
+.dashed_right{
+	border-right:dashed 1px #A3A3A3;
+}
+
+.dashed_left{
+	border-left:dashed 1px #A3A3A3;
+}
+
+.clear_right{
+	border-right:solid 1px transparent;
+}
+
+.clear_left{
+	border-left:solid 1px transparent;
+}
+
 table{
 	border-collapse: collapse;
 	box-sizing: border-box;
@@ -90,7 +115,8 @@ td{
 	margin:0px;
 	padding: 0px;
 	height: 23px;
-	width: 27px;
+	width: 29px;
+	box-sizing: border-box;
 }
 
 /* Needed because DOMPDF cannot handle rowspan */
@@ -124,4 +150,13 @@ td{
 	height: 16px;
 	margin: auto;
 	vertical-align:middle;
+}
+
+.bold_italic {
+	font-weight: bold;
+	font-style: italic;
+}
+
+.page_break {
+	page-break-after: always;
 }

@@ -376,7 +376,7 @@ class CharacterController extends Controller
     	header("Location:".$url);
     	die();;
     }
-    
+
 	public function generateCombatSheet(Request $request){
 		$data='';
 		$char_id = null;
@@ -388,10 +388,12 @@ class CharacterController extends Controller
 				$character = Character::find($char_id);
 				
 				$dompdf = new Dompdf();
+				
 				$dompdf->loadHtml(view('/character/charCombatSheet',['character'=>$character]));
 				
 				// (Optional) Setup the paper size and orientation
 				$dompdf->setPaper('A4', 'landscape');
+				ini_set('max_execution_time', 300); //300 seconds = 5 minutes
 				
 				// Render the HTML as PDF
 				$dompdf->render();
@@ -401,11 +403,14 @@ class CharacterController extends Controller
 				
 				$output = $dompdf->output();
 				
+				ini_set('max_execution_time', 30); //30 seconds
 				return response()->json($output);
 			}
 			else{				
 				return response()->json('Unknown char id for combat sheet', 500);
 			}
+		}else{
+			return response()->json('No char id in request', 500);
 		}
 	}
 	

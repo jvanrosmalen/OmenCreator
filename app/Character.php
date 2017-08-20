@@ -83,7 +83,8 @@ class Character extends Model
 		// for each prereq entry
 		return Character::find($this->id)
 								->skills()
-								->select(['id','name'])
+								->select(['id','name','description_small'])
+								->orderBy('name')
 								->get()
 								->each(function($row){
 									$row->setHidden(
