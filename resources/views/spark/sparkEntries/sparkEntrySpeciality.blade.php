@@ -8,7 +8,7 @@
 			</div>
 		</div>
 
-		<form action="/spark_submit/23" method="POST">
+		<form action="spark_submit/23" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->

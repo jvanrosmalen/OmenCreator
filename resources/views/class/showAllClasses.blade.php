@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<span class="overview_header">Klassen</span>
-				<a href="/create_class" type="button" class="btn btn-default button-add" aria-label="Left Align">
+				<a href="create_class" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
 			</div>

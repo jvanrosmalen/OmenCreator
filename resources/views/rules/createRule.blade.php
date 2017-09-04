@@ -6,7 +6,7 @@
 		</div>
 	</div>
 
-	<form action="/create_rule_submit" method="POST">
+	<form action="create_rule_submit" method="POST">
 
 		<!-- ******************* -->
 		<!-- For Laravel CSRF administration -->
@@ -63,7 +63,7 @@
 			</div>
 			<div class="col-xs-2"></div>
 			<div class="col-xs-2">
-				<a href="/showall_rule" class="btn btn-default" id="cancel_button"
+				<a href="showall_rule" class="btn btn-default" id="cancel_button"
 					type="button" style="width: 120px; font-size: 18px;"> Cancel </a>
 			</div>
 		</div>

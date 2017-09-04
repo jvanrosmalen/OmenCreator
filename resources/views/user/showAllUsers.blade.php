@@ -72,7 +72,7 @@
 						 
 						        <tbody id="users">
 							            @forelse ($users as $user)
-					                		<form action="/submit_user/{{$user->id}}" method="POST">
+					                		<form action="submit_user/{{$user->id}}" method="POST">
 											<!-- ******************* -->
 											<!-- For Laravel CSRF administration -->
 											<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -107,7 +107,7 @@
 							                    	<button type='submit' class="btn btn-default btn-xs save-user-btn-{{$user->id}}">
 			          									<span class="glyphicon glyphicon-floppy-disk"></span> 
 			        								</button>
-							                    	<a href="/show_delete_user/{{$user->id}}" class="btn btn-danger btn-xs remove-user-btn">
+							                    	<a href="show_delete_user/{{$user->id}}" class="btn btn-danger btn-xs remove-user-btn">
 			          									<span class="glyphicon glyphicon-minus"></span> 
 			        								</a>
 			        							</td>
@@ -153,7 +153,7 @@
 						 
 						        <tbody id="users">
 							            @forelse ($requests as $request)
-						                	<form action="/submit_user/{{$request->id}}" method="POST">
+						                	<form action="submit_user/{{$request->id}}" method="POST">
 											<!-- ******************* -->
 											<!-- For Laravel CSRF administration -->
 											<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -175,7 +175,7 @@
 			          									<span class="glyphicon glyphicon-thumbs-up"></span> 
 			        								</button>
 			        								
-							                    	<a href="/show_delete_user/{{$request->id}}" class="btn btn-danger btn-xs remove-user-btn">
+							                    	<a href="show_delete_user/{{$request->id}}" class="btn btn-danger btn-xs remove-user-btn">
 			          									<span class="glyphicon glyphicon-thumbs-down"></span> 
 			        								</a>
 			        							</td>

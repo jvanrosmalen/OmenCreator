@@ -8,7 +8,7 @@
 			</div>
 		</div>
 
-		<form action="/spark_submit/{{$sparkIndex}}" method="POST">
+		<form action="spark_submit/{{$sparkIndex}}" method="POST">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
@@ -70,7 +70,7 @@
 				<div class="col-xs-3">
 				</div>
 				<div class="col-xs-2">
-					<a href="/show_spark_random/{{$charId}}" class="btn btn-default" type="button" style="width: 150px; font-size: 18px;">
+					<a href="show_spark_random/{{$charId}}" class="btn btn-default" type="button" style="width: 150px; font-size: 18px;">
 						Gooi opnieuw
 					</a>
 				</div>

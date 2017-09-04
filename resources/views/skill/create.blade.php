@@ -17,9 +17,9 @@
 			</div>
 			
 			@if ($skill == null)
- 				<form id="createSkillForm" action="/create_skill_submit" method="POST">
+ 				<form id="createSkillForm" action="create_skill_submit" method="POST">
  			@else
- 				<form id="createSkillForm" action="/create_skill_update/{{$skill->id}}" method="POST">
+ 				<form id="createSkillForm" action="create_skill_update/{{$skill->id}}" method="POST">
  			@endif
 
 			<!-- ******************* -->

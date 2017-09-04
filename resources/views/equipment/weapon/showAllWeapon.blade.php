@@ -6,7 +6,7 @@
 			<div class="col-xs-5">
 				<span class="overview_header">Overzicht Wapens</span>
 				@if($user->is_admin || $user->is_system_rep)
-				<a href="/create_weapon" type="button" class="btn btn-default button-add" aria-label="Left Align">
+				<a href="create_weapon" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
 				@endif

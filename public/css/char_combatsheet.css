@@ -1,6 +1,27 @@
 /* To remove margins in DOMPDF  */
 @page { margin: 0px; }
-body { margin: 0px;
+
+@font-face {
+    font-family: Cousine-Regular;
+  	font-style: normal;
+	font-weight: normal;
+    /*src: url('{{ asset("fonts/cousine/Cousine-Regular.ttf") }}');*/
+    src: url('../fonts/cousine/Cousine-Regular.ttf');
+}
+@font-face {
+    font-family: LiberationMono-Regular;
+  	font-style: normal;
+	font-weight: normal;
+    /*src: url('{{ asset("fonts/cousine/Cousine-Regular.ttf") }}');*/
+    src: url('../fonts/liberation/LiberationMono-Regular.ttf');
+}
+
+body { 
+	margin: 0px;
+}
+
+.truetypefont {
+	font-family: 
 }
 
 /* The rest */

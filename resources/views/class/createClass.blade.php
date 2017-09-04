@@ -15,9 +15,9 @@
 	</div>
 
 	@if ($class == null)
-		<form id="{{ ($class!=null?$class->id:-1) }}" action="/create_class_submit" method="POST">
+		<form id="{{ ($class!=null?$class->id:-1) }}" action="create_class_submit" method="POST">
 	@else
-		<form id="{{ ($class!=null?$class->id:-1) }}" action="/create_class_update/{{ $class->id }}" method="POST">
+		<form id="{{ ($class!=null?$class->id:-1) }}" action="create_class_update/{{ $class->id }}" method="POST">
 	@endif
 
 			<!-- ******************* -->

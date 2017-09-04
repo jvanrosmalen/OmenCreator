@@ -13,9 +13,9 @@
 		</div>
 	
 		@if ($shield == null)
-		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="/create_shield_submit" method="POST">
+		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="create_shield_submit" method="POST">
 		@else
-		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="/create_shield_update/{{ $shield->id }}" method="POST">
+		<form id="{{ ($shield!=null?$shield->id:-1) }}" action="create_shield_update/{{ $shield->id }}" method="POST">
 		@endif
 
 			<!-- ******************* -->
@@ -157,7 +157,7 @@
 				</div>
 				<div class="col-xs-2"></div>
 				<div class="col-xs-2">
-					<a href="/showall_shield" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+					<a href="showall_shield" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
 					Cancel
 					</a>
 				</div>

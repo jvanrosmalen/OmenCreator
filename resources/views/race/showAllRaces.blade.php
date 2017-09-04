@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<span class="overview_header">Rassen</span>
-				<a href="/create_race" type="button" class="btn btn-default button-add" aria-label="Left Align">
+				<a href="create_race" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
 			</div>

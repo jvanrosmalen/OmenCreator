@@ -79,10 +79,10 @@
 				               		<td class="col-xs-1">{{ $skill->skill_level }}</td>
 				                    <td class="col-xs-1 skill_ep_cost">{{ $skill->ep_cost }}</td>
 				                    <td class="col-xs-1">
-				                    	<a href="/create_skill/{{$skill->id}}" class="btn btn-info btn-xs edit-skill-btn">
+				                    	<a href="create_skill/{{$skill->id}}" class="btn btn-info btn-xs edit-skill-btn">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
-				                    	<a href="/show_delete_skill/{{$skill->id}}" class="btn btn-danger btn-xs remove-skill-btn">
+				                    	<a href="show_delete_skill/{{$skill->id}}" class="btn btn-danger btn-xs remove-skill-btn">
           									<span class="glyphicon glyphicon-minus"></span> 
         								</a>
         							</td>

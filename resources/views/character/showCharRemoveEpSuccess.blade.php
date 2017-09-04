@@ -44,7 +44,7 @@
 	<div class="row">
 		<div class="row button-row">
 			<div class="col-xs-2 col-xs-offset-5">
-				<a href="/show_character_ep/{{$character->id}}" class="btn btn-default"
+				<a href="show_character_ep/{{$character->id}}" class="btn btn-default"
 					id="cancel_button" type="button"
 					style="width: 100%; font-size: 18px;">EP Overzicht</a>
 			</div>

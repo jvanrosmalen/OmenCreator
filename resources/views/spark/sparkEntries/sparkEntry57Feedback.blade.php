@@ -8,7 +8,7 @@
 			</div>
 		</div>
 
-		<form action="/show_edit_character/{{$charId}}" method="GET">
+		<form action="show_edit_character/{{$charId}}" method="GET">
 
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->

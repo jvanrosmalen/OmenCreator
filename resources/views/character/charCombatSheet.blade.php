@@ -2513,11 +2513,1921 @@ So good luck... -->
 			</div>
 			
 			<div id='page_4' class='page heavy_outline right_page page_break'>
+				<table>
+					<tr>
+						<td colspan='14' class='heavy_outline text_centered'>
+						Uitrusting &amp; Bezittingen
+						</td>
+						<td colspan='4' class='heavy_outline text_centered'>
+						Kwaliteit
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='4' class='dashed_bottom heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='14' class='heavy_right'>
+						</td>
+						<td colspan='4' class='heavy_left'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Periodiek
+						</td>
+						<td colspan='3' class='heavy_outline text_centered'>
+						VR
+						</td>
+						<td colspan='3' class='heavy_outline text_centered'>
+						ZA1
+						</td>
+						<td colspan='3' class='heavy_outline text_centered'>
+						ZA2
+						</td>
+						<td colspan='3' class='heavy_outline text_centered'>
+						ZO
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom heavy_right'>
+						</td>
+						<td colspan='3' class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_right'>
+						</td>
+						<td colspan='3' class='heavy_right'>
+						</td>
+						<td colspan='3' class='heavy_right'>
+						</td>
+						<td colspan='3' class='heavy_right'>
+						</td>
+						<td colspan='3'>
+						</td>
+					</tr>
+					<tr>
+						<td class='heavy_top heavy_bottom heavy_left'>
+						</td>
+						<td colspan='4' class='heavy_top heavy_bottom text_centered'>
+						Status
+						</td>
+						<td class='heavy_outline text_centered'>
+						{{$character->status}}
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+					</tr>
+					<tr>
+						<td class='heavy_top heavy_bottom heavy_left'>
+						</td>
+						<td colspan='4' class='heavy_top heavy_bottom text_centered'>
+						Focus
+						</td>
+						<td class='heavy_outline text_centered'>
+						{{$character->focus}}
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+						<td class='heavy_top dashed_bottom dashed_left dashed_right'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+					</tr>
+				</table>
 			</div>			
 			
+			<div id='page_5' class='page heavy_outline left_page'>
+				<table>
+					<tr>
+						<td colspan='18' class='heavy_outline text_centered'>
+						Trauma Journaal
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='heavy_outline text_centered'>
+						Opgelopen op
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Omen
+						</td>
+						<td class='heavy_outline'>
+						</td>
+						<td colspan='5' class='heavy_outline text_centered'>
+						Aantal
+						</td>
+						<td class='heavy_outline'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Hoe?
+						</td>
+						<td colspan='12' class='dashed_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='6' class='light_outline text_centered'>
+						Genezen door?
+						</td>
+						<td colspan='12' class='light_bottom text_centered'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+					</tr>
+				</table>
+			</div>			
 			
+			<div id='page_6' class='page heavy_outline right_page page_break'>
+				<table>
+					<tr>
+						<td colspan='18' class='heavy_outline text_centered'>
+						Opmerkingen, Bevindingen &amp; Andere Zaken
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+						<td class='dashed_bottom'>
+						</td>
+					</tr>
+					<tr>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+					</tr>
+				</table>			
+			</div>			
 			
-			<div id='page_4' class='page heavy_outline right_page page_break'>
+			<div id='page_7' class='page heavy_outline left_page'>
 				<table id='p4_skills'>
 					<tr>
 						<td colspan='18' class='heavy_outline text_centered'>
@@ -2739,7 +4649,7 @@ So good luck... -->
 				</table>
 			</div>
 			
-			<div id='page_5' class='page heavy_outline left_page'>
+			<div id='page_8' class='page heavy_outline right_page'>
 				<table id='p5_skills'>
 					<tr>
 						<td colspan='18' class='heavy_outline text_centered'>
@@ -2961,6 +4871,5 @@ So good luck... -->
 				</table>
 			</div>
 		</div>
-		<div class='hidden' id="hidden_skills" data-skills="{{$character->skills}}" ></div>
 	</body>
 </html>

@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	
-	<form action="/edit_character_submit" method="POST">
+	<form action="edit_character_submit" method="POST">
 		<!-- ******************* -->
 		<!-- For Laravel CSRF administration -->
 		<input type="hidden" name="_token" value="{!! csrf_token() !!}">

@@ -13,9 +13,9 @@
 		</div>
 	
 		@if ($armor == null)
-		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="/create_armor_submit" method="POST">
+		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="create_armor_submit" method="POST">
 		@else
-		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="/create_armor_update/{{ $armor->id }}" method="POST">
+		<form id="{{ ($armor!=null?$armor->id:-1) }}" action="create_armor_update/{{ $armor->id }}" method="POST">
 		@endif
 		
 			<!-- ******************* -->
@@ -157,7 +157,7 @@
 				</div>
 				<div class="col-xs-2"></div>
 				<div class="col-xs-2">
-					<a href="/showall_armor" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+					<a href="showall_armor" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
 					Cancel
 					</a>
 				</div>

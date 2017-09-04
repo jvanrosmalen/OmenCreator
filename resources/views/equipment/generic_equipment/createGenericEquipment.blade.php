@@ -15,9 +15,9 @@
 			</div>
 		
 			@if ($generic_equipment == null)
-			<form id="{{ ($generic_equipment!=null?$generic_equipment->id:-1) }}" action="/create_generic_equipment_submit" method="POST">
+			<form id="{{ ($generic_equipment!=null?$generic_equipment->id:-1) }}" action="create_generic_equipment_submit" method="POST">
 			@else
-			<form id="{{ ($generic_equipment!=null?$generic_equipment->id:-1) }}" action="/create_generic_equipment_update/{{ $generic_equipment->id }}" method="POST">
+			<form id="{{ ($generic_equipment!=null?$generic_equipment->id:-1) }}" action="create_generic_equipment_update/{{ $generic_equipment->id }}" method="POST">
 			@endif
 
 			<!-- ******************* -->

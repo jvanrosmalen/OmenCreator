@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Omen Creator</title>
-
+    
+    <base href="http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/">
+    <!-- Need this below for all the links in my ajaxInterface.js -->
+	<script>
+		var GLOBAL_BASE = 'http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/';
+	</script>
+	
     <!-- Fonts -->
 	<link href="{{ URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>

@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-xs-5">
 				<span class="overview_header">Overzicht Bonusregels</span>
-				<a href="/create_rule" type="button" class="btn btn-default button-add" aria-label="Left Align">
+				<a href="create_rule" type="button" class="btn btn-default button-add" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
 			</div>
@@ -47,7 +47,7 @@
 										{{ $statRule->value }}
 									</div>
 									<div class="col-xs-3">
-										<a href="/show_delete_rule_statistic/{{$statRule->id}}" class="btn btn-default btn-delete" role="button">Verwijderen</a>
+										<a href="show_delete_rule_statistic/{{$statRule->id}}" class="btn btn-default btn-delete" role="button">Verwijderen</a>
 									</div>						
 								@endif
 							@endforeach
@@ -97,7 +97,7 @@
 										{{ $resRule->value }}
 									</div>
 									<div class="col-xs-3">
-										<a href="/show_delete_rule_resistance/{{$resRule->id}}" class="btn btn-default btn-delete" role="button">Verwijderen</a>
+										<a href="show_delete_rule_resistance/{{$resRule->id}}" class="btn btn-default btn-delete" role="button">Verwijderen</a>
 									</div>						
 								@endif
 							@endforeach

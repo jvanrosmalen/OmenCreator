@@ -3,7 +3,7 @@ var AjaxInterface = new function(){
 	
 	self.getSkillLevelsClasses = function(levels, classes, selected, callback){
 		$.ajax({
-			url: "/get_skill_levels_classes",
+			url: GLOBAL_BASE+"/get_skill_levels_classes",
 			type: "GET",
 			data: {"levels":levels, "classes":classes, "selected":selected},
 			success: function(data){
@@ -20,7 +20,7 @@ var AjaxInterface = new function(){
 	
 	self.getFullSkillDetails = function(id, callback){
 		$.ajax({
-			url: "/get_skill_details",
+			url: GLOBAL_BASE+"/get_skill_details",
 			type: "GET",
 			data: {"id":id},
 			success: function(data){
@@ -86,7 +86,7 @@ var AjaxInterface = new function(){
 	
 	self.checkArmorName = function(name, armor_id, callback){
 		$.ajax({
-			url: "/check_armor_name",
+			url: GLOBAL_BASE+"/check_armor_name",
 			type: "GET",
 			data: {	"name":name,
 					"armor_id": armor_id},
@@ -106,7 +106,7 @@ var AjaxInterface = new function(){
 	
 	self.checkShieldName = function(name, shield_id, callback){
 		$.ajax({
-			url: "/check_shield_name",
+			url: GLOBAL_BASE+"/check_shield_name",
 			type: "GET",
 			data: {	"name":name,
 					"shield_id": shield_id},
@@ -126,7 +126,7 @@ var AjaxInterface = new function(){
 	
 	self.checkWeaponName = function(name, weapon_id, callback){
 		$.ajax({
-			url: "/check_weapon_name",
+			url: GLOBAL_BASE+"/check_weapon_name",
 			type: "GET",
 			data: {	"name":name,
 					"weapon_id": weapon_id},
@@ -146,7 +146,7 @@ var AjaxInterface = new function(){
 
 	self.checkCraftEquipmentName = function(name, craft_equipment_id, callback){
 		$.ajax({
-			url: "/check_craft_equipment_name",
+			url: GLOBAL_BASE+"/check_craft_equipment_name",
 			type: "GET",
 			data: {	"name":name,
 					"craft_equipment_id": craft_equipment_id},
@@ -166,7 +166,7 @@ var AjaxInterface = new function(){
 	
 	self.checkGenericEquipmentName = function(name, generic_equipment_id, callback){
 		$.ajax({
-			url: "/check_generic_equipment_name",
+			url: GLOBAL_BASE+"/check_generic_equipment_name",
 			type: "GET",
 			data: {	"name":name,
 					"generic_equipment_id": generic_equipment_id},
@@ -190,7 +190,7 @@ var AjaxInterface = new function(){
 		var myUrl = "/check_rule_submit_"+type;
 		
 		$.ajax({
-			url: myUrl,
+			url: GLOBAL_BASE+myUrl,
 			type: "GET",
 			data: {	"rule_statistic":id,
 					"rule_operator": ruleOperatorId,
@@ -211,7 +211,7 @@ var AjaxInterface = new function(){
 	
 	self.getProhibitedClasses = function(race_id, callback){
 		$.ajax({
-			url: "/get_prohibited_classes",
+			url: GLOBAL_BASE+"/get_prohibited_classes",
 			type: "GET",
 			data: {	"race_id":race_id},
 			success: function(jsondata){
@@ -229,7 +229,7 @@ var AjaxInterface = new function(){
 	
 	self.getDescentSkills = function(race_id, callback){
 		$.ajax({
-			url: "/get_descent_skills",
+			url: GLOBAL_BASE+"/get_descent_skills",
 			type: "GET",
 			data: {	"race_id":race_id},
 			success: function(jsondata){
@@ -247,7 +247,7 @@ var AjaxInterface = new function(){
 	
 	self.getClassSkillsAndWealth = function(class_id, charLevel, charRace, callback){
 		$.ajax({
-			url: "/get_class_skills_and_wealth",
+			url: GLOBAL_BASE+"/get_class_skills_and_wealth",
 			type: "GET",
 			data: {	"class_id":class_id,
 					"char_level": charLevel,
@@ -267,7 +267,7 @@ var AjaxInterface = new function(){
 	
 	self.getClassWealth = function(class_id, callback){
 		$.ajax({
-			url: "/get_class_wealth",
+			url: GLOBAL_BASE+"/get_class_wealth",
 			type: "GET",
 			data: {	"class_id":class_id,},
 			success: function(jsondata){
@@ -285,7 +285,7 @@ var AjaxInterface = new function(){
 	
 	self.getCombatSheet = function(char_id){
 		$.ajax({
-			url: "/get_combat_sheet",
+			url: GLOBAL_BASE+"/get_combat_sheet",
 			type: "GET",
 			data: {	"char_id":char_id},
 			success: function(jsondata){

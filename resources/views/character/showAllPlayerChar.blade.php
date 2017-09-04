@@ -77,19 +77,19 @@
 				               			{{$character->char_level}}
 				               		</td>
 				                    <td class="col-xs-2">
-				                    	<a href="/show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
+				                    	<a href="show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
 		   									<span class="glyphicon glyphicon-eye-open"></span> 
 		   								</a>
-				                    	<a href="/show_character_ep/{{$character->id}}" class="btn btn-success btn-xs show-add-ep-btn" data-toggle="tooltip" title="Bekijk EP">
+				                    	<a href="show_character_ep/{{$character->id}}" class="btn btn-success btn-xs show-add-ep-btn" data-toggle="tooltip" title="Bekijk EP">
 		   									<span class="glyphicon glyphicon-arrow-up"></span> 
 		   								</a>
-				                    	<a href="/show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
+				                    	<a href="show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>
-				                    	<a href="/show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">
+				                    	<a href="show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">
 		   									<span class="glyphicon glyphicon-thumbs-down"></span> 
 		   								</a>
-				                    	<a href="/show_delete_character/{{$character->id}}" class="btn btn-danger btn-xs remove-char-btn" data-toggle="tooltip" title="Verwijder Karakter">
+				                    	<a href="show_delete_character/{{$character->id}}" class="btn btn-danger btn-xs remove-char-btn" data-toggle="tooltip" title="Verwijder Karakter">
 		   									<span class="glyphicon glyphicon-minus"></span> 
 		   								</a>
 		   							</td>
@@ -146,16 +146,16 @@
 				               			{{$character->char_level}}
 				               		</td>
 				                    <td class="col-xs-2">
-				                    	<a href="/show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
+				                    	<a href="show_character/{{$character->id}}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Karakter">
 		   									<span class="glyphicon glyphicon-eye-open"></span> 
 		   								</a>
-				                    	<a href="/show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan">
+				                    	<a href="show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>
-				                    	<a href="/show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">
+				                    	<a href="show_kill_character/{{$character->id}}" class="btn btn-danger btn-xs kill-char-btn" data-toggle="tooltip" title="Dood Karakter">
 		   									<span class="glyphicon glyphicon-thumbs-down"></span> 
 		   								</a>
-				                    	<a href="/show_delete_character/{{$character->id}}" class="btn btn-danger btn-xs remove-char-btn" data-toggle="tooltip" title="Verwijder Karakter">
+				                    	<a href="show_delete_character/{{$character->id}}" class="btn btn-danger btn-xs remove-char-btn" data-toggle="tooltip" title="Verwijder Karakter">
 		   									<span class="glyphicon glyphicon-minus"></span> 
 		   								</a>
 		   							</td>
@@ -213,7 +213,7 @@
 				               		</td>
 				                    <td class="col-xs-2">
 				                    	@if($user->is_admin)
-				                    	<a href="/show_raise_character/{{$character->id}}" class="btn btn-danger btn-xs raise-char-btn" data-toggle="tooltip" title="Herrijs Karakter">
+				                    	<a href="show_raise_character/{{$character->id}}" class="btn btn-danger btn-xs raise-char-btn" data-toggle="tooltip" title="Herrijs Karakter">
 		   									<span class="glyphicon glyphicon-certificate"></span> 
 		   								</a>
 		   								@else

@@ -22,7 +22,7 @@
 		<div class="row button-row">
 			<div class="col-xs-2"></div>
 			<div class="col-xs-8">
-				<a href="/showall_user" class="btn btn-default" id="cancel_button" type="button" font-size: 18px;">
+				<a href="showall_user" class="btn btn-default" id="cancel_button" type="button" font-size: 18px;">
 				naar Gebruikers Overzicht
 				</a>
 			</div>

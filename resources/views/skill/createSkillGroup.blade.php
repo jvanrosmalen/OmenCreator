@@ -17,9 +17,9 @@
 			</div>
 			
 			@if ($skillgroup == null)
- 				<form id="createSkillGroupForm" action="/create_skillgroup_submit" method="POST">
+ 				<form id="createSkillGroupForm" action="create_skillgroup_submit" method="POST">
  			@else
- 				<form id="createSkillGroupForm" action="/create_skillgroup_update/{{$skillgroup->id}}" method="POST">
+ 				<form id="createSkillGroupForm" action="create_skillgroup_update/{{$skillgroup->id}}" method="POST">
  			@endif
 
 			<!-- ******************* -->

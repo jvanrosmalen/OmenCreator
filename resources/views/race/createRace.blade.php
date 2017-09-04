@@ -14,10 +14,10 @@
 
 	@if ($race == null)
 	<form id="{{ ($race!=null?$race->id:-1) }}"
-		action="/create_race_submit" method="POST">
+		action="create_race_submit" method="POST">
 		@else
 		<form id="{{ ($race!=null?$race->id:-1) }}"
-			action="/create_race_update/{{ $race->id }}" method="POST">
+			action="create_race_update/{{ $race->id }}" method="POST">
 			@endif
 
 			<!-- ******************* -->

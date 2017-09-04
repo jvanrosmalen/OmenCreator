@@ -62,7 +62,7 @@
 				</div>
 				<br>
 				
-				<form action="/new_username_submit" onsubmit="return MyProfile.checkUsernameSubmit(event)" method="POST">
+				<form action="new_username_submit" onsubmit="return MyProfile.checkUsernameSubmit(event)" method="POST">
 					<!-- ******************* -->
 					<!-- For Laravel CSRF administration -->
 					<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -132,7 +132,7 @@
 				</div>
 		
 				<br>
-				<form action="/new_email_submit" onsubmit="return MyProfile.checkEmailSubmit(event)" method="POST">
+				<form action="new_email_submit" onsubmit="return MyProfile.checkEmailSubmit(event)" method="POST">
 					<!-- ******************* -->
 					<!-- For Laravel CSRF administration -->
 					<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -180,7 +180,7 @@
 				</div>
 		
 				<br>
-				<form action="/new_password_submit" onsubmit="return MyProfile.checkPasswordSubmit(event)" method="POST">
+				<form action="new_password_submit" onsubmit="return MyProfile.checkPasswordSubmit(event)" method="POST">
 					<!-- ******************* -->
 					<!-- For Laravel CSRF administration -->
 					<input type="hidden" name="_token" value="{!! csrf_token() !!}">

@@ -15,9 +15,9 @@
 			</div>
 		
 			@if ($craft_equipment == null)
-			<form id="{{ ($craft_equipment!=null?$craft_equipment->id:-1) }}" action="/create_craft_equipment_submit" method="POST">
+			<form id="{{ ($craft_equipment!=null?$craft_equipment->id:-1) }}" action="create_craft_equipment_submit" method="POST">
 			@else
-			<form id="{{ ($craft_equipment!=null?$craft_equipment->id:-1) }}" action="/create_craft_equipment_update/{{ $craft_equipment->id }}" method="POST">
+			<form id="{{ ($craft_equipment!=null?$craft_equipment->id:-1) }}" action="create_craft_equipment_update/{{ $craft_equipment->id }}" method="POST">
 			@endif
 
 			<!-- ******************* -->

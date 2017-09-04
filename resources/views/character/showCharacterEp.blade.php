@@ -147,7 +147,7 @@
 	
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-5">
-			<a href="/showall_character/" class="btn btn-default"
+			<a href="showall_character/" class="btn btn-default"
 				id="cancel_button" type="button"
 				style="width: 120px; font-size: 18px;"> Terug </a>
 		</div>

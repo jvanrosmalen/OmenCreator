@@ -49,10 +49,10 @@
 				                    <td id="{{$skillgroup->name}}" class="skillgroupname col-xs-3">{{ $skillgroup->name }}</td>
 				                    <td class="col-xs-5">{{ $skillgroup->desc_short }}</td>
 				                    <td class="col-xs-1">
-				                    	<a href="/create_skillgroup/{{$skillgroup->id}}" class="btn btn-info btn-xs edit-skillgroup-btn">
+				                    	<a href="create_skillgroup/{{$skillgroup->id}}" class="btn btn-info btn-xs edit-skillgroup-btn">
           									<span class="glyphicon glyphicon-pencil"></span> 
         								</a>
-				                    	<a href="/show_delete_skillgroup/{{$skillgroup->id}}" class="btn btn-danger btn-xs remove-skillgroup-btn">
+				                    	<a href="show_delete_skillgroup/{{$skillgroup->id}}" class="btn btn-danger btn-xs remove-skillgroup-btn">
           									<span class="glyphicon glyphicon-minus"></span> 
         								</a>
         							</td>

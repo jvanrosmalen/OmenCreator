@@ -23,14 +23,14 @@
 			<div class="col-xs-3">
 			</div>
 			<div class="col-xs-2">
-				<a href="/show_spark_choice/{{$charId}}" class="btn btn-default" type="button" style="width: 120px; font-size: 18px;">
+				<a href="show_spark_choice/{{$charId}}" class="btn btn-default" type="button" style="width: 120px; font-size: 18px;">
 					Ik wil kiezen
 				</a>
 			</div>
 			<div class="col-xs-2">
 			</div>
 			<div class="col-xs-2">
-				<a href="/show_spark_random/{{$charId}}" class="btn btn-default" type="button" style="width: 120px; font-size: 18px;">
+				<a href="show_spark_random/{{$charId}}" class="btn btn-default" type="button" style="width: 120px; font-size: 18px;">
 					Verras me
 				</a>
 			</div>

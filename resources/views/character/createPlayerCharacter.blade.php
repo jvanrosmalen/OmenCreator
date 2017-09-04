@@ -22,10 +22,10 @@
 
 	@if ($character == null)
 	<form id="{{ ($character!=null?$character->id:-1) }}"
-		action="/create_character_submit" method="POST">
+		action="create_character_submit" method="POST">
 		@else
 		<form id="{{ ($character!=null?$character->id:-1) }}"
-			action="/create_character_update/{{ $character->id }}" method="POST">
+			action="create_character_update/{{ $character->id }}" method="POST">
 		@endif
 
 			<!-- ******************* -->

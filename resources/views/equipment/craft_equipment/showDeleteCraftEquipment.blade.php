@@ -38,13 +38,13 @@
 			<div class="row button-row">
 				<div class="col-xs-3"></div>
 				<div class="col-xs-2">
-					<a href="/delete_craft_equipment/{{ $craft_equipment->id }}" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+					<a href="delete_craft_equipment/{{ $craft_equipment->id }}" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
 					Verwijderen
 					</a>
 				</div>
 				<div class="col-xs-2"></div>
 				<div class="col-xs-2">
-					<a href="/showall_craft_equipment" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+					<a href="showall_craft_equipment" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
 					Cancel
 					</a>
 				</div>
