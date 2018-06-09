@@ -54,7 +54,7 @@
 		</div>
 		
 		<div class="row">
-			<form action='/handle_spark_choice' method='POST'>
+			<form action='handle_spark_choice' method='POST'>
 				<!-- ******************* -->
 				<!-- For Laravel CSRF administration -->
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">

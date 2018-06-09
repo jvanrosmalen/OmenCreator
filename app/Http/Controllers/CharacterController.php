@@ -397,6 +397,7 @@ class CharacterController extends Controller
 				
 				// Render the HTML as PDF
 				$dompdf->render();
+				$dompdf->set_base_path('http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/');
 				
 				// Output the generated PDF to Browser
 				$dompdf->stream();

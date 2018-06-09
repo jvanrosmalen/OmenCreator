@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!-- This is a horrible view. It's way too long and cumbersome.
 Unfortunately, DOMPDF can't handle all the handy stuff that the
-Blade engine gives up, so everything is coded out in HTML.
+Blade engine gives, so everything is coded out in HTML.
 So good luck... -->
 
 <html lang="en">
 	<head>
-		<link href="{{ URL::asset('css/char_combatsheet.css') }}" rel='stylesheet' type='text/css'>
+		<link href="css/char_combatsheet.css" rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<div class='landscape_a4'>
@@ -14,7 +14,7 @@ So good luck... -->
 				<table>
 					<tr>
 						<td colspan='18' class='heavy_outline height_5_row'>
-							<img class="nav_bar_png" src="{{ URL::asset('img/omen.jpg') }}" alt="Omen Creator">
+							<img class="nav_bar_png" src="img/omen.jpg" alt="Omen Logo">
 						</td>
 					</tr>
 					<tr>

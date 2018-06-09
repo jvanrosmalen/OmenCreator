@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
+// THIS BLADE TEMPLATE IS NOT USED! THE ONE A FOLDER HIGHER IS!!!!
+
+// The following are needed?
+// PHP version 5.3.0 or higher
+// DOM extension
+// GD extension
+// MBString extension
+// php-font-lib
+// php-svg-lib
+
+		<base href="http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/">
 		<link href="{{ URL::asset('css/char_combatsheet.css') }}" rel='stylesheet' type='text/css'>
-	    <script src="{{ URL::asset('js/character/charCombatSheet.js') }}"></script>
+	    <!-- <script src="{{ URL::asset('js/character/charCombatSheet.js') }}"></script> -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	</head>
 	<body>
+		<h1> TEST </h1>
 		<div class='landscape_a4'>
 			<div id='page_1' class='page heavy_outline left_page'>
 				<table>
 					<tr>
 						<td colspan='18' class='heavy_outline height_5_row'>
-							<img class="nav_bar_png" src="{{ URL::asset('img/omen.jpg') }}" alt="Omen Creator">
+							<img class="nav_bar_png" src="{{ URL::asset('img/omen.jpg') }}" alt="Bla bla">
 						</td>
 					</tr>
 					<tr>
@@ -641,6 +654,6 @@
 			</div>
 		</div>
 		<div class='hidden' id="hidden_skills" data-skills="{{$character->skills}}" >
-		<script>CharCombatSheet.fillSkillTables();</script>
+		<!-- <script>CharCombatSheet.fillSkillTables();</script> -->
 	</body>
 </html>

@@ -151,7 +151,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_spark_choice/{charId?}', ['as'=>'show_spark_choice', 'uses'=>'SparkController@showSparkChoice'])->middleware('isStoryTelling');
 	Route::get('/show_spark_random/{charId?}', ['as'=>'show_spark_random', 'uses'=>'SparkController@showSparkRandom'])->middleware('isStoryTelling');
 	Route::post('/spark_submit/{sparkId?}', ['as'=>'spark_submit', 'uses'=>'SparkController@submitSpark'])->middleware('isStoryTelling');
-	Route::post('//handle_spark_choice', ['as'=>'handle_spark_choice', 'uses'=>'SparkController@handleSparkChoice'])->middleware('isStoryTelling');
+	Route::post('/handle_spark_choice', ['as'=>'handle_spark_choice', 'uses'=>'SparkController@handleSparkChoice'])->middleware('isStoryTelling');
 	
 	Route::auth();
 	Route::get('/illegal_link', array( 'as'=> 'illegal_link', 'uses'=>function () {
