@@ -14,6 +14,7 @@ use App\WealthType;
 use App\User;
 use App\Character;
 use App\EpAssignment;
+use App\Faith;
 use Dompdf\Dompdf;
 use Storage;
 use Auth;
@@ -83,7 +84,8 @@ class CharacterController extends Controller
     					'char_level' => SkillLevel::find($char_level),
     					'char_race' => Race::find($race_id),
     					'char_class' => PlayerClass::find($class_id),
-    					'char_class_id_array' => $classIdArray
+						'char_class_id_array' => $classIdArray,
+						'faiths' => Faith::all()
     			]
 		);
     }
@@ -219,7 +221,8 @@ class CharacterController extends Controller
     			'char_free_skills_ids' => json_encode($char_free_skills_ids),
     			'skills' => $allClassSkills,
     			'descent_skills' => $allDescentSkills,
-    			'wealth_types'=> WealthType::all()
+				'wealth_types'=> WealthType::all(),
+				'faiths' => Faith::all()
     	]);
     }
     
@@ -237,7 +240,9 @@ class CharacterController extends Controller
     	$newChar->is_player_char = true;
     	$newChar->nr_events_survived = $_POST['nr_events_survived'];
     	$newChar->descent_ep_amount = 3;
-    	$newChar->is_active = true;
+		$newChar->is_active = true;
+		$newChar->faith_id = $_POST['character_faith'];
+		$newChar->title = $_POST['character_title'];
     	
     	$sparkArray = Character::getSparkArray();
     	$newChar->spark_data = json_encode($sparkArray);    	
@@ -317,7 +322,10 @@ class CharacterController extends Controller
     }
     
     public function editPlayerCharSubmit(){
-    	$character = Character::find($_POST['char_id']);
+		$character = Character::find($_POST['char_id']);
+		
+		$character->faith_id = $_POST['character_faith'];
+		$character->title = $_POST['character_title'];
 
     	$raceSkillIds = json_decode($_POST['race_skill_list']);
     	$descentSkillIds = json_decode($_POST['descent_skill_list']);
@@ -371,7 +379,8 @@ class CharacterController extends Controller
     	}
     	 
     	// sync character skills
-    	$character->skills()->sync($allCharSkillSyncArray);
+		$character->skills()->sync($allCharSkillSyncArray);
+		$character->save();
     	$url = route('show_character', ['charId' => $character->id]);
     	header("Location:".$url);
     	die();;

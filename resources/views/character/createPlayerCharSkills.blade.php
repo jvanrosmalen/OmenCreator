@@ -30,7 +30,8 @@
 			<li><a id="tab2" data-toggle="tab" href="#descent_skills">Afkomst</a></li>
 			<li><a id="tab3" data-toggle="tab" href="#class_skills">Klasse Vaardigheden</a></li>
 			<li><a id="tab4" data-toggle="tab" href="#non_class_skills">Niet-Klasse Vaardigheden</a></li>
-			<li><a id="tab5" data-toggle="tab" href="#overview">Overzicht</a></li>
+			<li><a id="tab5" data-toggle="tab" href="#title_faith">Titel en Geloof</a></li>
+			<li><a id="tab6" data-toggle="tab" href="#overview">Overzicht</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -739,13 +740,45 @@
 				'next'=>'tab5'))
 			</div>
 
+			<div id="title_faith" class="tab-pane fade in">
+				<div class='row well'>
+					<div class='col-xs-1'></div>
+					<div class='col-xs-1'>Geloof:</div>
+					<div class='col-xs-3'>
+						<select id="faith_selection" name='character_faith'>
+							@foreach($faiths as $faith)
+								<option value="{{$faith->id}}">{{$faith->faith_name}}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+
+				<div class="row well">
+					<div class='col-xs-1'></div>
+					<div class='col-xs-1'>Titel:</div>
+					<div class='col-xs-7'>
+						<input id='character_title' name="character_title" style="width: 100%;">
+					</div>
+				</div>
+					
+				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>false,
+				'next'=>'tab6'))
+			</div>
+
 			<div id="overview" class="tab-pane fade in">
 				<div class='row well'>
 					<div class='row'>
 						<div class='col-xs-1'></div>
 						<div class='col-xs-1'>Naam:</div>
-						<div class='col-xs-9'>
+						<div class='col-xs-5'>
 							<span>{{$basic_info['char_name']}}</span>
+							<span id="overview_title"></span>
+						</div>
+						<div class='col-xs-1'>
+							Geloof:
+						</div>
+						<div class='col-xs-1'>
+							<span id="overview_faith">Geen</span>
 						</div>
 					</div>
 					<div class='row'>
@@ -940,7 +973,7 @@
 					</div>
 				</div>
 					
-				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>true,
+				@include('layouts.tab_buttons',	array('tab'=>'tab6', 'previous'=>'tab5', 'save'=>true,
 				'next'=>null))
 			</div>
 	

@@ -22,6 +22,25 @@ var CreatePlayerCharSkills = new function(){
 		
 		// add method to save button
 		$("#save").attr("onclick",'CreatePlayerCharSkills.submitSkills(event)');
+		$("#faith_selection").attr("onchange", 'CreatePlayerCharSkills.handleFaithSelection(event)');
+		$("#character_title").attr("onchange", 'CreatePlayerCharSkills.handleTitleInput(event)');
+	}
+
+	self.handleFaithSelection = function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		$("#overview_faith").text($("#faith_selection option:selected").text());
+	}
+
+	self.handleTitleInput = function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		let textInput = $("#character_title").val();
+		if(textInput === ""){
+			$("#overview_title").text("");
+		} else {
+			$("#overview_title").text(", "+textInput);
+		}
 	}
 	
 	self.submitSkills = function(event){

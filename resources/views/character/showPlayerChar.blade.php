@@ -6,11 +6,11 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-xs-5'>
-			<h3>{{$character->name}} (Speler: {{$character->char_user->name}})</h3>
+		<div class='col-xs-8'>
+			<h3>{{$character->name}}, {{$character->title}} (Speler: {{$character->char_user->name}})</h3>
 		</div>
-		<div class='col-xs-7'>
-			<div class='col-xs-4 pull-right'>
+		<div class='col-xs-4'>
+			<div class='col-xs-6 pull-right'>
 				<button id="btnCreateCombatSheet" type="button" class="btn btn-default btn-block" onclick="AjaxInterface.getCombatSheet({{$character->id}})">Cre&euml;er Combatsheet</button>
 			</div>
 		</div>
@@ -66,6 +66,12 @@
 					</div>
 					<div class="col-xs-2">
 						<span>{{$character->getPlayerClassesListString()}}</span>
+					</div>
+					<div class="col-xs-1">
+						Geloof:
+					</div>
+					<div class="col-xs-1">
+						<span>{{ $character->char_faith->faith_name }}</span>
 					</div>
 				</div>
 				<div class ='row'>

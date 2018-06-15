@@ -79,7 +79,7 @@
 						Geloof
 						</td>
 						<td colspan='13' class='light_top light_bottom heavy_right heavy_left text_left'>
-						Nog te implementeren
+						{{$character->char_faith->faith_name}}
 						</td>
 					</tr>
 					<tr>
@@ -95,7 +95,7 @@
 						Titel
 						</td>
 						<td colspan='13' class='light_top heavy_bottom heavy_right heavy_left text_left'>
-						Nog te implementeren
+						{{$character->title}}
 						</td>
 					</tr>
 					<tr>

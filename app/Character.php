@@ -30,7 +30,8 @@ class Character extends Model
     protected $appends = [	'skills',	
     						'ep_assignments',
     						'char_user',
-    						'char_race',
+							'char_race',
+							'char_faith',
     						'char_level',
     						'lp_torso',
     						'lp_limbs',
@@ -67,6 +68,10 @@ class Character extends Model
     
     public function charRace(){
     	return $this->belongsTo('App\Race','race_id','id');
+	}
+	
+	public function charFaith(){
+    	return $this->belongsTo('App\Faith','faith_id','id');
     }
     
     public function playerClass(){
@@ -170,7 +175,11 @@ class Character extends Model
     							    		'descent_class_ids'
     					    				]);
 									})[0];
-    }
+	}
+	
+	public function getCharFaithAttribute(){
+    	return Character::find($this->id)->charFaith()->get()[0];
+	}
     
     public function getCharUserAttribute(){
     	return Character::find($this->id)->charUser()->first();

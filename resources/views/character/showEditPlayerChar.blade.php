@@ -29,6 +29,7 @@
 			<li><a id="tab2" data-toggle="tab" href="#descent_skills">Afkomst Vaardigheden</a></li>
 			<li><a id="tab3" data-toggle="tab" href="#class_skills">Klasse Vaardigheden</a></li>
 			<li><a id="tab4" data-toggle="tab" href="#non_class_skills">Niet-Klasse Vaardigheden</a></li>
+			<li><a id="tab5" data-toggle="tab" href="#title_faith">Titel en Geloof</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -828,11 +829,38 @@
 						</div>
 					</div>
 				</div>
-				@include('layouts.tab_buttons',	array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>true,
-				'next'=>null))
+				@include('layouts.tab_buttons',	array('tab'=>'tab4', 'previous'=>'tab3', 'save'=>false,
+				'next'=>'tab5'))
 			</div>
 
-				
+			<div id="title_faith" class="tab-pane fade in">
+				<div class='row well'>
+					<div class='col-xs-1'></div>
+					<div class='col-xs-1'>Geloof:</div>
+					<div class='col-xs-3'>
+						<select id="faith_selection" name='character_faith'>
+							@foreach($faiths as $faith)
+								@if($character->char_faith->id != $faith->id)
+									<option value="{{$faith->id}}">{{$faith->faith_name}}</option>
+								@else
+									<option value="{{$faith->id}}" selected>{{$faith->faith_name}}</option>	
+								@endif
+							@endforeach
+						</select>
+					</div>
+				</div>
+
+				<div class="row well">
+					<div class='col-xs-1'></div>
+					<div class='col-xs-1'>Titel:</div>
+					<div class='col-xs-7'>
+						<input id='character_title' name="character_title" style="width: 100%;" value="{{$character->title}}">
+					</div>
+				</div>
+					
+				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>true,
+				'next'=>null))
+			</div>	
 		</div>
 	</form>
 </div>	

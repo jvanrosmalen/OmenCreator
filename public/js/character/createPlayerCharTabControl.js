@@ -10,6 +10,8 @@ var CreatePlayerCharTabControl = new function(){
 		TabController.addPreviousButtonListener("tab4", "tab3");
 		TabController.addNextButtonListener("tab4", "tab5");
 		TabController.addPreviousButtonListener("tab5", "tab4");
+		TabController.addNextButtonListener("tab5", "tab6");
+		TabController.addPreviousButtonListener("tab6", "tab5");
 	}
 	
 	self.addSaveListener = function(){
