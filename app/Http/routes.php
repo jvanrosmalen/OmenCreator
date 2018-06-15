@@ -16,7 +16,7 @@ use App\SkillLevel;
 */
 
 // // route to show the login form
-// Route::get('login', array('uses' => 'HomeController@showLogin'));
+Route::get('login', array('uses' => 'HomeController@showLogin'));
 
 // // route to process the form
 // Route::post('login', array('uses' => 'HomeController@doLogin'));
@@ -156,6 +156,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::auth();
 	Route::get('/illegal_link', array( 'as'=> 'illegal_link', 'uses'=>function () {
 		return view('/auth/illegal_link');
+	}));
+	Route::get('/login_failed', array( 'as'=> 'login_failed', 'uses'=>function () {
+		return view('/auth/login_failed');
 	}));
 	
 	Route::get('/my_profile', 'UserController@showProfile')->middleware('auth');

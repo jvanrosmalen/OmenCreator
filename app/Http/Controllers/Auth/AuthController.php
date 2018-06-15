@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -72,5 +73,10 @@ class AuthController extends Controller
         	'is_system_rep'=>false,
         	'is_story_telling'=>false,	
         ]);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect('/login_failed');
     }
 }
