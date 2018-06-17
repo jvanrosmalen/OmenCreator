@@ -15,6 +15,19 @@ var ShowAll = new function(){
 			AjaxInterface.getFullSkillDetails(skillId, self.fillSkillDetails);
 		}
 	};
+
+	self.filterSkillsSelectAll = function(event){
+		event.stopPropagation();
+		event.preventDefault();
+
+		$("#filterSkillsForm input[type='checkbox']").prop('checked', true);
+	}
+
+	self.filterSkillsInvertSelect = function(event){
+		$("#filterSkillsForm input[type='checkbox']").each(function(){
+			$(this).prop('checked', !$(this).prop('checked'));
+		});
+	}
 	
 	self.showPlayersWithSkill = function(event){
 		event.stopPropagation();

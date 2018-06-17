@@ -87,3 +87,8 @@
 	margin-right: auto;
 	margin-top: 8%;
 }
+
+#filterSkillSelectAllBtn,
+#filterSkillInvertSelectBtn {
+	margin-bottom: 6px;
+}

@@ -93,18 +93,31 @@
 		    </div>
 		    
 			<div class="col-xs-2 well">
-		    	<form id="filterSkillsForm" content="{{ csrf_token() }}">
-		    		@foreach($skilllevels as $skilllevel)
-						<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked> {{$skilllevel->skill_level}}<br>
-  					@endforeach
-  					<br>
-		    		@foreach($playerclasses as $playerclass)
-						<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked> {{$playerclass->class_name}}<br>
-  					@endforeach
-				</form>
-				<br>
-				<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterSkills(event);">Filter</button>
-				
+				<div class="row">
+					<div class="col-xs-1">
+					</div>
+					<div class="col-xs-8">
+						<div class="row">
+							<button id="filterSkillSelectAllBtn" type="button" class="btn btn-basic btn-sm btn-block" onclick="ShowAll.filterSkillsSelectAll(event);">Selecteer Alles</button>
+						</div>
+						<div class="row">
+							<button id="filterSkillInvertSelectBtn" type="button" class="btn btn-basic btn-sm btn-block" onclick="ShowAll.filterSkillsInvertSelect(event);">Inverteer Selectie</button>
+						</div>
+					</div>
+				</div>
+		    	<div class="row">
+					<form id="filterSkillsForm" content="{{ csrf_token() }}">
+						@foreach($skilllevels as $skilllevel)
+							<input type="checkbox" class="level_filter" value={{$skilllevel->id}} checked> {{$skilllevel->skill_level}}<br>
+						@endforeach
+						<br>
+						@foreach($playerclasses as $playerclass)
+							<input type="checkbox" class="class_filter" value={{$playerclass->id}} checked> {{$playerclass->class_name}}<br>
+						@endforeach
+					</form>
+					<br>
+					<button id="filterSkillsBtn" type="button" class="btn btn-success btn-large btn-block" onclick="Create.filterSkills(event);">Filter</button>
+				</div>
 	    	</div>
 	    </div>
 	</div>
