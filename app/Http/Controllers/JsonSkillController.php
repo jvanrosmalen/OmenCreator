@@ -8,6 +8,8 @@ use App\Skill;
 use DB;
 use View;
 use Session;
+use App\User;
+use App\Character;
 
 class JsonSkillController extends Controller {
 	public function getSkillLevelsClassesJson() {
@@ -71,6 +73,39 @@ class JsonSkillController extends Controller {
 			);
 		
  		return Response::json(json_encode($retArray));
+	}
+
+	public function getPlayersWithSkillJson(){
+		$playerArray = [];
+		$skillName = "unknown";
+
+		if(Request::has('skillid')){
+			$skillId = Request::input("skillid");
+			
+			if($skillId > 0){
+				$skillName = Skill::find(Request::input("skillid"))->name;
+
+				// Get all players with relevant skill
+				$charArray = Skill::find($skillId)->ownedByActiveCharacters();
+				foreach($charArray as $char){
+					$user = User::find($char['user_id']);
+					
+					$playerArray[] = [	"char_id" => $char->id,
+										"user_name" => $user->name,
+										"char_name" => $char->name,
+										"char_class" => Character::find($char->id)->getPlayerClassesListString(),
+										"char_race" => $char->char_race->race_name
+									];
+				}
+			}
+		}
+
+		$retArray = array(
+			"skill_name" => $skillName,
+			"playerChar" => $playerArray 
+		);
+
+		return Response::json(json_encode($retArray));
 	}
 }
 ?>

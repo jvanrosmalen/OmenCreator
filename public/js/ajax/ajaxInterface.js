@@ -56,6 +56,25 @@ var AjaxInterface = new function(){
 		});
 	}
 	
+	self.getPlayersWithSkill = function(skillId, callback){
+		$.ajax({
+			url: GLOBAL_BASE+"/get_players_with_skill",
+			type: "GET",
+			data: {"skillid":skillId},
+			success: function(data){
+				
+				var retData = JSON.parse(data);
+				callback(retData);
+			},
+			error: function(data){
+				console.log("###########################");
+				console.log("JSON error");
+				console.log(data.responseText);
+				console.log("###########################");
+			}
+		});		
+	}
+
 	self.createSkillFromJson = function(skill){
 		var requiresMentor =
 			(skill["mentor_required"]==0?false:true);

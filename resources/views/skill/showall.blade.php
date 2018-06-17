@@ -110,6 +110,7 @@
 	</div>
 	
 	@include('popups.showSkillDetails');
+	@include('popups.showPlayersWithSkill');
 
 	@endsection
 </body>

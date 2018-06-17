@@ -16,8 +16,55 @@ var ShowAll = new function(){
 		}
 	};
 	
+	self.showPlayersWithSkill = function(event){
+		event.stopPropagation();
+		event.preventDefault();
+		let skillId = $(event.target).data("skillid");
+		AjaxInterface.getPlayersWithSkill(skillId, self.fillPlayersWithSkill);
+	};
+
+	self.fillPlayersWithSkill = function(data){
+		$(".playersWithSkill #skill_name").html(data.skill_name);
+
+		// First make row template
+		var entryRow = $(document.createElement("tr"));
+		var charName = $(document.createElement("td")).addClass("col-xs-3");
+		var accountName = $(document.createElement("td")).addClass("col-xs-3");
+		var className = $(document.createElement("td")).addClass("col-xs-3");
+		var raceName = $(document.createElement("td")).addClass("col-xs-2");
+		var action = $(document.createElement("td")).addClass("col-xs-1");
+		entryRow.append(charName);
+		entryRow.append(accountName);
+		entryRow.append(className);
+		entryRow.append(raceName);
+		entryRow.append(action);
+
+		var playerCharArray = data.playerChar;
+
+		for(var index=0; index < playerCharArray.length; index++ ){
+			var newEntryRow = entryRow.clone();
+
+			newEntryRow.find("td").eq(0).html(playerCharArray[index].char_name);
+			newEntryRow.find("td").eq(1).html(playerCharArray[index].user_name);
+			newEntryRow.find("td").eq(2).html(playerCharArray[index].char_class);
+			newEntryRow.find("td").eq(3).html(playerCharArray[index].char_race);
+
+			newEntryRow.find("td").eq(4).html("<a href='show_character/"+ playerCharArray[index].char_id 
+				+"' class='btn btn-success btn-xs show-char-btn' data-toggle='tooltip' title='Bekijk Karakter'>"+
+				"<span class='glyphicon glyphicon-eye-open'></span></a>");
+			
+			$("#playerWithSkill_data").append(newEntryRow);
+		}
+
+		$("#showPlayersWithSkill").fadeIn();
+	}
+
 	self.closeSkillDetails = function(){
 		$("#showSkillDetails").fadeOut();
+	};
+
+	self.closePlayersWithSkill = function(){
+		$("#showPlayersWithSkill").fadeOut();
 	};
 	
 	self.clearSkillDetails = function(){
@@ -40,6 +87,11 @@ var ShowAll = new function(){
 		var descLongHtml = $.parseHTML(skill.descriptionLong)
 		$("#skill_desc_long").append(descLongHtml);
 		$("#skill_level").text(skill.levelName);
+
+		// Update data of showPlayersWithSkill button
+		if($("#btn-showPlayersWithSkill").length > 0){
+			$("#btn-showPlayersWithSkill").data("skillid", skill.id);
+		}
 		
 		// Classes entry
 		var classText = "";

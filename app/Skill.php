@@ -280,6 +280,32 @@ class Skill extends Model {
 		return Skill::find($this->id)->prereqOfSkills()->get();
 	}
 	
+	public function ownedByActiveCharacters(){
+		return Skill::find($this->id)->belongsToCharacters()->where('is_active', true)
+		->where('is_alive', true)->orderBy('name')->get()->each(function($row){
+			$row->setHidden(
+					['skills',	
+					'ep_assignments',
+					'char_faith',
+					'char_level',
+					'lp_torso',
+					'lp_limbs',
+					'willpower',
+					'status',
+					'focus',
+					'trauma',
+					'res_fear',
+					'res_theft',
+					'res_trauma',
+					'res_poison',
+					'res_magic',
+					'res_disease',
+					'wealth_string',
+					'spark_data',
+					'link_to_background']);
+			});;
+	}
+
 	public function ownedByPlayers(){
 		return Skill::find($this->id)->belongsToCharacters()->get();
 	}

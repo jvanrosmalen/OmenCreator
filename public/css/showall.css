@@ -9,6 +9,11 @@
 	height: 480px
 }
 
+#playerWithSkill_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 290px
+}
+
 .skillDetails {
 	width: 1000px;
 	height: 450px;
@@ -17,7 +22,7 @@
 	box-shadow: 1px 1px 10px black;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
+	margin-top: 8%;
 }
 
 #skill_name {
@@ -64,4 +69,21 @@
 
 .skill_ep_cost{
 	text-align: center !important;
+}
+
+#playersWithSkillTitle{
+    font-size: 20px;
+	line-height: 30px;
+	vertical-align: bottom;
+	font-weight: bold;
+}
+
+.playersWithSkill {
+	width: 1000px;
+	height: 450px;
+	position: relative;
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8%;
 }
