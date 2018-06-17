@@ -45,8 +45,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_delete_skillgroup/{id}', 'SkillGroupController@showDeleteSkillGroup')->middleware('isSystemRep');
 	Route::get('/delete_skill/{id}', 'SkillController@deleteSkill')->middleware('isSystemRep');
 	Route::get('/delete_skillgroup/{id}', 'SkillGroupController@deleteSkillGroup')->middleware('isSystemRep');
-	Route::get('/home', 'HomeController@index');
-	Route::get('/', 'HomeController@index');
+	Route::get('/home', 'HomeController@index')->middleware('auth');
+	Route::get('/', 'HomeController@index')->middleware('auth');
 	Route::get('/get_skill_levels_classes', 'JsonSkillController@getSkillLevelsClassesJson')->middleware('isStoryTellingSystemRep');
 	Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson')->middleware('auth');
 	Route::get('/get_players_with_skill', 'JsonSkillController@getPlayersWithSkillJson')->middleware('isStoryTelling');;
