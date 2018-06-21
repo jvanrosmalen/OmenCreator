@@ -16,8 +16,8 @@ var Race = new function(){
 			});
 			
 			// Add actions for update and delete buttons
-			$(".btn-race-"+id+".btn-update").attr("href", "/create_race/"+id);
-			$(".btn-race-"+id+".btn-delete").attr("href", "/show_delete_race/"+id);
+			$(".btn-race-"+id+".btn-update").attr("href", "create_race/"+id);
+			$(".btn-race-"+id+".btn-delete").attr("href", "show_delete_race/"+id);
 		}
 	}
 	

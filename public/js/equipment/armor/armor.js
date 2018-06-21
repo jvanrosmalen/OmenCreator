@@ -16,8 +16,8 @@ var Armor = new function(){
 			});
 			
 			// Add actions for update and delete buttons
-			$(".btn-armor-"+id+".btn-update").attr("href", "/create_armor/"+id);
-			$(".btn-armor-"+id+".btn-delete").attr("href", "/show_delete_armor/"+id);
+			$(".btn-armor-"+id+".btn-update").attr("href", "create_armor/"+id);
+			$(".btn-armor-"+id+".btn-delete").attr("href", "show_delete_armor/"+id);
 		}
 	}
 	

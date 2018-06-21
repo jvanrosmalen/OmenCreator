@@ -80,7 +80,8 @@ class EquipmentController extends Controller
 			    return $armor->name;
 			});
 		
-		return view('equipment/armor/showAllArmor', [ "armors"=>$armors,
+		return view('equipment/armor/showAllArmor',
+			 [ "armors"=>$armors,
 				'user'=>Auth::user()
 		]);
 	}

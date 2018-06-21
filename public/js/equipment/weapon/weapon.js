@@ -16,8 +16,8 @@ var Weapon = new function(){
 			});
 			
 			// Add actions for update buttons
-			$(".btn-weapon-"+id+".btn-update").attr("href", "/create_weapon/"+id);
-			$(".btn-weapon-"+id+".btn-delete").attr("href", "/show_delete_weapon/"+id);
+			$(".btn-weapon-"+id+".btn-update").attr("href", "create_weapon/"+id);
+			$(".btn-weapon-"+id+".btn-delete").attr("href", "show_delete_weapon/"+id);
 		}
 	}
 	

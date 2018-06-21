@@ -16,8 +16,8 @@ var Shield = new function(){
 			});
 			
 			// Add actions for update buttons
-			$(".btn-shield-"+id+".btn-update").attr("href", "/create_shield/"+id);
-			$(".btn-shield-"+id+".btn-delete").attr("href", "/show_delete_shield/"+id);
+			$(".btn-shield-"+id+".btn-update").attr("href", "create_shield/"+id);
+			$(".btn-shield-"+id+".btn-delete").attr("href", "show_delete_shield/"+id);
 		}
 	}
 	

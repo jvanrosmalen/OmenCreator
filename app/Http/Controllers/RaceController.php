@@ -76,12 +76,12 @@ class RaceController extends Controller
 			$race->wealthRules()->detach();
 		}
 		if(!$race->race_skills->isEmpty()){
-			$race->race_kills()->detach();
+			$race->raceSkills()->detach();
 		}
-		if(!$race->prohibited_classes->isEmpty()){
-			$race->prohibitedClasses()->detach();
+		if(sizeof($race->prohibited_classes) != 0){
+				$race->prohibitedClasses()->detach();
 		}
-		if(!$race->descent_classes->isEmpty()){
+		if(sizeof($race->descent_classes) != 0){
 			$race->descentClasses()->detach();
 		}
 		
@@ -163,7 +163,7 @@ class RaceController extends Controller
 	public function submitRaceCreate(){
 		$newRace = new Race();
 	
-		$newRace->name = $_POST["race_name"];
+		$newRace->race_name = $_POST["race_name"];
 		$newRace->description = $_POST["race_desc"];
 		$newRace->is_player_race = isset($_POST['isPlayerRace']);
 		
@@ -192,7 +192,7 @@ class RaceController extends Controller
 		// Sync race skills
 		$skills_list = json_decode($_POST['race_skills_list']);
 		if(is_array($skills_list)){
-			$newRace->race_skills()->sync($skills_list);
+			$newRace->raceSkills()->sync($skills_list);
 		}
 		
 		// Sync prohibited classes
@@ -219,7 +219,7 @@ class RaceController extends Controller
 	}
 	
 	public function gotoShowAllRace(){
-		$url = route('show_spark');
+		$url = route('showall_race');
 		header("Location:".$url);
 		die();
 	}

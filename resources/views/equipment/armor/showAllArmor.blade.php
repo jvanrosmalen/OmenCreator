@@ -160,7 +160,7 @@
 		@endforeach
 		
 <!-- 	Trick to be able to access the count of armors in the JS below -->
-		<div id="armor_size" class="hidden" data-armors="{{ $armors }}" ></div>
+		<div id="armor_size" class="hidden" data-armors="{{{ $armors }}}" ></div>
 		
 <!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
 <!-- 	    <script src="{{ URL::asset('js/equipment/armor/armor.js') }}"></script> -->

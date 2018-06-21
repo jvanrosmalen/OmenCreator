@@ -16,8 +16,8 @@ var PlayerClass = new function(){
 			});
 			
 			// Add actions for update and delete buttons
-			$(".btn-class-"+id+".btn-update").attr("href", "/create_class/"+id);
-			$(".btn-class-"+id+".btn-delete").attr("href", "/show_delete_class/"+id);
+			$(".btn-class-"+id+".btn-update").attr("href", "create_class/"+id);
+			$(".btn-class-"+id+".btn-delete").attr("href", "show_delete_class/"+id);
 		}
 	}
 	

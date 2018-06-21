@@ -16,8 +16,8 @@ var GenericEquipment = new function(){
 			});
 			
 			// Add actions for update and delete buttons
-			$(".btn-generic-equipment-"+id+".btn-update").attr("href", "/create_generic_equipment/"+id);
-			$(".btn-generic-equipment-"+id+".btn-delete").attr("href", "/show_delete_generic_equipment/"+id);
+			$(".btn-generic-equipment-"+id+".btn-update").attr("href", "create_generic_equipment/"+id);
+			$(".btn-generic-equipment-"+id+".btn-delete").attr("href", "show_delete_generic_equipment/"+id);
 		}
 	}
 	

@@ -16,8 +16,8 @@ var CraftEquipment = new function(){
 			});
 			
 			// Add actions for update and delete buttons
-			$(".btn-craft-equipment-"+id+".btn-update").attr("href", "/create_craft_equipment/"+id);
-			$(".btn-craft-equipment-"+id+".btn-delete").attr("href", "/show_delete_craft_equipment/"+id);
+			$(".btn-craft-equipment-"+id+".btn-update").attr("href", "create_craft_equipment/"+id);
+			$(".btn-craft-equipment-"+id+".btn-delete").attr("href", "show_delete_craft_equipment/"+id);
 		}
 	}
 	
