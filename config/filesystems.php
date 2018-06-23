@@ -62,6 +62,11 @@ return [
             'bucket' => 'your-bucket',
         ],
 
+        'handouts' => [
+            'driver' => 'local',
+            'root' => storage_path('app/handouts'),
+        ],
+
     ],
 
 ];

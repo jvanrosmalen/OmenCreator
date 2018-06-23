@@ -15,6 +15,7 @@ use Request;
 use Session;
 use App\SkillGroup;
 use App\WealthType;
+use Storage;
 
 class SkillController extends Controller
 {
@@ -145,7 +146,7 @@ class SkillController extends Controller
 		{
 			$craft_skill = true;
 		}
-		
+
 		// Save everything to skill table
 		$newSkill = new Skill();
 		$newSkill->name = $skill_name;
@@ -161,7 +162,7 @@ class SkillController extends Controller
 		$newSkill->secret_skill = $secret_skill;
 		$newSkill->craft_skill = $craft_skill;
 		$newSkill->wealth_prereq_id = $wealth_prereq;
-		
+
 		$newSkill->save();
 		
 		$skill_id = $newSkill->id;
@@ -312,7 +313,26 @@ class SkillController extends Controller
 		$skill->secret_skill = $secret_skill;
 		$skill->craft_skill = $craft_skill;
 		$skill->wealth_prereq_id = $wealth_prereq;
-		
+
+		// handle possible handout
+		// $request = request();
+		if(Input::hasFile('handoutSelection')) {
+			$handout = Input::file('handoutSelection');
+			$skill->skill_handout = $handout->getClientOriginalName();
+
+			Storage::disk('handouts')->deleteDirectory('/'.$id);
+
+			Storage::put(
+				'handouts/'.$id.'/'.$skill->skill_handout,
+				file_get_contents($handout->getRealPath())
+			);
+		} else {
+			if(Storage::disk('handouts')->exists('/'.$id) && strcmp($_POST["skill_handout_name"],"") === 0){
+				Storage::disk('handouts')->deleteDirectory('/'.$id);
+				$skill->skill_handout = "";
+			}
+		}
+
 		$skill->save();
 	
 		// Sync prereqs

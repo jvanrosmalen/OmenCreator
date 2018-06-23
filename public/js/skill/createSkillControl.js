@@ -24,6 +24,14 @@ var createSkillControl = new function(){
 			}
 			
 		});
+
+		// Remove handout button listener
+		$("#remove_handout").on("click", function(event){
+			event.stopPropagation();
+			event.preventDefault();
+			$("#skill_handout_name").html("Handout verwijderd");
+			$("#skill_handout_name_hidden").val("");
+		});
 		
 		// Craft equipment button listeners
 		$(".craft_equip_select_btn").on("click", function(){
