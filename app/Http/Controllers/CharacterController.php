@@ -18,6 +18,7 @@ use App\Faith;
 use Dompdf\Dompdf;
 use Storage;
 use Auth;
+use Response;
 
 class CharacterController extends Controller
 {
@@ -155,9 +156,18 @@ class CharacterController extends Controller
     }
     
     public function doShowPlayerChar($charId){
-    	$character = Character::find($charId);
+		$character = Character::find($charId);
+		$skill_handout_objects = array();
+
+		$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
+
+		foreach($handoutSkills as $handoutSkill){
+			$skill_handout_objects[] = ["skill_id" => $handoutSkill->id, "handout_name" => $handoutSkill->skill_handout];
+		}
+
     	return view('character/showPlayerChar', ['character'=>$character,
-    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray()
+				'overview_skills_string_array' => $character->getOverviewSkillsStringArray(),
+				'skill_handouts' => $skill_handout_objects
     	]);
     }
     
@@ -171,9 +181,18 @@ class CharacterController extends Controller
     			->first();
     		
     		if($character != null){
+				$skill_handout_objects = array();
+
+				$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
+		
+				foreach($handoutSkills as $handoutSkill){
+					$skill_handout_objects[] = ["skill_id" => $handoutSkill->id, "handout_name" => $handoutSkill->skill_handout];
+				}
+
 		    	return view('character/showPlayerChar', ['character'=>$character,
-		    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray()
-		    	]);
+		    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray(),
+						'skill_handouts' => $skill_handout_objects
+						]);
     		}else{
     			return view('character/showNoPlayerChar');
     		}
@@ -499,5 +518,25 @@ class CharacterController extends Controller
 				'ep_reason'=>$ep_reason,
 				'ep_total'=>($character->ep_amount + $character->descent_ep_amount)
 				]);
+	}
+
+	public function downloadHandout($charId, $skillId, $handoutName){
+		$current_user = Auth::user();
+		$char = Character::find($charId);
+
+		if(
+			($current_user->is_admin || $current_user->is_story_telling) ||
+			($char->user_id === $current_user->id)
+		){
+			$file = Storage::disk('handouts')->getDriver()->getAdapter()->applyPathPrefix($skillId.'/'.$handoutName);
+
+			$headers = [
+				'Content-Type' => 'application/pdf',
+			];
+
+			return Response::download($file, $handoutName, $headers);
+		} else {
+			return redirect('/illegal_link');
+		}
 	}
 }

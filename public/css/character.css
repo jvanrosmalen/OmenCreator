@@ -18,7 +18,12 @@
 
 #char_ep_table.table-fixedheader>tbody {
 	overflow-y: scroll;
-	height: 150px
+	height: 150px;
+}
+
+#handout_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 150px;
 }
 
 .overview_table_header{

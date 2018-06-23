@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Hymir zegt:</div>
+                <div class="panel-heading">Ragnar, Groothertog van Huis Albewyn, zegt:</div>
 
                 <div class="panel-body text-center">
                     Je zoekt naar kennis die niet voor jou is!<br>
-                    Ga heen en keer nimmer terug naar deze plek, of voel mijn woede!
+                    Ga heen en keer nimmer terug naar Het Hoogste Huis, of voel mijn woede!
                 </div>
             </div>
         </div>

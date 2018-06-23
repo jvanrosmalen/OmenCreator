@@ -45,8 +45,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_delete_skillgroup/{id}', 'SkillGroupController@showDeleteSkillGroup')->middleware('isSystemRep');
 	Route::get('/delete_skill/{id}', 'SkillController@deleteSkill')->middleware('isSystemRep');
 	Route::get('/delete_skillgroup/{id}', 'SkillGroupController@deleteSkillGroup')->middleware('isSystemRep');
-	Route::get('/home', 'HomeController@index')->middleware('auth');
-	Route::get('/', 'HomeController@index')->middleware('auth');
+	Route::get('/home', 'HomeController@index');
+	Route::get('/', 'HomeController@index');
 	Route::get('/get_skill_levels_classes', 'JsonSkillController@getSkillLevelsClassesJson')->middleware('isStoryTellingSystemRep');
 	Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson')->middleware('auth');
 	Route::get('/get_players_with_skill', 'JsonSkillController@getPlayersWithSkillJson')->middleware('isStoryTelling');;
@@ -173,9 +173,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/profile_name_change_error', ['as'=>'profile_name_change_error', 'uses'=>function(){return view('/user/profileNameChangeError');}])->middleware('auth');
 	Route::get('/profile_email_change_error', ['as'=>'profile_email_change_error', 'uses'=>function(){return view('/user/profileEmailChangeError');}])->middleware('auth');
 	Route::get('/home', 'HomeController@index');
-	
-// 	Plopje
-// 	Route::get('/combat_sheet_test/{charId?}', 'CharacterController@combatSheetTest');
+
+	Route::get('download/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
 });
 
 // Route::group(['middleware' => 'web'], function () {
