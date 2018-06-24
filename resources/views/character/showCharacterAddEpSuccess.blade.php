@@ -20,7 +20,7 @@
 	<div class="row">
 		<div class="row button-row">
 			<div class="col-xs-2 col-xs-offset-5">
-				<a href="showall_character/" class="btn btn-default"
+				<a href="{{ url('/showall_character') }}" class="btn btn-default"
 					id="cancel_button" type="button"
 					style="width: 100%; font-size: 18px;">Naar Overzicht</a>
 			</div>

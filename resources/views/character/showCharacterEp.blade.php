@@ -16,7 +16,7 @@
 			<div class="col-xs-10 col-xs-offset-1">Geef hieronder aan hoeveel EP je wil toekennen aan <label>{{ $character->name }} (Speler: {{$character->char_user->name}})</label> en met welke reden.</div>
 		</div>
 		<br>
-		<form action='/do_character_add_ep' method='POST'>
+		<form action='do_character_add_ep' method='POST'>
 			<!-- ******************* -->
 			<!-- For Laravel CSRF administration -->
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -71,8 +71,11 @@
 					</thead>
 					<tbody>
 						<?php $first = true;?>
-						@foreach($character->ep_assignments as $assignment)
-							@if($first)
+						@for($index = 0; $index < sizeof($character->ep_assignments); $index++)
+							<?php
+								$assignment = $character->ep_assignments[$index];
+							?>
+							@if($index === (sizeof($character->ep_assignments)-1))
 								<tr id="{{ $assignment->id }}">
 									<td id="{{$assignment->id}}" class="col-xs-2">
 										<?php
@@ -123,7 +126,7 @@
 									</td>
 									<td class="col-xs-1">
 									
-									<form action='/remove_character_ep' method='POST'>
+									<form action='remove_character_ep' method='POST'>
 										<!-- ******************* -->
 										<!-- For Laravel CSRF administration -->
 										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -138,7 +141,7 @@
 									</td>
 								</tr>
 							@endif
-						@endforeach
+						@endfor
 					</tbody>
 				</table>
 			</div>
@@ -147,7 +150,7 @@
 	
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-5">
-			<a href="showall_character/" class="btn btn-default"
+			<a href="{{ url('/showall_character') }}" class="btn btn-default"
 				id="cancel_button" type="button"
 				style="width: 120px; font-size: 18px;"> Terug </a>
 		</div>

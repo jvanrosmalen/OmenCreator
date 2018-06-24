@@ -59,7 +59,7 @@ class Character extends Model
     }
     
     public function myEpAssigments(){
-    	return $this->hasMany('App\EpAssignment');
+    	return $this->hasMany('App\EpAssignment')->orderBy('created_at','desc');
     }
     
     public function charUser(){
