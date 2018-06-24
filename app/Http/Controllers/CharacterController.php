@@ -146,11 +146,14 @@ class CharacterController extends Controller
     						->get();
     	$dead_chars = Character::where('is_alive', false)
     						->where('is_player_char', true)
-    						->get();
+							->get();
+		$all_chars = Character::where('is_player_char', true)->get();
+
     	return view('character/showAllPlayerChar',
     			['active_chars'=> $active_chars,
     			'inactive_chars'=> $inactive_chars,
-    			'dead_chars'=>$dead_chars,
+				'dead_chars'=>$dead_chars,
+				'all_chars' =>$all_chars,
     			'user'=>$user
     			]);
     }

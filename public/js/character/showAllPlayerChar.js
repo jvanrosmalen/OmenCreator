@@ -6,13 +6,13 @@ var ShowAllPlayerChar = new function(){
 		var value = $("#playerSearchInput").val().toLowerCase();
 		
 		if(value == 'undefined' || value == ""){
-			$("#all_chars .hidden").each(function(){
+			$("#all_characters .hidden").each(function(){
 				$(this).removeClass("hidden");
 			});
 			return;
 		}
 		
-		$("#all_chars .charname").each(function(){
+		$("#all_characters .charname").each(function(){
 			var charname = $(this).attr('id').toLowerCase();
 			var tableRow = $(this).closest('tr');
 			var playername = $(this).closest('tr').find('.playername').attr('id').toLowerCase();
