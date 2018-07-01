@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <!-- <base href="http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/"> -->
+    <base href="http://www.omencreator.be/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,7 @@
 		var GLOBAL_BASE = 'http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/';
 	</script> -->
     <script>
-		var GLOBAL_BASE = '';
+		var GLOBAL_BASE = 'http://www.omencreator.be/';
 	</script>
 
     <!-- Fonts -->
