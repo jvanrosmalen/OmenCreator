@@ -17,7 +17,7 @@
 			</div>
 			
 			@if ($skill == null)
-			<form action="/action_page_binary.asp" method="post" enctype="multipart/form-data">
+			<form action="/create_skill" method="post" enctype="multipart/form-data">
  				<form id="createSkillForm" action="create_skill_submit" method="POST" enctype="multipart/form-data">
  			@else
  				<form id="createSkillForm" action="create_skill_update/{{$skill->id}}" method="POST" enctype="multipart/form-data">

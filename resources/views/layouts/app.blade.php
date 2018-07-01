@@ -54,7 +54,7 @@
     <script src="{{ URL::asset('js/skill/createSkillControl.js') }}"></script>
     <script src="{{ URL::asset('js/skill/Skill.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/create.js') }}"></script>
-	<script src="{{ URL::asset('js/skill/createSkillgroup.js') }}"></script>
+	<script src="{{ URL::asset('js/skill/createSkillGroup.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/createSkillGroupControl.js') }}"></script>
 	<script src="{{ URL::asset('js/skill/showall.js') }}"></script>
     <script src="{{ URL::asset('js/class/createClassTabControl.js') }}"></script>
