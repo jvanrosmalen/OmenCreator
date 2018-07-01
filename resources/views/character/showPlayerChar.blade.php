@@ -21,6 +21,9 @@
 		<li><a id="tab2" data-toggle="tab" href="#skills">Vaardigheden</a></li>
 		<li><a id="tab3" data-toggle="tab" href="#ep_overview">EP Overzicht</a></li>
 		<li><a id="tab4" data-toggle="tab" href="#documents">Documenten</a></li>
+		@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+		<li><a id="tab5" data-toggle="tab" href="#extra_info">Extra Info</a></li>
+		@endif
 	</ul>
 
 	<div class="tab-content">
@@ -374,6 +377,12 @@
 					</div>
 			</div>
 		</div>
+		
+		@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+		<div id="extra_info" class="tab-pane fade">
+			<br>
+		</div>
+		@endif
 	</div>
 
 	<br>

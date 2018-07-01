@@ -30,6 +30,7 @@
 			<li><a id="tab3" data-toggle="tab" href="#class_skills">Klasse Vaardigheden</a></li>
 			<li><a id="tab4" data-toggle="tab" href="#non_class_skills">Niet-Klasse Vaardigheden</a></li>
 			<li><a id="tab5" data-toggle="tab" href="#title_faith">Titel en Geloof</a></li>
+			<li><a id="tab6" data-toggle="tab" href="#extra_info">Extra Info</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -860,14 +861,36 @@
 					
 				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>true,
 				'next'=>null))
-			</div>	
+			</div>
+
+			<div id="extra_info" class="tab-pane fade">
+				<br>
+				<div class="row well">
+					<div class="row">
+					<div class="col-xs-1">
+					</div>
+					<div class="col-xs-10">
+						<textarea name="extra_info" class="extra_info_text">{{$character->extra_info}}</textarea>
+					</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>	
 @include('popups.showErrorMessage')
 @include('popups.showPromptMessage')
 
-	<script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function() { 
+			nicEditors.allTextAreas()
+
+			// Fix weird resizing of nicedit
+			$('.nicEdit-panelContain').parent().width('100%');
+			$('.nicEdit-panelContain').parent().next().width('98%');
+			$('.nicEdit-main').width('100%');
+		});
+		
 		CreatePlayerCharTabControl.addTabButtonListeners();
 		CreatePlayerCharSkills.initialize();
 		EditPlayerChar.initialize();

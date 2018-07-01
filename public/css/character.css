@@ -83,3 +83,13 @@
 	background-color: #fbc856 !important;
 	border-color: #ebb824 !important;
 }
+
+.extra_info_text {
+	width: 100%;
+	height: 300px;
+}
+
+.nicEdit-main {
+	background-color: #FFF;
+	overflow: auto !important;
+}

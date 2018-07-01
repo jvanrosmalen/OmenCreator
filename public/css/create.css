@@ -5,6 +5,7 @@
 
 .nicEdit-main {
 	background-color: #FFF;
+	overflow: auto !important;
 }
 
 .skillgroup_prereqs {

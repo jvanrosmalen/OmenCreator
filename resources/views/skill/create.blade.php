@@ -19,10 +19,8 @@
 			@if ($skill == null)
 			<form action="/action_page_binary.asp" method="post" enctype="multipart/form-data">
  				<form id="createSkillForm" action="create_skill_submit" method="POST" enctype="multipart/form-data">
-				 <!-- {!! Form::open(array('url' => "create_skill_submit", 'files' => 'true')) !!}  -->
  			@else
  				<form id="createSkillForm" action="create_skill_update/{{$skill->id}}" method="POST" enctype="multipart/form-data">
-				 <!-- {!! Form::open(array('url' => "create_skill_update/".$skill->id, 'files' => 'true')) !!} -->
  			@endif
 
 			<!-- ******************* -->
@@ -495,7 +493,11 @@
 						</div>
 					</div>
 
-					<input id="skill_handout_name_hidden" name="skill_handout_name" class="hidden" value="{{ $skill->skill_handout }}">
+					@if ($skill != null)
+						<input id="skill_handout_name_hidden" name="skill_handout_name" class="hidden" value="{{ $skill->skill_handout }}">
+					@else
+						<input id="skill_handout_name_hidden" name="skill_handout_name" class="hidden" value="">
+					@endif
 					@include('layouts.tab_buttons', array('tab'=>'tab5', 'previous'=>'tab3', 'save'=>true, 'next'=>null))
 				</div>
 			</div>
@@ -503,7 +505,6 @@
 
 <!-- ******************* -->
 
-			<!-- {!! Form::close() !!} -->
 			</form>
 		</div>
 		
