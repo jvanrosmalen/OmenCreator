@@ -80,11 +80,11 @@ return [
 
     		'mysql' => [
     				'driver' => 'mysql',
-    				'host' => env('DB_HOST', 'databases.aii.avans.nl'),
+    				'host' => env('DB_HOST', 'localhost'),
     				'port' => env('DB_PORT', '3306'),
-    				'database' => env('DB_DATABASE', 'jrosmale_db'),
-    				'username' => env('DB_USERNAME', 'jrosmale'),
-    				'password' => env('DB_PASSWORD', 'Ab12345'),
+    				'database' => env('DB_DATABASE', 'omencreator'),
+    				'username' => env('DB_USERNAME', 'omencreator'),
+    				'password' => env('DB_PASSWORD', 'Prater,!@#123qq'),
     				'charset' => 'utf8',
     				'collation' => 'utf8_unicode_ci',
     				'prefix' => '',
