@@ -53,6 +53,6 @@ class Kernel extends HttpKernel
         'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
         'isStoryTelling' => \App\Http\Middleware\StoryTellingMiddleware::class,
         'isSystemRep' => \App\Http\Middleware\SystemRepMiddleware::class,
-        'isStoryTellingSystemRep' => \App\Http\Middleware\StorytellingSystemRepMiddleware::class,
+        'isStoryTellingSystemRep' => \App\Http\Middleware\StoryTellingSystemRepMiddleware::class,
     ];
 }

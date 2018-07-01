@@ -33,8 +33,8 @@ Route::get('login', array('uses' => 'HomeController@showLogin'));
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/skillshowall', array( 'as'=> 'skill_showall', 'uses'=>'SkillController@showAll'))->middleware('isStoryTellingSystemRep');
-	Route::get('/skillgroupshowall', array('as'=>'skillgroup_showall', 'uses'=>'SkillGroupController@showAll'))->middleware('isStoryTellingSystemRep');
+	Route::get('/skillshowall', [ 'as'=> 'skill_showall', 'uses'=>'SkillController@showAll'] )->middleware('isStoryTellingSystemRep');
+	Route::get('/skillgroupshowall', [ 'as'=>'skillgroup_showall', 'uses'=>'SkillGroupController@showAll'])->middleware('isStoryTellingSystemRep');
 	Route::get('/create_skill/{id?}', 'SkillController@showCreateSkill')->middleware('isSystemRep');
 	Route::get('/create_skillgroup/{id?}', 'SkillGroupController@showCreateSkillGroup')->middleware('isSystemRep');
 	Route::post('/create_skill_submit', 'SkillController@submitSkillCreate')->middleware('isSystemRep');
@@ -56,7 +56,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_armor/{id?}', 'EquipmentController@deleteArmor')->middleware('isSystemRep');
 	Route::post('/create_armor_submit', 'EquipmentController@submitArmorCreate')->middleware('isSystemRep');
 	Route::post('/create_armor_update/{id?}', 'EquipmentController@updateArmor')->middleware('isSystemRep');
-	Route::get('/showall_armor', array( 'as'=> 'showall_armor', 'uses'=>'EquipmentController@showAllArmor'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_armor', [ 'as'=> 'showall_armor', 'uses'=>'EquipmentController@showAllArmor'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_armor_name', 'JsonEquipmentController@checkArmorName')->middleware('isSystemRep');
 	
 	Route::get('/create_shield/{id?}', 'EquipmentController@showCreateShield')->middleware('isSystemRep');
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_shield/{id?}', 'EquipmentController@deleteShield')->middleware('isSystemRep');
 	Route::post('/create_shield_submit', 'EquipmentController@submitShieldCreate')->middleware('isSystemRep');
 	Route::post('/create_shield_update/{id?}', 'EquipmentController@updateShield')->middleware('isSystemRep');
-	Route::get('/showall_shield', array( 'as'=> 'showall_shield', 'uses'=>'EquipmentController@showAllShield'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_shield', [ 'as'=> 'showall_shield', 'uses'=>'EquipmentController@showAllShield'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_shield_name', 'JsonEquipmentController@checkShieldName')->middleware('isSystemRep');
 	
 	Route::get('/create_weapon/{id?}', 'EquipmentController@showCreateWeapon')->middleware('isSystemRep');
@@ -72,7 +72,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_weapon/{id?}', 'EquipmentController@deleteWeapon')->middleware('isSystemRep');
 	Route::post('/create_weapon_submit', 'EquipmentController@submitWeaponCreate')->middleware('isSystemRep');
 	Route::post('/create_weapon_update/{id?}', 'EquipmentController@updateWeapon')->middleware('isSystemRep');
-	Route::get('/showall_weapon', array( 'as'=> 'showall_weapon', 'uses'=>'EquipmentController@showAllWeapon'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_weapon', [ 'as'=> 'showall_weapon', 'uses'=>'EquipmentController@showAllWeapon'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_weapon_name', 'JsonEquipmentController@checkWeaponName')->middleware('isSystemRep');
 	
 	Route::get('/create_craft_equipment/{id?}', 'EquipmentController@showCreateCraftEquipment')->middleware('isSystemRep');
@@ -80,7 +80,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_craft_equipment/{id?}', 'EquipmentController@deleteCraftEquipment')->middleware('isSystemRep');
 	Route::post('/create_craft_equipment_submit', 'EquipmentController@submitCraftEquipmentCreate')->middleware('isSystemRep');
 	Route::post('/create_craft_equipment_update/{id?}', 'EquipmentController@updateCraftEquipment')->middleware('isSystemRep');
-	Route::get('/showall_craft_equipment', array( 'as'=> 'showall_craft_equipment', 'uses'=>'EquipmentController@showAllCraftEquipment'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_craft_equipment', [ 'as'=> 'showall_craft_equipment', 'uses'=>'EquipmentController@showAllCraftEquipment'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_craft_equipment_name', 'JsonEquipmentController@checkCraftEquipmentName')->middleware('isSystemRep');
 	
 	Route::get('/create_generic_equipment/{id?}', 'EquipmentController@showCreateGenericEquipment')->middleware('isSystemRep');
@@ -88,7 +88,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_generic_equipment/{id?}', 'EquipmentController@deleteGenericEquipment')->middleware('isSystemRep');
 	Route::post('/create_generic_equipment_submit', 'EquipmentController@submitGenericEquipmentCreate')->middleware('isSystemRep');
 	Route::post('/create_generic_equipment_update/{id?}', 'EquipmentController@updateGenericEquipment')->middleware('isSystemRep');
-	Route::get('/showall_generic_equipment', array( 'as'=> 'showall_generic_equipment', 'uses'=>'EquipmentController@showAllGenericEquipment'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_generic_equipment', [ 'as'=> 'showall_generic_equipment', 'uses'=>'EquipmentController@showAllGenericEquipment'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_generic_equipment_name', 'JsonEquipmentController@checkGenericEquipmentName')->middleware('isSystemRep');
 
 	Route::get('/create_race/{id?}', 'RaceController@showCreateRace')->middleware('isSystemRep');
@@ -96,7 +96,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_race/{id?}', 'RaceController@deleteRace')->middleware('isSystemRep');
 	Route::post('/create_race_submit', 'RaceController@submitRaceCreate')->middleware('isSystemRep');
 	Route::post('/create_race_update/{id?}', 'RaceController@updateRace')->middleware('isSystemRep');
-	Route::get('/showall_race', array( 'as'=> 'showall_race', 'uses'=>'RaceController@showAllRace'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_race', [ 'as'=> 'showall_race', 'uses'=>'RaceController@showAllRace'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_race_name', 'JsonRaceController@checkRaceName')->middleware('isSystemRep');
 
 	Route::get('/create_class/{id?}', 'ClassController@showCreateClass')->middleware('isSystemRep');
@@ -104,14 +104,14 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete_class/{id?}', 'ClassController@deleteClass')->middleware('isSystemRep');
 	Route::post('/create_class_submit', 'ClassController@submitClassCreate')->middleware('isSystemRep');
 	Route::post('/create_class_update/{id?}', 'ClassController@updateClass')->middleware('isSystemRep');
-	Route::get('/showall_class', array( 'as'=> 'showall_class', 'uses'=>'ClassController@showAllClass'))->middleware('isStoryTellingSystemRep');
+	Route::get('/showall_class', [ 'as'=> 'showall_class', 'uses'=>'ClassController@showAllClass'])->middleware('isStoryTellingSystemRep');
 	Route::get('/check_class_name', 'JsonClassController@checkClassName')->middleware('isSystemRep');
 	Route::get('/get_prohibited_classes', 'JsonRaceController@getProhibitedClasses')->middleware('isStoryTelling');
 	Route::get('/get_descent_skills', 'JsonRaceController@getDescentSkills')->middleware('isStoryTelling');
 	Route::get('/get_class_skills_and_wealth', 'JsonClassController@getClassSkillsAndWealth')->middleware('isStoryTelling');
 	Route::get('/get_class_wealth', 'JsonClassController@getClassWealth')->middleware('isStoryTelling');
 	
-	Route::get('/showall_rule', array( 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'))->middleware('isSystemRep');
+	Route::get('/showall_rule', [ 'as'=> 'showall_rule', 'uses'=>'RulesController@showAllRule'])->middleware('isSystemRep');
 	Route::get('/create_rule', 'RulesController@showCreateRule')->middleware('isSystemRep');
 	Route::post('/create_rule_submit', 'RulesController@submitRuleCreate')->middleware('isSystemRep');
 	Route::get('/show_delete_rule_statistic/{id?}', 'RulesController@showDeleteRuleStatistic')->middleware('isSystemRep');
@@ -155,12 +155,12 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/handle_spark_choice', ['as'=>'handle_spark_choice', 'uses'=>'SparkController@handleSparkChoice'])->middleware('isStoryTelling');
 	
 	Route::auth();
-	Route::get('/illegal_link', array( 'as'=> 'illegal_link', 'uses'=>function () {
+	Route::get('/illegal_link', [ 'as'=> 'illegal_link', 'uses'=>function () {
 		return view('/auth/illegal_link');
-	}));
-	Route::get('/login_failed', array( 'as'=> 'login_failed', 'uses'=>function () {
+	}]);
+	Route::get('/login_failed', [ 'as'=> 'login_failed', 'uses'=>function () {
 		return view('/auth/login_failed');
-	}));
+	}]);
 	
 	Route::get('/my_profile', 'UserController@showProfile')->middleware('auth');
 	Route::post('/new_username_submit', 'UserController@changeUserName')->middleware('auth');
@@ -185,7 +185,7 @@ Route::group(['middleware' => ['web']], function () {
 // });
 
 
-View::composer(array('popups.createSkillSelector'), function($view)
+View::composer(['popups.createSkillSelector'], function($view)
 {
 	$selectedProducts = "a1, a2";
 	$view->with(['skills' => Skill::all(), "skilllevels"=>SkillLevel::all()]);

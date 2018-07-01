@@ -16,10 +16,7 @@ class StoryTellingSystemRepMiddleware
      */
     public function handle($request, Closure $next)
     {
-    	if(!Auth::guest() &&
-    			(	Auth::user()->is_system_rep ||
-    				Auth::user()->is_story_telling ||
-    				Auth::user()->is_admin)){
+    	if(!Auth::guest() && (Auth::user()->is_system_rep || Auth::user()->is_story_telling || Auth::user()->is_admin)){
     		return $next($request);	
     	}
     	
