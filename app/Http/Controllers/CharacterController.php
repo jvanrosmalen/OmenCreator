@@ -482,7 +482,11 @@ class CharacterController extends Controller
 	public function doCharAddEp(){
 		$charId = $_POST['charId'];
 		$ep_amount = $_POST['ep_amount'];
-		$ep_reason = $_POST['ep_reason'];
+		if(isset($_POST['ep_reason'])){
+			$ep_reason = $_POST['ep_reason'];
+		}else{
+			$ep_reason = "";
+		}
 		$event_survived = $_POST['event_survived'];
 		$character = Character::find($charId);
 		
