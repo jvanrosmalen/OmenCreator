@@ -87,6 +87,8 @@
 .extra_info_text {
 	width: 100%;
 	height: 300px;
+	overflow-y: scroll;
+	resize: none;
 }
 
 .nicEdit-main {

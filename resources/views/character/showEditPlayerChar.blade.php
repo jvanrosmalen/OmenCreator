@@ -859,8 +859,8 @@
 					</div>
 				</div>
 					
-				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>true,
-				'next'=>null))
+				@include('layouts.tab_buttons',	array('tab'=>'tab5', 'previous'=>'tab4', 'save'=>false,
+				'next'=>'tab6'))
 			</div>
 
 			<div id="extra_info" class="tab-pane fade">
@@ -874,6 +874,9 @@
 					</div>
 					</div>
 				</div>
+
+				@include('layouts.tab_buttons',	array('tab'=>'tab6', 'previous'=>'tab5', 'save'=>true,
+				'next'=>null))
 			</div>
 		</div>
 	</form>
@@ -889,6 +892,8 @@
 			$('.nicEdit-panelContain').parent().width('100%');
 			$('.nicEdit-panelContain').parent().next().width('98%');
 			$('.nicEdit-main').width('100%');
+			$('.nicEdit-main').parent().css('overflow-y','scroll');
+			$('.nicEdit-main').parent().css('height','310px');
 		});
 		
 		CreatePlayerCharTabControl.addTabButtonListeners();

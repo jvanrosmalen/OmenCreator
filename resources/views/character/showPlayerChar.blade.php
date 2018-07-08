@@ -381,6 +381,13 @@
 		@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
 		<div id="extra_info" class="tab-pane fade">
 			<br>
+			<div class="row">
+				<div class="col-xs-1">
+				</div>
+				<div class="col-xs-10">
+					<div class="extra_info_text">{!! Blade::compileString($character->extra_info); !!}</div>
+				</div>
+			</div>
 		</div>
 		@endif
 	</div>
