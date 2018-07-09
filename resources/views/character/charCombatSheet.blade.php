@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<!-- This is a horrible view. It's way too long and cumbersome.
-Unfortunately, DOMPDF can't handle all the handy stuff that the
-Blade engine gives, so everything is coded out in HTML.
-So good luck... -->
-
 <html lang="en">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<link href="css/char_combatsheet.css" rel='stylesheet' type='text/css'>
 	</head>
 	<body>
@@ -14,7 +10,7 @@ So good luck... -->
 				<table>
 					<tr>
 						<td colspan='18' class='heavy_outline height_5_row'>
-							<img class="nav_bar_png" src="img/omen.jpg" alt="Omen Logo">
+<!--							<img class="nav_bar_png" src="img/omen.jpg" alt="Omen Logo"> -->
 						</td>
 					</tr>
 					<tr>

@@ -6,14 +6,14 @@
   	font-style: normal;
 	font-weight: normal;
     /*src: url('{{ asset("fonts/cousine/Cousine-Regular.ttf") }}');*/
-    src: url('../fonts/cousine/Cousine-Regular.ttf');
+    src: url('/fonts/cousine/Cousine-Regular.ttf');
 }
 @font-face {
     font-family: LiberationMono-Regular;
   	font-style: normal;
 	font-weight: normal;
     /*src: url('{{ asset("fonts/cousine/Cousine-Regular.ttf") }}');*/
-    src: url('../fonts/liberation/LiberationMono-Regular.ttf');
+    src: url('/fonts/liberation/LiberationMono-Regular.ttf');
 }
 
 body { 

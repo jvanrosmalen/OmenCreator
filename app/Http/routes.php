@@ -33,6 +33,7 @@ Route::get('login', array('uses' => 'HomeController@showLogin'));
 */
 
 Route::group(['middleware' => ['web']], function () {
+	Route::get('/test_generate_combatsheet/{id?}', 'CharacterController@testGenerateCombatSheet')->middleware('auth');
 	Route::get('/skillshowall', [ 'as'=> 'skill_showall', 'uses'=>'SkillController@showAll'] )->middleware('isStoryTellingSystemRep');
 	Route::get('/skillgroupshowall', [ 'as'=>'skillgroup_showall', 'uses'=>'SkillGroupController@showAll'])->middleware('isStoryTellingSystemRep');
 	Route::get('/create_skill/{id?}', 'SkillController@showCreateSkill')->middleware('isSystemRep');
