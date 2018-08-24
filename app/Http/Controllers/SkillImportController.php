@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Request;
+use Session;
 
 class SkillImportController extends Controller
 {
