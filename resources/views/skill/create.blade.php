@@ -7,11 +7,23 @@
 
 		<div class='container'>
 			<div class='row'>
-				<div class='col-xs-12'>
+				
 					@if ($skill == null)
-						<h3>Cre&euml;er Nieuwe Vaardigheid</h3>
+						<div class='col-xs-6'>
+							<h3>Cre&euml;er Nieuwe Vaardigheid</h3>
+						</div>
+
+						@if( Auth::user()->is_story_telling || Auth::user()->is_system_rep || Auth::user()->is_admin)	
+							<div class='col-xs-6'>
+								<div class='col-xs-6 pull-right'>
+									<a class="btn btn-default btn-block" href="{{ url('import_skills) }}">Importeer Vaardigheiden</a>
+								</div>
+							</div>
+						@endif						
 					@else
+					<div class='col-xs-12'>
 						<h3>Aanpassen Vaardigheid</h3>
+					</div>
 					@endif
 				</div>
 			</div>

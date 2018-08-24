@@ -50,7 +50,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('/get_skill_levels_classes', 'JsonSkillController@getSkillLevelsClassesJson')->middleware('isStoryTellingSystemRep');
 	Route::get('/get_skill_details', 'JsonSkillController@getSkillDetailsJson')->middleware('auth');
-	Route::get('/get_players_with_skill', 'JsonSkillController@getPlayersWithSkillJson')->middleware('isStoryTelling');;
+	Route::get('/get_players_with_skill', 'JsonSkillController@getPlayersWithSkillJson')->middleware('isStoryTelling');
+	Route::get('/import_skills','SkillController@importSkills')->middleware('isAdmin');
 
 	Route::get('/create_armor/{id?}', 'EquipmentController@showCreateArmor')->middleware('isSystemRep');
 	Route::get('/show_delete_armor/{id?}', 'EquipmentController@showDeleteArmor')->middleware('isSystemRep');

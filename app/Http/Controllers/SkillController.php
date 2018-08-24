@@ -454,5 +454,9 @@ class SkillController extends Controller
 		header("Location:".$url);
 		die();		
 	}
+
+	public function importSkills(){
+		return view('/skill/showimportskills');
+	}
 }
 ?>
