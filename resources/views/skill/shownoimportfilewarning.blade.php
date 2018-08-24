@@ -13,7 +13,11 @@
 				Je hebt geen file geselecteerd, je hebt geen .xlsx geselecteerd of de layout van de file is niet correct.<br>
                 <br>
                 De layout die verwacht wordt is de volgende:
-                <table style="font-size:2">
+		<div style="font-size:10px" class='row'>
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-11">	
+                <table>
                     <thead>
                         <th>Kolom</th>
                         <th>Inhoud</th>
@@ -123,6 +127,8 @@
                         <td>OMSCHRIJVING</td>
                     </tr>
                 </table>
+		</div>
+		</div>
 			</div>		
 		</div>
 
