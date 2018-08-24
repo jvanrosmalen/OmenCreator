@@ -32,8 +32,14 @@
                             Selecteer hieronder je .xlsx bestand met daarin de vaardigheden die je wil importeren.
                         </div>
                         <br>
-                        <div class='row text-center'>
-                            &nbsp;{!! Form::file('skill_imports') !!}&nbsp;
+                        <div class='row'>
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-3">
+                                {!! Form::file('skill_imports') !!}
+                            </div>
+                            <div class="col-xs-5">
+                            </div>
                         </div>
                     </div>
                 </div>
