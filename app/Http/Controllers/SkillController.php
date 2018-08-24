@@ -464,7 +464,7 @@ class SkillController extends Controller
 			$handout = Input::file('skill_imports');
 			$skill->skill_handout = $handout->getClientOriginalName();
 		} else {
-			return view('/shownoimportfilewarning');
+			return view('/skill/shownoimportfilewarning');
 		}		
 	}
 }
