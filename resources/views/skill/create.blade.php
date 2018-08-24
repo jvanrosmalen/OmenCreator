@@ -13,7 +13,7 @@
 							<h3>Cre&euml;er Nieuwe Vaardigheid</h3>
 						</div>
 
-						@if( Auth::user()->is_story_telling || Auth::user()->is_system_rep || Auth::user()->is_admin)	
+						@if( Auth::user()->is_admin)	
 							<div class='col-xs-6'>
 								<div class='col-xs-6 pull-right'>
 									<a class="btn btn-default btn-block" href="{{ url('import_skills') }}">Importeer Vaardigheiden</a>
