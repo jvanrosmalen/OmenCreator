@@ -33,7 +33,7 @@
                         </div>
                         <br>
                         <div class='row text-center'>
-                            {!! Form::file('skill_imports') !!}
+                            &nbsp;{!! Form::file('skill_imports') !!}&nbsp;
                         </div>
                     </div>
                 </div>
