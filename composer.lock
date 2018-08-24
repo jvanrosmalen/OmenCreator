@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b582b9a27dee7f9bedfbf8604c693630",
+    "content-hash": "5311a38f1b5226dac371561546515e2f",
     "packages": [
+        {
+            "name": "asan/phpexcel",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Janson-Leung/PHPExcel.git",
+                "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Janson-Leung/PHPExcel/zipball/07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+                "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asan\\PHPExcel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Janson Leung",
+                    "homepage": "https://github.com/Janson-Leung"
+                }
+            ],
+            "description": "A lightweight PHP library for reading spreadsheet files",
+            "homepage": "https://github.com/Janson-Leung/PHPExcel",
+            "time": "2018-07-23T01:42:26+00:00"
+        },
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v0.8.2",
