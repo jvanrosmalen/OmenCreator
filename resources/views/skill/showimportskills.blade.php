@@ -19,17 +19,31 @@
         <div class="row">
             <form action="/do_import_skills" method="post" enctype="multipart/form-data">
 
-			<!-- ******************* -->
-			<!-- For Laravel CSRF administration -->
-			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-			<!-- ******************* -->
+                <!-- ******************* -->
+                <!-- For Laravel CSRF administration -->
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                <!-- ******************* -->
 
-            <h3>Hand-out</h3>
                 <div class="row">
-					<div class='col-xs-2'>
-					</div>
-                    <div class='col-xs-3'>
-                        {!! Form::file('skill_imports') !!}
+                    <div class='col-xs-2'>
+                    </div>
+                    <div class='col-xs-8'>
+                        <div class='row'>
+                            Selecteer hieronder je .xlsx bestand met daarin de vaardigheden die je wil importeren.
+                        </div>
+                        <div class='row'>
+                            {!! Form::file('skill_imports') !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-2">
+                            <input id="import" class="btn btn-default" style="width:100%" type="submit" value="Importeer">
+                    </div>
+                    <div class="col-xs-5">
                     </div>
                 </div>
             </form>
