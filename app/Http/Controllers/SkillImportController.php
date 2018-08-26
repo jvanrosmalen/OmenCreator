@@ -6,8 +6,9 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Request;
 use Session;
-use PHPExcel; 
-use PHPExcel_IOFactory;
+//use PHPExcel; 
+//use PHPExcel_IOFactory;
+use Storage;
 
 class SkillImportController extends Controller
 {
@@ -24,19 +25,20 @@ class SkillImportController extends Controller
             }
             
             // There is a file, and it is a xlsx file. Let's try and make something useful out of it.
-
             // Move file to known place on server
-            $importFilePath = 
-            $this->handleImportFile($importFile);
+            $importFilePath = $this->moveFileToServer($importFile);
 		} else {
 			return view('/skill/shownoimportfilewarning');
 		}		
     }
     
     private function moveFileToServer($file){
+        // First remove the skillimports directory in Storage and make a new one to clear any old files
+        Storage::deleteDirectory('skillimports');
+        Storage::makeDirectory('skillimports');
         // Moves file to storage and returns path.
         Storage::put(
-            'skillimports/'.$file->getClientOriginalName(),
+            'skillimports/'.strtolower($file->getClientOriginalName()),
             file_get_contents($file->getRealPath())
         );
 
