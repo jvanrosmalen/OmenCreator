@@ -55,7 +55,7 @@ class SkillImportController extends Controller
         for ($row = 1; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
 
-            $skill = Skill::where('name', $skillName);
+            $skill = Skill::where('name', $skillName)->first();
             // Check if skill is already in the DB
             if($skill == null){
                 // the skill is not yet present in the DB
@@ -63,8 +63,7 @@ class SkillImportController extends Controller
                 echo "didn't find ".$skillName."<br>";
             } else {
                 // a skill with the same name is present in de DB
-                $skill = Skill::where('name', $skillName)->first();
-                echo "Found the skill ".$skillName." <br>";
+                echo "Found the skill ".$skill->name." <br>";
             }
         }
     }
