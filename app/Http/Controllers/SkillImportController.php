@@ -92,8 +92,11 @@ class SkillImportController extends Controller
                         echo $skillName.": Could not find playerclass ".$className;
                     }
                 }
+                var_dump($classNameArray);
+                var_dump($classIdArray);
+
                 // sync playerclasses
-                $skill->playerClasses()->sync($classIdArray,false);
+                //$skill->playerClasses()->sync($classIdArray,false);
             } else {
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
