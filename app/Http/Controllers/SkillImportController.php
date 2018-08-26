@@ -6,8 +6,8 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Request;
 use Session;
-//use PHPExcel; 
-//use PHPExcel_IOFactory;
+use PHPExcel; 
+use PHPExcel_IOFactory;
 use Storage;
 
 class SkillImportController extends Controller
@@ -27,30 +27,32 @@ class SkillImportController extends Controller
             // There is a file, and it is a xlsx file. Let's try and make something useful out of it.
             // Move file to known place on server
             $importFilePath = $this->moveFileToServer($importFile);
+		$this->handleImportFile($importFilePath);
 		} else {
 			return view('/skill/shownoimportfilewarning');
 		}		
     }
     
     private function moveFileToServer($file){
+	$fileName = strtolower($file->getClientOriginalName());
         // First remove the skillimports directory in Storage and make a new one to clear any old files
         Storage::deleteDirectory('skillimports');
         Storage::makeDirectory('skillimports');
         // Moves file to storage and returns path.
         Storage::put(
-            'skillimports/'.strtolower($file->getClientOriginalName()),
+            'skillimports/'.$fileName,
             file_get_contents($file->getRealPath())
         );
 
-        return Storage::url('skillimports/'.$file->getClientOriginalName());
+        return storage_path('app/skillimports/'.$fileName);
     }
 
-    private function handleImportFile($importFile){
+    private function handleImportFile($path){
         $objPHPExcel = PHPExcel_IOFactory::load($path);
         $objWorksheet = $objPHPExcel->getActiveSheet();
         $highestRow = $objWorksheet->getHighestRow();
         for ($row = 1; $row <= $highestRow; ++$row) {
-             var_dump($objWorksheet->getCellByColumnAndRow(1, $row));
+             var_dump($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
         }
     }
 }
