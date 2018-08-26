@@ -9,7 +9,7 @@ use Session;
 use PHPExcel; 
 use PHPExcel_IOFactory;
 use Storage;
-use Skill;
+use App\Skill;
 
 class SkillImportController extends Controller
 {
