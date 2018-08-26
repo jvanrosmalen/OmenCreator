@@ -10,6 +10,7 @@ use PHPExcel;
 use PHPExcel_IOFactory;
 use Storage;
 use App\Skill;
+use App\PlayerClass;
 
 class SkillImportController extends Controller
 {
@@ -49,18 +50,50 @@ class SkillImportController extends Controller
     }
 
     private function handleImportFile($path){
+        $errorArray = array();
+
         $objPHPExcel = PHPExcel_IOFactory::load($path);
         $objWorksheet = $objPHPExcel->getActiveSheet();
         $highestRow = $objWorksheet->getHighestRow();
-        for ($row = 1; $row <= $highestRow; ++$row) {
+        for ($row = 2; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
+            // The error entry is used to log anything the import can't handle
+            $errorEntry = [$skillName => array()];
 
             $skill = Skill::where('name', $skillName)->first();
             // Check if skill is already in the DB
             if($skill == null){
                 // the skill is not yet present in the DB
                 $skill = new Skill();
-                echo "didn't find ".$skillName."<br>";
+                
+                // ***********************
+                // Class Name
+                // ***********************
+                $skill->name = $skillName;
+
+                // save if for the rest
+                $skill->save();
+
+                $skillId = $skill->id;
+
+                // ***********************
+                // Player classes
+                // ***********************
+                // link the classes: get the values, split on -, translate to ids, and get ids to link
+                $classNameArray = array_map('trim', split("-", $objWorksheet->getCellByColumnAndRow(3, $row)->getValue()));
+                $classIdArray = array();
+                for($index = 0; $index < sizeof($classNameArray); $index++){
+                    $className = $classNameArray[$index];
+                    $playerClass = PlayerClass::where('class_name', $className)->first();
+
+                    if($playerClass != null){
+                        $classIdArray[] = $playerClass->id;
+                    } else {
+                        echo $skillName.": Could not find playerclass ".$className;
+                    }
+                }
+                // sync playerclasses
+                $skill->playerClasses()->sync($classIdArray,false);
             } else {
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
