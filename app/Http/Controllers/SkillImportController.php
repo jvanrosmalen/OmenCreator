@@ -66,10 +66,19 @@ class SkillImportController extends Controller
                 // the skill is not yet present in the DB
                 $skill = new Skill();
                 
-                // ***********************
-                // Class Name
-                // ***********************
                 $skill->name = $skillName;
+                $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
+                $skill->skill_level_id = 1;
+                $skill->description_small = "Short test";
+                $skill->description_long = "Long test";
+                $skill->mentor_required = false;
+                $skill->income_coin_id = 1;
+                $skill->income_amount = 10;
+                $skill->statistic_prereq_id = 2;
+                $skill->statistic_prereq_amount = 4;
+                $skill->secret_skill = true;
+                $skill->craft_skill = true;
+                $skill->wealth_prereq_id = 2;
 
                 // save if for the rest
                 $skill->save();
