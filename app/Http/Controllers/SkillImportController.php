@@ -60,9 +60,10 @@ class SkillImportController extends Controller
             if($skill == null){
                 // the skill is not yet present in the DB
                 $skill = new Skill();
+                echo "didn't find ".$skillName."<br>";
             } else {
                 // a skill with the same name is present in de DB
-                $skill = Skill::where('name', $skillName)->get()[0];
+                $skill = Skill::where('name', $skillName)->first();
                 echo "Found the skill ".$skill->name." <br>";
             }
         }
