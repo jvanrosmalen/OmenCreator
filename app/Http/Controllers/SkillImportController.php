@@ -9,6 +9,7 @@ use Session;
 use PHPExcel; 
 use PHPExcel_IOFactory;
 use Storage;
+use Skill;
 
 class SkillImportController extends Controller
 {
@@ -52,7 +53,16 @@ class SkillImportController extends Controller
         $objWorksheet = $objPHPExcel->getActiveSheet();
         $highestRow = $objWorksheet->getHighestRow();
         for ($row = 1; $row <= $highestRow; ++$row) {
-             var_dump($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
+            $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
+
+            $skill = Skill::where('name', $skillName)->get();
+            // Check if skill is already in the DB
+            if($skill == null){
+                // the skill is not yet present in the DB
+            } else {
+                // a skill with the same name is present in de DB
+                echo "Found the skill ".$skill->name." <br>";
+            }
         }
     }
 }
