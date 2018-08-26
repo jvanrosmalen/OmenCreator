@@ -62,7 +62,7 @@ class SkillImportController extends Controller
                 $skill = new Skill();
             } else {
                 // a skill with the same name is present in de DB
-                $skill = Skill::where('name', $skillName)->get();
+                $skill = Skill::where('name', $skillName)->get()[0];
                 echo "Found the skill ".$skill->name." <br>";
             }
         }
