@@ -89,7 +89,7 @@ class SkillImportController extends Controller
                 // Player classes
                 // ***********************
                 // link the classes: get the values, split on -, translate to ids, and get ids to link
-                $classNameArray = array_map('trim', split("-", $objWorksheet->getCellByColumnAndRow(3, $row)->getValue()));
+                $classNameArray = array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(3, $row)->getValue()));
                 $classIdArray = array();
                 for($index = 0; $index < sizeof($classNameArray); $index++){
                     $className = $classNameArray[$index];
@@ -105,7 +105,7 @@ class SkillImportController extends Controller
                 var_dump($classIdArray);
 
                 // sync playerclasses
-                //$skill->playerClasses()->sync($classIdArray,false);
+                $skill->playerClasses()->sync($classIdArray,false);
             } else {
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
