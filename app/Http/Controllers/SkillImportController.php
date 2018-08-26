@@ -15,8 +15,12 @@ class SkillImportController extends Controller
 
 	public function doImportSkills(){
 		if(Input::hasFile('skill_imports')) {
-			$handout = Input::file('skill_imports');
-			$skill->skill_handout = $handout->getClientOriginalName();
+            $importFile = Input::file('skill_imports');
+            // Check if xlsx
+            if(strcasecmp($importFile->getClientOriginalExtension(),"xlsx") != 0){
+                return view('/skill/shownoimportfilewarning');    
+            }
+			$skill->skill_handout = $importFile->getClientOriginalName();
 		} else {
 			return view('/skill/shownoimportfilewarning');
 		}		
