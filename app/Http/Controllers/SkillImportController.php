@@ -69,15 +69,15 @@ class SkillImportController extends Controller
                 $skill->name = $skillName;
                 $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
                 $skill->skill_level_id = 1;
-                $skill->description_small = "Short test";
-                $skill->description_long = "Long test";
+                $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
+                $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
                 $skill->mentor_required = false;
                 $skill->income_coin_id = 1;
                 $skill->income_amount = 10;
                 $skill->statistic_prereq_id = 2;
                 $skill->statistic_prereq_amount = 4;
-                $skill->secret_skill = true;
-                $skill->craft_skill = true;
+                $skill->secret_skill = false;
+                $skill->craft_skill = false;
                 $skill->wealth_prereq_id = 2;
 
                 // save if for the rest
@@ -101,8 +101,6 @@ class SkillImportController extends Controller
                         echo $skillName.": Could not find playerclass ".$className;
                     }
                 }
-                var_dump($classNameArray);
-                var_dump($classIdArray);
 
                 // sync playerclasses
                 $skill->playerClasses()->sync($classIdArray,false);
