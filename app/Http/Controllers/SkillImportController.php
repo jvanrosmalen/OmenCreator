@@ -116,6 +116,15 @@ class SkillImportController extends Controller
                     $raceIdArray = array();
                     for($index = 0; $index < sizeof($raceNameArray); $index++){
                         $raceName = $raceNameArray[$index];
+
+                        if(strcmp($raceName, "Mannheim") === 0){
+                            $raceName = "Mannheimer";
+                        } else {
+                            if(strcmp($raceName, "Khalië") === 0){
+                                $raceName = "Khali&euml;r";
+                            }
+                        }
+    
                         $race = Race::where('race_name', $raceName)->first();
     
                         if($race != null){
