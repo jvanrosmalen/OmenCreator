@@ -121,7 +121,7 @@ class SkillImportController extends Controller
                             $raceName = "Mannheimer";
                         } else {
                             if(strcmp($raceName, "Khalië") === 0){
-                                $raceName = "Khali&euml;r";
+                                $raceName = "Khaliër";
                             }
                         }
     
