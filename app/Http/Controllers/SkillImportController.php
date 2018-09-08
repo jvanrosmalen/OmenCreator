@@ -172,6 +172,7 @@ class SkillImportController extends Controller
                             $res_rule_id = $res_rule->id;
 
                             $res_rules_sync[] = $res_rule_id;
+                            echo "Added rule ".$res_rule_id.": ".$res_rule->toString();
                         } else {
                             echo "Fear Resistance rule".$operator.$amount." does not exist.";
                         } 
