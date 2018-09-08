@@ -154,30 +154,59 @@ class SkillImportController extends Controller
                 $amount = intval(trim($objWorksheet->getCellByColumnAndRow(9, $row)->getValue()));
                 if($amount != 0){
                     // Get resistance id
-                    $res_id = -1;
                     $resistance = Resistance::where('resistance_name', "Angst")->first();
+
                     if($resistance != null){
-                        $res_id = $resistance->id;
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
 
-                        $operator = "+";
-                        if($amount < 0){
-                            $amount = abs($amount);
-                            $operator = "-";
-                        }
-
-                        // find the correct resistance rule
-                        $res_rule = ResistanceRule::where('resistance_id', $res_id)->where('rules_operator', $operator)
-                            ->where('value', $amount)->first();
-                        if($res_rule != null){
-                            $res_rule_id = $res_rule->id;
-
+                        if($res_rule_id > 0){
                             $res_rules_sync[] = $res_rule_id;
-                            echo "Added rule ".$res_rule_id.": ".$res_rule->toString();
-                        } else {
-                            echo "Fear Resistance rule".$operator.$amount." does not exist.";
-                        } 
+                        }
+                        else {
+                            echo "Fear Resistance rule ".$operator.$amount." does not exist.";
+                        }
                     } else {
                         echo "Fear Resistance: could not find id";
+                    }
+                }
+
+                // Theft Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(10, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $resistance = Resistance::where('resistance_name', "Diefstal")->first();
+
+                    if($resistance != null){
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                        if($res_rule_id > 0){
+                            $res_rules_sync[] = $res_rule_id;
+                        }
+                        else {
+                            echo "Theft Resistance rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Theft Resistance: could not find id";
+                    }
+                }
+
+                // Poison Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(11, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $resistance = Resistance::where('resistance_name', "Gif")->first();
+
+                    if($resistance != null){
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                        if($res_rule_id > 0){
+                            $res_rules_sync[] = $res_rule_id;
+                        }
+                        else {
+                            echo "Poison Resistance rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Poison Resistance: could not find id";
                     }
                 }
 
@@ -199,5 +228,25 @@ class SkillImportController extends Controller
         } else {
             return false;
         }
+    }
+
+    private function getResistanceRule($resistance, $amount){
+        $res_rule_id = -1;
+        $res_id = $resistance->id;
+
+        $operator = "+";
+        if($amount < 0){
+            $amount = abs($amount);
+            $operator = "-";
+        }
+
+        // find the correct resistance rule
+        $res_rule = ResistanceRule::where('resistance_id', $res_id)->where('rules_operator', $operator)
+            ->where('value', $amount)->first();
+        if($res_rule != null){
+            $res_rule_id = $res_rule->id;
+        }
+        
+        return $res_rule_id;
     }
 }
