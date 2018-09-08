@@ -71,7 +71,8 @@ class SkillImportController extends Controller
                 $skill->skill_level_id = 1;
                 $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
                 $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
-                $skill->mentor_required = false;
+                // Check mentor
+                $skill->mentor_required = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
                 $skill->income_coin_id = 1;
                 $skill->income_amount = 10;
                 $skill->statistic_prereq_id = 2;
@@ -104,10 +105,40 @@ class SkillImportController extends Controller
 
                 // sync playerclasses
                 $skill->playerClasses()->sync($classIdArray,false);
+
+                // ***********************
+                // Skill race prereqs
+                // ***********************
+                // link the races: get the values, split on -, translate to ids, and get ids to link
+                if(strcmp( trim($objWorksheet->getCellByColumnAndRow(7, $row)->getValue()), "/") !== 0){
+                    $raceNameArray = array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(7, $row)->getValue()));
+                    $raceIdArray = array();
+                    for($index = 0; $index < sizeof($raceNameArray); $index++){
+                        $raceName = $raceNameArray[$index];
+                        $race = Race::where('race_name', $raceName)->first();
+    
+                        if($race != null){
+                            $raceIdArray[] = $race->id;
+                        } else {
+                            echo $skillName.": Could not find race ".$raceName;
+                        }
+                    }                    
+
+                    // sync playerclasses
+                    $skill->racePrereqs()->sync($raceIdArray,false);
+                }
             } else {
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
             }
+        }
+    }
+
+    private function checkForYesOrNo($cellValue){
+        if(strcasecmp($cellValue, "ja") == 0){
+            return true;
+        } else {
+            return false;
         }
     }
 }
