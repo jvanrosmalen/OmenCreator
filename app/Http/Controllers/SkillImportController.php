@@ -404,7 +404,7 @@ class SkillImportController extends Controller
         }
 
         // find the correct statistic rule
-        $stat_rule = StatisticRule::where('statistic_id', $res_id)->where('rules_operator', $operator)
+        $stat_rule = StatisticRule::where('statistic_id', $stat_id)->where('rules_operator', $operator)
             ->where('value', $amount)->first();
         if($stat_rule != null){
             $stat_rule_id = $stat_rule->id;
