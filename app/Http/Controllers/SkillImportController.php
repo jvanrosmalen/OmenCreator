@@ -14,6 +14,8 @@ use App\PlayerClass;
 use App\Race;
 use App\Resistance;
 use App\ResistanceRule;
+use App\Statistic;
+use App\StatisticRule;
 
 class SkillImportController extends Controller
 {
@@ -144,9 +146,12 @@ class SkillImportController extends Controller
                     // sync races
                     $skill->racePrereqs()->sync($raceIdArray,false);
                 }
+                // ***********************
+                // END OF: Skill race prereqs
+                // ***********************
 
                 // ***********************
-                // All resistance shizzle
+                // RESISTANCE RULES
                 // ***********************
                 $res_rules_sync = array();
 
@@ -210,11 +215,149 @@ class SkillImportController extends Controller
                     }
                 }
 
+                // Magic Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(12, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $resistance = Resistance::where('resistance_name', "Magie")->first();
+
+                    if($resistance != null){
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                        if($res_rule_id > 0){
+                            $res_rules_sync[] = $res_rule_id;
+                        }
+                        else {
+                            echo "Magic Resistance rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Magic Resistance: could not find id";
+                    }
+                }
+
+                // Sickness Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(13, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $resistance = Resistance::where('resistance_name', "Ziekte")->first();
+
+                    if($resistance != null){
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                        if($res_rule_id > 0){
+                            $res_rules_sync[] = $res_rule_id;
+                        }
+                        else {
+                            echo "Sickness Resistance rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Sickness Resistance: could not find id";
+                    }
+                }   
+
+                // Trauma Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(17, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $resistance = Resistance::where('resistance_name', "Trauma")->first();
+
+                    if($resistance != null){
+                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                        if($res_rule_id > 0){
+                            $res_rules_sync[] = $res_rule_id;
+                        }
+                        else {
+                            echo "Trauma Resistance rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Trauma Resistance: could not find id";
+                    }
+                }  
+
                 // Handled all resistance rules, now sync the array
                 if(sizeof($res_rules_sync) > 0)
                 {
                     $skill->resistanceRules()->sync($res_rules_sync);
                 }
+                // ***********************
+                // END OF: RESISTANCE RULES
+                // ***********************
+
+                // ***********************
+                // STATISTICS RULES
+                // ***********************
+                $stat_rules_sync = array();
+
+                // Willpower
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(14, $row)->getValue()));
+                if($amount != 0){
+                    // Get stat id
+                    $statistic = Statistic::where('statistic_name', "Wilskracht")->first();
+
+                    if($statistic != null){
+                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                        if($stat_rule_id > 0){
+                            $stat_rules_sync[] = $stat_rule_id;
+                        }
+                        else {
+                            echo "Willpower rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Willpower: could not find id";
+                    }
+                }
+                
+                // Status
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(15, $row)->getValue()));
+                if($amount != 0){
+                    // Get stat id
+                    $statistic = Statistic::where('statistic_name', "Status")->first();
+
+                    if($statistic != null){
+                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                        if($stat_rule_id > 0){
+                            $stat_rules_sync[] = $stat_rule_id;
+                        }
+                        else {
+                            echo "Status rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Status: could not find id";
+                    }
+                }
+
+                // Focus
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(16, $row)->getValue()));
+                if($amount != 0){
+                    // Get stat id
+                    $statistic = Statistic::where('statistic_name', "Focus")->first();
+
+                    if($statistic != null){
+                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                        if($stat_rule_id > 0){
+                            $stat_rules_sync[] = $stat_rule_id;
+                        }
+                        else {
+                            echo "Focus rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Focus: could not find id";
+                    }
+                }
+
+                // Handled all statistic rules, now sync the array
+                if(sizeof($stat_rules_sync) > 0)
+                {
+                    $skill->statisticRules()->sync($stat_rules_sync);
+                }
+                // ***********************
+                // END OF: STATISTIC RULES
+                // ***********************
+
             } else {
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
@@ -248,5 +391,25 @@ class SkillImportController extends Controller
         }
         
         return $res_rule_id;
+    }
+
+    private function getStatisticRule($statistic, $amount){
+        $stat_rule_id = -1;
+        $stat_id = $statistic->id;
+
+        $operator = "+";
+        if($amount < 0){
+            $amount = abs($amount);
+            $operator = "-";
+        }
+
+        // find the correct statistic rule
+        $stat_rule = StatisticRule::where('statistic_id', $res_id)->where('rules_operator', $operator)
+            ->where('value', $amount)->first();
+        if($stat_rule != null){
+            $stat_rule_id = $stat_rule->id;
+        }
+        
+        return $stat_rule_id;
     }
 }
