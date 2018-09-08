@@ -12,6 +12,8 @@ use Storage;
 use App\Skill;
 use App\PlayerClass;
 use App\Race;
+use App\Resistance;
+use App\ResistanceRule;
 
 class SkillImportController extends Controller
 {
@@ -117,11 +119,16 @@ class SkillImportController extends Controller
                     for($index = 0; $index < sizeof($raceNameArray); $index++){
                         $raceName = $raceNameArray[$index];
 
+                        // Just some service to counter common typos in the import sheet
                         if(strcmp($raceName, "Mannheim") === 0){
                             $raceName = "Mannheimer";
                         } else {
-                            if(strcmp($raceName, "Khalië") === 0){
+                            if(strcmp($raceName, "Khalië") === 0 || strcmp($raceName, "Khalier") === 0){
                                 $raceName = "Khaliër";
+                            } else {
+                                if(strcmp($raceName, "BhandaKorr") === 0){
+                                    $raceName = "Bhanda Korr";
+                                }
                             }
                         }
     
@@ -134,8 +141,49 @@ class SkillImportController extends Controller
                         }
                     }                    
 
-                    // sync playerclasses
+                    // sync races
                     $skill->racePrereqs()->sync($raceIdArray,false);
+                }
+
+                // ***********************
+                // All resistance shizzle
+                // ***********************
+                $res_rules_sync = array();
+
+                // Fear Resistance
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(9, $row)->getValue()));
+                if($amount != 0){
+                    // Get resistance id
+                    $res_id = -1;
+                    $resistance = Resistance::where('resistance_name', "Angst")->first();
+                    if($resistance != null){
+                        $res_id = $resistance->id;
+
+                        $operator = "+";
+                        if($amount < 0){
+                            $amount = abs($amount);
+                            $operator = "-";
+                        }
+
+                        // find the correct resistance rule
+                        $res_rule = ResistanceRule::where('resistance_id', $res_id)->where('rules_operator', $operator)
+                            ->where('value', $amount)->first();
+                        if($res_rule != null){
+                            $res_rule_id = $res_rule->id;
+
+                            $res_rules_sync[] = $res_rule_id;
+                        } else {
+                            echo "Fear Resistance rule".$operator.$amount." does not exist.";
+                        } 
+                    } else {
+                        echo "Fear Resistance: could not find id";
+                    }
+                }
+
+                // Handled all resistance rules, now sync the array
+                if(sizeof($res_rules_sync) > 0)
+                {
+                    $skill->resistanceRules()->sync($res_rules_sync);
                 }
             } else {
                 // a skill with the same name is present in de DB
