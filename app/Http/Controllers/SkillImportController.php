@@ -78,8 +78,8 @@ class SkillImportController extends Controller
                 $skill->mentor_required = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
                 $skill->income_coin_id = 1;
                 $skill->income_amount = 10;
-                $skill->statistic_prereq_id = 2;
-                $skill->statistic_prereq_amount = 4;
+                $skill->statistic_prereq_id = 1;
+                $skill->statistic_prereq_amount = 0;
                 $skill->secret_skill = false;
                 $skill->craft_skill = false;
                 $skill->wealth_prereq_id = 2;
