@@ -11,6 +11,7 @@ use PHPExcel_IOFactory;
 use Storage;
 use App\Skill;
 use App\PlayerClass;
+use App\Race;
 
 class SkillImportController extends Controller
 {
