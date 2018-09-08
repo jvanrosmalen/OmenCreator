@@ -166,7 +166,7 @@ var Rule = new function(){
 			var res_rule = itemRules['res_rules'][index];
 			var rulesInclude = new RulesInclude();
 			
-			rulesInclude.addRulesIncludeListener(res_rule['id'], "dam");
+			rulesInclude.addRulesIncludeListener(res_rule['id'], "res");
 			$("#added_rules_list button").data('id', res_rule['id']);
 			$('.btn-ruleIncludeAdd-'+res_rule['id'] + '.resRuleIncludeAdd').addClass("disabled");
 		}
