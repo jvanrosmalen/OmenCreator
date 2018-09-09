@@ -55,6 +55,13 @@ class SkillImportController extends Controller
     }
 
     private function handleImportFile($path){
+        // One freakishly big method to handle the excel sheet with skills to be imported.
+        // Yeah, I should do this in a better way, but as this funcionality is used
+        // only a few times in the existance of the site, I think I can get away with it.
+        
+        // To my future self: if you ran into problems and you read this, you did this to yourself
+        // you numb nut. You should have listened to that little voice in the back of your head saying
+        // this was a bad idea... but you didn't.
         $errorArray = array();
 
         $objPHPExcel = PHPExcel_IOFactory::load($path);
@@ -78,13 +85,27 @@ class SkillImportController extends Controller
                 $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
                 // Check mentor
                 $skill->mentor_required = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
-                $skill->income_coin_id = 1;
-                $skill->income_amount = 10;
                 $skill->statistic_prereq_id = 1;
                 $skill->statistic_prereq_amount = 0;
                 $skill->secret_skill = false;
-                $skill->craft_skill = false;
                 $skill->wealth_prereq_id = 2;
+
+                // Check for craft skill and income
+                $skill->craft_skill = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(27, $row)->getValue()));;
+
+                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(28, $row)->getValue()));
+                if($amount > 0){
+                    if($amount < 10){
+                        $skill->income_coin_id = 1;
+                        $skill->income_amount = $amount;
+                    } else if($amount < 100){
+                        $skill->income_coin_id = 2;
+                        $skill->income_amount = floor($amount/10);
+                    } else {
+                        $skill->income_coin_id = 3;
+                        $skill->income_amount = floor($amount/100);
+                    }
+                }
 
                 // save if for the rest
                 $skill->save();
