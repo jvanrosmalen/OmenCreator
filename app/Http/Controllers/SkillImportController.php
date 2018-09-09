@@ -67,6 +67,7 @@ class SkillImportController extends Controller
         $objPHPExcel = PHPExcel_IOFactory::load($path);
         $objWorksheet = $objPHPExcel->getActiveSheet();
         $highestRow = $objWorksheet->getHighestRow();
+        // First loop to put all skills in the DB. Second loop will follow to handle all skill prereqs
         for ($row = 2; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
             // The error entry is used to log anything the import can't handle
@@ -411,6 +412,46 @@ class SkillImportController extends Controller
                 // a skill with the same name is present in de DB
                 echo "Found the skill ".$skill->name." <br>";
             }
+        }
+
+        // Second for loop to handle skill prereqs
+        for ($row = 2; $row <= $highestRow; ++$row) {
+            $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
+            // The error entry is used to log anything the import can't handle
+            $errorEntry = [$skillName => array()];
+
+            $skill = Skill::where('name', $skillName)->first();
+            // Check if skill is already in the DB
+            if($skill != null){
+                // Get all skill prereqs
+                if(strcmp( trim($objWorksheet->getCellByColumnAndRow(6, $row)->getValue()), "/") !== 0 ||
+                strcmp( trim($objWorksheet->getCellByColumnAndRow(6, $row)->getValue()), "") !== 0){
+                    // There are prereqs here
+                    $skillPrereqArray = array_map('trim', explode("+", $objWorksheet->getCellByColumnAndRow(6, $row)->getValue()));
+                    $skillPrereqIdArray = array();
+                    $group_prereqs_sync_array = array();
+
+                    for($index = 0; $index < sizeof($skillPrereqArray); $index++){
+                        $prereqSkillName = $skillPrereqArray[$index];
+
+                        $skill = Skill::where('name', $prereqSkillName)->first();
+    
+                        if($skill != null){
+                            $skillPrereqIdArray[] = $skill->id;
+                        } else {
+                            echo $skillName.": Could not find skill prereq ".$prereqSkillName;
+                        }
+                    }
+                    
+                    foreach($skillPrereqIdArray as $skillPrereqId){
+                        $group_prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
+                    }
+                
+                    $skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
+                }
+            } else {
+                echo "Something went wrong. Skill should have been in the DB by now.";
+            }  
         }
     }
 
