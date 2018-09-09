@@ -106,6 +106,9 @@ class SkillImportController extends Controller
                         $skill->income_coin_id = 3;
                         $skill->income_amount = floor($amount/100);
                     }
+                } else {
+                    $skill->income_coin_id = 1;
+                    $skill->income_amount = 0;
                 }
 
                 // save if for the rest
