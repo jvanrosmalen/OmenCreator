@@ -437,10 +437,10 @@ class SkillImportController extends Controller
                     for($index = 0; $index < sizeof($skillPrereqArray); $index++){
                         $prereqSkillName = $skillPrereqArray[$index];
 
-                        $skill = Skill::where('name', $prereqSkillName)->first();
+                        $prereqSkill = Skill::where('name', $prereqSkillName)->first();
     
-                        if($skill != null){
-                            $skillPrereqIdArray[] = $skill->id;
+                        if($prereqSkill != null){
+                            $skillPrereqIdArray[] = $prereqSkill->id;
                         } else {
                             echo $skillName.": Could not find skill prereq ".$prereqSkillName;
                         }
