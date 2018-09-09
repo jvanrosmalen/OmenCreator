@@ -454,7 +454,12 @@ class SkillImportController extends Controller
                         foreach($skillPrereqIdArray as $skillPrereqId){
                             $group_prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
                         }
-                    
+
+                        echo "Skill name: ".$skillName;
+                        var_dump($skillPrereqArray);
+                        var_dump($skillPrereqIdArray);
+                        var_dump($group_prereqs_sync_array);
+
                         $skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
                     }
                 }
