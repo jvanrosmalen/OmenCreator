@@ -432,7 +432,7 @@ class SkillImportController extends Controller
                     // There are prereqs here
                     $skillPrereqArray = array_map('trim', explode("+", $objWorksheet->getCellByColumnAndRow(6, $row)->getValue()));
                     $skillPrereqIdArray = array();
-                    $group_prereqs_sync_array = array();
+                    $prereqs_sync_array = array();
 
                     for($index = 0; $index < sizeof($skillPrereqArray); $index++){
                         $prereqSkillName = $skillPrereqArray[$index];
@@ -452,15 +452,10 @@ class SkillImportController extends Controller
                     
                     if(sizeof($skillPrereqIdArray) > 0){
                         foreach($skillPrereqIdArray as $skillPrereqId){
-                            $group_prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
+                            $prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
                         }
 
-                        echo "Skill name: ".$skillName;
-                        var_dump($skillPrereqArray);
-                        var_dump($skillPrereqIdArray);
-                        var_dump($group_prereqs_sync_array);
-
-                        $skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
+                        $skill->skillPrereqs()->sync($prereqs_sync_array);
                     }
                 }
             } else {
