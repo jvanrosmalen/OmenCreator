@@ -437,6 +437,10 @@ class SkillImportController extends Controller
                     for($index = 0; $index < sizeof($skillPrereqArray); $index++){
                         $prereqSkillName = $skillPrereqArray[$index];
 
+                        if(strcmp(trim($prereqSkillName),"") == 0){
+                            continue;
+                        }
+
                         $prereqSkill = Skill::where('name', $prereqSkillName)->first();
     
                         if($prereqSkill != null){
@@ -446,11 +450,13 @@ class SkillImportController extends Controller
                         }
                     }
                     
-                    foreach($skillPrereqIdArray as $skillPrereqId){
-                        $group_prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
+                    if(sizeof($skillPrereqIdArray) > 0){
+                        foreach($skillPrereqIdArray as $skillPrereqId){
+                            $group_prereqs_sync_array[intval($skillPrereqId)] = ['prereq_set'=>'1'];
+                        }
+                    
+                        $skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
                     }
-                
-                    $skill->skillGroupPrereqs()->sync($group_prereqs_sync_array);
                 }
             } else {
                 echo "Something went wrong. Skill should have been in the DB by now.";
