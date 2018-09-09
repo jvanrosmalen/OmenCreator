@@ -88,7 +88,7 @@ class SkillImportController extends Controller
                 $skill->statistic_prereq_id = 1;
                 $skill->statistic_prereq_amount = 0;
                 $skill->secret_skill = false;
-                $skill->wealth_prereq_id = 2;
+                $skill->wealth_prereq_id = 1;
 
                 // Check for craft skill and income
                 $skill->craft_skill = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(27, $row)->getValue()));;
