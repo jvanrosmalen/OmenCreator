@@ -349,6 +349,34 @@ class SkillImportController extends Controller
                     }
                 }
 
+                // Hitpoints
+                // I wonder why there are 5 lines for this. Code takes the highest of the 5 values
+                $amount = 0;
+                for($index = 19; $index <= 23; $index++){
+                    $curVal = intval(trim($objWorksheet->getCellByColumnAndRow($index, $row)->getValue()));
+                    if($amount < $curVal){
+                        $amount = $curVal;
+                    }
+                }
+                if($amount != 0){
+                    // Get stat id
+                    $statistic = Statistic::where('statistic_name', "Levenspunten")->first();
+
+                    if($statistic != null){
+                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                        if($stat_rule_id > 0){
+                            $stat_rules_sync[] = $stat_rule_id;
+                        }
+                        else {
+                            echo "Hitpoint rule ".$operator.$amount." does not exist.";
+                        }
+                    } else {
+                        echo "Hitpoints: could not find id";
+                    }
+                }
+
+
                 // Handled all statistic rules, now sync the array
                 if(sizeof($stat_rules_sync) > 0)
                 {
