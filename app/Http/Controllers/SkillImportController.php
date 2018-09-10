@@ -81,7 +81,7 @@ class SkillImportController extends Controller
                 
                 $skill->name = $skillName;
                 $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
-                $skill->skill_level_id = 1;
+                $skill->skill_level_id = $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
                 $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
                 $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
                 // Check mentor
@@ -510,5 +510,27 @@ class SkillImportController extends Controller
         }
         
         return $stat_rule_id;
+    }
+
+    private function getSkillLevelId($value){
+        // If the string is empty, this method will return id = 1 (for Debutant) by default
+        $retVal = 1;
+
+        if(!empty($value)){
+            // First character is already unique. Check on that for more robust code that allows
+            // for some typos in the entries
+            if(strcasecmp(substr($value, 0 , 1), "h") === 0){
+                $retVal = 4;
+            } else if(strcasecmp(substr($value, 0 , 1), "v") === 0){
+                $retVal = 3;
+            } else if(strcasecmp(substr($value, 0 , 1), "a") === 0){
+                $retVal = 2;
+            }
+            // No need for an else, as return value is already 1
+        }
+    }
+}
+
+        return $retVal;
     }
 }
