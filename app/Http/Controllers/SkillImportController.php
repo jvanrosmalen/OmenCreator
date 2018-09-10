@@ -528,9 +528,7 @@ class SkillImportController extends Controller
             }
             // No need for an else, as return value is already 1
         }
-    }
-}
-
+        
         return $retVal;
     }
 }
