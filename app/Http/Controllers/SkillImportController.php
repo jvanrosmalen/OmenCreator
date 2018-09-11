@@ -78,6 +78,7 @@ class SkillImportController extends Controller
             if($skill == null){
                 // the skill is not yet present in the DB
                 $skill = new Skill();
+            }
                 
                 $skill->name = $skillName;
                 $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
@@ -411,10 +412,10 @@ class SkillImportController extends Controller
                 // END OF: STATISTIC RULES
                 // ***********************
 
-            } else {
-                // a skill with the same name is present in de DB
-                echo "Found the skill ".$skill->name." <br>";
-            }
+            // } else {
+            //     // a skill with the same name is present in de DB
+            //     echo "Found the skill ".$skill->name." <br>";
+            // }
         }
 
         // Second for loop to handle skill prereqs
@@ -528,7 +529,7 @@ class SkillImportController extends Controller
             }
             // No need for an else, as return value is already 1
         }
-        
+
         return $retVal;
     }
 }
