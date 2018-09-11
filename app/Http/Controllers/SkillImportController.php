@@ -587,6 +587,6 @@ class SkillImportController extends Controller
         Storage::deleteDirectory($directory);
         Storage::makeDirectory($directory);
         $output = $pdf->output();
-        Storage::put($directory, $output);
+        file_put_contents(storage_path('app/skillimports/importlog.pdf'), $output);
     }
 }
