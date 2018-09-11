@@ -500,7 +500,8 @@ class SkillImportController extends Controller
             }
         }
 
-        return view('skill/importlog', ['errorLogArray'=>$this->errorArray]);
+        return view("/");
+        // return view('skill/importlog', ['errorLogArray'=>$this->errorArray]);
     }
 
     private function checkForYesOrNo($cellValue){
