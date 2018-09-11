@@ -23,7 +23,7 @@
                     <div class="col-xs-2">
                     </div>
                     <div class='col-xs-10'>
-                        <ul class="errorLog">
+                        <ul>
                         @foreach($errors as $error)
                             <li>{{$error}}</li>
                         @endforeach

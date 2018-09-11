@@ -220,6 +220,7 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 .errorLog li:before {
 	content: "\2610";
 	margin-right:5px;
+	list-style-type: none;
 }
 
 .errorLogOverview {

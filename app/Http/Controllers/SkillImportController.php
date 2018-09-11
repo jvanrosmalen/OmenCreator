@@ -16,6 +16,7 @@ use App\Resistance;
 use App\ResistanceRule;
 use App\Statistic;
 use App\StatisticRule;
+use PDF;
 
 class SkillImportController extends Controller
 {
@@ -38,6 +39,8 @@ class SkillImportController extends Controller
             // Move file to known place on server
             $importFilePath = $this->moveFileToServer($importFile);
             $this->handleImportFile($importFilePath);
+
+            $this->createAndSaveErrorLogFile();
             
             return view('/skill/showImportLog', ['errorLogArray'=>$this->errorArray]);
 		} else {
@@ -575,5 +578,14 @@ class SkillImportController extends Controller
         }
 
         return $retVal;
+    }
+
+    private function createAndSaveErrorLogFile(){
+        $directory = "skillimports";
+
+        $pdf = \PDF::loadView('skill.importlog', ['errorLogArray'=>$this->errorArray]);
+        Storage::deleteDirectory($directory);
+        Storage::makeDirectory($directory);
+        Storage::put($directory, $pdf);
     }
 }

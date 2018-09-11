@@ -2,12 +2,6 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <style>
-            li a:before {
-                content: "\2610";
-                margin-right:5px;
-            }
-        </style>
     </head>
 
     <body>
@@ -27,24 +21,22 @@
             </div>
         </div>
 
-        @foreach($errorLogArray as $skillName=>$errorArray)
+        @foreach($errorLogArray as $skillName => $errors)
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-xs-1">
                 </div>
-                <div class="col-xs-7">
-                    <h5>
-                        {{$skillName}}
-                    </h5>
+                <div class='col-xs-10'>
+                    <h5>{{$skillName}}</h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-3">
-                </div>       
-                <div class="col-xs-7">
-                    <ul>
-                        @foreach($errorArray as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
+                <div class="col-xs-2">
+                </div>
+                <div class='col-xs-10'>
+                    <ul class="errorLog">
+                    @foreach($errors as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
                     </ul>
                 </div>
             </div>
