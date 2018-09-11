@@ -497,6 +497,8 @@ class SkillImportController extends Controller
                 unset($this->errorArray[$this->currentErrorIndex]);
             }
         }
+
+        var_dump($this->errorArray);
     }
 
     private function checkForYesOrNo($cellValue){
