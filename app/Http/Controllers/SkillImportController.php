@@ -95,7 +95,13 @@ class SkillImportController extends Controller
             $skill->skill_level_id =
                 $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
             $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
+            if(strcasecmp($skill->description_small,"") === 0){
+                $this->errorArray[$this->currentErrorIndex][] = "Korte beschrijving is leeg.";
+            }
             $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
+            if(strcasecmp($skill->description_long,"") === 0){
+                $this->errorArray[$this->currentErrorIndex][] = "Lange beschrijving is leeg.";
+            }
             // Check mentor
             $skill->mentor_required =
                 $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
