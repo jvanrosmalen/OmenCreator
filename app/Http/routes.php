@@ -53,6 +53,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/get_players_with_skill', 'JsonSkillController@getPlayersWithSkillJson')->middleware('isStoryTelling');
 	Route::get('/import_skills','SkillImportController@importSkills')->middleware('isAdmin');
 	Route::post('/do_import_skills', 'SkillImportController@doImportSkills')->middleware('isAdmin');
+	Route::get('download_importlog', 'SkillImportController@downloadImportLog')->middleware('isAdmin');
 
 	Route::get('/create_armor/{id?}', 'EquipmentController@showCreateArmor')->middleware('isSystemRep');
 	Route::get('/show_delete_armor/{id?}', 'EquipmentController@showDeleteArmor')->middleware('isSystemRep');

@@ -506,6 +506,16 @@ class SkillImportController extends Controller
         }
     }
 
+    public function downloadImportLog(){
+        $file = Storage::disk('skillimports')->getDriver()->getAdapter()->applyPathPrefix('importlog.pdf');
+
+        $headers = [
+            'Content-Type' => 'application/pdf',
+        ];
+
+        return Response::download($file, 'importlog.pdf', $headers);
+    }
+
     private function checkForYesOrNo($cellValue){
         if(strcasecmp($cellValue, "ja") == 0){
             return true;
