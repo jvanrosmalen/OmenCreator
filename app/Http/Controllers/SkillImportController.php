@@ -586,6 +586,7 @@ class SkillImportController extends Controller
         $pdf = \PDF::loadView('skill.importlog', ['errorLogArray'=>$this->errorArray]);
         Storage::deleteDirectory($directory);
         Storage::makeDirectory($directory);
-        Storage::put($directory, $pdf->output());
+
+        Storage::put($directory, file_get_contents($pdf->getRealPath()));
     }
 }
