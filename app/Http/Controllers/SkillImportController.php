@@ -17,6 +17,7 @@ use App\ResistanceRule;
 use App\Statistic;
 use App\StatisticRule;
 use PDF;
+use Response;
 
 class SkillImportController extends Controller
 {
@@ -507,13 +508,7 @@ class SkillImportController extends Controller
     }
 
     public function downloadImportLog(){
-        $file = Storage::disk('skillimports')->getDriver()->getAdapter()->applyPathPrefix('importlog.pdf');
-
-        $headers = [
-            'Content-Type' => 'application/pdf',
-        ];
-
-        return Response::download($file, 'importlog.pdf', $headers);
+        return response()->download(storage_path('app/skillimports/importlog.pdf'))
     }
 
     private function checkForYesOrNo($cellValue){
