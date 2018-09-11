@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <!-- DomPDF is no fan of external css, hence it being here -->
+        <style>
+            h5 {
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+            ul{
+                margin-bottom: 0px !important;
+            }
+            .errorLog {
+                list-style-type: none;
+            }
+            .errorLog li:before{
+                content: "\2610";
+	            margin-right:5px;
+            }
+        </style>
     </head>
 
     <body>
