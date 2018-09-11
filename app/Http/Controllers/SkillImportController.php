@@ -19,6 +19,9 @@ use App\StatisticRule;
 
 class SkillImportController extends Controller
 {
+    private $errorArray = array();
+    private $currentErrorIndex = "";
+
 	public function importSkills(){
 		return view('/skill/showimportskills');
 	}
@@ -62,7 +65,7 @@ class SkillImportController extends Controller
         // To my future self: if you ran into problems and you read this, you did this to yourself
         // you numb nut. You should have listened to that little voice in the back of your head saying
         // this was a bad idea... but you didn't.
-        $errorArray = array();
+        $this->errorArray = array();
 
         $objPHPExcel = PHPExcel_IOFactory::load($path);
         $objWorksheet = $objPHPExcel->getActiveSheet();
@@ -70,8 +73,9 @@ class SkillImportController extends Controller
         // First loop to put all skills in the DB. Second loop will follow to handle all skill prereqs
         for ($row = 2; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
-            // The error entry is used to log anything the import can't handle
-            $errorEntry = [$skillName => array()];
+            // Create an index for possible errors
+            $this->currentErrorIndex = $skillName;
+            $this->errorArray[$this->currentErrorIndex] = array();
 
             $skill = Skill::where('name', $skillName)->first();
             // Check if skill is already in the DB
@@ -80,349 +84,370 @@ class SkillImportController extends Controller
                 $skill = new Skill();
             }
                 
-                $skill->name = $skillName;
-                $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
-                $skill->skill_level_id = $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
-                $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
-                $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
-                // Check mentor
-                $skill->mentor_required = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
-                $skill->statistic_prereq_id = 1;
-                $skill->statistic_prereq_amount = 0;
-                $skill->secret_skill = false;
-                $skill->wealth_prereq_id = 1;
+            $skill->name = $skillName;
+            $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
+            $skill->skill_level_id =
+                $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
+            $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
+            $skill->description_long = trim($objWorksheet->getCellByColumnAndRow(25, $row)->getValue());
+            // Check mentor
+            $skill->mentor_required =
+                $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
+            $skill->statistic_prereq_id = 1;
+            $skill->statistic_prereq_amount = 0;
+            $skill->secret_skill = false;
+            $skill->wealth_prereq_id = 1;
 
-                // Check for craft skill and income
-                $skill->craft_skill = $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(27, $row)->getValue()));;
+            // Check for craft skill and income
+            $skill->craft_skill =
+                $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(27, $row)->getValue()));;
 
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(28, $row)->getValue()));
-                if($amount > 0){
-                    if($amount < 10){
-                        $skill->income_coin_id = 1;
-                        $skill->income_amount = $amount;
-                    } else if($amount < 100){
-                        $skill->income_coin_id = 2;
-                        $skill->income_amount = floor($amount/10);
-                    } else {
-                        $skill->income_coin_id = 3;
-                        $skill->income_amount = floor($amount/100);
-                    }
-                } else {
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(28, $row)->getValue()));
+            if($amount > 0){
+                if($amount < 10){
                     $skill->income_coin_id = 1;
-                    $skill->income_amount = 0;
+                    $skill->income_amount = $amount;
+                } else if($amount < 100){
+                    $skill->income_coin_id = 2;
+                    $skill->income_amount = floor($amount/10);
+                } else {
+                    $skill->income_coin_id = 3;
+                    $skill->income_amount = floor($amount/100);
                 }
+            } else {
+                $skill->income_coin_id = 1;
+                $skill->income_amount = 0;
+            }
 
-                // save if for the rest
-                $skill->save();
+            // save if for the rest
+            $skill->save();
 
-                $skillId = $skill->id;
+            // Check for handout message
+            if($this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(8, $row)->getValue()))){
+                // Handout must be added
+                $this->errorArray[$this->currentErrorIndex][] = "Handout moet toegevoegd worden.";
+            }
 
-                // ***********************
-                // Player classes
-                // ***********************
-                // link the classes: get the values, split on -, translate to ids, and get ids to link
-                $classNameArray = array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(3, $row)->getValue()));
-                $classIdArray = array();
-                for($index = 0; $index < sizeof($classNameArray); $index++){
-                    $className = $classNameArray[$index];
-                    $playerClass = PlayerClass::where('class_name', $className)->first();
+            $skillId = $skill->id;
 
-                    if($playerClass != null){
-                        $classIdArray[] = $playerClass->id;
+            // ***********************
+            // Player classes
+            // ***********************
+            // link the classes: get the values, split on -, translate to ids, and get ids to link
+            $classNameArray =
+                array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(3, $row)->getValue()));
+            $classIdArray = array();
+            for($index = 0; $index < sizeof($classNameArray); $index++){
+                $className = $classNameArray[$index];
+                $playerClass = PlayerClass::where('class_name', $className)->first();
+
+                if($playerClass != null){
+                    $classIdArray[] = $playerClass->id;
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] = "Onbekende klasse-naam: ".$className;
+                }
+            }
+
+            // sync playerclasses
+            $skill->playerClasses()->sync($classIdArray,false);
+
+            // ***********************
+            // Skill race prereqs
+            // ***********************
+            // link the races: get the values, split on -, translate to ids, and get ids to link
+            if(strcmp( trim($objWorksheet->getCellByColumnAndRow(7, $row)->getValue()), "/") !== 0){
+                $raceNameArray =
+                    array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(7, $row)->getValue()));
+                $raceIdArray = array();
+                for($index = 0; $index < sizeof($raceNameArray); $index++){
+                    $raceName = $raceNameArray[$index];
+
+                    // Just some service to counter common typos in the import sheet
+                    if(strcmp($raceName, "Mannheim") === 0){
+                        $raceName = "Mannheimer";
                     } else {
-                        echo $skillName.": Could not find playerclass ".$className;
-                    }
-                }
-
-                // sync playerclasses
-                $skill->playerClasses()->sync($classIdArray,false);
-
-                // ***********************
-                // Skill race prereqs
-                // ***********************
-                // link the races: get the values, split on -, translate to ids, and get ids to link
-                if(strcmp( trim($objWorksheet->getCellByColumnAndRow(7, $row)->getValue()), "/") !== 0){
-                    $raceNameArray = array_map('trim', explode("-", $objWorksheet->getCellByColumnAndRow(7, $row)->getValue()));
-                    $raceIdArray = array();
-                    for($index = 0; $index < sizeof($raceNameArray); $index++){
-                        $raceName = $raceNameArray[$index];
-
-                        // Just some service to counter common typos in the import sheet
-                        if(strcmp($raceName, "Mannheim") === 0){
-                            $raceName = "Mannheimer";
+                        if(strcmp($raceName, "Khalië") === 0 || strcmp($raceName, "Khalier") === 0){
+                            $raceName = "Khaliër";
                         } else {
-                            if(strcmp($raceName, "Khalië") === 0 || strcmp($raceName, "Khalier") === 0){
-                                $raceName = "Khaliër";
-                            } else {
-                                if(strcmp($raceName, "BhandaKorr") === 0){
-                                    $raceName = "Bhanda Korr";
-                                }
+                            if(strcmp($raceName, "BhandaKorr") === 0){
+                                $raceName = "Bhanda Korr";
                             }
                         }
-    
-                        $race = Race::where('race_name', $raceName)->first();
-    
-                        if($race != null){
-                            $raceIdArray[] = $race->id;
-                        } else {
-                            echo $skillName.": Could not find race ".$raceName;
-                        }
-                    }                    
+                    }
 
-                    // sync races
-                    $skill->racePrereqs()->sync($raceIdArray,false);
-                }
-                // ***********************
-                // END OF: Skill race prereqs
-                // ***********************
+                    $race = Race::where('race_name', $raceName)->first();
 
-                // ***********************
-                // RESISTANCE RULES
-                // ***********************
-                $res_rules_sync = array();
-
-                // Fear Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(9, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Angst")->first();
-
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
-
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Fear Resistance rule ".$operator.$amount." does not exist.";
-                        }
+                    if($race != null){
+                        $raceIdArray[] = $race->id;
                     } else {
-                        echo "Fear Resistance: could not find id";
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "Onbekende ras-vereiste: ".$raceName;
                     }
-                }
+                }                    
 
-                // Theft Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(10, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Diefstal")->first();
+                // sync races
+                $skill->racePrereqs()->sync($raceIdArray,false);
+            }
+            // ***********************
+            // END OF: Skill race prereqs
+            // ***********************
 
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+            // ***********************
+            // RESISTANCE RULES
+            // ***********************
+            $res_rules_sync = array();
 
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Theft Resistance rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Theft Resistance: could not find id";
+            // Fear Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(9, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Angst")->first();
+
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
                     }
-                }
-
-                // Poison Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(11, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Gif")->first();
-
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
-
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Poison Resistance rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Poison Resistance: could not find id";
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Angst Resistentie ".$operator.$amount." bestaat niet.";
                     }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Angst Resistentie niet vinden.";
                 }
+            }
 
-                // Magic Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(12, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Magie")->first();
+            // Theft Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(10, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Diefstal")->first();
 
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
 
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Magic Resistance rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Magic Resistance: could not find id";
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
                     }
-                }
-
-                // Sickness Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(13, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Ziekte")->first();
-
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
-
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Sickness Resistance rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Sickness Resistance: could not find id";
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Diefstal Resistentie ".$operator.$amount." bestaat niet.";
                     }
-                }   
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Diefstal Resistentie niet vinden.";
+                }
+            }
 
-                // Trauma Resistance
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(17, $row)->getValue()));
-                if($amount != 0){
-                    // Get resistance id
-                    $resistance = Resistance::where('resistance_name', "Trauma")->first();
+            // Poison Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(11, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Gif")->first();
 
-                    if($resistance != null){
-                        $res_rule_id = $this->getResistanceRule($resistance, $amount);
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
 
-                        if($res_rule_id > 0){
-                            $res_rules_sync[] = $res_rule_id;
-                        }
-                        else {
-                            echo "Trauma Resistance rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Trauma Resistance: could not find id";
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
                     }
-                }  
-
-                // Handled all resistance rules, now sync the array
-                if(sizeof($res_rules_sync) > 0)
-                {
-                    $skill->resistanceRules()->sync($res_rules_sync);
-                }
-                // ***********************
-                // END OF: RESISTANCE RULES
-                // ***********************
-
-                // ***********************
-                // STATISTICS RULES
-                // ***********************
-                $stat_rules_sync = array();
-
-                // Willpower
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(14, $row)->getValue()));
-                if($amount != 0){
-                    // Get stat id
-                    $statistic = Statistic::where('statistic_name', "Wilskracht")->first();
-
-                    if($statistic != null){
-                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
-
-                        if($stat_rule_id > 0){
-                            $stat_rules_sync[] = $stat_rule_id;
-                        }
-                        else {
-                            echo "Willpower rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Willpower: could not find id";
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Gif Resistentie ".$operator.$amount." bestaat niet.";
                     }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Gif Resistentie niet vinden.";
                 }
-                
-                // Status
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(15, $row)->getValue()));
-                if($amount != 0){
-                    // Get stat id
-                    $statistic = Statistic::where('statistic_name', "Status")->first();
+            }
 
-                    if($statistic != null){
-                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+            // Magic Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(12, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Magie")->first();
 
-                        if($stat_rule_id > 0){
-                            $stat_rules_sync[] = $stat_rule_id;
-                        }
-                        else {
-                            echo "Status rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Status: could not find id";
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
                     }
-                }
-
-                // Focus
-                $amount = intval(trim($objWorksheet->getCellByColumnAndRow(16, $row)->getValue()));
-                if($amount != 0){
-                    // Get stat id
-                    $statistic = Statistic::where('statistic_name', "Focus")->first();
-
-                    if($statistic != null){
-                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
-
-                        if($stat_rule_id > 0){
-                            $stat_rules_sync[] = $stat_rule_id;
-                        }
-                        else {
-                            echo "Focus rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Focus: could not find id";
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Magie Resistentie ".$operator.$amount." bestaat niet.";
                     }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Magie Resistentie niet vinden.";
                 }
+            }
 
-                // Hitpoints
-                // I wonder why there are 5 lines for this. Code takes the highest of the 5 values
-                $amount = 0;
-                for($index = 19; $index <= 23; $index++){
-                    $curVal = intval(trim($objWorksheet->getCellByColumnAndRow($index, $row)->getValue()));
-                    if($amount < $curVal){
-                        $amount = $curVal;
+            // Sickness Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(13, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Ziekte")->first();
+
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
                     }
-                }
-                if($amount != 0){
-                    // Get stat id
-                    $statistic = Statistic::where('statistic_name', "Levenspunten")->first();
-
-                    if($statistic != null){
-                        $stat_rule_id = $this->getStatisticRule($statistic, $amount);
-
-                        if($stat_rule_id > 0){
-                            $stat_rules_sync[] = $stat_rule_id;
-                        }
-                        else {
-                            echo "Hitpoint rule ".$operator.$amount." does not exist.";
-                        }
-                    } else {
-                        echo "Hitpoints: could not find id";
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Ziekte Resistentie ".$operator.$amount." bestaat niet.";
                     }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Ziekte Resistentie niet vinden.";
                 }
+            }   
 
+            // Trauma Resistance
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(17, $row)->getValue()));
+            if($amount != 0){
+                // Get resistance id
+                $resistance = Resistance::where('resistance_name', "Trauma")->first();
 
-                // Handled all statistic rules, now sync the array
-                if(sizeof($stat_rules_sync) > 0)
-                {
-                    $skill->statisticRules()->sync($stat_rules_sync);
+                if($resistance != null){
+                    $res_rule_id = $this->getResistanceRule($resistance, $amount);
+
+                    if($res_rule_id > 0){
+                        $res_rules_sync[] = $res_rule_id;
+                    }
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Trauma Resistentie ".$operator.$amount." bestaat niet.";
+                    }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] =
+                        "Kan ID van Trauma Resistentie niet vinden.";
                 }
-                // ***********************
-                // END OF: STATISTIC RULES
-                // ***********************
+            }  
 
-            // } else {
-            //     // a skill with the same name is present in de DB
-            //     echo "Found the skill ".$skill->name." <br>";
-            // }
+            // Handled all resistance rules, now sync the array
+            if(sizeof($res_rules_sync) > 0)
+            {
+                $skill->resistanceRules()->sync($res_rules_sync);
+            }
+            // ***********************
+            // END OF: RESISTANCE RULES
+            // ***********************
+
+            // ***********************
+            // STATISTICS RULES
+            // ***********************
+            $stat_rules_sync = array();
+
+            // Willpower
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(14, $row)->getValue()));
+            if($amount != 0){
+                // Get stat id
+                $statistic = Statistic::where('statistic_name', "Wilskracht")->first();
+
+                if($statistic != null){
+                    $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                    if($stat_rule_id > 0){
+                        $stat_rules_sync[] = $stat_rule_id;
+                    }
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Wilskracht ".$operator.$amount." bestaat niet.";
+                    }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Wilskracht niet vinden.";
+                }
+            }
+            
+            // Status
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(15, $row)->getValue()));
+            if($amount != 0){
+                // Get stat id
+                $statistic = Statistic::where('statistic_name', "Status")->first();
+
+                if($statistic != null){
+                    $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                    if($stat_rule_id > 0){
+                        $stat_rules_sync[] = $stat_rule_id;
+                    }
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Status ".$operator.$amount." bestaat niet.";
+                    }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Status niet vinden.";
+                }
+            }
+
+            // Focus
+            $amount = intval(trim($objWorksheet->getCellByColumnAndRow(16, $row)->getValue()));
+            if($amount != 0){
+                // Get stat id
+                $statistic = Statistic::where('statistic_name', "Focus")->first();
+
+                if($statistic != null){
+                    $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                    if($stat_rule_id > 0){
+                        $stat_rules_sync[] = $stat_rule_id;
+                    }
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Focus ".$operator.$amount." bestaat niet.";
+                    }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Focus niet vinden.";
+                }
+            }
+
+            // Hitpoints
+            // I wonder why there are 5 lines for this. Code takes the highest of the 5 values
+            $amount = 0;
+            for($index = 19; $index <= 23; $index++){
+                $curVal = intval(trim($objWorksheet->getCellByColumnAndRow($index, $row)->getValue()));
+                if($amount < $curVal){
+                    $amount = $curVal;
+                }
+            }
+            if($amount != 0){
+                // Get stat id
+                $statistic = Statistic::where('statistic_name', "Levenspunten")->first();
+
+                if($statistic != null){
+                    $stat_rule_id = $this->getStatisticRule($statistic, $amount);
+
+                    if($stat_rule_id > 0){
+                        $stat_rules_sync[] = $stat_rule_id;
+                    }
+                    else {
+                        $this->errorArray[$this->currentErrorIndex][] =
+                            "De regel Levenspunten ".$operator.$amount." bestaat niet.";
+                    }
+                } else {
+                    $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Levenspunten niet vinden.";
+                }
+            }
+
+
+            // Handled all statistic rules, now sync the array
+            if(sizeof($stat_rules_sync) > 0)
+            {
+                $skill->statisticRules()->sync($stat_rules_sync);
+            }
+            // ***********************
+            // END OF: STATISTIC RULES
+            // ***********************
         }
 
         // Second for loop to handle skill prereqs
         for ($row = 2; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
-            // The error entry is used to log anything the import can't handle
-            $errorEntry = [$skillName => array()];
 
             $skill = Skill::where('name', $skillName)->first();
             // Check if skill is already in the DB
@@ -431,7 +456,9 @@ class SkillImportController extends Controller
                 if(strcmp( trim($objWorksheet->getCellByColumnAndRow(6, $row)->getValue()), "/") !== 0 ||
                 strcmp( trim($objWorksheet->getCellByColumnAndRow(6, $row)->getValue()), "") !== 0){
                     // There are prereqs here
-                    $skillPrereqArray = array_map('trim', explode("+", $objWorksheet->getCellByColumnAndRow(6, $row)->getValue()));
+                    $skillPrereqArray =
+                        array_map('trim',
+                            explode("+", $objWorksheet->getCellByColumnAndRow(6, $row)->getValue()));
                     $skillPrereqIdArray = array();
                     $prereqs_sync_array = array();
 
@@ -447,7 +474,8 @@ class SkillImportController extends Controller
                         if($prereqSkill != null){
                             $skillPrereqIdArray[] = $prereqSkill->id;
                         } else {
-                            echo $skillName.": Could not find skill prereq ".$prereqSkillName;
+                            $this->errorArray[$this->currentErrorIndex][] =
+                                "Voorvereiste ".$prereqSkillName." staat niet in de database";
                         }
                     }
                     
@@ -460,8 +488,14 @@ class SkillImportController extends Controller
                     }
                 }
             } else {
-                echo "Something went wrong. Skill should have been in the DB by now.";
-            }  
+                $this->errorArray[$this->currentErrorIndex][] =
+                    "Er is iets heel raars gebeurd. Skill zou in de DB moeten staan. Bel Jasper maar.";
+            }
+
+            // Completely finished with a skill. If there are no error, remove from errorArray
+            if(empty($this->errorArray[$this->currentErrorIndex])){
+                unset($this->errorArray[$this->currentErrorIndex]);
+            }
         }
     }
 
@@ -515,7 +549,7 @@ class SkillImportController extends Controller
 
     private function getSkillLevelId($value){
         // If the string is empty, this method will return id = 1 (for Debutant) by default
-        $retVal = 1;
+        $retVal = 0;
 
         if(!empty($value)){
             // First character is already unique. Check on that for more robust code that allows
@@ -526,8 +560,14 @@ class SkillImportController extends Controller
                 $retVal = 3;
             } else if(strcasecmp(substr($value, 0 , 1), "a") === 0){
                 $retVal = 2;
+            } else if(strcasecmp(substr($value, 0, 1), "d") === 0){
+                $retVal = 1;
+            } else {
+                // Unknown skill level. Level set to 1 by default
+                $retVal = 1;
+                $this->errorArray[$this->currentErrorIndex][] =
+                    "Onbekend vaardigheid niveau. Opgeslagen als Debutant.";
             }
-            // No need for an else, as return value is already 1
         }
 
         return $retVal;
