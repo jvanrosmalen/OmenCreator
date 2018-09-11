@@ -37,7 +37,9 @@ class SkillImportController extends Controller
             // There is a file, and it is a xlsx file. Let's try and make something useful out of it.
             // Move file to known place on server
             $importFilePath = $this->moveFileToServer($importFile);
-		$this->handleImportFile($importFilePath);
+            $this->handleImportFile($importFilePath);
+            
+            return view('/skill/showImportLog', ['errorLogArray'=>$this->errorArray]);
 		} else {
 			return view('/skill/shownoimportfilewarning');
 		}		
@@ -499,8 +501,6 @@ class SkillImportController extends Controller
                 unset($this->errorArray[$this->currentErrorIndex]);
             }
         }
-
-        return view('/skill/showImportLog', ['errorLogArray'=>$this->errorArray]);
     }
 
     private function checkForYesOrNo($cellValue){
