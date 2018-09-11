@@ -216,3 +216,8 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 .remove-skill-btn {
 	z-index: 10 !important;
 }
+
+.errorLog li a:before {
+	content: "\2610";
+	margin-right:5px;
+}
