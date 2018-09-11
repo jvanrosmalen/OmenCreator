@@ -126,6 +126,22 @@
                                 <td>Z</td>
                                 <td>OMSCHRIJVING</td>
                             </tr>
+                            <tr>
+                                <td>AA</td>
+                                <td>Mentor</td>
+                            </tr>                            
+                            <tr>
+                                <td>AB</td>
+                                <td>Ambacht</td>
+                            </tr>                            
+                            <tr>
+                                <td>AC</td>
+                                <td>Inkomsten in CP</td>
+                            </tr>                            
+                            <tr>
+                                <td>AD</td>
+                                <td>Niveau</td>
+                            </tr>                            
                         </table>
                     </div>
 		        </div>
