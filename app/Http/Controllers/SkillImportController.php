@@ -508,7 +508,7 @@ class SkillImportController extends Controller
     }
 
     public function downloadImportLog(){
-        return response()->download(storage_path('app/skillimports/importlog.pdf'))
+        return response()->download(storage_path('app/skillimports/importlog.pdf'));
     }
 
     private function checkForYesOrNo($cellValue){
