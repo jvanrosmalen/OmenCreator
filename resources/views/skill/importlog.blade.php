@@ -17,10 +17,7 @@
         </div>
         <div class="col-xs-4">
             <h4>
-                <?php
-                    date_default_timezone_set("Europe/Amsterdam");
-                    echo "Datum: ".date("d-m-Y");
-                ?>
+
             </h4>
         </div>
     </div>
