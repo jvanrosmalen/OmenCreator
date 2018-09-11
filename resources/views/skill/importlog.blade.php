@@ -4,19 +4,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!-- DomPDF is no fan of external css, hence it being here -->
         <style>
-            h5 {
-                margin-top: 0px !important;
-                margin-bottom: 0px !important;
+            .h3, h3, .h4, h4, .h5, h5 {
+                margin-top: 0px;
+                margin-bottom: 0px;
             }
+
             ul{
                 margin-bottom: 0px !important;
             }
+
             .errorLog {
                 list-style-type: none;
-            }
-            .errorLog li:before{
-                content: "\2610";
-	            margin-right:5px;
             }
         </style>
     </head>
