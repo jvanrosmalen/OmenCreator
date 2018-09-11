@@ -6,15 +6,12 @@
         <style>
             .h3, h3, .h4, h4, .h5, h5 {
                 margin-top: 0px;
-                margin-bottom: 0px;
+                margin-bottom: 5px;
             }
 
             ul{
-                margin-bottom: 0px !important;
-            }
-
-            .errorLog {
-                list-style-type: none;
+                margin-top: 0px; 
+                margin-bottom: 0px;
             }
         </style>
     </head>
