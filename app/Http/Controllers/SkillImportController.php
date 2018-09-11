@@ -449,6 +449,8 @@ class SkillImportController extends Controller
         for ($row = 2; $row <= $highestRow; ++$row) {
             $skillName = trim($objWorksheet->getCellByColumnAndRow(2, $row)->getValue());
 
+            $this->currentErrorIndex = $skillName;
+            
             $skill = Skill::where('name', $skillName)->first();
             // Check if skill is already in the DB
             if($skill != null){
