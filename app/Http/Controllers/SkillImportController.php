@@ -211,7 +211,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Angst Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Angst Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -233,7 +233,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Diefstal Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Diefstal Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -255,7 +255,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Gif Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Gif Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -277,7 +277,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Magie Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Magie Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -299,7 +299,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Ziekte Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Ziekte Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -321,7 +321,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Trauma Resistentie ".$operator.$amount." bestaat niet.";
+                            "De regel Trauma Resistentie ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] =
@@ -357,7 +357,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Wilskracht ".$operator.$amount." bestaat niet.";
+                            "De regel Wilskracht ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Wilskracht niet vinden.";
@@ -378,7 +378,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Status ".$operator.$amount." bestaat niet.";
+                            "De regel Status ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Status niet vinden.";
@@ -399,7 +399,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Focus ".$operator.$amount." bestaat niet.";
+                            "De regel Focus ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Focus niet vinden.";
@@ -427,7 +427,7 @@ class SkillImportController extends Controller
                     }
                     else {
                         $this->errorArray[$this->currentErrorIndex][] =
-                            "De regel Levenspunten ".$operator.$amount." bestaat niet.";
+                            "De regel Levenspunten ".$amount." bestaat niet.";
                     }
                 } else {
                     $this->errorArray[$this->currentErrorIndex][] = "Kan ID van Levenspunten niet vinden.";
@@ -493,7 +493,7 @@ class SkillImportController extends Controller
             }
 
             // Completely finished with a skill. If there are no error, remove from errorArray
-            if(empty($this->errorArray[$this->currentErrorIndex])){
+            if(sizeof($this->errorArray[$this->currentErrorIndex]) === 0){
                 unset($this->errorArray[$this->currentErrorIndex]);
             }
         }
@@ -568,7 +568,7 @@ class SkillImportController extends Controller
                 // Unknown skill level. Level set to 1 by default
                 $retVal = 1;
                 $this->errorArray[$this->currentErrorIndex][] =
-                    "Onbekend vaardigheid niveau. Opgeslagen als Debutant.";
+                    "Onbekend vaardigheid niveau ".$value.". Opgeslagen als Debutant.";
             }
         }
 
