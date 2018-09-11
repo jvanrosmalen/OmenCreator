@@ -217,13 +217,13 @@ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td
 	z-index: 10 !important;
 }
 
-.errorLog li a:before {
+.errorLog li:before {
 	content: "\2610";
 	margin-right:5px;
 }
 
 .errorLogOverview {
-	height: 300px;
+	height: 500px;
 	overflow-y: scroll;
 	overflow-x: hidden;	
 }
