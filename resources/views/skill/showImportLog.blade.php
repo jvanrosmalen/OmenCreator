@@ -11,7 +11,6 @@
                 <h3>Import Resultaten</h3>
             </div>
         </div>
-    </div>
         @foreach($errorLogArray as $skillName => $errors)
             <div class="row">
                 <div class="col-xs-1">
@@ -32,6 +31,7 @@
                 </div>
             </div>
         @endforeach
+    </div>
 @endsection
 
 </html>
