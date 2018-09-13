@@ -55,21 +55,21 @@ class AuthController extends Controller
         $data['captcha'] = $this->captchaCheck();
 
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|max:20|confirmed',
+            'name'                  => 'required|max:255',
+            'email'                 => 'required|email|max:255|unique:users',
+            'password'              => 'required|min:6|max:20|confirmed',
             'g-recaptcha-response'  => 'required',
             'captcha'               => 'required|min:1'
         ],
         [   
-            'name.required' => 'Je moet een naam invullen',
-            'email.required' => 'Je moet een email invullen',
-            'email.email' => 'Dit is geen valide email-adres',
-            'password.required' => 'Je moet een wachtwoord invullen',
-            'password.min' => 'Je wachtwoord moet minimaal 6 karaters lang zijn',
-            'password.max' => 'Je wachtwoord mag maximaal 20 karaters lang zijn',
+            'name.required'                 => 'Je moet een naam invullen',
+            'email.required'                => 'Je moet een email invullen',
+            'email.email'                   => 'Dit is geen valide email-adres',
+            'password.required'             => 'Je moet een wachtwoord invullen',
+            'password.min'                  => 'Je wachtwoord moet minimaal 6 karaters lang zijn',
+            'password.max'                  => 'Je wachtwoord mag maximaal 20 karaters lang zijn',
             'g-recaptcha-response.required' => 'Captcha is verplicht. Of ben je een robot?',
-            'captcha.required' => 'Je captcha is verkeerd. Probeert het nog een keer'            
+            'captcha.required'              => 'Je captcha is verkeerd. Probeert het nog een keer'            
         ]);
     }
 
