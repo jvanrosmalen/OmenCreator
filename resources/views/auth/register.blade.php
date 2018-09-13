@@ -84,6 +84,10 @@
             </div>
         </div>
     </div>
-    {{email.required}}
+    <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+    </ul>
 </div>
 @endsection
