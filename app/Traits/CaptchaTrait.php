@@ -1,6 +1,6 @@
 <?php namespace App\Traits;
 
-use Input;
+use Illuminate\Support\Facades\Input;
 use ReCaptcha\ReCaptcha;
 
 trait CaptchaTrait {
