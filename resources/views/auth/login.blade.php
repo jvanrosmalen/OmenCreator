@@ -11,7 +11,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <label class="col-md-4 control-label">E-Mail Adres</label>
 
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label">Wachtwoord</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password">
@@ -49,7 +49,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                            </div>
                         </div>
 
                         <div class="form-group">

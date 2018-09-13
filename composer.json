@@ -12,7 +12,8 @@
         "captcha-com/laravel-captcha": "4.*",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "asan/phpexcel": "^2.0",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "google/recaptcha": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

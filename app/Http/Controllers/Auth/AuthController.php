@@ -8,9 +8,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use App\Traits\CaptchaTrait;
 
 class AuthController extends Controller
 {
+    use CaptchaTrait;
+    
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
