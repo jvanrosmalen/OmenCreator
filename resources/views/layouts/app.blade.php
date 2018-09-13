@@ -17,6 +17,9 @@
 		var GLOBAL_BASE = 'http://www.omencreator.be/';
 	</script>
 
+    <!-- reCaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
     <!-- Fonts -->
 	<link href="{{ URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
