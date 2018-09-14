@@ -13,7 +13,7 @@
                     <em>(Je hebt niet voldaan aan alle eisen voor de invoervelden:<br>
                         <ul style="list-style:none">
                         @foreach($errors as $error)
-                            <li>{{$error}}</li>
+                            <li>{{$error[0]}}</li>
                         @endforeach)
                         </ul></em>
                 </div>
