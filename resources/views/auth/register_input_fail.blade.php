@@ -10,11 +10,13 @@
                 <div class="panel-body text-center">
                     Als u niet de inspanning kunt leveren om alle gevraagde informatie aan te leveren,<br>
                     hoe kunt u dan verwachten mijn tijd waard te zijn?<br><br>
-                    <em>(Je hebt niet voldaan aan alle eisen voor de invoervelden:<br>
+                    <em>Je hebt niet voldaan aan alle eisen voor de invoervelden:<br>
                         <ul style="list-style:none">
-                        @foreach($errors as $error)
+                        @foreach($errors as $key=>$error)
+                            @if($key != "g-recaptcha-response")
                             <li>{{$error[0]}}</li>
-                        @endforeach)
+                            @endif
+                        @endforeach
                         </ul></em>
                 </div>
             </div>

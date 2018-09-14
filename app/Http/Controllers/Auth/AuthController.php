@@ -102,7 +102,7 @@ class AuthController extends Controller
             'password.required'             => 'Je moet een wachtwoord invullen',
             'password.min'                  => 'Je wachtwoord moet minimaal 6 karaters lang zijn',
             'password.max'                  => 'Je wachtwoord mag maximaal 20 karaters lang zijn',
-            'g-recaptcha-response.required' => 'Captcha is verplicht. Of ben je een robot?',
+            'g-recaptcha-response.required' => 'Captcha is verplicht. Of ben je een heks?',
             'captcha.required'              => 'Je captcha is verkeerd. Probeert het nog een keer'            
         ]);
     }
