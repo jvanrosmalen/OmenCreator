@@ -165,6 +165,13 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/login_failed', [ 'as'=> 'login_failed', 'uses'=>function () {
 		return view('/auth/login_failed');
 	}]);
+	Route::get('/register_input_fail', [ 'as'=> 'register_input_fail', 'uses'=>function () {
+		return view('/auth/register_input_fail');
+	}]);
+	Route::get('/register_recaptcha_fail', [ 'as'=> 'register_recaptcha_fail', 'uses'=>function () {
+		return view('/auth/register_recaptcha_fail');
+	}]);
+	
 	
 	Route::get('/my_profile', 'UserController@showProfile')->middleware('auth');
 	Route::post('/new_username_submit', 'UserController@changeUserName')->middleware('auth');

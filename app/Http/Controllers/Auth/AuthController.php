@@ -57,13 +57,19 @@ class AuthController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+            // $this->throwValidationException(
+            //     $request, $validator
+            // );
+
+            if($this->captchaCheck() === 0){
+                return view('register_recaptcha_fail');
+            } else {
+                return view('register_input_fail');
+            }    
         }
 
         Auth::guard($this->getGuard())->login($this->create($request->all()));
-
+        
         return redirect($this->redirectPath());
     }
 
