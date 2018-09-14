@@ -57,20 +57,73 @@ class AuthController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            // $this->throwValidationException(
-            //     $request, $validator
-            // );
-
-            if($this->captchaCheck() === 0){
-                return view('register_recaptcha_fail');
-            } else {
-                return view('register_input_fail');
-            }    
+            $this->throwRegisterValidationException(
+                $request, $validator
+            );   
         }
 
         Auth::guard($this->getGuard())->login($this->create($request->all()));
         
         return redirect($this->redirectPath());
+    }
+
+    /**
+     * Throw the failed validation exception.
+     * THIS FUNCTION IS AN OVERRIDE FOR throwValidationException IN
+     * \vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegisterUsers.php
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Foundation\Validation\ValidationException
+     */
+    protected function throwRegisterValidationException(Request $request, $validator)
+    {
+        throw new ValidationException($validator, $this->buildFailedRegisterValidationResponse(
+            $request, $this->formatValidationErrors($validator)
+        ));
+    }
+
+        /**
+     * Create the response for when a request fails validation.
+     * THIS FUNCTION IS AN OVERRIDE FOR buildFailedValidationResponse IN
+     * \vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegisterUsers.php
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $errors
+     * @return \Illuminate\Http\Response
+     */
+    protected function buildFailedRegisterValidationResponse(Request $request, array $errors)
+    {
+        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
+            return new JsonResponse($errors, 422);
+        }
+
+        
+        return redirect()->to($this->getRedirectUrl())
+                        ->withInput($request->input())
+                        ->withErrors($errors, $this->errorBag());
+    }
+
+    /**
+     * Create the response for when a request fails validation.
+     * THIS FUNCTION IS AN OVERRIDE FOR buildFailedValidationResponse IN
+     * \vendor\laravel\framework\src\Illuminate\Foundation\Validation\ValidatesRequests.php     *
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $errors
+     * @return \Illuminate\Http\Response
+     */
+    protected function buildFailedValidationResponse(Request $request, array $errors)
+    {
+        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
+            return new JsonResponse($errors, 422);
+        }
+
+        return redirect()->to($this->getRedirectUrl())
+                        ->withInput($request->input())
+                        ->withErrors($errors, $this->errorBag());
     }
 
     /**
