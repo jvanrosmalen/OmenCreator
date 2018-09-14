@@ -14,7 +14,7 @@
                             <label class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Gebruik je eigen naam">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -42,7 +42,7 @@
                             <label class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password" placeholder="6-20 karakters">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -84,10 +84,5 @@
             </div>
         </div>
     </div>
-    <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-    </ul>
 </div>
 @endsection
