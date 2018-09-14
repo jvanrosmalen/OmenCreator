@@ -35,9 +35,30 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected function getRedirectUrl()
+    // protected function getRedirectUrl()
+    // {
+    //     return view('auth/register_recaptcha_fail');
+    //     // return app(UrlGenerator::class)->previous();
+    // }
+
+        /**
+     * Create the response for when a request fails validation.
+     * OVERRIDE for vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $errors
+     * @return \Illuminate\Http\Response
+     */
+    protected function buildFailedValidationResponse(Request $request, array $errors)
     {
-        return app(UrlGenerator::class)->previous();
+        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
+            return new JsonResponse($errors, 422);
+        }
+
+        return view('auth.register_recaptcha_fail', ["request"=>$request,"errors"=>$errors]);
+        // return redirect()->to($this->getRedirectUrl())
+        //                 ->withInput($request->input())
+        //                 ->withErrors($errors, $this->errorBag());
     }
 
     /**
