@@ -48,10 +48,10 @@ class AuthController extends Controller
         if(isset($errors['g-recaptcha-response'])){
             if(sizeof($errors) > 1){
                 // There are also errors in the input fields. Return a view for that first.
-                return view('auth.register_input_fail', ["request"=>$request,"errors"=>$errors]);
+                return view('auth.register_input_fail', ["input"=>$request->input(), "errors"=>$errors]);
             } else {
                 // Only the recaptcha failed
-                return view('auth.register_recaptcha_fail', ["request"=>$request,"errors"=>$errors]);
+                return view('auth.register_recaptcha_fail', ["input"=>$request->input(), "errors"=>$errors]);
             }
         } else {
             // This is a failed validation for a login
