@@ -31,18 +31,6 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Get the URL we should redirect to.
-     * OVERRIDE for vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php
-     *
-     * @return string
-     */
-    // protected function getRedirectUrl()
-    // {
-    //     return view('auth/register_recaptcha_fail');
-    //     // return app(UrlGenerator::class)->previous();
-    // }
-
-        /**
      * Create the response for when a request fails validation.
      * OVERRIDE for vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php
      *
@@ -56,10 +44,21 @@ class AuthController extends Controller
             return new JsonResponse($errors, 422);
         }
 
-        return view('auth.register_recaptcha_fail', ["request"=>$request,"errors"=>$errors]);
-        // return redirect()->to($this->getRedirectUrl())
-        //                 ->withInput($request->input())
-        //                 ->withErrors($errors, $this->errorBag());
+        // Check which return is valid.
+        if(isset($errors['g-recaptcha-response'])){
+            if(sizeof($errors) > 1){
+                // There are also errors in the input fields. Return a view for that first.
+                return view('auth.register_input_fail', ["request"=>$request,"errors"=>$errors]);
+            } else {
+                // Only the recaptcha failed
+                return view('auth.register_recaptcha_fail', ["request"=>$request,"errors"=>$errors]);
+            }
+        } else {
+            // This is a failed validation for a login
+            return redirect()->to($this->getRedirectUrl())
+                            ->withInput($request->input())
+                            ->withErrors($errors, $this->errorBag());
+        }
     }
 
     /**

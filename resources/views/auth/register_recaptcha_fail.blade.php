@@ -26,10 +26,5 @@
         	</div>
         </div>
     </div>
-    
-    <?php
-        var_dump($errors);
-        var_dump($request);
-        ?>
 </div>
 @endsection
