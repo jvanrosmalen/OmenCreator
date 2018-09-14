@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-4" id="recaptcha-div">
                                 <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
 </div>
 
 <script>
-    $('.g-recaptcha').append('<div id="new_label"></div>');  
+    $('#recaptcha-div').append('<div id="new_label"></div>');  
     $('#new_label').text("Moatje, kbennekik wel gien eksebieste zulle!");
     $('#new_label').css({"position":"absolute", "width":"160px", "top":"27px", "left":"53px", "background-color":"#f9f9f9"});
 </script>
