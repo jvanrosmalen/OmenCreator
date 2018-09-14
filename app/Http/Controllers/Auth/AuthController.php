@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Traits\CaptchaTrait;
-use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -30,6 +28,29 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
+     * Handle a registration request for the application.
+     * OVERLOAD: register(...) in vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegisterUsers.php
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        echo "Test";
+        // $validator = $this->validator($request->all());
+
+        // if ($validator->fails()) {
+        //     $this->throwValidationException(
+        //         $request, $validator
+        //     );
+        // }
+
+        // Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        // return redirect($this->redirectPath());
+    }
+
+    /**
      * Where to redirect users after login / registration.
      *
      * @var string
@@ -44,88 +65,6 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-    }
-
-    /**
-     * Handle a registration request for the application.
-     * THIS FUNCTION IS AN OVERRIDE FOR register IN
-     * \vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegisterUsers.php
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function register(Request $request)
-    {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwRegisterValidationException(
-                $request, $validator
-            );   
-        }
-
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
-        
-        return redirect($this->redirectPath());
-    }
-
-    /**
-     * Throw the failed validation exception.
-     * THIS FUNCTION IS AN OVERRIDE FOR throwValidationException IN
-     * \vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegisterUsers.php
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     * @return void
-     *
-     * @throws \Illuminate\Foundation\Validation\ValidationException
-     */
-    protected function throwRegisterValidationException(Request $request, $validator)
-    {
-        throw new ValidationException($validator, $this->buildFailedRegisterValidationResponse(
-            $request, $this->formatValidationErrors($validator)
-        ));
-    }
-
-        /**
-     * Create the response for when a request fails validation.
-     * THIS FUNCTION IS AN OVERRIDE FOR buildFailedValidationResponse IN
-     * \vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegisterUsers.php
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $errors
-     * @return \Illuminate\Http\Response
-     */
-    protected function buildFailedRegisterValidationResponse(Request $request, array $errors)
-    {
-        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
-            return new JsonResponse($errors, 422);
-        }
-
-        
-        return redirect()->to($this->getRedirectUrl())
-                        ->withInput($request->input())
-                        ->withErrors($errors, $this->errorBag());
-    }
-
-    /**
-     * Create the response for when a request fails validation.
-     * THIS FUNCTION IS AN OVERRIDE FOR buildFailedValidationResponse IN
-     * \vendor\laravel\framework\src\Illuminate\Foundation\Validation\ValidatesRequests.php     *
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $errors
-     * @return \Illuminate\Http\Response
-     */
-    protected function buildFailedValidationResponse(Request $request, array $errors)
-    {
-        if (($request->ajax() && ! $request->pjax()) || $request->wantsJson()) {
-            return new JsonResponse($errors, 422);
-        }
-
-        return redirect()->to($this->getRedirectUrl())
-                        ->withInput($request->input())
-                        ->withErrors($errors, $this->errorBag());
     }
 
     /**
