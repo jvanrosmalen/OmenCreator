@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Traits\CaptchaTrait;
 
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
