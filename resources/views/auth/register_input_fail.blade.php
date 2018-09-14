@@ -9,8 +9,13 @@
 
                 <div class="panel-body text-center">
                     Als u niet de inspanning kunt leveren om alle gevraagde informatie aan te leveren,<br>
-                    hoe kunt u dan verwachten mijn tijd waard te zijn?
-                    <em>(Je hebt niet voldaan aan alle eisen voor de invoervelden.)</em>
+                    hoe kunt u dan verwachten mijn tijd waard te zijn?<br><br>
+                    <em>(Je hebt niet voldaan aan alle eisen voor de invoervelden:<br>
+                        <ul>
+                        @foreach($errors as $error)
+                            <li>$error</li>
+                        @endforeach)
+                        </ul></em>
                 </div>
             </div>
         </div>
