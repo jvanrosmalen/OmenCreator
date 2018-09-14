@@ -36,7 +36,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        echo "Test";
+        parent::register($request);
         // $validator = $this->validator($request->all());
 
         // if ($validator->fails()) {
