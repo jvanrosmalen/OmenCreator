@@ -85,4 +85,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#recaptcha-anchor-label").html("Moatje, kbennekik wel gien eksebieste zulle!");
+</script>
 @endsection

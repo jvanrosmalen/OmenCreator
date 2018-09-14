@@ -11,7 +11,7 @@
                     Geen heks zeg je? Ik ben niet overtuigd.<br>
                     Je krijgt nog &eacute;&eacute;n kans...<br>
                     (Je ziet in de verte een brandstapel opgericht worden.)<br><br>
-                    <em>(De recaptcha check is niet succesvol.)</em>
+                    <em>De recaptcha check is niet succesvol.</em>
                 </div>
             </div>
         </div>
