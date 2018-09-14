@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     protected function getRedirectUrl()
     {
-        return view('register_recaptcha_fail');
+        return view('auth/register_recaptcha_fail');
         // return app(UrlGenerator::class)->previous();
     }
 
