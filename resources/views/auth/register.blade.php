@@ -89,6 +89,6 @@
 <script>
     $('#recaptcha-div').append('<div id="new_label"></div>');  
     $('#new_label').text("Moatje, kbennekik wel gien eksebieste zulle!");
-    $('#new_label').css({"position":"absolute", "width":"160px", "top":"27px", "left":"53px", "background-color":"#f9f9f9"});
+    $('#new_label').css({"position":"absolute", "width":"160px", "top":"18px", "left":"65px", "background-color":"#f9f9f9"});
 </script>
 @endsection
