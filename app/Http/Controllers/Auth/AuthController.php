@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Traits\CaptchaTrait;
 
+use Illuminate\Routing\UrlGenerator;
+
 class AuthController extends Controller
 {
     use CaptchaTrait;
@@ -28,26 +30,15 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Handle a registration request for the application.
-     * OVERLOAD: register(...) in vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegisterUsers.php
+     * Get the URL we should redirect to.
+     * OVERRIDE for vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function register(Request $request)
+    protected function getRedirectUrl()
     {
-        parent::register($request);
-        // $validator = $this->validator($request->all());
-
-        // if ($validator->fails()) {
-        //     $this->throwValidationException(
-        //         $request, $validator
-        //     );
-        // }
-
-        // Auth::guard($this->getGuard())->login($this->create($request->all()));
-
-        // return redirect($this->redirectPath());
+        return view('register_recaptcha_fail');
+        // return app(UrlGenerator::class)->previous();
     }
 
     /**
