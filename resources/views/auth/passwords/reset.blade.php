@@ -3,24 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">Vithas knikt en zegt tevreden:</div>
-
-                <div class="panel-body text-center">
-                    Kijk eens aan. Al weer bijna helemaal genezen. Nog een laatste paar kleine vraagjes, heb ik voor je.<br>
-                    Als je die ingevuld hebt, verklaar ik je genezen, en kan je weer gaan en staan waar je wil.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Vithas zegt:</div>
 
                 <div class="panel-body">
+                    <div class="text-center">
+                        Kijk eens aan. Al weer bijna helemaal genezen. Nog een laatste paar kleine vraagjes, heb ik voor je.<br>
+                        Als je die ingevuld hebt, verklaar ik je genezen, en kan je weer gaan en staan waar je wil.
+                    </div>
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
                         {!! csrf_field() !!}
 
