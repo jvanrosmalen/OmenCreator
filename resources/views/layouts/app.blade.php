@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <base href="http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/"> -->
     <base href="http://www.omencreator.be/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +9,6 @@
     <title>Omen Creator</title>
     
     <!-- Need this below for all the links in my ajaxInterface.js -->
-	<!-- <script>
-		var GLOBAL_BASE = 'http://student.aii.avans.nl/DOC/jrosmale/OmenCreator/public/';
-	</script> -->
     <script>
 		var GLOBAL_BASE = 'http://www.omencreator.be/';
 	</script>
