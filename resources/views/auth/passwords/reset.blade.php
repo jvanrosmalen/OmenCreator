@@ -9,7 +9,7 @@
 
                 <div class="panel-body text-center">
                     Dus jij denkt dat je leven voorbij is?<br>
-                    Dat je niet verder kan? Dat alle hoop verloren is?<br>
+                    Dat je niet verder kan en dat alle hoop verloren is?<br>
                     Niet als het aan mij ligt, mijn beste.... niet als het aan mij ligt.
                 </div>
             </div>
