@@ -5,12 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                <div class="panel-heading">Vithas stroopt zijn mouwen op en zegt:</div>
+                <div class="panel-heading">Vithas knikt en zegt tevreden:</div>
 
                 <div class="panel-body text-center">
-                    Dus jij denkt dat je leven voorbij is?<br>
-                    Dat je niet verder kan en dat alle hoop verloren is?<br>
-                    Niet als het aan mij ligt, mijn beste.... niet als het aan mij ligt.
+                    Kijk eens aan. Al weer bijna helemaal genezen. Nog een laatste paar kleine vraagjes, heb ik voor je.<br>
+                    Als je die ingevuld hebt, verklaar ik je genezen, en kan je weer gaan en staan waar je wil.
                 </div>
             </div>
         </div>
