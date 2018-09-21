@@ -17,7 +17,7 @@
                     <div class="text-center">
                     Dus jij denkt dat je leven voorbij is?<br>
                     Dat je niet verder kan en dat alle hoop verloren is?<br>
-                    Niet als het aan mij ligt, mijn beste.... niet als het aan mij ligt.
+                    Niet als het aan mij ligt, mijn beste.... niet als het aan mij ligt.<br><br>
                     </div>
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
