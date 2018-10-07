@@ -598,8 +598,6 @@ class SkillImportController extends Controller
 
     private function checkSecretSkill($value){
         if(!empty($value)){
-            // First character is already unique. Check on that for more robust code that allows
-            // for some typos in the entries
             if(strcasecmp(substr($value, 0, 1), "c") === 0){
                 // secret crew skill
                 return true;
