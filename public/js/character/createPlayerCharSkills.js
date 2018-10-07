@@ -214,7 +214,7 @@ var CreatePlayerCharSkills = new function(){
 			var prereq_skillgroup = skillData['skill_group_prereqs'][i];
 			
 			if(prereq_skillgroup['pivot']['prereq_set'] == 2){
-				skillGroupSet2Array.push(prereq_skill);
+				skillGroupSet2Array.push(prereq_skillgroup);
 				continue;				
 			}
 			
