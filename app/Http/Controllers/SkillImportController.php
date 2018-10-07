@@ -94,6 +94,8 @@ class SkillImportController extends Controller
             $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
             $skill->skill_level_id =
                 $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
+            $skill->secret_skill = 
+                $this->checkSecretSkill(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
             $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
             if(strcasecmp($skill->description_small,"") === 0){
                 $this->errorArray[$this->currentErrorIndex][] = "Korte beschrijving is leeg.";
@@ -566,7 +568,7 @@ class SkillImportController extends Controller
     }
 
     private function getSkillLevelId($value){
-        // If the string is empty, this method will return id = 1 (for Debutant) by default
+        // If the string is empty, this method will return id = 3 (for Veteraan) by default
         $retVal = 0;
 
         if(!empty($value)){
@@ -580,15 +582,31 @@ class SkillImportController extends Controller
                 $retVal = 2;
             } else if(strcasecmp(substr($value, 0, 1), "d") === 0){
                 $retVal = 1;
+            } else if(strcasecmp(substr($value, 0, 1), "c") === 0){
+                // secret crew skill
+                $retVal = 3;
             } else {
                 // Unknown skill level. Level set to 1 by default
-                $retVal = 1;
+                $retVal = 3;
                 $this->errorArray[$this->currentErrorIndex][] =
-                    "Onbekend vaardigheid niveau ".$value.". Opgeslagen als Debutant.";
+                    "Onbekend vaardigheid niveau ".$value.". Opgeslagen als Veteraan.";
             }
         }
 
         return $retVal;
+    }
+
+    private function checkSecretSkill($value){
+        if(!empty($value)){
+            // First character is already unique. Check on that for more robust code that allows
+            // for some typos in the entries
+            if(strcasecmp(substr($value, 0, 1), "c") === 0){
+                // secret crew skill
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     private function createAndSaveErrorLogFile(){
