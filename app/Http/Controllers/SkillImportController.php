@@ -94,8 +94,11 @@ class SkillImportController extends Controller
             $skill->ep_cost = intval(trim($objWorksheet->getCellByColumnAndRow(4, $row)->getValue()));
             $skill->skill_level_id =
                 $this->getSkillLevelId(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
-            $skill->secret_skill = 
-                $this->checkSecretSkill(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
+            if($skill->skill_level_id === 3){
+                // A veteran skill could be a crew skill.
+                $skill->secret_skill = 
+                    $this->checkSecretSkill(trim($objWorksheet->getCellByColumnAndRow(29, $row)->getValue()));
+            }
             $skill->description_small = trim($objWorksheet->getCellByColumnAndRow(5, $row)->getValue());
             if(strcasecmp($skill->description_small,"") === 0){
                 $this->errorArray[$this->currentErrorIndex][] = "Korte beschrijving is leeg.";
@@ -598,7 +601,8 @@ class SkillImportController extends Controller
 
     private function checkSecretSkill($value){
         $this->errorArray[$this->currentErrorIndex][] =
-        "Checking secret skill ".$value.". Do your thing.";
+            "Secret skill value ".$value.". Do your thing.";
+
         if(!empty($value)){
             if(strcasecmp(substr($value, 0, 1), "c") === 0){
                 // secret crew skill
