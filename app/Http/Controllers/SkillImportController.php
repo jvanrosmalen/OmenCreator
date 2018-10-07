@@ -597,14 +597,16 @@ class SkillImportController extends Controller
     }
 
     private function checkSecretSkill($value){
+        $this->errorArray[$this->currentErrorIndex][] =
+        "Checking secret skill ".$value.". Do your thing.";
         if(!empty($value)){
             if(strcasecmp(substr($value, 0, 1), "c") === 0){
                 // secret crew skill
                 return true;
-            } else {
-                return false;
             }
         }
+
+        return false;
     }
 
     private function createAndSaveErrorLogFile(){
