@@ -479,7 +479,7 @@ class SkillImportController extends Controller
                     for($index = 0; $index < sizeof($skillPrereqArray); $index++){
                         $prereqSkillName = $skillPrereqArray[$index];
 
-                        if(strcmp(trim($prereqSkillName),"") == 0){
+                        if(strcmp(trim($prereqSkillName),"") == 0 || strcmp(trim($prereqSkillName),"/") == 0){
                             continue;
                         }
 
