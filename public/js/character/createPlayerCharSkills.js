@@ -266,7 +266,7 @@ var CreatePlayerCharSkills = new function(){
 			return true;
 		}
 		else {
-			if(!problem2 && skillSet2Array.length > 0){
+			if(!problem2 && (skillSet2Array.length > 0 || skillGroupSet2Array.length > 0 )){
 				// there is a set2 that has been met.
 				// all is well after all.
 				return true;
