@@ -112,7 +112,6 @@ class SkillImportController extends Controller
                 $this->checkForYesOrNo(trim($objWorksheet->getCellByColumnAndRow(26, $row)->getValue()));
             $skill->statistic_prereq_id = 1;
             $skill->statistic_prereq_amount = 0;
-            $skill->secret_skill = false;
             $skill->wealth_prereq_id = 1;
 
             // Check for craft skill and income
@@ -600,13 +599,8 @@ class SkillImportController extends Controller
     }
 
     private function checkSecretSkill($value){
-        $this->errorArray[$this->currentErrorIndex][] =
-            "Secret skill value ".$value.". Do your thing.";
-
         if(!empty($value)){
-            $this->errorArray[$this->currentErrorIndex][] = "1";
             if(strcasecmp(substr($value, 0, 1), "c") === 0){
-                $this->errorArray[$this->currentErrorIndex][] = "2";
                 // secret crew skill
                 return true;
             }
