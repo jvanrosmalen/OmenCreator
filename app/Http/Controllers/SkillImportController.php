@@ -507,7 +507,7 @@ class SkillImportController extends Controller
             }
 
             // Completely finished with a skill. If there are no error, remove from errorArray
-            if(sizeof($this->errorArray[$this->currentErrorIndex]) === 0){
+            if(isset($this->errorArray[$this->currentErrorIndex]) && sizeof($this->errorArray[$this->currentErrorIndex]) === 0){
                 unset($this->errorArray[$this->currentErrorIndex]);
             }
         }
