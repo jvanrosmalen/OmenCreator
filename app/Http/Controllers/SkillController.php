@@ -422,13 +422,13 @@ class SkillController extends Controller
 		// Save class prereqs
 		$player_classes = Input::get('playerclass');
 		if(is_array($player_classes)){
-			$skill->playerClasses()->sync($player_classes,false);
+			$skill->playerClasses()->sync($player_classes);
 		}
 	
 		// Save race prereqs
 		$races = Input::get('race');
 		if(is_array($races)){
-			$skill->racePrereqs()->sync($races,false);
+			$skill->racePrereqs()->sync($races);
 		}
 	
 		$url = route('skill_showall');
