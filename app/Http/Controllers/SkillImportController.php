@@ -604,7 +604,9 @@ class SkillImportController extends Controller
             "Secret skill value ".$value.". Do your thing.";
 
         if(!empty($value)){
+            $this->errorArray[$this->currentErrorIndex][] = "1";
             if(strcasecmp(substr($value, 0, 1), "c") === 0){
+                $this->errorArray[$this->currentErrorIndex][] = "2";
                 // secret crew skill
                 return true;
             }
