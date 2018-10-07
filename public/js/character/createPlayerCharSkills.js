@@ -244,8 +244,8 @@ var CreatePlayerCharSkills = new function(){
 				
 				var group2Problem = true;
 				
-				for(var j=0; j < skillGroupSet2Array['group_skills'].length; j++){
-					var prereq_skill = skillGroupSet2Array['group_skills'][j];
+				for(var j=0; j < prereq_skillgroup2['group_skills'].length; j++){
+					var prereq_skill = prereq_skillgroup2['group_skills'][j];
 					// check if skill is in all hidden lists with skills
 					if(self.hasSkill(prereq_skill['id'])){
 						// Found one, so group is no problem.
