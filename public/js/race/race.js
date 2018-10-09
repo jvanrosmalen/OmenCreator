@@ -2,7 +2,7 @@ var Race = new function(){
 	var self = this;
 	
 	self.addListeners = function(){
-		var race_ids = JSON.parse($("#race_ids").data('raceids'));
+		var race_ids = $("#race_ids").data('raceids');
 		
 		for(var index in race_ids){
 			var id = race_ids[index];
