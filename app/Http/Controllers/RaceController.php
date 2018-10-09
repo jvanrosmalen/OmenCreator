@@ -215,7 +215,7 @@ class RaceController extends Controller
 		{
 			return $race->race_name;
 		});
-		$race_ids = Race::all()->get(['id']);
+		$race_ids = Race::all('id');
 		return view('race/showAllRaces', [ "races"=>$races, "race_ids"=>$race_ids]);
 	}
 	
