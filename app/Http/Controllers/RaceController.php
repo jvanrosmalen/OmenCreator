@@ -221,7 +221,7 @@ class RaceController extends Controller
 			$race_ids[] = $race->id;
 		}
 
-		return view('race/showAllRaces', [ "races"=>$races, "race_ids"=>$race_ids]);
+		return view('race/showAllRaces', [ "races"=>$races, "race_ids"=>json_encode($race_ids)]);
 	}
 	
 	public function gotoShowAllRace(){
