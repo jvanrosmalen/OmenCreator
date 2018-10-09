@@ -2,10 +2,10 @@ var Race = new function(){
 	var self = this;
 	
 	self.addListeners = function(){
-		var races = $("#race_size").data('races');
+		var race_ids = $("#race_ids").data('raceids');
 		
-		for(var index in races){
-			var id = races[index].id;
+		for(var index in race_ids){
+			var id = race_ids[index].id;
 			
 			// Add listeners and functions for slide
 			$("#"+id ).click(function(event) {
