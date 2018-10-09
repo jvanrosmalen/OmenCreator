@@ -150,8 +150,6 @@
 			</div>
 		@endforeach
 		
-		<?php var_dump($race_ids) ?>
-
 <!-- 	Trick to be able to access the count of race in the JS below -->
 		<div id="race_ids" class="hidden" data-raceids="{{ $race_ids }}" ></div>
 		
