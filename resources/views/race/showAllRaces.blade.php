@@ -150,9 +150,11 @@
 			</div>
 		@endforeach
 		
+		<?php var_dump($races) ?>
+
 <!-- 	Trick to be able to access the count of race in the JS below -->
-		<!-- <div id="race_size" class="hidden" data-races="{{ $races }}" ></div> -->
+		<div id="race_size" class="hidden" data-races="{{ $races }}" ></div>
 		
-		<!-- <script>Race.addListeners()</script> -->
+		<script>Race.addListeners()</script>
  	</div>
 @endsection
