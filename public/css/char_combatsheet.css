@@ -38,11 +38,11 @@ body {
 
 .res_checkbox {
 	padding: 0px;
-	height: 23px;
-	width: 21px;
+	height: 22px;
+	width: 19px;
 	box-sizing: border-box;
 	margin: 3px;
-	border: solid 1px black;
+	border: solid 2px black;
 }
 
 .page{
