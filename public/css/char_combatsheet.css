@@ -36,6 +36,15 @@ body {
 	left:0px;
 }
 
+.res_checkbox {
+	padding: 0px;
+	height: 23px;
+	width: 29px;
+	box-sizing: border-box;
+	margin: 3px;
+	border: solid 1px black;
+}
+
 .page{
 	box-sizing: border-box;
 }

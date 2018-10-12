@@ -207,30 +207,13 @@
 						<td colspan='6' class='heavy_top light_bottom heavy_right heavy_left dashed text_centered'>
 						Angst
 						</td>
-						<td id='res_trauma_0' class='dashed'>
-						</td>
-						<td id='res_trauma_1' class='dashed'>
-						</td>
-						<td id='res_trauma_2' class='dashed'>
-						</td>
-						<td id='res_trauma_3' class='dashed'>
-						</td>
-						<td id='res_trauma_4' class='dashed'>
-						</td>
-						<td id='res_trauma_5' class='dashed'>
-						</td>
-						<td id='res_trauma_6' class='dashed'>
-						</td>
-						<td id='res_trauma_7' class='dashed'>
-						</td>
-						<td id='res_trauma_8' class='dashed'>
-						</td>
-						<td id='res_trauma_9' class='dashed'>
-						</td>
-						<td id='res_trauma_10' class='dashed'>
-						</td>
-						<td id='res_trauma_11' class='dashed'>
-						</td>
+						@for($i = 0; $ < 12; $i++)
+							<td class='dashed'>
+								@if(&i < {{$character->res_fear}})
+									<div class="res_checkbox"></div>
+								@endif
+							</td>
+						@endfor
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left text_centered'>
