@@ -207,13 +207,15 @@
 						<td colspan='6' class='heavy_top light_bottom heavy_right heavy_left dashed text_centered'>
 						Angst
 						</td>
-						@for($i = 0; $i < 12; $i++)
-							<td class='dashed'>
-								@if($i < {{$character->res_fear}})
-									<div class="res_checkbox"></div>
-								@endif
-							</td>
-						@endfor
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_fear){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left text_centered'>
