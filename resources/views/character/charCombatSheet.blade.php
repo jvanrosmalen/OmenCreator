@@ -209,7 +209,7 @@
 						</td>
 						@for($i = 0; $ < 12; $i++)
 							<td class='dashed'>
-								@if($i < {{$character->res_fear}})
+								@if($i < $character->res_fear)
 									<div class="res_checkbox"></div>
 								@endif
 							</td>
