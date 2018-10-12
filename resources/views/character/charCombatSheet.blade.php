@@ -221,146 +221,71 @@
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left text_centered'>
 						Diefstal
 						</td>
-						<td id='res_theft_0' class='dashed'>
-						</td>
-						<td id='res_theft_1' class='dashed'>
-						</td>
-						<td id='res_theft_2' class='dashed'>
-						</td>
-						<td id='res_theft_3' class='dashed'>
-						</td>
-						<td id='res_theft_4' class='dashed'>
-						</td>
-						<td id='res_theft_5' class='dashed'>
-						</td>
-						<td id='res_theft_6' class='dashed'>
-						</td>
-						<td id='res_theft_7' class='dashed'>
-						</td>
-						<td id='res_theft_8' class='dashed'>
-						</td>
-						<td id='res_theft_9' class='dashed'>
-						</td>
-						<td id='res_theft_10' class='dashed'>
-						</td>
-						<td id='res_theft_11' class='dashed'>
-						</td>
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_theft){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left text_centered'>
 						Gif
 						</td>
-						<td id='res_poison_0' class='dashed'>
-						</td>
-						<td id='res_poison_1' class='dashed'>
-						</td>
-						<td id='res_poison_2' class='dashed'>
-						</td>
-						<td id='res_poison_3' class='dashed'>
-						</td>
-						<td id='res_poison_4' class='dashed'>
-						</td>
-						<td id='res_poison_5' class='dashed'>
-						</td>
-						<td id='res_poison_6' class='dashed'>
-						</td>
-						<td id='res_poison_7' class='dashed'>
-						</td>
-						<td id='res_poison_8' class='dashed'>
-						</td>
-						<td id='res_poison_9' class='dashed'>
-						</td>
-						<td id='res_poison_10' class='dashed'>
-						</td>
-						<td id='res_poison_11' class='dashed'>
-						</td>
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_poison){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left text_centered'>
 						Magie
 						</td>
-						<td id='res_magic_0' class='dashed'>
-						</td>
-						<td id='res_magic_1' class='dashed'>
-						</td>
-						<td id='res_magic_2' class='dashed'>
-						</td>
-						<td id='res_magic_3' class='dashed'>
-						</td>
-						<td id='res_magic_4' class='dashed'>
-						</td>
-						<td id='res_magic_5' class='dashed'>
-						</td>
-						<td id='res_magic_6' class='dashed'>
-						</td>
-						<td id='res_magic_7' class='dashed'>
-						</td>
-						<td id='res_magic_8' class='dashed'>
-						</td>
-						<td id='res_magic_9' class='dashed'>
-						</td>
-						<td id='res_magic_10' class='dashed'>
-						</td>
-						<td id='res_magic_11' class='dashed'>
-						</td>
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_magic){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top light_bottom heavy_right heavy_left  text_centered'>
 						Trauma
 						</td>
-						<td id='res_trauma_0' class='dashed'>
-						</td>
-						<td id='res_trauma_1' class='dashed'>
-						</td>
-						<td id='res_trauma_2' class='dashed'>
-						</td>
-						<td id='res_trauma_3' class='dashed'>
-						</td>
-						<td id='res_trauma_4' class='dashed'>
-						</td>
-						<td id='res_trauma_5' class='dashed'>
-						</td>
-						<td id='res_trauma_6' class='dashed'>
-						</td>
-						<td id='res_trauma_7' class='dashed'>
-						</td>
-						<td id='res_trauma_8' class='dashed'>
-						</td>
-						<td id='res_trauma_9' class='dashed'>
-						</td>
-						<td id='res_trauma_10' class='dashed'>
-						</td>
-						<td id='res_trauma_11' class='dashed'>
-						</td>
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_trauma){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td colspan='6' class='light_top heavy_bottom heavy_right heavy_left text_centered'>
 						Ziekte
 						</td>
-						<td id='res_disease_0' class='dashed'>
-						</td>
-						<td id='res_disease_1' class='dashed'>
-						</td>
-						<td id='res_disease_2' class='dashed'>
-						</td>
-						<td id='res_disease_3' class='dashed'>
-						</td>
-						<td id='res_disease_4' class='dashed'>
-						</td>
-						<td id='res_disease_5' class='dashed'>
-						</td>
-						<td id='res_disease_6' class='dashed'>
-						</td>
-						<td id='res_disease_7' class='dashed'>
-						</td>
-						<td id='res_disease_8' class='dashed'>
-						</td>
-						<td id='res_disease_9' class='dashed'>
-						</td>
-						<td id='res_disease_10' class='dashed'>
-						</td>
-						<td id='res_disease_11' class='dashed'>
-						</td>
+						<?php
+							for($i = 0; $i < 12; $i++){
+								echo "<td class='dashed'>";
+								
+								if($i < $character->res_disease){
+									echo "<div class='res_checkbox'></div>";
+								}
+							}
+						?>
 					</tr>
 					<tr>
 						<td class='dashed'>
