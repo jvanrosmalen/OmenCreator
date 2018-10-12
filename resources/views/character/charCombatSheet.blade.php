@@ -207,9 +207,9 @@
 						<td colspan='6' class='heavy_top light_bottom heavy_right heavy_left dashed text_centered'>
 						Angst
 						</td>
-						@for($i = 0; $ < 12; $i++)
+						@for($i = 0; $i < 12; $i++)
 							<td class='dashed'>
-								@if($i < $character->res_fear)
+								@if($i < {{$character->res_fear}})
 									<div class="res_checkbox"></div>
 								@endif
 							</td>
