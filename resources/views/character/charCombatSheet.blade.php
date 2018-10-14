@@ -3208,7 +3208,8 @@
 			<div id='page_7' class='page heavy_outline left_page'>
 				<?php
 					// Create an array with chunks of the char's skills
-					$skill_chunks = array_chunk($character->skills, 29);
+					var_dump($character);
+					// $skill_chunks = array_chunk($character->skills, 29);
 				?>
 				<table id='p4_skills'>
 					<tr>
@@ -3218,7 +3219,6 @@
 					</tr>
 					
 					<?php
-					var_dump($character);
 						// if(isset($skill_chunks[0])){
 						// 	// First add all skills
 						// 	foreach($skill_chunks[0] as $skill){
