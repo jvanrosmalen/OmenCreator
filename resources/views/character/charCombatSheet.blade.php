@@ -3259,7 +3259,7 @@
 						Overzicht Vaardigheden
 						</td>
 					</tr>
-					@for($i = 0; $i < 29; $i++)
+					@for($i = 29; $i < 58; $i++)
 						@if ($skill_count > 0)
 							<tr>
 						 		<td colspan='6' class='span6 ellipsis text_left heavy_left dashed_right dashed_bottom'>
