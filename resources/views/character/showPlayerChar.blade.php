@@ -11,10 +11,10 @@
 		</div>
 		<div class='col-xs-4'>
 			<div class='col-xs-6 pull-right'>
-				<a class="btn btn-default btn-block" href="{{ url('test_generate_combatsheet/'.$character->id) }}">Download Sheet</a>
+				<a class="btn btn-default btn-block" href="{{ url('generate_skill_overview/'.$character->id) }}">Download Vaardigheden</a>
 			</div>
 			<div class='col-xs-6 pull-right'>
-				<a class="btn btn-default btn-block" href="{{ url('generate_skill_overview/'.$character->id) }}">Download Vaardigheden</a>
+				<a class="btn btn-default btn-block" href="{{ url('generate_combatsheet/'.$character->id) }}">Download Sheet</a>
 			</div>
 		</div>
 	</div>
