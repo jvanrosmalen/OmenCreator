@@ -7,7 +7,7 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-7'>
-			<h3>{{$character->name}}, {{$character->title}} (Speler: {{$character->char_user->name}})</h3>
+			<h3>{{$character->name}}, {{$character->title}}<br>(Speler: {{$character->char_user->name}})</h3>
 		</div>
 		<div class='col-xs-5'>
 			<div class='col-xs-7 pull-right'>

@@ -417,6 +417,14 @@ class CharacterController extends Controller
 		return $pdf->download('combatsheet_'.$character->name.'.pdf');
 	}
 
+	public function generateSkillOverview($id){
+		$character = Character::find($id);
+		$skills = $character->getSkillsWithLongDescription();
+		$pdf = \PDF::loadview('character.charSkillOverview', compact('character', 'skills'));
+		$pdf->setPaper('A4', 'portrait');
+		return $pdf->download('skilloverview_'.$character->name.'.pdf');
+	}
+
 
 	public function showCharEp($charId){
 		return view('/character/showCharacterEp',

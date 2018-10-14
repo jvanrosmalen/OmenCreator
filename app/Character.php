@@ -83,7 +83,6 @@ class Character extends Model
     }
     
     public function getSkillsAttribute(){
-	{
 		// To save loading time, only send id, name and pivot value
 		// for each prereq entry
 		return Character::find($this->id)
@@ -110,10 +109,37 @@ class Character extends Model
 											'skill_group_prereqs',
 											'wealth_prereq']);
 									});
-		}
-    }
-    
-    
+	}
+		
+	public function getSkillsWithLongDescription(){
+		// To save loading time, only send id, name and pivot value
+		// for each prereq entry
+		return Character::find($this->id)
+								->skills()
+								->select(['id','name','description_long'])
+								->orderBy('name')
+								->get()
+								->each(function($row){
+									$row->setHidden(
+											['craft_equipments',
+											'call_rules',
+											'dam_rules',
+											'stat_rules',
+											'wealth_rules',
+											'class_rules',
+											'res_rules',
+											'skill_level',
+											'income_coin',
+											'player_classes',
+											'player_class_ids',
+											'race_prereqs',
+											'statistic_prereq',
+											'skill_prereqs',
+											'skill_group_prereqs',
+											'wealth_prereq']);
+									});
+	}
+
     
    	public function getCharDescentSkills(){
    		return Character::find($this->id)->skills()
@@ -467,14 +493,6 @@ class Character extends Model
     
     public function getWealthStringAttribute(){
     	$wealthId = $this->getWealthTypeId();
-//     		PlayerClass::find(Character::find($this->id)->player_class_id)->wealth_type_id;
-//     	$skillsWithWealth = Character::find($this->id)->skills()->has('WealthRules')->get();
-    	
-//     	foreach($skillsWithWealth as $skill){
-//     		if($wealthId < $skill->wealth_rules[0]->value_type_id){
-//     			$wealthId = $skill->wealth_rules[0]->value_type_id;
-//     		}
-//     	}
     	
     	return WealthType::find($wealthId)->wealth_type;
     }
@@ -1154,5 +1172,5 @@ class Character extends Model
     	}
     	 
     	return $retVal;
-    }
+	}	
 }
