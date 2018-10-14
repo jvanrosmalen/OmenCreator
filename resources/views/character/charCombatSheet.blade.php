@@ -3105,41 +3105,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
+						<td colspan = '18' class='dashed'>
 						</td>
 					</tr>
 				</table>
@@ -3165,65 +3131,24 @@
 					?>
 
 					<tr>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
-						</td>
-						<td >
+						<td colspan='18'>
 						</td>
 					</tr>
 				</table>			
 			</div>			
-			
+
+			<?php
+				// Create a variable to hold the amount of skills left to display
+				$skill_count = count($character->skills);
+			?>
+
 			<div id='page_7' class='page heavy_outline left_page'>
-				<?php
-					// Create an array with chunks of the char's skills
-					// foreach($character->skills as $skill){
-					// 	echo $skill->name;
-					// }
-					// $skill_chunks = array_chunk($character->skills, 29);
-				?>
 				<table id='p4_skills'>
 					<tr>
 						<td colspan='18' class='heavy_outline text_centered'>
 						Overzicht Vaardigheden
 						</td>
 					</tr>
-					
-					<?php
-						// Create a variable to hold the amount of skills left to display
-						$skill_count = count($character->skills);
-					?>
 
 					@for($i = 0; $i < 29; $i++)
 						@if ($skill_count > 0)
@@ -3248,250 +3173,10 @@
 						@endif
 					@endfor
 
-					<?php
-						// if(isset($skill_chunks[0])){
-						// 	// First add all skills
-						// 	foreach($skill_chunks[0] as $skill){
-						// 		echo "<tr>
-						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-						// 				".$skill->name."
-						// 				</td>
-						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-						// 				".$skill->description_small."
-						// 				</td>
-						// 			</tr>";
-						// 	}
-						// 	// Now fill remaining lines.
-						// 	for($count = 0; $count < (29 - count($skill_chunks[0])); $count++){
-						// 		echo "<tr>
-						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-						// 				</td>
-						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-						// 				</td>
-						// 			</tr>";								
-						// 	}
-						// } else {
-						// 	// No skills present. Just fill in the page.
-						// 	for($count = 0; $count < 29; $count++){
-						// 		echo "<tr>
-						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-						// 				</td>
-						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-						// 				</td>
-						// 			</tr>";								
-						// 	}
-						// }
-
-
-					?>
-					<!-- <tr>
-						<td id='p4_name_0' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_0' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_1' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_1' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_2' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_2' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_3' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_3' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_4' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_4' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_5' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_5' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_6' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_6' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_7' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_7' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_8' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_8' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_9' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_9' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_10' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_10' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_11' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_11' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_12' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_12' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_13' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_13' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_14' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_14' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_15' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_15' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_16' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_16' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_17' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_17' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_18' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_18' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_19' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_19' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_20' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_20' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_21' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_21' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_22' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_22' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_23' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_23' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_24' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_24' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_25' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_25' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_26' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_26' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_27' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_27' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p4_name_28' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p4_desc_small_28' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr> -->
 					<tr>
 						<td class='heavy_bottom clear_right heavy_left'>
 						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
+						<td colspan='16' class='heavy_bottom clear_right clear_left'>
 						</td>
 						<td class='heavy_bottom heavy_right clear_left'>
 						</td>
@@ -3506,218 +3191,40 @@
 						Overzicht Vaardigheden
 						</td>
 					</tr>
+					@for($i = 0; $i < 29; $i++)
+						@if ($skill_count > 0)
+							<tr>
+						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+									{{$character->skills[$i]->name}}
+						 		</td>
+						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+								 	{{$character->skills[$i]->description_small}}
+						 		</td>
+							 </tr>
+							 <?php
+							 	$skill_count--;
+							 ?>
+						@else
+							<tr>
+						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		</td>
+						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		</td>
+						 	</tr>
+						@endif
+					@endfor			
+
 					<tr>
-						<td id='p5_name_0' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
+						<td class='heavy_bottom clear_right heavy_left'>
 						</td>
-						<td id='p5_desc_small_0' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
+						<td colspan='16' class='heavy_bottom clear_right clear_left'>
+							@if($skill_count > 0)
+								Je hebt meer vaardigheden dan getoond kunnen worden.
+							@endif
+						</td>
+						<td class='heavy_bottom heavy_right clear_left'>
 						</td>
 					</tr>
-					<tr>
-						<td id='p5_name_1' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_1' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_2' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_2' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_3' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_3' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_4' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_4' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_5' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_5' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_6' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_6' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_7' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_7' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_8' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_8' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_9' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_9' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_10' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_10' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_11' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_11' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_12' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_12' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_13' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_13' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_14' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_14' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_15' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_15' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_16' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_16' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_17' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_17' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_18' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_18' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_19' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_19' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_20' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_20' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_21' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_21' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_22' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_22' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_23' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_23' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_24' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_24' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_25' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_25' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_26' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_26' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_27' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_27' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td id='p5_name_28' colspan='6' class='text_left heavy_left dashed_right dashed_bottom'>
-						</td>
-						<td id='p5_desc_small_28' colspan='12' class='text_left dashed_left heavy_right dashed_bottom'>
-						</td>
-					</tr>
-					<tr>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-						<td class='heavy_bottom clear_right clear_left'>
-						</td>
-					</tr>					
 				</table>
 			</div>
 		</div>
