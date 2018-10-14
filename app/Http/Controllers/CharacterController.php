@@ -533,8 +533,9 @@ class CharacterController extends Controller
 		
 		if($event_survived){
 			$character->nr_events_survived = $character->nr_events_survived + 1;
-			$character->save();
 		}
+
+		$character->save();
 		
 		$epAssign = new EpAssignment();
 		$epAssign->amount = $ep_amount;
