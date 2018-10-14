@@ -185,7 +185,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/profile_email_change_error', ['as'=>'profile_email_change_error', 'uses'=>function(){return view('/user/profileEmailChangeError');}])->middleware('auth');
 	Route::get('/home', 'HomeController@index');
 
-	Route::get('download/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
+	Route::get('download_handout/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
+	Route::get('download_chardoc/{charId}/{handoutName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
 });
 
 // Route::group(['middleware' => 'web'], function () {

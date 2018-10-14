@@ -349,18 +349,14 @@
 		<div id="documents" class="tab-pane fade">
 			<br>
 			<div class='row'>
-				<div class="col-xs-8 col-xs-offset-2"><h4>Hand Outs</h4></div>
-			</div>
-			<div class='row'>
 					<div class="col-xs-6 col-xs-offset-2">
 						<table id="handout_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 							<thead>
 								<tr>
 									<th class="col-xs-9">
-										Titel
+										Hand-outs
 									</th>
 									<th class="col-xs-3">
-										Actie
 									</th>
 								</tr>
 							</thead>
@@ -371,7 +367,34 @@
 										{{ $skill_handout["handout_name"] }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-sm' href="download/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}">download</a>
+										<a class='btn btn-success btn-sm' href="download_handout/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}">download</a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+			</div>
+			<div class='row'>
+					<div class="col-xs-6 col-xs-offset-2">
+						<table id="char_docs_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+							<thead>
+								<tr>
+									<th class="col-xs-9">
+										Persoonlijke Documenten
+									</th>
+									<th class="col-xs-3">
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($char_docs as $char_doc)
+								<tr>
+									<td class="col-xs-9">
+										{{ $char_doc["char_doc_name"] }}
+									</td>
+									<td class="col-xs-3">
+										<a class='btn btn-success btn-sm' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}">download</a>
 									</td>
 								</tr>
 								@endforeach
