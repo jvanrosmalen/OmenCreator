@@ -506,7 +506,11 @@ class CharacterController extends Controller
 		}else{
 			$ep_reason = "";
 		}
-		$event_survived = $_POST['event_survived'];
+		if(isset($_POST['event_survived'])){
+			$event_survived = $_POST['event_survived'];
+		} else {
+			$event_survived = false;
+		}
 		$character = Character::find($charId);
 		
 		foreach($character->ep_assignments as $assignment){
