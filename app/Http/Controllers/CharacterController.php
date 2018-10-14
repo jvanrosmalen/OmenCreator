@@ -188,6 +188,7 @@ class CharacterController extends Controller
     		
     		if($character != null){
 				$skill_handout_objects = array();
+				$char_docs = array();
 
 				$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
 		
@@ -197,7 +198,8 @@ class CharacterController extends Controller
 
 		    	return view('character/showPlayerChar', ['character'=>$character,
 		    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray(),
-						'skill_handouts' => $skill_handout_objects
+						'skill_handouts' => $skill_handout_objects,
+						'char_docs' => $char_docs
 						]);
     		}else{
     			return view('character/showNoPlayerChar');
