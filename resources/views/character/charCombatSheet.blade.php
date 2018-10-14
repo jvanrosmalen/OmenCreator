@@ -3105,7 +3105,41 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan = '18' class='dashed'>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
+						</td>
+						<td class='dashed'>
 						</td>
 					</tr>
 				</table>
@@ -3131,7 +3165,41 @@
 					?>
 
 					<tr>
-						<td colspan='18'>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
+						</td>
+						<td >
 						</td>
 					</tr>
 				</table>			
@@ -3219,7 +3287,7 @@
 						</td>
 						<td colspan='16' class='heavy_bottom clear_right clear_left'>
 							@if($skill_count > 0)
-								Je hebt meer vaardigheden dan getoond kunnen worden.
+								Je hebt meer vaardigheden dan getoond kunnen.
 							@endif
 						</td>
 						<td class='heavy_bottom heavy_right clear_left'>
