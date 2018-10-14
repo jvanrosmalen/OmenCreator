@@ -3208,7 +3208,8 @@
 			<div id='page_7' class='page heavy_outline left_page'>
 				<?php
 					// Create an array with chunks of the char's skills
-					$skill_chunks = array_chunk($character->skills, 29);
+					$ext_char = extract($character);
+					$skill_chunks = array_chunk($ext_char->skills, 29);
 				?>
 				<table id='p4_skills'>
 					<tr>
