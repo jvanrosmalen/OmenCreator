@@ -3225,7 +3225,7 @@
 						$skill_count = count($character->skills);
 					?>
 
-					@for($i = 0; $i < 29; {$i++;$skill_count--})
+					@for($i = 0; $i < 29; $i++)
 						@if ($skill_count > 0)
 							<tr>
 						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
@@ -3235,6 +3235,9 @@
 								 	{{$character->skills[$i]->description_small}}
 						 		</td>
 							 </tr>
+							 <?php
+							 	$skill_count--;
+							 ?>
 						@else
 							<tr>
 						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
