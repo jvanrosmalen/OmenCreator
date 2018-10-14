@@ -3208,9 +3208,9 @@
 			<div id='page_7' class='page heavy_outline left_page'>
 				<?php
 					// Create an array with chunks of the char's skills
-					foreach($character->skills as $skill){
-						echo $skill->name;
-					}
+					// foreach($character->skills as $skill){
+					// 	echo $skill->name;
+					// }
 					// $skill_chunks = array_chunk($character->skills, 29);
 				?>
 				<table id='p4_skills'>
@@ -3220,6 +3220,31 @@
 						</td>
 					</tr>
 					
+					<?php
+						// Create a variable to hold the amount of skills left to display
+						$skill_count = count($character->skills);
+					?>
+
+					@for($i = 0; $i < 29; {$i++;$skill_count--})
+						@if ($skill_count > 0)
+							<tr>
+						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+									{{$character->skills[$i]->name}}
+						 		</td>
+						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+								 	{{$character->skills[$i]->description_small}}
+						 		</td>
+							 </tr>
+						@else
+							<tr>
+						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		</td>
+						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		</td>
+						 	</tr>
+						@endif
+					@endfor
+
 					<?php
 						// if(isset($skill_chunks[0])){
 						// 	// First add all skills
