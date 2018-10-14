@@ -3208,7 +3208,9 @@
 			<div id='page_7' class='page heavy_outline left_page'>
 				<?php
 					// Create an array with chunks of the char's skills
-					var_dump($character->skills[0]);
+					foreach($character->skills as $skill){
+						echo $skill->name;
+					}
 					// $skill_chunks = array_chunk($character->skills, 29);
 				?>
 				<table id='p4_skills'>
