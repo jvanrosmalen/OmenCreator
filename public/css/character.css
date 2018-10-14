@@ -21,7 +21,11 @@
 	height: 150px;
 }
 
-#char_docs_table.table-fixedheader>tbody,
+#char_docs_table.table-fixedheader>tbody{
+	overflow-y: scroll;
+	height: 150px;
+}
+
 #handout_table.table-fixedheader>tbody {
 	overflow-y: scroll;
 	height: 150px;
