@@ -422,7 +422,7 @@ class CharacterController extends Controller
 		$skills = $character->getSkillsWithLongDescription();
 		$pdf = \PDF::loadview('character.charSkillOverview', compact('character', 'skills'));
 		$pdf->setPaper('A4', 'portrait');
-		return $pdf->download('skilloverview_'.$character->name.'.pdf');
+		return $pdf->download('vaardigheden_'.$character->name.'.pdf');
 	}
 
 
