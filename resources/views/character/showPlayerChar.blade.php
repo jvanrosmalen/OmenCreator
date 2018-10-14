@@ -368,7 +368,9 @@
 										{{ $skill_handout["handout_name"] }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-sm' href="download_handout/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}">download</a>
+										<a class='btn btn-success btn-sm' href="download_handout/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}" data-toggle='tooltip' title='download handout'>
+											<span class='glyphicon glyphicon-download-alt'></span>
+										</a>
 									</td>
 								</tr>
 								@endforeach
@@ -396,7 +398,9 @@
 										{{ $char_doc["char_doc_name"] }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-sm' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}">download</a>
+										<a class='btn btn-success btn-sm' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='download document'>
+											<span class='glyphicon glyphicon-download-alt'></span>
+										</a>
 									</td>
 								</tr>
 								@endforeach
