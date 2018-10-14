@@ -368,7 +368,7 @@
 										{{ $skill_handout["handout_name"] }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-sm' href="download_handout/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}" data-toggle='tooltip' title='download handout'>
+										<a class='btn btn-success btn-xs' href="download_handout/{{$character->id}}/{{ $skill_handout['skill_id'] }}/{{ $skill_handout['handout_name'] }}" data-toggle='tooltip' title='download handout'>
 											<span class='glyphicon glyphicon-download-alt'></span>
 										</a>
 									</td>
@@ -385,6 +385,11 @@
 								<tr>
 									<th class="col-xs-9">
 										Persoonlijke Documenten
+										@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+											<a class='btn btn-success btn-xs' href="upload_chardoc/{{$character->id}}/" data-toggle='tooltip' title='voeg document toe'>
+												<span class='glyphicon glyphicon-plus'></span>
+											</a>
+										@endif
 									</th>
 									<th class="col-xs-3">
 										Actie
@@ -398,9 +403,14 @@
 										{{ $char_doc["char_doc_name"] }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-sm' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='download document'>
+										<a class='btn btn-success btn-xs' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='download document'>
 											<span class='glyphicon glyphicon-download-alt'></span>
 										</a>
+										@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+										<a class='btn btn-warning btn-xs' href="remove_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='verwijder document'>
+											<span class='glyphicon glyphicon-minus'></span>
+										</a>
+										@endif
 									</td>
 								</tr>
 								@endforeach
