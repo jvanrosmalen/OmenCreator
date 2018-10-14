@@ -196,3 +196,11 @@ td{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.span6 {
+	width: 174px;
+}
+
+.span12 {
+	width: 348px;
+}

@@ -3221,10 +3221,10 @@
 					@for($i = 0; $i < 29; $i++)
 						@if ($skill_count > 0)
 							<tr>
-						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		<td colspan='6' class='span6 ellipsis text_left heavy_left dashed_right dashed_bottom'>
 									{{$character->skills[$i]->name}}
 						 		</td>
-						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		<td colspan='12' class='span12 ellipsis text_left dashed_left heavy_right dashed_bottom'>
 								 	{{$character->skills[$i]->description_small}}
 						 		</td>
 							 </tr>
@@ -3233,9 +3233,9 @@
 							 ?>
 						@else
 							<tr>
-						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		<td colspan='6' class='span6 ellipsis text_left heavy_left dashed_right dashed_bottom'>
 						 		</td>
-						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		<td colspan='12' class='span12 ellipsis text_left dashed_left heavy_right dashed_bottom'>
 						 		</td>
 						 	</tr>
 						@endif
@@ -3262,10 +3262,10 @@
 					@for($i = 0; $i < 29; $i++)
 						@if ($skill_count > 0)
 							<tr>
-						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		<td colspan='6' class='span6 ellipsis text_left heavy_left dashed_right dashed_bottom'>
 									{{$character->skills[$i]->name}}
 						 		</td>
-						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		<td colspan='12' class='span12 ellipsis text_left dashed_left heavy_right dashed_bottom'>
 								 	{{$character->skills[$i]->description_small}}
 						 		</td>
 							 </tr>
@@ -3274,9 +3274,9 @@
 							 ?>
 						@else
 							<tr>
-						 		<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						 		<td colspan='6' class='span6 ellipsis text_left heavy_left dashed_right dashed_bottom'>
 						 		</td>
-						 		<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						 		<td colspan='12' class='span12 ellipsis text_left dashed_left heavy_right dashed_bottom'>
 						 		</td>
 						 	</tr>
 						@endif
