@@ -190,3 +190,9 @@ td{
 .page_break {
 	page-break-after: always;
 }
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
