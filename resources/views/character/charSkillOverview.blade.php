@@ -8,23 +8,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
-                    <h3>{{$character->name}}, {{$character->title}}<br>(Speler: {{$character->char_user->name}})</h3>
+                    <h4>{{$character->name}}, {{$character->title}}<br>(Speler: {{$character->char_user->name}})</h4>
                 </div>
                 <div class="col-xs-4 pull-right">
-                    <h2>Datum: 
+                    <h5>Datum: 
                         <?php
                             date_default_timezone_set('Europe/Amsterdam');
                             echo date('d-m-Y');
                         ?>
-                    </h2>
+                    </h5>
                 </div>
             </div>
             <hr>
             @foreach($skills as $skill)
-                <hr>
                 <div class="row">
                     <div class="row">
-                        <div class="col-xs-12"><h4>{{$skill->name}}</h4></div>
+                        <div class="col-xs-12"><em>{{$skill->name}}</em></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">{{$skill->description_long}}</div>
