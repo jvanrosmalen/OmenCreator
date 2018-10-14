@@ -357,6 +357,7 @@
 										Hand-outs
 									</th>
 									<th class="col-xs-3">
+										Actie
 									</th>
 								</tr>
 							</thead>
@@ -384,6 +385,7 @@
 										Persoonlijke Documenten
 									</th>
 									<th class="col-xs-3">
+										Actie
 									</th>
 								</tr>
 							</thead>
