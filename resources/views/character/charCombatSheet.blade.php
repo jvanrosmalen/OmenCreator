@@ -3208,8 +3208,7 @@
 			<div id='page_7' class='page heavy_outline left_page'>
 				<?php
 					// Create an array with chunks of the char's skills
-					$ext_char = extract($character);
-					$skill_chunks = array_chunk($ext_char->skills, 29);
+					$skill_chunks = array_chunk($character->skills, 29);
 				?>
 				<table id='p4_skills'>
 					<tr>
@@ -3219,38 +3218,39 @@
 					</tr>
 					
 					<?php
-						if(isset($skill_chunks[0])){
-							// First add all skills
-							foreach($skill_chunks[0] as $skill){
-								echo "<tr>
-										<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-										".$skill->name."
-										</td>
-										<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-										".$skill->description_small."
-										</td>
-									</tr>";
-							}
-							// Now fill remaining lines.
-							for($count = 0; $count < (29 - count($skill_chunks[0])); $count++){
-								echo "<tr>
-										<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-										</td>
-										<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-										</td>
-									</tr>";								
-							}
-						} else {
-							// No skills present. Just fill in the page.
-							for($count = 0; $count < 29; $count++){
-								echo "<tr>
-										<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
-										</td>
-										<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
-										</td>
-									</tr>";								
-							}
-						}
+					var_dump($character);
+						// if(isset($skill_chunks[0])){
+						// 	// First add all skills
+						// 	foreach($skill_chunks[0] as $skill){
+						// 		echo "<tr>
+						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						// 				".$skill->name."
+						// 				</td>
+						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						// 				".$skill->description_small."
+						// 				</td>
+						// 			</tr>";
+						// 	}
+						// 	// Now fill remaining lines.
+						// 	for($count = 0; $count < (29 - count($skill_chunks[0])); $count++){
+						// 		echo "<tr>
+						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						// 				</td>
+						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						// 				</td>
+						// 			</tr>";								
+						// 	}
+						// } else {
+						// 	// No skills present. Just fill in the page.
+						// 	for($count = 0; $count < 29; $count++){
+						// 		echo "<tr>
+						// 				<td colspan='6' class='ellipsis text_left heavy_left dashed_right dashed_bottom'>
+						// 				</td>
+						// 				<td colspan='12' class='ellipsis text_left dashed_left heavy_right dashed_bottom'>
+						// 				</td>
+						// 			</tr>";								
+						// 	}
+						// }
 
 
 					?>
