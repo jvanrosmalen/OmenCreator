@@ -3152,7 +3152,18 @@
 						Opmerkingen, Bevindingen &amp; Andere Zaken
 						</td>
 					</tr>
-					<tr>
+					<?php
+						for($rowcount = 0; $rowcount < 30; $rowcount++){
+							echo "<tr>";
+
+							for($columncount = 0; $columncount < 18; $columncount++){
+								echo "<td class='dashed_bottom'></td>";
+							}
+
+							echo "</tr>";
+						}
+					?>
+					<!-- <tr>
 						<td class='dashed_bottom'>
 						</td>
 						<td class='dashed_bottom'>
@@ -4291,7 +4302,7 @@
 						</td>
 						<td class='dashed_bottom'>
 						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td >
 						</td>
