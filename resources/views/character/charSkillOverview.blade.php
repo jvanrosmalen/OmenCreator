@@ -21,7 +21,7 @@
             </div>
             <hr>
             @foreach($skills as $skill)
-                <hr>
+                <br>
                 <div class="row">
                     <div class="row">
                         <div class="col-xs-12"><strong>{{$skill->name}}</strong></div>
