@@ -412,7 +412,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-xs-2 pull-right">
+					<div class="col-xs-1">
 						@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
 							<a class='btn btn-success btn-sm' href="upload_chardoc/{{$character->id}}/" data-toggle='tooltip' title='voeg document toe'>
 								<span class='glyphicon glyphicon-plus'></span>
