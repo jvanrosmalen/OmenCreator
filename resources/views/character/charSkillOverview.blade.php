@@ -27,7 +27,7 @@
                         <div class="col-xs-12"><strong>{{$skill->name}}</strong></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12">{{$skill->description_long}}</div>
+                        <div class="col-xs-12">{!! $skill->description_long !!}</div>
                     </div>
                 </div>
             @endforeach
