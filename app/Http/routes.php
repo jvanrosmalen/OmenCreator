@@ -33,7 +33,8 @@ Route::get('login', array('uses' => 'HomeController@showLogin'));
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/test_generate_combatsheet/{id?}', 'CharacterController@testGenerateCombatSheet')->middleware('auth');
+	Route::get('/generate_skill_overview/{id?}', 'CharacterController@generateSkillOverview')->middleware('auth');
+	Route::get('/generate_combatsheet/{id?}', 'CharacterController@generateCombatSheet')->middleware('auth');
 	Route::get('/skillshowall', [ 'as'=> 'skill_showall', 'uses'=>'SkillController@showAll'] )->middleware('isStoryTellingSystemRep');
 	Route::get('/skillgroupshowall', [ 'as'=>'skillgroup_showall', 'uses'=>'SkillGroupController@showAll'])->middleware('isStoryTellingSystemRep');
 	Route::get('/create_skill/{id?}', 'SkillController@showCreateSkill')->middleware('isSystemRep');
@@ -142,7 +143,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_character/{charId?}', ['as'=>'show_character', 'uses'=>'CharacterController@doShowPlayerChar'])->middleware('isStoryTelling');
 	Route::get('/show_edit_character/{charId?}', ['as'=>'show_edit_character', 'uses'=>'CharacterController@showEditPlayerChar'])->middleware('isStoryTelling');
 	Route::post('/edit_character_submit', ['as'=>'edit_character_submit', 'uses'=>'CharacterController@editPlayerCharSubmit'])->middleware('isStoryTelling');
-	Route::get('/get_combat_sheet','CharacterController@generateCombatSheet')->middleware('auth');
 	Route::get('/my_playerchar', 'CharacterController@showMyCharacter')->middleware('auth');
 // 	Route::get('/my_extras', 'CharacterController@showMyExtras');
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');

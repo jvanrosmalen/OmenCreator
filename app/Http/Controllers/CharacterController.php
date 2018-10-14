@@ -410,61 +410,13 @@ class CharacterController extends Controller
     	die();;
     }
 
-	public function testGenerateCombatSheet($id){
+	public function generateCombatSheet($id){
 		$character = Character::find($id);
 		$pdf = \PDF::loadView('character.charCombatSheet', compact('character'));
 		$pdf->setPaper('A4', 'landscape');
 		return $pdf->download('combatsheet_'.$character->name.'.pdf');
 	}
 
-	public function generateCombatSheet(Request $request){
-		$data='';
-		$char_id = null;
-
-		if($request->has('char_id')){
-			$char_id = $request->input('char_id');
-
-			if($char_id > 1){
-				$character = Character::find($char_id);
-
-    // Send data to the view using loadView function of PDF facade
-    $pdf = PDF::loadView('character.charCombatSheet', $character);
-
-    // If you want to store the generated pdf to the server then you can use the store function
-//    $pdf->save(storage_path().'_filename.pdf');
-    // Finally, you can download the file using download function
-    return $pdf->download('customers.pdf');
-
-//				$dompdf = new Dompdf();
-
-//				$dompdf->loadHtml(view('/character/charCombatSheet',['character'=>$character]));
-//				$dompdf->loadHtml('Hello World');
-
-				// (Optional) Setup the paper size and orientation
-//				$dompdf->setPaper('A4', 'landscape');
-//				ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-
-				// Render the HTML as PDF
-//				$dompdf->render();
-//				$dompdf->set_base_path('http://www.omenCreator.be/');
-
-				// Output the generated PDF to Browser
-//				$dompdf->stream();
-
-//				$output = $dompdf->output();
-
-			//	ini_set('max_execution_time', 30); //30 seconds
-		//		return response()->json(utf8_encode($output));
-				return response()->json("Bla");
-
-			}
-			else{
-				return response()->json('Unknown char id for combat sheet', 500);
-			}
-		}else{
-			return response()->json('No char id in request', 500);
-		}
-	}
 
 	public function showCharEp($charId){
 		return view('/character/showCharacterEp',
