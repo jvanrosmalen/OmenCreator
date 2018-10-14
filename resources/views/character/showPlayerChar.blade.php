@@ -6,14 +6,14 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-xs-8'>
+		<div class='col-xs-7'>
 			<h3>{{$character->name}}, {{$character->title}} (Speler: {{$character->char_user->name}})</h3>
 		</div>
-		<div class='col-xs-4'>
-			<div class='col-xs-6 pull-right'>
+		<div class='col-xs-5'>
+			<div class='col-xs-7 pull-right'>
 				<a class="btn btn-default btn-block" href="{{ url('generate_skill_overview/'.$character->id) }}">Download Vaardigheden</a>
 			</div>
-			<div class='col-xs-6 pull-right'>
+			<div class='col-xs-5 pull-right'>
 				<a class="btn btn-default btn-block" href="{{ url('generate_combatsheet/'.$character->id) }}">Download Sheet</a>
 			</div>
 		</div>
