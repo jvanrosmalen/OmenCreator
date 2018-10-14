@@ -385,11 +385,6 @@
 								<tr>
 									<th class="col-xs-9">
 										Persoonlijke Documenten
-										@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-											<a class='btn btn-success btn-xs' href="upload_chardoc/{{$character->id}}/" data-toggle='tooltip' title='voeg document toe'>
-												<span class='glyphicon glyphicon-plus'></span>
-											</a>
-										@endif
 									</th>
 									<th class="col-xs-3">
 										Actie
@@ -416,6 +411,13 @@
 								@endforeach
 							</tbody>
 						</table>
+					</div>
+					<div class="col-xs-2 pull-right">
+						@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+							<a class='btn btn-success btn-sm' href="upload_chardoc/{{$character->id}}/" data-toggle='tooltip' title='voeg document toe'>
+								<span class='glyphicon glyphicon-plus'></span>
+							</a>
+						@endif
 					</div>
 			</div>
 		</div>
