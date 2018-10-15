@@ -129,8 +129,10 @@ class CharacterController extends Controller
     }
     
     public function doDeleteCharacter($charId){
-    	$character = Character::find($charId);
-		$character->delete();
+		$character = Character::find($charId);
+		if($character != null){
+			$character->delete();
+		}
 		
 		// Delete the entry in the storage chardocs drive
 		if(Storage::disk('chardocs')->exists($charId)){
