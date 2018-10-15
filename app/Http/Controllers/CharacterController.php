@@ -551,7 +551,7 @@ class CharacterController extends Controller
 	}
 
 	public function uploadCharacterDocument($charId){
-		$character = Character::find($charid);
+		$character = Character::find($charId);
 		return view('/character/showUploadCharDoc', ['character'=>$character ]);
 	}
 }
