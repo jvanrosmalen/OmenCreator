@@ -133,7 +133,9 @@ class CharacterController extends Controller
 		$character->delete();
 		
 		// Delete the entry in the storage chardocs drive
-		Storage::disk('chardocs')->deleteDirectory($newChar->id);
+		if(Storage::disk('chardocs')->exists('/'.$charId)){
+			Storage::disk('chardocs')->deleteDirectory($charId);
+		}
     	 
     	$this->showAllCharacters();
     }
