@@ -130,7 +130,10 @@ class CharacterController extends Controller
     
     public function doDeleteCharacter($charId){
     	$character = Character::find($charId);
-    	$character->delete();
+		$character->delete();
+		
+		// Delete the entry in the storage chardocs drive
+		Storage::deleteDirectory('chardocs/'.$newChar->id);
     	 
     	$this->showAllCharacters();
     }
@@ -341,7 +344,10 @@ class CharacterController extends Controller
     	$epAssign->reason = $_POST['ep_reason'];
     	$epAssign->character_id = $newChar->id;
     	
-    	$epAssign->save();
+		$epAssign->save();
+		
+		// Create an entry in the storage chardocs drive
+		Storage::makeDirectory('chardocs/'.$newChar->id);
     	
     	$url = route('show_spark_start', ['charId' => $newChar->id]);
 		header("Location:".$url);
