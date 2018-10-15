@@ -23,7 +23,8 @@
                     </div>
                     <div class='col-xs-8'>
                         <div class='row text-center'>
-                            Selecteer hieronder het .pdf bestand dat je wenst te koppelen aan het karakter {{$character->name}}..
+                            Selecteer hieronder het .pdf bestand dat je wenst te koppelen aan het karakter {{$character->name}} 
+                             (Speler: {{$character->char_user->name}}).
                         </div>
                         <br>
                         <div class='row'>
