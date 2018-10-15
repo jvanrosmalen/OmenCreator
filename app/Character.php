@@ -485,8 +485,10 @@ class Character extends Model
     		}
     	}
     	
-    	$spark_data = json_decode($character->spark_data);
-    	$wealthId += $spark_data->wealth_bonus;
+		$spark_data = json_decode($character->spark_data);
+		if(isset($spark_data->wealth_bonus)){
+			$wealthId += $spark_data->wealth_bonus;
+		}
     	
     	return $wealthId;
     }
