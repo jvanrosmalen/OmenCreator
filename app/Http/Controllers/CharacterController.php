@@ -574,7 +574,7 @@ class CharacterController extends Controller
 					file_get_contents($charDoc->getRealPath())
 				);
 
-				return view("/show_character/");
+				doShowPlayerChar($charId);
 			}
 		} else {
 			// No file selected
