@@ -556,7 +556,7 @@ class CharacterController extends Controller
 	}
 
 	public function doUploadCharDoc(){
-		$charId = _POST["charId"];
+		$charId = $_POST["charId"];
 
 		if(Input::hasFile('char_doc_selection')) {
 			$charDoc = Input::file('handoutSelection');
