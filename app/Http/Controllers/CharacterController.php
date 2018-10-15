@@ -549,4 +549,9 @@ class CharacterController extends Controller
 	public function downloadCharacterDocument($charId, $docName){
 		return redirect('/illegal_link');
 	}
+
+	public function uploadCharacterDocument($charId){
+		$character = Character::find($charid);
+		return view('/character/showUploadCharDoc', ['character'=>$character ]);
+	}
 }
