@@ -347,7 +347,7 @@ class CharacterController extends Controller
 		$epAssign->save();
 		
 		// Create an entry in the storage chardocs drive
-		Storage::put('chardocs/'.$newChar->id.'/');
+		Storage::makeDirectory('chardocs/'.$newChar->id.'/');
     	
     	$url = route('show_spark_start', ['charId' => $newChar->id]);
 		header("Location:".$url);
