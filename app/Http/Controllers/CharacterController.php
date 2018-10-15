@@ -20,6 +20,7 @@ use Storage;
 use Auth;
 use Response;
 use PDF;
+use Illuminate\Support\Facades\Input;
 
 class CharacterController extends Controller
 {
