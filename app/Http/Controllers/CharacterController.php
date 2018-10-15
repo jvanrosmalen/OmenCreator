@@ -574,7 +574,7 @@ class CharacterController extends Controller
 					file_get_contents($charDoc->getRealPath())
 				);
 
-				return view('/show_character//'.$charId);
+				return view('/character/charDocAdded', ['charId' => $charId]);
 			}
 		} else {
 			// No file selected
