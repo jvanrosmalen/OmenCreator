@@ -554,4 +554,20 @@ class CharacterController extends Controller
 		$character = Character::find($charId);
 		return view('/character/showUploadCharDoc', ['character'=>$character ]);
 	}
+
+	public function doUploadCharDoc(){
+		$charId = _POST["charId"];
+
+		if(Input::hasFile('char_doc_selection')) {
+			$charDoc = Input::file('handoutSelection');
+
+			Storage::put(
+				'chardocs/'.$charId.'/'.$charDoc->getClientOriginalName(),
+				file_get_contents($charDoc->getRealPath())
+			);
+		} else {
+			// No file selected
+			return view('/character/noCharDocSelected', ['charId' => $charId]);
+		}
+	}
 }

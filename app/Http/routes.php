@@ -188,6 +188,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('download_handout/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
 	Route::get('download_chardoc/{charId}/{handoutName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
 	Route::get('upload_chardoc/{charId}/', 'CharacterController@uploadCharacterDocument')->middleware('isStoryTelling');
+	Route::post('do_upload_chardoc', 'CharacterController@doUploadCharDoc')->middleware('isStoryTelling');
+	
 });
 
 // Route::group(['middleware' => 'web'], function () {

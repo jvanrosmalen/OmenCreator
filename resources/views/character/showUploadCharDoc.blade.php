@@ -31,7 +31,7 @@
                             <div class="col-xs-4">
                             </div>
                             <div class="col-xs-3">
-                                {!! Form::file('char_doc') !!}
+                                {!! Form::file('char_doc_selection') !!}
                             </div>
                             <div class="col-xs-5">
                             </div>
@@ -44,7 +44,7 @@
                     <div class="col-xs-5">
                     </div>
                     <div class="col-xs-2">
-                            <input id="import" class="btn btn-default" style="width:100%" type="submit" value="Importeer">
+                            <input id="import" class="btn btn-default" style="width:100%" type="submit" value="Koppel PDF">
                     </div>
                     <div class="col-xs-5">
                     </div>
