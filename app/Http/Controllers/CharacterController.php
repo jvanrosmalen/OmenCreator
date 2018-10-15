@@ -562,7 +562,7 @@ class CharacterController extends Controller
 		if(Input::hasFile('char_doc_selection')) {
 			$charDoc = Input::file('handoutSelection');
 
-			if(strcasecmp($charDoc.getClientOriginalExtension(), 'pdf') === 0){
+			if(strcasecmp($charDoc.extension(), 'pdf') === 0){
 				Storage::put(
 					'chardocs/'.$charId.'/'.$charDoc->getClientOriginalName(),
 					file_get_contents($charDoc->getRealPath())
