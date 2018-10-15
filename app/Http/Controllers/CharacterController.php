@@ -21,6 +21,7 @@ use Auth;
 use Response;
 use PDF;
 use Illuminate\Support\Facades\Input;
+use Validator;
 
 class CharacterController extends Controller
 {
@@ -560,17 +561,20 @@ class CharacterController extends Controller
 		$charId = $_POST["charId"];
 
 		if(Input::hasFile('char_doc_selection')) {
-			$charDoc = Input::file('handoutSelection');
+			$rules = array('char_doc_selection' => 'required|max:10000|mimes:pdf'); 
 
-			if(strcasecmp($charDoc.extension(), 'pdf') === 0){
+			$charDoc = Input::file('handoutSelection');
+			$validator = Validator::make(Input::all(), $rules);
+
+			if($validator->fails()){
+				return view('/character/charDocNotPdf', ['charId' => $charId]);
+			} else {
 				Storage::put(
 					'chardocs/'.$charId.'/'.$charDoc->getClientOriginalName(),
 					file_get_contents($charDoc->getRealPath())
 				);
 
 				return view('/show_character/'.$charId);
-			} else {
-				return view('/character/charDocNotPdf', ['charId' => $charId]);
 			}
 		} else {
 			// No file selected
