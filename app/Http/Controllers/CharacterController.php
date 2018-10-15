@@ -133,7 +133,7 @@ class CharacterController extends Controller
 		$character->delete();
 		
 		// Delete the entry in the storage chardocs drive
-		Storage::deleteDirectory('chardocs/'.$newChar->id);
+		Storage::disk('chardocs')->deleteDirectory($newChar->id);
     	 
     	$this->showAllCharacters();
     }
@@ -347,7 +347,7 @@ class CharacterController extends Controller
 		$epAssign->save();
 		
 		// Create an entry in the storage chardocs drive
-		Storage::makeDirectory('chardocs/'.$newChar->id);
+		Storage::put('chardocs/'.$newChar->id.'/');
     	
     	$url = route('show_spark_start', ['charId' => $newChar->id]);
 		header("Location:".$url);
