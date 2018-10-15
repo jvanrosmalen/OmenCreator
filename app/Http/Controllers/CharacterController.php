@@ -564,7 +564,7 @@ class CharacterController extends Controller
 			$rules = array('char_doc_selection' => 'required|max:10000|mimes:pdf'); 
 
 			$charDoc = Input::file('char_doc_selection');
-			$validator = Validator::make($charDoc, $rules);
+			$validator = Validator::make(Input::all(), $rules);
 
 			if($validator->fails()){
 				return view('/character/charDocNotPdf', ['charId' => $charId]);
