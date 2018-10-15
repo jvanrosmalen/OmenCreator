@@ -562,10 +562,16 @@ class CharacterController extends Controller
 		if(Input::hasFile('char_doc_selection')) {
 			$charDoc = Input::file('handoutSelection');
 
-			Storage::put(
-				'chardocs/'.$charId.'/'.$charDoc->getClientOriginalName(),
-				file_get_contents($charDoc->getRealPath())
-			);
+			if(strcasecmp($charDoc.getClientOriginalExtension(), 'pdf') === 0){
+				Storage::put(
+					'chardocs/'.$charId.'/'.$charDoc->getClientOriginalName(),
+					file_get_contents($charDoc->getRealPath())
+				);
+
+				return view('/show_character/'.$charId);
+			} else {
+				return view('/character/charDocNotPdf', ['charId' => $charId]);
+			}
 		} else {
 			// No file selected
 			return view('/character/noCharDocSelected', ['charId' => $charId]);
