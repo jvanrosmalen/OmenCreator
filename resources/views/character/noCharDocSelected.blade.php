@@ -13,7 +13,7 @@
                 <div class='col-xs-2'>
                 </div>
                 <div class='col-xs-8'>
-                    <div class='row text-center'>
+                    <div class='row text-center well warning-text'>
                         Je bent vergeten een document te selecteren.
                     </div>
                     <br>
