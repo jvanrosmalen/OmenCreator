@@ -67,6 +67,10 @@ return [
             'root' => storage_path('app/handouts'),
         ],
 
+        'chardocs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/chardocs'),
+        ],
     ],
 
 ];
