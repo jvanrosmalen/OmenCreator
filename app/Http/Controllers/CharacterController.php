@@ -574,7 +574,7 @@ class CharacterController extends Controller
 					file_get_contents($charDoc->getRealPath())
 				);
 
-				$url = route("/show_character/".$charId);
+				$url = route("show_character/".$charId);
 				header("Location:".$url);
 				die();
 			}
