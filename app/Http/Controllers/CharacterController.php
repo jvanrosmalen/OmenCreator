@@ -441,7 +441,7 @@ class CharacterController extends Controller
 		$character->save();
     	$url = route('show_character', ['charId' => $character->id]);
     	header("Location:".$url);
-    	die();;
+    	die();
     }
 
 	public function generateCombatSheet($id){
@@ -594,6 +594,14 @@ class CharacterController extends Controller
 	public function uploadCharacterDocument($charId){
 		$character = Character::find($charId);
 		return view('/character/showUploadCharDoc', ['character'=>$character ]);
+	}
+
+	public function doRemoveCharacterDocument($charId, $chardocName){
+		Storage::disk('chardocs')->delete('$charId/$chardocName');
+		
+		$url = route('show_character', ['charId' => $charId]);
+    	header("Location:".$url);
+    	die();
 	}
 
 	public function doUploadCharDoc(){
