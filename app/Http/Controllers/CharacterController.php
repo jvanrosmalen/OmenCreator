@@ -198,7 +198,6 @@ class CharacterController extends Controller
     		if($character != null){
 				$skill_handout_objects = array();
 				$char_docs = array();
-				$char_docs[] = ['char_doc_name' => 'test1.pdf'];
 
 				if(Storage::disk('chardocs')->exists('/'.$character->id)){
 					$full_names = glob(storage_path('app/chardocs/'.$character->id).'/*.pdf');
