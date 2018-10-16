@@ -1160,10 +1160,14 @@ var CreatePlayerCharSkills = new function(){
 			return;
 		}
 
+		var found = false;
+
 		$("#descent_race_skill_options .descent_skill_option").each(function(){
 			var skillname = $(this).find(".skillname").attr('id').toLowerCase();
 			
 			if(skillname.indexOf(value) > -1){
+				found = true;
+
 				if($(this).hasClass("deselect")){
 					$(this).removeClass("deselect");
 				}
@@ -1171,5 +1175,19 @@ var CreatePlayerCharSkills = new function(){
 				$(this).addClass("deselect");
 			}
 		});
+
+		// Double check if the search string is actually found
+		// If not, show everything again, plus display the feedback message.
+		if(!found){
+			$("#descent_race_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+
+			$("#descentSkillSearchRespons").removeClass("hidden");
+
+			setTimeout(function(){
+				$("#descentSkillSearchRespons").addClass("hidden");
+			}, 5000);
+		}
 	}
 }
