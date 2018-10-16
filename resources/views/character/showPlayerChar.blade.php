@@ -392,17 +392,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($char_docs as $char_doc)
+								@foreach($char_docs as $char_doc_name)
 								<tr>
 									<td class="col-xs-9">
-										{{ $char_doc["char_doc_name"] }}
+										{{ $char_doc_name }}
 									</td>
 									<td class="col-xs-3">
-										<a class='btn btn-success btn-xs' href="download_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='download document'>
+										<a class='btn btn-success btn-xs' href="download_chardoc/{{$character->id}}/{{ $char_doc_name }}" data-toggle='tooltip' title='download document'>
 											<span class='glyphicon glyphicon-download-alt'></span>
 										</a>
 										@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-										<a class='btn btn-warning btn-xs' href="remove_chardoc/{{$character->id}}/{{ $char_doc['char_name'] }}" data-toggle='tooltip' title='verwijder document'>
+										<a class='btn btn-warning btn-xs' href="remove_chardoc/{{$character->id}}/{{ $char_doc_name }}" data-toggle='tooltip' title='verwijder document'>
 											<span class='glyphicon glyphicon-minus'></span>
 										</a>
 										@endif
