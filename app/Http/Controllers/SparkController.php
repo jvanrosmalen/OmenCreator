@@ -577,7 +577,7 @@ class SparkController extends Controller
 						$text = "Reliek van Hymir";
 						break;
 					case 2:
-						$text = "Ruw mineraal – willekeurig";
+						$text = "Ruw mineraal ï¿½ willekeurig";
 						break;
 					case 3:
 						$text = "Gerechtelijke Volmachtsbrief";
@@ -600,7 +600,7 @@ class SparkController extends Controller
 						$text = "Reliek van Thallatan";
 						break;
 					case 3:
-						$text = "Handelsbrief – willekeurig Gilde";
+						$text = "Handelsbrief ï¿½ willekeurig Gilde";
 						break;
 					case 4:
 						$text = "Westerland Tatoeage";
@@ -862,7 +862,7 @@ class SparkController extends Controller
 			'title'=>'Orakel Visioenen',
 			'shortText'=>'Het karakter krijgt soms visioenen.',
 			'text'=>['Niemand kan het verklaren maar heel zelden krijg je een  
-					epileptische aanval waarin visioenen ontvangt. Tijdens zo’n 
+					epileptische aanval waarin visioenen ontvangt. Tijdens zoï¿½n 
 					aanval kun je niets doen behalve schokken en schuimbekken op 
 					de grond.',
 					'Spelleiding kan ten allen tijde een orakel inroepen en bepaalt 
@@ -974,7 +974,7 @@ class SparkController extends Controller
 			'end'=>50,
 			'title'=>'Medium',
 			'shortText'=>'Het karakter heeft een verbinding met de geesteswereld.',
-			'text'=>['Ook al bezit je geen ‘Geestesoog’, je hebt een uitzonderlijke'.
+			'text'=>['Ook al bezit je geen Geestesoog, je hebt een uitzonderlijke'.
 			' connectie met de wereld der geesten. Geesten vinden het makkelijker'.
 			' om interactie naar of via jouw te zoeken, of je het nu wilt of niet.',
 			'Dit heeft verder speltechnisch geen effect op jou, Geesten krijgen'.
