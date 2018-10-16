@@ -402,7 +402,7 @@
 											<span class='glyphicon glyphicon-download-alt'></span>
 										</a>
 										@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-										<a class='btn btn-warning btn-xs' href="remove_chardoc/{{$character->id}}/{{ $char_doc_name }}" data-toggle='tooltip' title='verwijder document'>
+										<a class='btn btn-error btn-xs' href="remove_chardoc/{{$character->id}}/{{ $char_doc_name }}" data-toggle='tooltip' title='verwijder document'>
 											<span class='glyphicon glyphicon-minus'></span>
 										</a>
 										@endif

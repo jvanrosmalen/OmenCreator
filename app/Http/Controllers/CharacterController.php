@@ -173,6 +173,15 @@ class CharacterController extends Controller
 		$skill_handout_objects = array();
 		$char_docs = array();
 
+		if(Storage::disk('chardocs')->exists('/'.$character->id)){
+			$full_names = glob(storage_path('app/chardocs/'.$character->id).'/*.pdf');
+
+			// Now strip off leading directory path
+			foreach($full_names as $full_name){
+				$char_docs[] = basename($full_name);
+			}
+		}
+
 		$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
 
 		foreach($handoutSkills as $handoutSkill){
@@ -558,7 +567,23 @@ class CharacterController extends Controller
 	}
 
 	public function downloadCharacterDocument($charId, $docName){
-		return redirect('/illegal_link');
+		$current_user = Auth::user();
+		$char = Character::find($charId);
+
+		if(
+			($current_user->is_admin || $current_user->is_story_telling) ||
+			($char->user_id === $current_user->id)
+		){
+			$file = Storage::disk('chardocs')->getDriver()->getAdapter()->applyPathPrefix($charId.'/'.$docName);
+
+			$headers = [
+				'Content-Type' => 'application/pdf',
+			];
+
+			return Response::download($file, $docName, $headers);
+		} else {
+			return redirect('/illegal_link');
+		}
 	}
 
 	public function uploadCharacterDocument($charId){
