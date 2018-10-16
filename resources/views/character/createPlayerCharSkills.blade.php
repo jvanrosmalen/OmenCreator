@@ -172,9 +172,27 @@
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							Selecteer uit onderstaande lijst een aantal vaardigheden met een
 			    			gezamelijke EP-waarde van 3 EP.
+						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+						<div class="col-xs-5">
+							<div>
+								<div class="input-group col-md-12">
+									<input id="descentSkillSearch" type="text" class="search-query form-control" placeholder="Werkt nog niet" onchange="CreatePlayerCharSkills.descentSkillSearch();"/>
+									<span class="input-group-btn">
+										<button class="btn btn-danger" type="button">
+											<span class=" glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
+								<div class='col-md-12 descentSkillSearchRespons'>
+									De vaardigheid die je zoekt is geen Afkomstvaardigheid.
+								</div>
+							</div>					
 						</div>
 					</div>
 					<div class='row'>
