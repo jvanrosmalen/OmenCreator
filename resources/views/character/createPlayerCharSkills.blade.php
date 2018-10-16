@@ -179,7 +179,6 @@
 						<div class='col-xs-1'>
 						</div>
 						<div class='col-xs-4'>
-						<div class="col-xs-5">
 							<div>
 								<div class="input-group col-md-12">
 									<input id="descentSkillSearch" type="text" class="search-query form-control" placeholder="Werkt nog niet" onchange="CreatePlayerCharSkills.descentSkillSearch();"/>
@@ -189,17 +188,21 @@
 										</button>
 									</span>
 								</div>
-								<div class='col-md-12 descentSkillSearchRespons'>
-									De vaardigheid die je zoekt is geen Afkomstvaardigheid.
-								</div>
 							</div>					
 						</div>
 					</div>
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							<h4>Aantal bestede EP: <span id='spent_descent_ep' data-ep_amount='0'>0</span> van <span id='total_descent_ep' data-ep_amount='3'>3</span></h4>
+						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+							<div class='col-md-12 descentSkillSearchRespons align-top'>
+									De vaardigheid die je zoekt is geen Afkomstvaardigheid.
+							</div>
 						</div>
 					</div>
 			    </div>
