@@ -200,7 +200,8 @@ class CharacterController extends Controller
 				$char_docs = array();
 
 				if(Storage::disk('chardocs')->exists('/'.$character->id)){
-					$char_docs = glob(storage_path('chardocs/'.$character->id));
+					$char_docs = glob(storage_path('app/chardocs/'.$character->id));
+					$char_docs[] = ['char_doc_name' => 'test.pdf'];
 				}
 				
 				$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
