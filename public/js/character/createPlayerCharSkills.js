@@ -1183,10 +1183,10 @@ var CreatePlayerCharSkills = new function(){
 				$(this).removeClass("deselect");
 			});
 
-			$("#descentSkillSearchRespons").removeClass("hidden");
+			$("#descentSkillSearchRespons").fadeIn("fast", function(){});
 
 			setTimeout(function(){
-				$("#descentSkillSearchRespons").addClass("hidden");
+				$("#descentSkillSearchRespons").fadeOut("fast", function(){});
 			}, 5000);
 		}
 	}

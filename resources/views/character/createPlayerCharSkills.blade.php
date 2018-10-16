@@ -200,7 +200,7 @@
 						<div class='col-xs-1'>
 						</div>
 						<div class='col-xs-4'>
-							<div id="descentSkillSearchRespons" class='col-md-12 align-top'>
+							<div id="descentSkillSearchRespons" class='col-md-12 align-top hidden'>
 									Zoekterm niet gevonden in Afkomstvaardigheden.
 							</div>
 						</div>
