@@ -199,6 +199,10 @@ class CharacterController extends Controller
 				$skill_handout_objects = array();
 				$char_docs = array();
 
+				if(Storage::disk('chardocs')->exists('/'.$character->id)){
+					$char_docs = glob(storage_path('chardocs/'.$character->id));
+				}
+				
 				$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
 		
 				foreach($handoutSkills as $handoutSkill){
