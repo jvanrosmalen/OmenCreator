@@ -1159,10 +1159,12 @@ class Character extends Model
     	if(isset($spark_data->statistics->$stat_index)){
     		$retVal += $spark_data->statistics->$stat_index;
     	}
-    	
-    	if($statConstant == self::STAT_TRAUMA){
-    		$retVal += $spark_data->trauma;
-    	}
+		
+		if(isset($spark_data->trauma)){
+			if($statConstant == self::STAT_TRAUMA){
+				$retVal += $spark_data->trauma;
+			}
+		}
     	
     	return $retVal;
     }
