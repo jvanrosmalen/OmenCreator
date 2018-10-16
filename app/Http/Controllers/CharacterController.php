@@ -597,7 +597,7 @@ class CharacterController extends Controller
 	}
 
 	public function doRemoveCharacterDocument($charId, $chardocName){
-		Storage::disk('chardocs')->delete('$charId/$chardocName');
+		Storage::disk('chardocs')->delete($charId.'/'.$chardocName);
 		
 		$url = route('show_character', ['charId' => $charId]);
     	header("Location:".$url);
