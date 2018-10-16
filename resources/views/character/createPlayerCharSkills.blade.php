@@ -201,7 +201,7 @@
 						</div>
 						<div class='col-xs-4'>
 							<div class='col-md-12 descentSkillSearchRespons align-top'>
-									De vaardigheid die je zoekt is geen Afkomstvaardigheid.
+									Deze vaardigheid is geen Afkomstvaardigheid.
 							</div>
 						</div>
 					</div>
