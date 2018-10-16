@@ -1161,7 +1161,7 @@ var CreatePlayerCharSkills = new function(){
 		}
 
 		$("#descent_race_skill_options .descent_skill_option").each(function(){
-			var skillname = $(this .skillname).attr('id').toLowerCase();
+			var skillname = $(this).find(".skillname").attr('id').toLowerCase();
 			
 			if(skillname.indexOf(value) > -1){
 				if($(this).hasClass("deselect")){
