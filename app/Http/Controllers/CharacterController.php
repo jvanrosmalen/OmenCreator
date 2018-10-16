@@ -201,7 +201,7 @@ class CharacterController extends Controller
 				$char_docs[] = ['char_doc_name' => 'test1.pdf'];
 
 				if(Storage::disk('chardocs')->exists('/'.$character->id)){
-					$char_docs = glob(storage_path('app/chardocs/'.$character->id));
+					$char_docs = glob(storage_path('app/chardocs/'.$character->id).'//*.pdf');
 					$char_docs[] = ['char_doc_name' => 'test2.pdf'];
 				}
 				
