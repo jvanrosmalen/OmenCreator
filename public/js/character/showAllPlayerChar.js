@@ -2,7 +2,6 @@ var ShowAllPlayerChar = new function(){
 	var self = this;
 	
 	self.playerSearch = function(){
-		// TODO
 		var value = $("#playerSearchInput").val().toLowerCase();
 		
 		if(value == 'undefined' || value == ""){

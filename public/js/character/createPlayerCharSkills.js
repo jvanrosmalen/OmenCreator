@@ -1149,4 +1149,27 @@ var CreatePlayerCharSkills = new function(){
 		
 		return retSkillArray;
 	}
+
+	self.descentSkillSearch = function(){
+		var value = $("#descentSkillSearch").val().toLowerCase();
+
+		if(value == 'undefined' || value == ""){
+			$("#descent_race_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+			return;
+		}
+
+		$("#descent_race_skill_options .descent_skill_option").each(function(){
+			var skillname = $(this .skillname).attr('id').toLowerCase();
+			
+			if(skillname.indexOf(value) > -1){
+				if($(this).hasClass("deselect")){
+					$(this).removeClass("deselect");
+				}
+			} else {
+				$(this).addClass("deselect");
+			}
+		});
+	}
 }

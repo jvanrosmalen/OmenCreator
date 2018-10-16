@@ -100,3 +100,7 @@
 	background-color: #FFF;
 	overflow: auto !important;
 }
+
+.deselect {
+	display: none;
+}
