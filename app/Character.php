@@ -484,12 +484,14 @@ class Character extends Model
     			$wealthId = $skill->wealth_rules[0]->value_type_id;
     		}
     	}
-    	
-		$spark_data = json_decode($character->spark_data);
-		if(isset($spark_data->wealth_bonus)){
-			$wealthId += $spark_data->wealth_bonus;
+		
+		if(isset($character->spark_data)){
+			$spark_data = json_decode($character->spark_data);
+			if($spark_data != null && isset($spark_data->wealth_bonus)){
+				$wealthId += $spark_data->wealth_bonus;
+			}
 		}
-    	
+			
     	return $wealthId;
     }
     
