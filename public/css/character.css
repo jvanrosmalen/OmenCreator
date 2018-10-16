@@ -104,3 +104,9 @@
 .deselect {
 	display: none !important;
 }
+
+#descentSkillSearchRespons {
+	display: none;
+	font-weight: bold;
+	color: red;
+}
