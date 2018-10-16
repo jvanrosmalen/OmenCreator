@@ -588,7 +588,7 @@ class CharacterController extends Controller
 
 	public function removeCharacterDocument($charId, $chardocName){
 		$character = Character::find($charId);
-		return view('/character/showRemoveCharDoc', ['character'=>$character, 'chardocName' => $handoutName ]);
+		return view('/character/showRemoveCharDoc', ['character'=>$character, 'chardocName' => $chardocName ]);
 	}
 
 	public function uploadCharacterDocument($charId){
