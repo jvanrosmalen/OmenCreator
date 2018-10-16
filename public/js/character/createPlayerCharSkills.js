@@ -1237,11 +1237,6 @@ var CreatePlayerCharSkills = new function(){
 				}
 			});
 
-			if(found){
-				// Our job is done here.
-				return;
-			}
-
 			// Check if the search string might be in the non_class skills
 			$("#character_non_class_skill_options .character_non_class_skill_option").each(function(){
 				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
@@ -1279,11 +1274,6 @@ var CreatePlayerCharSkills = new function(){
 					$(this).addClass("deselect");
 				}
 			});
-
-			if(found){
-				// Our job is done here.
-				return;
-			}
 
 			// Check if the search string might be in the class skills
 			$("#character_class_skill_options .character_class_skill_option").each(function(){

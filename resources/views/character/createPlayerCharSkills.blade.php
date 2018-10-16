@@ -631,8 +631,8 @@
 						<div class='col-md-12 align-top classSkillSearchResponsNotFound'>
 								Zoekterm niet gevonden in (Niet-)Klassevaardigheden.
 							</div>
-							<div id="classSkillSearchResponsNonClass" class='col-md-12 align-top'>
-								Zoekterm gevonden in Niet-Klassevaardigheden.
+							<div id="classSkillSearchResponsClass" class='col-md-12 align-top'>
+								Zoekterm gevonden in Klassevaardigheden.
 							</div>
 						</div>
 					</div>

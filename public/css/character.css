@@ -120,5 +120,11 @@
 #classSkillSearchResponsNonClass{
 	display: none;
 	font-weight: bold;
-	color: red;
+	color: green;
+}
+
+#classSkillSearchResponsClass{
+	display: none;
+	font-weight: bold;
+	color: green;
 }
