@@ -1221,6 +1221,7 @@ var CreatePlayerCharSkills = new function(){
 		}
 
 		var found = false;
+		var secondChanceFound = false;
 
 		if( caller === "class"){
 			$("#character_class_skill_options .character_class_skill_option").each(function(){
@@ -1242,7 +1243,7 @@ var CreatePlayerCharSkills = new function(){
 				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
 				
 				if(skillname.indexOf(searchString) > -1){
-					found = true;
+					secondChanceFound = true;
 
 					if($(this).hasClass("deselect")){
 						$(this).removeClass("deselect");
@@ -1252,7 +1253,7 @@ var CreatePlayerCharSkills = new function(){
 				}
 			});
 
-			if(found){
+			if(secondChanceFound){
 				// the search string is found in the non-class skills. Notify the user
 				$("#classSkillSearchResponsNonClass").fadeIn("fast", function(){});
 
@@ -1280,7 +1281,7 @@ var CreatePlayerCharSkills = new function(){
 				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
 				
 				if(skillname.indexOf(searchString) > -1){
-					found = true;
+					secondChanceFound = true;
 
 					if($(this).hasClass("deselect")){
 						$(this).removeClass("deselect");
@@ -1290,7 +1291,7 @@ var CreatePlayerCharSkills = new function(){
 				}
 			});
 
-			if(found){
+			if(secondChanceFound){
 				// the search string is found in the class skills. Notify the user
 				$("#classSkillSearchResponsClass").fadeIn("fast", function(){});
 
