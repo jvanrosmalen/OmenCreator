@@ -110,3 +110,15 @@
 	font-weight: bold;
 	color: red;
 }
+
+#classSkillSearchResponsNotFound {
+	display: none;
+	font-weight: bold;
+	color: red;
+}
+
+#classSkillSearchResponsNonClass{
+	display: none;
+	font-weight: bold;
+	color: red;
+}

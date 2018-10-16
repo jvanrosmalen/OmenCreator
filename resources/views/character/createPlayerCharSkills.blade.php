@@ -385,15 +385,39 @@
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							Selecteer uit onderstaande lijst de vaardigheden van jouw karakter.
 						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+							<div>
+								<div class="input-group col-md-12">
+									<input id="classSkillSearch" type="text" class="search-query form-control" placeholder="Werkt nog niet" onchange="CreatePlayerCharSkills.classSkillSearch();"/>
+									<span class="input-group-btn">
+										<button class="btn btn-danger" type="button">
+											<span class=" glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
+							</div>					
+						</div>						
 					</div>
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount="{{$basic_info['start_ep']}}">{{$basic_info['start_ep']}}</span></h4>
+						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+						<div class='col-md-12 align-top classSkillSearchResponsNotFound'>
+								Zoekterm niet gevonden in (Niet-)Klassevaardigheden.
+							</div>
+							<div id="classSkillSearchResponsNonClass" class='col-md-12 align-top'>
+								Zoekterm gevonden in Niet-Klassevaardigheden.
+							</div>
 						</div>
 					</div>
 			    </div>
@@ -576,16 +600,40 @@
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							Selecteer uit onderstaande lijst de vaardigheden van jouw karakter.<br>
 							<em>Opgepast: hieronder staan vaardigheden die buiten je klasse vallen. Deze kosten dubbel EP!</em>
 						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+							<div>
+								<div class="input-group col-md-12">
+									<input id="nonClassSkillSearch" type="text" class="search-query form-control" placeholder="Werkt nog niet" onchange="CreatePlayerCharSkills.nonClassSkillSearch();"/>
+									<span class="input-group-btn">
+										<button class="btn btn-danger" type="button">
+											<span class=" glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
+							</div>					
+						</div>						
 					</div>
 					<div class='row'>
 						<div class='col-xs-1'>
 						</div>
-						<div class='col-xs-10'>
+						<div class='col-xs-5'>
 							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='0'>0</span> van <span class='total_character_ep' data-ep_amount="{{$basic_info['start_ep']}}">{{$basic_info['start_ep']}}</span></h4>
+						</div>
+						<div class='col-xs-1'>
+						</div>
+						<div class='col-xs-4'>
+						<div class='col-md-12 align-top classSkillSearchResponsNotFound'>
+								Zoekterm niet gevonden in (Niet-)Klassevaardigheden.
+							</div>
+							<div id="classSkillSearchResponsNonClass" class='col-md-12 align-top'>
+								Zoekterm gevonden in Niet-Klassevaardigheden.
+							</div>
 						</div>
 					</div>
 			    </div>

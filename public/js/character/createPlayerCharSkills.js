@@ -1190,4 +1190,140 @@ var CreatePlayerCharSkills = new function(){
 			}, 3500);
 		}
 	}
+
+	self.classSkillSearch = function(){
+		var value = $("#classSkillSearch").val();
+		$("#nonClassSkillSearch").val(value);
+		value = value.toLowerCase();
+
+		self.handleClassNonClassSkillSearch(value, "class");
+	}
+
+	self.nonClassSkillSearch = function(){
+		var value = $("#nonClassSkillSearch").val();
+		$("#classSkillSearch").val(value);
+		value = value.toLowerCase();
+
+		self.handleClassNonClassSkillSearch(value, "nonClass");
+	}
+
+	self.handleClassNonClassSkillSearch = function(searchString, caller){
+		if(searchString == 'undefined' || searchString == ""){
+			$("#character_class_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+
+			$("#character_non_class_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+
+			return;
+		}
+
+		var found = false;
+
+		if( caller === "class"){
+			$("#character_class_skill_options .character_class_skill_option").each(function(){
+				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
+				
+				if(skillname.indexOf(searchString) > -1){
+					found = true;
+
+					if($(this).hasClass("deselect")){
+						$(this).removeClass("deselect");
+					}
+				} else {
+					$(this).addClass("deselect");
+				}
+			});
+
+			if(found){
+				// Our job is done here.
+				return;
+			}
+
+			// Check if the search string might be in the non_class skills
+			$("#character_non_class_skill_options .character_non_class_skill_option").each(function(){
+				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
+				
+				if(skillname.indexOf(searchString) > -1){
+					found = true;
+
+					if($(this).hasClass("deselect")){
+						$(this).removeClass("deselect");
+					}
+				} else {
+					$(this).addClass("deselect");
+				}
+			});
+
+			if(found){
+				// the search string is found in the non-class skills. Notify the user
+				$("#classSkillSearchResponsNonClass").fadeIn("fast", function(){});
+
+				setTimeout(function(){
+					$("#classSkillSearchResponsNonClass").fadeOut("fast", function(){});
+				}, 3500);
+			}
+		} else {
+			$("#character_non_class_skill_options .character_non_class_skill_option").each(function(){
+				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
+				
+				if(skillname.indexOf(searchString) > -1){
+					found = true;
+
+					if($(this).hasClass("deselect")){
+						$(this).removeClass("deselect");
+					}
+				} else {
+					$(this).addClass("deselect");
+				}
+			});
+
+			if(found){
+				// Our job is done here.
+				return;
+			}
+
+			// Check if the search string might be in the class skills
+			$("#character_class_skill_options .character_class_skill_option").each(function(){
+				var skillname = $(this).find(".skillname").attr('id').toLowerCase();
+				
+				if(skillname.indexOf(searchString) > -1){
+					found = true;
+
+					if($(this).hasClass("deselect")){
+						$(this).removeClass("deselect");
+					}
+				} else {
+					$(this).addClass("deselect");
+				}
+			});
+
+			if(found){
+				// the search string is found in the class skills. Notify the user
+				$("#classSkillSearchResponsClass").fadeIn("fast", function(){});
+
+				setTimeout(function(){
+					$("#classSkillSearchResponsClass").fadeOut("fast", function(){});
+				}, 3500);
+			}			
+		}
+
+		if(!found){
+			// the search string was not found at all
+			$("#character_class_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+			$("#character_non_class_skill_options .deselect").each(function(){
+				$(this).removeClass("deselect");
+			});
+
+			$(".classSkillSearchResponsNotFound").fadeIn("fast", function(){});
+
+			setTimeout(function(){
+				$(".classSkillSearchResponsNotFound").fadeOut("fast", function(){});
+			}, 3500);
+		}
+	}
 }
