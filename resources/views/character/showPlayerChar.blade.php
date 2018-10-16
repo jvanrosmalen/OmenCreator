@@ -396,7 +396,7 @@
 									var_dump($char_docs);
 								?>
 
-								@foreach($char_docs as $char_doc)
+								<!-- @foreach($char_docs as $char_doc)
 								<tr>
 									<td class="col-xs-9">
 										{{ $char_doc["char_doc_name"] }}
@@ -412,7 +412,7 @@
 										@endif
 									</td>
 								</tr>
-								@endforeach
+								@endforeach -->
 							</tbody>
 						</table>
 					</div>
