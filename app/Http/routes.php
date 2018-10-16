@@ -186,7 +186,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::get('download_handout/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
-	Route::get('download_chardoc/{charId}/{handoutName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
+	Route::get('download_chardoc/{charId}/{chardocName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
+	Route::get('remove_chardoc/{charId}/{chardocName}', 'CharacterController@removeCharacterDocument')->middleware('isStoryTelling');
+	Route::get('do_remove_chardoc/{charId}/{chardocName}', 'CharacterController@removeCharacterDocument')->middleware('isStoryTelling');
 	Route::get('upload_chardoc/{charId}/', 'CharacterController@uploadCharacterDocument')->middleware('isStoryTelling');
 	Route::post('do_upload_chardoc', 'CharacterController@doUploadCharDoc')->middleware('isStoryTelling');
 	
