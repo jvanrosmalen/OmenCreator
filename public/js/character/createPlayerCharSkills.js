@@ -1187,7 +1187,7 @@ var CreatePlayerCharSkills = new function(){
 
 			setTimeout(function(){
 				$("#descentSkillSearchRespons").fadeOut("fast", function(){});
-			}, 5000);
+			}, 3500);
 		}
 	}
 }

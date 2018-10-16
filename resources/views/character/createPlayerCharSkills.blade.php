@@ -181,7 +181,7 @@
 						<div class='col-xs-4'>
 							<div>
 								<div class="input-group col-md-12">
-									<input id="descentSkillSearch" type="text" class="search-query form-control" placeholder="Werkt nog niet" onchange="CreatePlayerCharSkills.descentSkillSearch();"/>
+									<input id="descentSkillSearch" type="text" class="search-query form-control" placeholder="Zoekt in Afkomstvaardigheden" onchange="CreatePlayerCharSkills.descentSkillSearch();"/>
 									<span class="input-group-btn">
 										<button class="btn btn-danger" type="button">
 											<span class=" glyphicon glyphicon-search"></span>
