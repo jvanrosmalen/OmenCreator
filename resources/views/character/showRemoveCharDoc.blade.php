@@ -27,9 +27,12 @@
                 <div class="col-xs-3">
                 </div>
                 <div class="col-xs-2">
+                    <a href="/show_character/{{$character->id}}" class='btn btn-default' style='width:100%'>Cancel</a>
                 </div>
                 <div class="col-xs-2">
-                    <a href="do_remove_chardoc/{{$character->id}/{{$chardocName}}" class='btn btn-default' style='width:100%'>Verwijder</a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="do_remove_chardoc/{{$character->id}}/{{$chardocName}}" class='btn btn-default' style='width:100%'>Verwijder</a>
                 </div>
                 <div class="col-xs-3">
                 </div>
