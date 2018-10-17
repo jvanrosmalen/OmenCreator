@@ -6,7 +6,7 @@ var ErrorMessage = new function(){
 	}
 	
 	self.showErrorMessage = function(message){
-		$("#error_message").text(message);
+		$("#error_message").html(message);
 		$("#showErrorMessage").fadeIn();
 	}
 }
