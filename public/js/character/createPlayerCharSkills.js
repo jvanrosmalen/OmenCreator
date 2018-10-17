@@ -155,12 +155,21 @@ var CreatePlayerCharSkills = new function(){
 	// ****************************
 	// Prereq checking functions
 	// ****************************
+	// Global arrays needed for recursive checkSkillPrereqs
+	var problemArray = [];
+	var problem2Array = [];
+
 	self.checkAllPrereqs = function(skillData){
 		// check stat prereqs
 		if(!self.checkStatPrereqs(skillData)){
 			return false;
 		}
+
 		// check skill prereqs
+		// clear problem arrays before checking skills
+		problemArray = new Array();
+		problem2Array = new Array();
+
 		if(!self.checkSkillPrereqs(skillData)){
 			return false;
 		}
@@ -171,12 +180,10 @@ var CreatePlayerCharSkills = new function(){
 		
 		return true;
 	}
-	
+
 	self.checkSkillPrereqs = function(skillData){
 		var problem = false;
 		var problem2 = false;
-		var problemArray = [];
-		var problem2Array = [];
 		var skillSet2Array = [];
 		var skillGroupSet2Array = [];
 		
