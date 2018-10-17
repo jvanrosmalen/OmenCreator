@@ -24,6 +24,10 @@ var CreatePlayerCharSkills = new function(){
 		$("#save").attr("onclick",'CreatePlayerCharSkills.submitSkills(event)');
 		$("#faith_selection").attr("onchange", 'CreatePlayerCharSkills.handleFaithSelection(event)');
 		$("#character_title").attr("onchange", 'CreatePlayerCharSkills.handleTitleInput(event)');
+
+		// add content and listener to errorMessage button
+		$("#error_message_button").attr("onclick",'CreatePlayerCharSkills.selectAllPrereqSkills(event)');
+		$("#error_message_button").val("Selecteer alle prereqs");
 	}
 
 	self.handleFaithSelection = function(event){
@@ -174,15 +178,19 @@ var CreatePlayerCharSkills = new function(){
 
 		if(!self.checkSkillPrereqs(skillData)){
 			// skill is not found
-			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill:<br>";
+			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill:<br><br>";
 
 			warningStr += problemArray.join(',<br>');
 			
 			if(problem2Array.length > 0){
-				warningStr += " OF<br> " + problem2Array.join(',<br>');
+				warningStr += " <br>OF<br> " + problem2Array.join(',<br>');
 			}
 			
 			ErrorMessage.showErrorMessage(warningStr);
+
+			if(problemSkillIds.length > 0){
+				$("#error_message_button_row").removeClass('hidden');
+			}
 
 			return false;
 		}
@@ -1354,5 +1362,10 @@ var CreatePlayerCharSkills = new function(){
 				$(".classSkillSearchResponsNotFound").fadeOut("fast", function(){});
 			}, 3500);
 		}
+	}
+
+	self.selectAllPrereqSkills = function(event){
+		event.preventDefault();
+		event.stopPropagation();
 	}
 }

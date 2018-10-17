@@ -20,6 +20,15 @@
 					<div class="col-xs-2">
 					</div>
 				</div>
+
+				<div id="error_message_button_row" class="row hidden">
+					<div class="col-xs-3">
+					</div>
+					<div id="error_message_button" class="btn btn-info col-xs-6">
+					</div>
+					<div class="col-xs-3">
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
