@@ -241,9 +241,9 @@ var CreatePlayerCharSkills = new function(){
 				if(problemArray.indexOf(prereq_skill['name']) === -1
 					&& problem2Array.indexOf(prereq_skill['name']) === -1){
 						if($("character_class_skill_options [data-id="+ prereq_skill['id'] +"]")){
-							neededPrereqsTotalEP += $("character_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
+							neededPrereqsTotalEP += $("#character_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 						} else {
-							neededPrereqsTotalEP += $("character_non_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
+							neededPrereqsTotalEP += $("#character_non_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 						}
 						problemSkillIds.push(prereq_skill['id']);
 						problemArray.push(prereq_skill['name']);
@@ -267,9 +267,9 @@ var CreatePlayerCharSkills = new function(){
 					if(problemArray.indexOf(prereq_skill['name']) === -1
 						&& problem2Array.indexOf(prereq_skill['name']) === -1){
 							if($("character_class_skill_options [data-id="+ prereq_skill['id'] +"]")){
-								neededPrereqsTotalEP += $("character_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
+								neededPrereqsTotalEP += $("#character_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 							} else {
-								neededPrereqsTotalEP += $("character_non_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
+								neededPrereqsTotalEP += $("#character_non_class_skill_options [data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 							}
 								problemSkillIds.push(prereq_skill['id']);
 							problem2Array.push(prereq_skill['name']);
