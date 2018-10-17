@@ -190,15 +190,15 @@ var CreatePlayerCharSkills = new function(){
 			
 			if(problemSkillIds.length > 0){
 				// First check if player has enough EP left.
-				var totalNeededEp = skillData['ep_cost']+neededPrereqsTotalEP;
+				var totalNeededEp = skillData['ep_cost'] + neededPrereqsTotalEP;
 				if(!self.checkSkillEp(totalNeededEp)){
-					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
-						"prereqs. Je hebt hiervoor niet genoeg EP over.<br>" +
-						"(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<br>";
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "+
+					"inclusief prereqs. Je hebt hiervoor niet genoeg EP over.<br>" +
+						"<em>(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<em><br>";
 				} else {
-					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
-					"prereqs. Met onderstaande knop kan je alle vaardigheden in één keer selecteren.<br>" +
-					"(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<br>";
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "
+					+ "inclusief prereqs. Met onderstaande knop kan je alle vaardigheden in één keer selecteren.<br>" +
+					"<em>(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<em><br>";
 					$("#error_message_button_row").removeClass('hidden');
 				}
 			}
