@@ -393,7 +393,7 @@
 						<div class='col-xs-4'>
 							<div>
 								<div class="input-group col-md-12">
-									<input id="classSkillSearch" type="text" class="search-query form-control" placeholder="Zoekt in (Niet-)Klasse vaardigheden" onclick="CreatePlayerCharSkills.classSkillSearch(event);"/>
+									<input id="classSkillSearch" type="text" class="search-query form-control" placeholder="Zoekt in (Niet-)Klasse vaardigheden" onchange="CreatePlayerCharSkills.classSkillSearch(event);" onclick="CreatePlayerCharSkills.classSkillSearch(event);"/>
 									<span class="input-group-btn">
 										<button class="btn btn-danger" type="button">
 											<span class=" glyphicon glyphicon-search"></span>
@@ -609,7 +609,7 @@
 						<div class='col-xs-4'>
 							<div>
 								<div class="input-group col-md-12">
-									<input id="nonClassSkillSearch" type="text" class="search-query form-control" placeholder="Zoekt in (Niet-)Klasse vaardigheden" onclick="CreatePlayerCharSkills.classSkillSearch(event);"/>
+									<input id="nonClassSkillSearch" type="text" class="search-query form-control" placeholder="Zoekt in (Niet-)Klasse vaardigheden" onchange="CreatePlayerCharSkills.nonClassSkillSearch(event);"  onclick="CreatePlayerCharSkills.classSkillSearch(event);"/>
 									<span class="input-group-btn">
 										<button class="btn btn-danger" type="button">
 											<span class=" glyphicon glyphicon-search"></span>
