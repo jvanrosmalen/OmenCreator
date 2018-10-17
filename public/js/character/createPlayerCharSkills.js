@@ -173,6 +173,17 @@ var CreatePlayerCharSkills = new function(){
 		problemSkillIds = new Array();
 
 		if(!self.checkSkillPrereqs(skillData)){
+			// skill is not found
+			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
+
+			warningStr += problemArray.join(', ');
+			
+			if(problem2){
+				warningStr += " OF " + problem2Array.join(', ');
+			}
+			
+			ErrorMessage.showErrorMessage(warningStr);
+
 			return false;
 		}
 		// check wealth prereqs
@@ -205,9 +216,10 @@ var CreatePlayerCharSkills = new function(){
 				self.checkSkillPrereqs($("[data-id="+ prereq_skill['id'] +"]").data());
 				
 				// check if array already contains skill. If not: add it.
-				if(problemArray.indexOf(prereq_skill['name']) == -1){
-					problemSkillIds.push(prereq_skill['id']);
-					problemArray.push(prereq_skill['name']);
+				if(problemArray.indexOf(prereq_skill['name']) === -1
+					&& problem2Array.indexOf(prereq_skill['name']) === -1){
+						problemSkillIds.push(prereq_skill['id']);
+						problemArray.push(prereq_skill['name']);
 				}
 			}
 		}
@@ -221,7 +233,15 @@ var CreatePlayerCharSkills = new function(){
 				if(!self.hasSkill(prereq_skill['id'])){
 					problem2  = true;
 					
-					problem2Array.push(prereq_skill['name']);
+					// recursive to check underlying skills of unmet prereq
+					self.checkSkillPrereqs($("[data-id="+ prereq_skill['id'] +"]").data());
+					
+					// check if array already contains skill. If not: add it.
+					if(problemArray.indexOf(prereq_skill['name']) === -1
+						&& problem2Array.indexOf(prereq_skill['name']) === -1){
+							problemSkillIds.push(prereq_skill['id']);
+							problem2Array.push(prereq_skill['name']);
+					}
 				}
 			}
 		}
@@ -248,7 +268,13 @@ var CreatePlayerCharSkills = new function(){
 			
 			if(groupProblem){
 				problem = true;
-				problemArray.push(prereq_skillgroup['name']);
+
+				// check if array already contains group. If not: add it.
+				// can't handle skill ids, unfortunately
+				if(problemArray.indexOf(prereq_skillgroup['name']) === -1
+					&& problem2Array.indexOf(prereq_skillgroup['name']) === -1){
+						problemArray.push(prereq_skillgroup['name']);
+				}
 			}
 		}
 		
@@ -272,7 +298,13 @@ var CreatePlayerCharSkills = new function(){
 				
 				if(group2Problem){
 					problem2 = true;
-					problem2Array.push(prereq_skillgroup2['name']);
+
+					// check if array already contains group. If not: add it.
+					// can't handle skill ids, unfortunately
+					if(problemArray.indexOf(prereq_skillgroup['name']) === -1
+						&& problem2Array.indexOf(prereq_skillgroup['name']) === -1){
+							problem2Array.push(prereq_skillgroup['name']);
+					}					
 				}
 			}
 		}
@@ -287,16 +319,6 @@ var CreatePlayerCharSkills = new function(){
 				// all is well after all.
 				return true;
 			} else {
-				// skill is not found
-				var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
-				
-				warningStr += problemArray.join(', ');
-				
-				if(problem2){
-					warningStr += " OF " + problem2Array.join(', ');
-				}
-				
-				ErrorMessage.showErrorMessage(warningStr);
 				return false;
 			}
 		}
