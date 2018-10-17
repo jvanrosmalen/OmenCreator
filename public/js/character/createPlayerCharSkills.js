@@ -193,8 +193,7 @@ var CreatePlayerCharSkills = new function(){
 				var totalNeededEp = skillData['ep_cost'] + neededPrereqsTotalEP;
 				if(!self.checkSkillEp(totalNeededEp)){
 					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "+
-					"inclusief prereqs. Je hebt hiervoor niet genoeg EP over.<br>" +
-						"<em>(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<em><br>";
+					"inclusief prereqs. Je hebt hiervoor niet genoeg EP over.<br>";
 				} else {
 					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "
 					+ "inclusief prereqs. Met onderstaande knop kan je alle vaardigheden in één keer selecteren.<br>" +
@@ -207,6 +206,7 @@ var CreatePlayerCharSkills = new function(){
 
 			return false;
 		}
+
 		// check wealth prereqs
 		if(!self.checkWealthPrereqs(skillData)){
 			return false;
@@ -1392,5 +1392,21 @@ var CreatePlayerCharSkills = new function(){
 	self.selectAllPrereqSkills = function(event){
 		event.preventDefault();
 		event.stopPropagation();
+
+		// problemSkillIds holds all needed skill ids
+		for(var index=0; index < problemSkillIds.length; index++){
+			$("#character_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
+			$("#character_non_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
+		}
+
+		self.selectButtonListener(event, "character_class");
+		self.selectButtonListener(event, "character_non_class");
+		
+		// Update overviews in other tabs
+		self.updateAlreadySelectedDescentTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateAlreadySelectedClassTab();
+		self.updateOverviewClassSkills();
+		self.updateOverviewNonClassSkills();
 	}
 }
