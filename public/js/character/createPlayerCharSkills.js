@@ -164,8 +164,7 @@ var CreatePlayerCharSkills = new function(){
 	var problem2Array = [];
 	var problemSkillIds = [];
 	var neededPrereqsTotalEP = 0;
-	var currentSkillId = -1;
-
+	
 	self.checkAllPrereqs = function(skillData){
 		// check stat prereqs
 		if(!self.checkStatPrereqs(skillData)){
@@ -178,7 +177,6 @@ var CreatePlayerCharSkills = new function(){
 		problem2Array = new Array();
 		problemSkillIds = new Array();
 		neededPrereqsTotalEP = 0;
-		currentSkillId = skillData['id'];
 
 		if(!self.checkSkillPrereqs(skillData)){
 			// skill is not found
@@ -192,14 +190,15 @@ var CreatePlayerCharSkills = new function(){
 			
 			if(problemSkillIds.length > 0){
 				// First check if player has enough EP left.
-				var totalNeededEp = skillData['ep_cost'] + neededPrereqsTotalEP;
+				var totalNeededEp = neededPrereqsTotalEP;
 				if(!self.checkSkillEp(totalNeededEp)){
-					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "+
-					"inclusief prereqs. Je hebt hiervoor niet genoeg EP over.<br>";
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze prereqs nodig "+
+					". Je hebt hiervoor niet genoeg EP over.<br>";
 				} else {
-					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze vaardigheid nodig "
-					+ "inclusief prereqs. Met onderstaande knop kan je alle vaardigheden in één keer selecteren.<br>" +
-					"<em>(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<em><br>";
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + " EP voor deze prereqs nodig."
+					+ " Met onderstaande knop kan je alle vaardigheden in één keer selecteren. Daarna moet je de skill zelf " +
+					"ook nog selecteren.<br>" +
+					"<em>(Ep is exclusief de vaardigheid zelf en eventuele vaardigheidsgroepen waaraan je ook nog aan moet voldoen.)<em><br>";
 					$("#error_message_button_row").removeClass('hidden');
 				}
 			}
@@ -1400,8 +1399,6 @@ var CreatePlayerCharSkills = new function(){
 			$("#character_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
 			$("#character_non_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
 		}
-
-		$("#character_class_skill_options [data-id="+ currentSkillId +"]").addClass('selected');
 
 		self.selectButtonListener(event, "character_class");
 		self.selectButtonListener(event, "character_non_class");
