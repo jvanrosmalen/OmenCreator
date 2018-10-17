@@ -3,6 +3,7 @@ var ErrorMessage = new function(){
 	
 	self.closeErrorMessage = function(){
 		$("#showErrorMessage").fadeOut();
+		$("#error_message_button_row").addClass("hidden");
 	}
 	
 	self.showErrorMessage = function(message){
