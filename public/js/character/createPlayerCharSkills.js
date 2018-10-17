@@ -1301,7 +1301,7 @@ var CreatePlayerCharSkills = new function(){
 			}			
 		}
 
-		if(!found){
+		if(!found && !secondChanceFound){
 			// the search string was not found at all
 			$("#character_class_skill_options .deselect").each(function(){
 				$(this).removeClass("deselect");
