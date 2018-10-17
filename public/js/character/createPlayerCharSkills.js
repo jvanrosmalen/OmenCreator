@@ -198,6 +198,9 @@ var CreatePlayerCharSkills = new function(){
 			// check if skill is in all hidden lists with skills
 			if(!self.hasSkill(prereq_skill['id'])){
 				problem = true;
+
+				// recursive to check underlying skills of unmet prereq
+				self.checkSkillPrereqs($("[data-id="+ prereq_skill['id'] +"]").data());
 				
 				problemArray.push(prereq_skill['name']);
 			}
