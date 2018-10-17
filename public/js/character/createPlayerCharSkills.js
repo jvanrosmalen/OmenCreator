@@ -1196,7 +1196,10 @@ var CreatePlayerCharSkills = new function(){
 		return retSkillArray;
 	}
 
-	self.descentSkillSearch = function(){
+	self.descentSkillSearch = function(event){
+		event.preventDefault();
+		event.stopPropagation();
+
 		var value = $("#descentSkillSearch").val().toLowerCase();
 
 		if(value == 'undefined' || value == ""){
@@ -1237,7 +1240,10 @@ var CreatePlayerCharSkills = new function(){
 		}
 	}
 
-	self.classSkillSearch = function(){
+	self.classSkillSearch = function(event){
+		event.preventDefault();
+		event.stopPropagation();
+
 		var value = $("#classSkillSearch").val();
 		$("#nonClassSkillSearch").val(value);
 		value = value.toLowerCase();
@@ -1245,7 +1251,10 @@ var CreatePlayerCharSkills = new function(){
 		self.handleClassNonClassSkillSearch(value, "class");
 	}
 
-	self.nonClassSkillSearch = function(){
+	self.nonClassSkillSearch = function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		
 		var value = $("#nonClassSkillSearch").val();
 		$("#classSkillSearch").val(value);
 		value = value.toLowerCase();

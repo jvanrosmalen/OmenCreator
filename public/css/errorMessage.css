@@ -1,6 +1,6 @@
 .errorMessage {
 	width: 500px;
-	height: 150px;
+	min-height: 150px;
 	position: relative;
 	background-color: white;
 	box-shadow: 1px 1px 10px black;
