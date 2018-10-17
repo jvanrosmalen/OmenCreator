@@ -178,7 +178,7 @@ var CreatePlayerCharSkills = new function(){
 
 			warningStr += problemArray.join(', ');
 			
-			if(problem2){
+			if(problem2Array.length > 0){
 				warningStr += " OF " + problem2Array.join(', ');
 			}
 			
