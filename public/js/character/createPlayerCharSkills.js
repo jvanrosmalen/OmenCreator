@@ -164,6 +164,7 @@ var CreatePlayerCharSkills = new function(){
 	var problem2Array = [];
 	var problemSkillIds = [];
 	var neededPrereqsTotalEP = 0;
+	var currentSkillId = -1;
 
 	self.checkAllPrereqs = function(skillData){
 		// check stat prereqs
@@ -177,6 +178,7 @@ var CreatePlayerCharSkills = new function(){
 		problem2Array = new Array();
 		problemSkillIds = new Array();
 		neededPrereqsTotalEP = 0;
+		currentSkillId = skillData['id'];
 
 		if(!self.checkSkillPrereqs(skillData)){
 			// skill is not found
@@ -1398,6 +1400,8 @@ var CreatePlayerCharSkills = new function(){
 			$("#character_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
 			$("#character_non_class_skill_options [data-id="+ problemSkillIds[index] +"]").addClass('selected');
 		}
+
+		$("#character_class_skill_options [data-id="+ currentSkillId +"]").addClass('selected');
 
 		self.selectButtonListener(event, "character_class");
 		self.selectButtonListener(event, "character_non_class");
