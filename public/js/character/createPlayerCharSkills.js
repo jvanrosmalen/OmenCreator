@@ -192,11 +192,11 @@ var CreatePlayerCharSkills = new function(){
 				// First check if player has enough EP left.
 				var totalNeededEp = skillData['ep_cost']+neededPrereqsTotalEP;
 				if(!self.checkSkillEp(totalNeededEp)){
-					warningStr += "Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
 						"prereqs. Je hebt hiervoor niet genoeg EP over.<br>" +
 						"(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<br>";
 				} else {
-					warningStr += "Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
+					warningStr += "<br><br>Je hebt in totaal " + totalNeededEp + "voor deze vaardigheid inclusief " +
 					"prereqs. Met onderstaande knop kan je alle vaardigheden in één keer selecteren.<br>" +
 					"(Vaardigheidsgroepen zijn hierbij niet meegenomen.)<br>";
 					$("#error_message_button_row").removeClass('hidden');
@@ -239,7 +239,8 @@ var CreatePlayerCharSkills = new function(){
 				// check if array already contains skill. If not: add it.
 				if(problemArray.indexOf(prereq_skill['name']) === -1
 					&& problem2Array.indexOf(prereq_skill['name']) === -1){
-						neededPrereqsTotalEP += prereq_skill['ep_cost'];
+
+						neededPrereqsTotalEP += $("[data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 						problemSkillIds.push(prereq_skill['id']);
 						problemArray.push(prereq_skill['name']);
 				}
@@ -261,7 +262,7 @@ var CreatePlayerCharSkills = new function(){
 					// check if array already contains skill. If not: add it.
 					if(problemArray.indexOf(prereq_skill['name']) === -1
 						&& problem2Array.indexOf(prereq_skill['name']) === -1){
-							neededPrereqsTotalEP += prereq_skill['ep_cost'];
+							neededPrereqsTotalEP += $("[data-id="+ prereq_skill['id'] +"]").data('ep_cost');
 							problemSkillIds.push(prereq_skill['id']);
 							problem2Array.push(prereq_skill['name']);
 					}
