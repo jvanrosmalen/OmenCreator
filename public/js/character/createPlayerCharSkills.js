@@ -1412,5 +1412,7 @@ var CreatePlayerCharSkills = new function(){
 		self.updateAlreadySelectedClassTab();
 		self.updateOverviewClassSkills();
 		self.updateOverviewNonClassSkills();
+
+		ErrorMessage.closeErrorMessage();
 	}
 }
