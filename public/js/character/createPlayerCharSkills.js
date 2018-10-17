@@ -158,6 +158,7 @@ var CreatePlayerCharSkills = new function(){
 	// Global arrays needed for recursive checkSkillPrereqs
 	var problemArray = [];
 	var problem2Array = [];
+	var problemSkillIds = [];
 
 	self.checkAllPrereqs = function(skillData){
 		// check stat prereqs
@@ -169,6 +170,7 @@ var CreatePlayerCharSkills = new function(){
 		// clear problem arrays before checking skills
 		problemArray = new Array();
 		problem2Array = new Array();
+		problemSkillIds = new Array();
 
 		if(!self.checkSkillPrereqs(skillData)){
 			return false;
@@ -202,7 +204,11 @@ var CreatePlayerCharSkills = new function(){
 				// recursive to check underlying skills of unmet prereq
 				self.checkSkillPrereqs($("[data-id="+ prereq_skill['id'] +"]").data());
 				
-				problemArray.push(prereq_skill['name']);
+				// check if array already contains skill. If not: add it.
+				if(problemArray.indexOf(prereq_skill['name']) == -1){
+					problemSkillIds.push(prereq_skill['id']);
+					problemArray.push(prereq_skill['name']);
+				}
 			}
 		}
 		
