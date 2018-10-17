@@ -174,12 +174,12 @@ var CreatePlayerCharSkills = new function(){
 
 		if(!self.checkSkillPrereqs(skillData)){
 			// skill is not found
-			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill: ";
+			var warningStr = "Je hebt de volgende vaardigheden nog nodig voor deze skill:<br>";
 
-			warningStr += problemArray.join(', ');
+			warningStr += problemArray.join(',<br>');
 			
 			if(problem2Array.length > 0){
-				warningStr += " OF " + problem2Array.join(', ');
+				warningStr += " OF<br> " + problem2Array.join(',<br>');
 			}
 			
 			ErrorMessage.showErrorMessage(warningStr);
