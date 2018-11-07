@@ -106,12 +106,26 @@ var CreatePlayerCharSkills = new function(){
 
 	self.handleDescentEpOverflow = function(){
 		var ep_cost = $(currentCaller).data('ep_cost');
+		var skill_id = $(currentCaller).data('id');
 		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
 
 		// If we get here, it means we have an overflow. No need to check for it
 		var overflow = $("#spent_descent_ep").data('ep_amount') + ep_cost - max_descent_ep;
 		self.updateDescentEP(max_descent_ep);
 		self.addSkillEp(overflow);
+
+		// select the descent skill
+		$(".descent_skill_option_"+ skill_id).addClass('selected');
+		
+		self.selectButtonListener(event, "descent");
+				
+		// Update overviews in other tabs
+		self.updateAlreadySelectedDescentTab();
+		self.updateAlreadySelectedNonClassTab();
+		self.updateAlreadySelectedClassTab();
+		self.updateOverviewClassSkills();
+		self.updateOverviewNonClassSkills();
+		self.updateOverviewDescentSkills();
 	}
 	
 	self.updateDescentEP = function(value){
