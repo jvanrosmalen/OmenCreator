@@ -84,6 +84,11 @@ var CreatePlayerCharSkills = new function(){
 		$("#save").trigger('click');
 	}
 	
+	self.checkTotalEp = function(ep_cost){
+		return ($(".spent_character_ep").data('ep_amount') + $("#spent_descent_ep").data('ep_amount') + ep_cost) <=
+			($(".total_character_ep").data('ep_amount') + $("#total_descent_ep").data('ep_amount'));
+	}
+
 	self.checkDescentEp = function(ep_cost){
 		return ($("#spent_descent_ep").data('ep_amount') + ep_cost) <=
 									$("#total_descent_ep").data('ep_amount');
@@ -573,9 +578,15 @@ var CreatePlayerCharSkills = new function(){
 		}else{
 			if(listenerType == "descent"){
 				if(!self.checkDescentEp(skill_ep_cost)){
-					PromptMessage.showPromptMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid. " +
-					"Wil je EP besteden om het verschil te overbruggen?", self.handleDescentEpOverflow);
-					return;
+					if(self.checkTotalEp(skill_ep_cost)){
+						PromptMessage.showPromptMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid. " +
+						"Wil je EP besteden om het verschil te overbruggen?", self.handleDescentEpOverflow);
+						return;
+					} else {
+						ErrorMessage.showErrorMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid " +
+					 		"en niet genoeg EP om dit tekort te overbruggen.");
+					 	return;
+					}
 				}
 			}
 
