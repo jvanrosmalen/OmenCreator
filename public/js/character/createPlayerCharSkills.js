@@ -614,7 +614,10 @@ var CreatePlayerCharSkills = new function(){
 			var skill_id = $(this).data("id");
 			
 			if(listenerType === "descent"){
-				self.addDescentEp($(this).data('ep_cost'));
+				// check if not at max descent ep due to overflow and EP usage
+				if(!self.maxDescentEp()){
+					self.addDescentEp($(this).data('ep_cost'));
+				}
 			} else {
 				self.addSkillEp($(this).data('ep_cost'));
 			}
