@@ -89,6 +89,10 @@ var CreatePlayerCharSkills = new function(){
 									$("#total_descent_ep").data('ep_amount');
 	}
 
+	self.maxDescentEp = function(){
+		return ($("#spent_descent_ep").data('ep_amount') ==	$("#total_descent_ep").data('ep_amount'));
+	}
+
 	self.checkDescentEpOverflowUsed = function(){
 		var total_spent_descent_ep = 0;
 		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
@@ -531,9 +535,11 @@ var CreatePlayerCharSkills = new function(){
 					 " Deze mogelijkheid heb je al gebruikt.");
 					 return;
 				} else {
-					ErrorMessage.showErrorMessage("Je hebt al je afkomstpunten al gebruikt." +
-					" Je mag een afkomstvaardigheid niet volledig met EP betalen.");
-					return;
+					if(self.maxDescentEp()){
+						ErrorMessage.showErrorMessage("Je hebt al je afkomstpunten al gebruikt." +
+						" Je mag een afkomstvaardigheid niet volledig met EP betalen.");
+						return;
+					}
 				}
 			}
 		} else {
