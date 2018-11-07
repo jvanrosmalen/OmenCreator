@@ -26,6 +26,14 @@ var EditPlayerChar = new function(){
 			var option = $("#character_non_class_skill_options .character_non_class_skill_option_"+class_non_skill_ids_list[index]);
 			option.addClass('hidden');
 		}
+
+		// adjust AP/EP values for possible AP/EP overflow
+		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
+		var overflow = $("#spent_descent_ep").data('ep_amount') - max_descent_ep;
+		if( overflow > 0){
+			CreatePlayerCharSkills.updateDescentEP(max_descent_ep);
+			CreatePlayerCharSkills.addSkillEp(overflow);
+		}
 		
 		// Update for selected skills
 		CreatePlayerCharSkills.updateAlreadySelectedClassTab();
