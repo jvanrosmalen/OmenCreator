@@ -9,6 +9,7 @@ var EditPlayerChar = new function(){
 		// Make visible all selected descent skills
 		for(var index=0; index < descent_skill_ids_list.length; index++ ){
 			$("#descent_race_skill_selected .descent_skill_selection_"+descent_skill_ids_list[index]).removeClass('hidden');
+			$("#descent_race_skill_selected .descent_skill_selection_"+descent_skill_ids_list[index]).addClass("skillSelected");
 			var option = $("#descent_race_skill_options .descent_skill_option_"+descent_skill_ids_list[index]);
 			option.addClass('hidden');
 		}
@@ -16,6 +17,7 @@ var EditPlayerChar = new function(){
 		// Make visible all selected class skills
 		for(var index=0; index < class_skill_ids_list.length; index++ ){
 			$("#character_class_skill_selected .character_class_skill_selection_"+class_skill_ids_list[index]).removeClass('hidden');
+			$("#character_class_skill_selected .character_class_skill_selection_"+class_skill_ids_list[index]).addClass("skillSelected");
 			var option = $("#character_class_skill_options .character_class_skill_option_"+class_skill_ids_list[index]);
 			option.addClass('hidden');
 		}
@@ -23,6 +25,7 @@ var EditPlayerChar = new function(){
 		// Make visible all selected non-class skills
 		for(var index=0; index < class_non_skill_ids_list.length; index++ ){
 			$("#character_non_class_skill_selected .character_non_class_skill_selection_"+class_non_skill_ids_list[index]).removeClass('hidden');
+			$("#character_non_class_skill_selected .character_non_class_skill_selection_"+class_non_skill_ids_list[index]).addClass("skillSelected");
 			var option = $("#character_non_class_skill_options .character_non_class_skill_option_"+class_non_skill_ids_list[index]);
 			option.addClass('hidden');
 		}
