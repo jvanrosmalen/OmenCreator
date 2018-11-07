@@ -88,6 +88,27 @@ var CreatePlayerCharSkills = new function(){
 		return ($("#spent_descent_ep").data('ep_amount') + ep_cost) <=
 									$("#total_descent_ep").data('ep_amount');
 	}
+
+	self.checkDescentEpOverflowUsed = function(){
+		var total_spent_descent_ep = 0;
+		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
+
+		$.each($("#descent_race_skill_selected .skillSelected"), function(){
+			total_spent_descent_ep += $(this).data("ep_cost");
+		});
+
+		return (total_spent_descent_ep > max_descent_ep);
+	}
+
+	self.handleDescentEpOverflow = function(){
+		var ep_cost = $(currentCaller).data('ep_cost');
+		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
+
+		// If we get here, it means we have an overflow. No need to check for it
+		var overflow = $("#spent_descent_ep").data('ep_amount') + ep_cost - max_descent_ep;
+		self.updateDescentEP(max_descent_ep);
+		self.addSkillEp(overflow);
+	}
 	
 	self.updateDescentEP = function(value){
 		$("#spent_descent_ep").data('ep_amount', value );
@@ -100,8 +121,38 @@ var CreatePlayerCharSkills = new function(){
 	}
 	
 	self.removeDescentEp = function(ep_cost){
-		var newValue = $("#spent_descent_ep").data('ep_amount') - ep_cost;
-		self.updateDescentEP(newValue);
+		// Tricky version because you have to check for AP-EP overflow
+		// assumes the AP/EP amount is calculated before the skills are actually deselected
+		var total_spent_descent_ep = 0;
+		var overflow_ep = 0;
+		var max_descent_ep = $("#total_descent_ep").data('ep_amount');
+
+		$.each($("#descent_race_skill_selected .skillSelected"), function(){
+			total_spent_descent_ep += $(this).data("ep_cost");
+		});
+
+		if(total_spent_descent_ep > max_descent_ep){
+			// apparently, there has been an overflow
+			overflow_ep = total_spent_descent_ep - max_descent_ep;
+
+			if( (overflow_ep - ep_cost)  > 0){
+				// the ep_cost to be removed is smaller than the overflow
+				// just remove the ep_cost and not the entire overflow
+				// total spent descent ep remains max_descent_ep
+				self.removeSkillEp(ep_cost);
+				total_spent_descent_ep = max_descent_ep;
+			} else {
+				// remove the entire overflow
+				// adjust total spent descent ep for removed ep cost
+				self.removeSkillEp(overflow_ep);
+				total_spent_descent_ep = total_spent_descent_ep - ep_cost;
+			}
+		} else {
+			// no overflow. Just deduct ep cost from spent descent epo
+			total_spent_descent_ep = total_spent_descent_ep - ep_cost;
+		}
+
+		self.updateDescentEP(total_spent_descent_ep);
 	}
 	
 	self.checkSkillEp = function(ep_cost){
@@ -421,6 +472,10 @@ var CreatePlayerCharSkills = new function(){
 	self.selectionListener = function(event, listenerType){
 		var caller = $(event.target).closest('tr');
 
+		// Needed for potential callback functions
+		currentCaller = caller;
+		currentListenerType = listenerType;
+
 		$("."+listenerType+"_skill_option.selected").each(function(){
 			$(caller).removeClass("selected");
 		});
@@ -471,8 +526,15 @@ var CreatePlayerCharSkills = new function(){
 		
 		if(listenerType == "descent"){
 			if(!self.checkDescentEp(skill_ep_cost)){
-				ErrorMessage.showErrorMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid.");
-				return;
+				if(self.checkDescentEpOverflowUsed()){
+					ErrorMessage.showErrorMessage("Je mag maar eenmalig afkomstvaardigheid gedeeltelijk met EP aankopen." +
+					 " Deze mogelijkheid heb je al gebruikt.");
+					 return;
+				} else {
+					ErrorMessage.showErrorMessage("Je hebt al je afkomstpunten al gebruikt." +
+					" Je mag een afkomstvaardigheid niet volledig met EP betalen.");
+					return;
+				}
 			}
 		} else {
 			if(!self.checkSkillEp(skill_ep_cost)){
@@ -486,18 +548,32 @@ var CreatePlayerCharSkills = new function(){
 		}
 		
 		if($(caller).data('mentor_required')){
-			currentCaller = caller;
-			currentListenerType = listenerType;
-			
 			PromptMessage.showPromptMessage("Deze vaardigheid vereist een mentor. " +
 					"Heeft de speler toestemming deze vaardigheid aan te schaffen?", self.doSelectCallerActivateBtn);
 		}else{
+			if(listenerType == "descent"){
+				if(!self.checkDescentEp(skill_ep_cost)){
+					PromptMessage.showPromptMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid. " +
+					"Wil je EP besteden om het verschil te overbruggen?", self.handleDescentEpOverflow);
+					return;
+				}
+			}
+
 			$(caller).addClass("selected");
 			$("."+listenerType+"_skill_select_btn").removeClass('disabled');
 		}
 	}
 	
 	self.doSelectCallerActivateBtn = function(){
+		if(currentListenerType == "descent"){
+			var skill_ep_cost = $(currentCaller).data('ep_cost');
+			if(!self.checkDescentEp(skill_ep_cost)){
+				PromptMessage.showPromptMessage("Je hebt niet genoeg afkomstpunten voor deze vaardigheid. " +
+				"Wil je EP besteden om het verschil te overbruggen?", self.handleDescentEpOverflow);
+				return;
+			}
+		}
+
 		$(currentCaller).addClass("selected");
 		$("."+currentListenerType+"_skill_select_btn").removeClass('disabled');
 	}
@@ -554,6 +630,7 @@ var CreatePlayerCharSkills = new function(){
 		$("."+listenerType+"_skill_selection.selected").each(function(){
 			var skill_id = $(this).data("id");
 			
+			// Always first update EP value because of possible EP/AP overflow
 			if(listenerType === "descent"){
 				self.removeDescentEp($(this).data('ep_cost'));
 			} else {
@@ -740,15 +817,19 @@ var CreatePlayerCharSkills = new function(){
 				}
 			}
 		} );
-
-		// Re-sort the tables
-//		$("#character_class_skill_options th[data-field='name']").click();
-//		$("#character_class_skill_selected th[data-field='name']").click();
-//		$("#character_non_class_skill_options th[data-field='name']").click();
-//		$("#character_non_class_skill_selected th[data-field='name']").click();
 		
 		// re-calculate the spent EP
 		var total_spent_ep = 0;
+		var total_spent_descent_ep = 0;
+
+		$.each($("#descent_race_skill_selected .skillSelected"), function(){
+			total_spent_descent_ep += $(this).data("ep_cost");
+		});
+
+		if(total_spent_descent_ep > 3){
+			total_spent_ep = total_spent_descent_ep - 3;
+		}
+
 		$.each($("#character_non_class_skill_selected .skillSelected"), function(){
 			total_spent_ep += $(this).data("ep_cost");
 		});
@@ -833,15 +914,19 @@ var CreatePlayerCharSkills = new function(){
 				}				
 			}
 		} );
-
-		// Re-sort the tables
-//		$("#character_non_class_skill_options th[data-field='name']").click();
-//		$("#character_non_class_skill_selected th[data-field='name']").click();
-//		$("#character_class_skill_options th[data-field='name']").click();
-//		$("#character_class_skill_selected th[data-field='name']").click();
 		
 		// re-calculate the spent EP
 		var total_spent_ep = 0;
+		var total_spent_descent_ep = 0;
+
+		$.each($("#descent_race_skill_selected .skillSelected"), function(){
+			total_spent_descent_ep += $(this).data("ep_cost");
+		});
+
+		if(total_spent_descent_ep > 3){
+			total_spent_ep = total_spent_descent_ep - 3;
+		}
+
 		$.each($("#character_non_class_skill_selected .skillSelected"), function(){
 			total_spent_ep += $(this).data("ep_cost");
 		});
