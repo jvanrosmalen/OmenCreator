@@ -490,10 +490,6 @@ var CreatePlayerCharSkills = new function(){
 	self.selectionListener = function(event, listenerType){
 		var caller = $(event.target).closest('tr');
 
-		// Needed for potential callback functions
-		currentCaller = caller;
-		currentListenerType = listenerType;
-
 		$("."+listenerType+"_skill_option.selected").each(function(){
 			$(caller).removeClass("selected");
 		});
@@ -517,6 +513,10 @@ var CreatePlayerCharSkills = new function(){
 	self.optionListener = function(event, listenerType){
 		// get calling tr
 		var caller = $(event.target).closest('tr');
+
+		// Needed for potential callback functions
+		currentCaller = caller;
+		currentListenerType = listenerType;
 		
 		$("."+listenerType+"_skill_selection.selected").each(function(){
 			$(caller).removeClass("selected");
