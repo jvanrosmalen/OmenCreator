@@ -381,6 +381,8 @@ class CharacterController extends Controller
     public function editPlayerCharSubmit(){
 		$character = Character::find($_POST['char_id']);
 		
+		$character->name = $_POST['character_name'];
+    	
 		$character->faith_id = $_POST['character_faith'];
 		$character->title = $_POST['character_title'];
 		$character->extra_info = $_POST['extra_info'];

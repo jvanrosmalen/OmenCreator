@@ -41,7 +41,7 @@
 						<div class='col-xs-1'></div>
 						<div class='col-xs-1'>Naam:</div>
 						<div class='col-xs-9'>
-							<span>{{$character->name}}</span>
+							<input id='character_name' name="character_name" style="width: 100%;" value="{{$character->name}}">
 						</div>
 					</div>
 					<div class='row'>
