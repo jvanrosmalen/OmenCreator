@@ -235,10 +235,10 @@ var CreatePlayerCharSkills = new function(){
 				problem = true;
 
 				// recursive to check underlying skills of unmet prereq
-				if($("#character_class_skill_option_"+prereq_skill['id']).length){
-					self.checkSkillPrereqs($("#character_class_skill_option_"+prereq_skill['id']).data());
+				if($(".character_class_skill_option_"+prereq_skill['id']).length){
+					self.checkSkillPrereqs($(".character_class_skill_option_"+prereq_skill['id']).data());
 				} else {
-					self.checkSkillPrereqs($("#character_non_class_skill_option_"+prereq_skill['id']).data());
+					self.checkSkillPrereqs($(".character_non_class_skill_option_"+prereq_skill['id']).data());
 				}
 				//self.checkSkillPrereqs($("[data-id="+ prereq_skill['id'] +"]").data());
 				
