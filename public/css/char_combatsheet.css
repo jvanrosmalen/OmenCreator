@@ -152,8 +152,16 @@ td{
 }
 
 /* Needed because DOMPDF cannot handle rowspan */
+.height_2_row{
+	height: 46px;
+}
+
 .height_3_row{
 	height: 69px;
+}
+
+.height_4_row{
+	height: 92px;
 }
 
 .height_5_row{
