@@ -122,7 +122,7 @@
 						@endphp
 						<strong>Levensvonk - {{$sparkData->title}}:</strong>
 						@foreach($sparkData->text as $sparkLine)
-							{{$sparkLine}}$nbsp
+							{{$sparkLine}}&nbsp
 						@endforeach
 						</td>
 					</tr>
