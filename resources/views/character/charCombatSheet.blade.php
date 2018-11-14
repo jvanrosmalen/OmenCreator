@@ -9,7 +9,7 @@
 			<div id='page_1' class='page heavy_outline left_page'>
 				<table>
 					<tr>
-						<td colspan='18' class='heavy_outline height_5_row'>
+						<td colspan='18' class='heavy_outline height_3_row'>
 <!--							<img class="nav_bar_png" src="img/omen.jpg" alt="Omen Logo"> -->
 						</td>
 					</tr>
@@ -116,41 +116,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
-						</td>
-						<td class='dashed'>
+					<td colspan='18' class='heavy_outline height_3_row'>
+						@php
+						$sparkData = json_decode($character->spark_data);
+						@endphp
+						<strong>Levensvonk - {{$sparkData->title}}:</strong>
+						@foreach($sparkData->text as $sparkLine)
+							{{$sparkLine}}$nbsp
+						@endforeach
 						</td>
 					</tr>
 					<!-- Can't use rowspan due to bug in DOMPDF -->
