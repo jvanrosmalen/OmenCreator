@@ -40,9 +40,10 @@ var SparkChoice = new function(){
 			$('#resourceString').text(resource);
 			$('input[name=resource_string]').val(resource);
 		});
+	}
 
-		self.setEventHandlersSelection23 = function(){
-			$("#selectionDiv").change(function(e) {
+	self.setEventHandlersSelection23 = function(){
+		$("#selectionDiv").change(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 
