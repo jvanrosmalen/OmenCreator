@@ -330,7 +330,7 @@ class SparkController extends Controller
 
 			case 23:
 				// Grondstoffen 2
-				return view('spark/sparkEntries/sparkSelection15',
+				return view('spark/sparkEntries/sparkSelection23',
 					['sparkIndex'=>$sparkIndex,
 					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
 					'resources' => $this->RESOURCE_TABLE,
