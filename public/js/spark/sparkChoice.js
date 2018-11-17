@@ -64,7 +64,7 @@ var SparkChoice = new function(){
 				var value = parseInt($(this).val());
 
 				if(value == 0){
-					$this.attr('max', (maxResources-total));
+					$(this).attr('max', (maxResources-total));
 				}
 			});
 
