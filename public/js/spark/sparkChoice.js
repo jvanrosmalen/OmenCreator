@@ -75,6 +75,12 @@ var SparkChoice = new function(){
 						$(this).fadeTo('fast', 1.0);						
 						$("span#"+name).fadeTo('fast', 1.0);
 					}
+				} else {
+					if(newMax > value){
+						$(this).attr('max', newMax);
+					} else {
+						$(this).attr('max', value);
+					}
 				}
 			});
 
