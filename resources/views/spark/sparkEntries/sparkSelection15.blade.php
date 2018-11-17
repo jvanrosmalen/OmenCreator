@@ -38,7 +38,7 @@
                     <div id="selectionDiv" class="col-xs-10">
                         <p>Selecteer hieronder een grondstof:</p>
                         @foreach($resources as $resource)
-                        <input type='radio' name='resource' value={{$resource}}>{{resource}}<br>
+                        <input type='radio' name='resource' value={{$resource}}>{{$resource}}<br>
                         @endforeach
                     </div>
                     <div class="col-xs-1">
