@@ -39,7 +39,7 @@
                     <div id="selectionDiv" class="col-xs-10">
                         <p>Selecteer hieronder maximaal 3 grondstoffen (in totaal) van het juiste type:</p>
                         @foreach($resources as $resource)
-                        <input class='resourceInput' type='number' name='{{$resource}}' min='0' max='3'>{{$resource}}<br>
+                        <input class='resourceInput' type='number' name='{{$resource}}' min='0' max='3' value='0'>{{$resource}}<br>
                         @endforeach
                     </div>
                     <div class="col-xs-1">
