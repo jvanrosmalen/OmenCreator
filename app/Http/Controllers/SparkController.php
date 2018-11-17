@@ -316,7 +316,7 @@ class SparkController extends Controller
 	public function handleSparkChoice(){
 		$selectedSpark = $_POST['selectedSpark'];
 		$charId = $_POST['charId'];
-		$sparkIndex = getSparkIdFromRoll($selectedSpark);
+		$sparkIndex = $this->getSparkIdFromRoll($selectedSpark);
 
 		switch($sparkIndex){
 			case 15:
@@ -339,7 +339,7 @@ class SparkController extends Controller
 			$sparkRoll = $sparkRollInput;
 		}
 		
-		$sparkIndex = getSparkIdFromRoll($sparkRoll);
+		$sparkIndex = $this->getSparkIdFromRoll($sparkRoll);
 		
 		switch($sparkIndex){
 			case 1:
