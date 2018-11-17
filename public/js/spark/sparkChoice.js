@@ -63,14 +63,17 @@ var SparkChoice = new function(){
 			$('.resourceInput').each(function(){
 				var value = parseInt($(this).val());
 				var newMax = (maxResources-total);
+				var name = $(this).attr('name');
 
 				if(value == 0){
 					$(this).attr('max', newMax);
 				
 					if(newMax == 0){
-						$(this).fadeTo('fast', 0.5, function(){});
+						$(this).fadeTo('fast', 0.5);
+						$("span#"+name).fadeTo('fast', 0.5);
 					} else {
-						$(this).fadeTo('fast', 1.0, function(){});						
+						$(this).fadeTo('fast', 1.0);						
+						$("span#"+name).fadeTo('fast', 1.0);
 					}
 				}
 			});
