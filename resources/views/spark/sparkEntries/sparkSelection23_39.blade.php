@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-xs-10">
                         Ook al ben je geen handelaar (of net wel), je hebt ergens 
-                        in het verleden wat grondstoffen (D3) kunnen ruilen en/of kopen 
+                        in het verleden wat grondstoffen (D{{$max_resources}}) kunnen ruilen en/of kopen 
                         die je nog bijhebt.<br>
                         Je ontvangt grondstoffen van het type: <span id='resourceString'></span> 		
                     </div>
@@ -37,7 +37,7 @@
                     <div class="col-xs-1">
                     </div>
                     <div id="selectionDiv" class="col-xs-10">
-                        <p>Selecteer hieronder maximaal 3 grondstoffen (in totaal) van het juiste type:</p>
+                        <p>Selecteer hieronder maximaal {{$max_resources}} grondstoffen (in totaal) van het juiste type:</p>
                         @foreach($resources as $resource)
                         <input class='resourceInput' type='number' name='{{$resource}}' min='0' max='3' value='0'>
                             &nbsp;<span id="{{$resource}}">{{$resource}}</span><br>

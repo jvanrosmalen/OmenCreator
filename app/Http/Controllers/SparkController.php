@@ -330,12 +330,22 @@ class SparkController extends Controller
 
 			case 23:
 				// Grondstoffen 2
-				return view('spark/sparkEntries/sparkSelection23',
+				return view('spark/sparkEntries/sparkSelection23_39',
 					['sparkIndex'=>$sparkIndex,
 					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
 					'resources' => $this->RESOURCE_TABLE,
 					'charId'=>$charId,
 					'max_resources'=>3]);
+				break;
+
+			case 39:
+				// Grondstoffen 3
+				return view('spark/sparkEntries/sparkSelection23_39',
+					['sparkIndex'=>$sparkIndex,
+					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
+					'resources' => $this->RESOURCE_TABLE,
+					'charId'=>$charId,
+					'max_resources'=>6]);
 				break;
 
 			default:
