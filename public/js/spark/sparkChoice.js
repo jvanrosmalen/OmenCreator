@@ -52,7 +52,7 @@ var SparkChoice = new function(){
 			var maxResources = $("input[name='max_resources']").val();
 
 			$('.resourceInput').each(function(){
-				var value = $(this).val();
+				var value = parseInt($(this).val());
 
 				total = total + value;
 				for(var i=0; i < value; i++){
@@ -61,7 +61,7 @@ var SparkChoice = new function(){
 			});
 
 			$('.resourceInput').each(function(){
-				var value = $(this).val();
+				var value = parseInt($(this).val());
 
 				if(value == 0){
 					$this.attr('max', (maxResources-total));
