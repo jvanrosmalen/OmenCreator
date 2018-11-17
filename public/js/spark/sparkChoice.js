@@ -32,7 +32,7 @@ var SparkChoice = new function(){
 		}
 	}
 
-	self.setHandlerSelection15 = function(){
+	self.setEventHandlersSelection15 = function(){
 		$("#selectionDiv").addEventListener('change', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
