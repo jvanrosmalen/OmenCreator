@@ -314,7 +314,23 @@ class SparkController extends Controller
 	}
 	
 	public function handleSparkChoice(){
-		return $this->showSparkRandom($_POST['charId'], $_POST['selectedSpark']);
+		$selectedSpark = $_POST['selectedSpark'];
+		$charId = $_POST['charId'];
+		$sparkIndex = getSparkIdFromRoll($selectedSpark);
+
+		switch($sparkIndex){
+			case 15:
+				// Grondstoffen 1
+				return view('spark/sparkEntries/sparkSelection15',
+					['sparkIndex'=>$sparkIndex,
+					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
+					'resources' => $this->RESOURCE_TABLE,
+					'charId'=>$charId]);
+				break;
+
+			default:
+			return $this->showSparkRandom($charId, $selectedSpark);
+		}		
 	}
 	
 	public function showSparkRandom($charId, $sparkRollInput=-1){
@@ -323,15 +339,7 @@ class SparkController extends Controller
 			$sparkRoll = $sparkRollInput;
 		}
 		
-		$sparkIndex = 0;
-		
-		foreach($this->SPARK_TABLE as $i=>$spark){
-			if($sparkRoll <= $spark['end'] && $sparkRoll >= $spark['start']){
-				// found it.
-				$sparkIndex = $i;
-				break;
-			}
-		}
+		$sparkIndex = getSparkIdFromRoll($sparkRoll);
 		
 		switch($sparkIndex){
 			case 1:
@@ -719,7 +727,7 @@ class SparkController extends Controller
 				"Je ontvangt een dokterstas en ".rand(1,3)." verband."];
 			case 10:
 				return ["Iemand van je familie of goede kennis was".
-				" diek en liet jouw zijn gereedschap na",
+				" dief en liet jouw zijn gereedschap na",
 				"Je ontvangt een krakers set."];
 		} 
 	}
@@ -741,6 +749,20 @@ class SparkController extends Controller
 			default:
 				return "error";
 		}
+	}
+
+	private function getSparkIdFromRoll($sparkRoll){
+		$sparkIndex = -1;
+
+		foreach($this->SPARK_TABLE as $i=>$spark){
+			if($sparkRoll <= $spark['end'] && $sparkRoll >= $spark['start']){
+				// found it.
+				$sparkIndex = $i;
+				break;
+			}
+		}
+
+		return $sparkIndex;
 	}
 	
 	// The Spark tabel is immutable. Also: the variety of actions to be taken for each
@@ -776,7 +798,7 @@ class SparkController extends Controller
 			'title'=>'Vergiftigd 1',
 			'shortText'=>'Het karakter begint het spel onder invloed van een licht gif.',
 			'text'=>['Je bent gebeten, gestoken of had nooit van die Ranae een drankje mogen aannemen.
-				 Je begint het spel onder invloed van een Niveau 2 Gif.',
+				 Je begint het spel onder invloed van een Niveau 1 Gif.',
 				'Koppig heb je wel op dokterskosten bespaart: Je ontvangt 5 Brons.']
 			],
 		4 =>['start'=>6,

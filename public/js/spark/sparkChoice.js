@@ -31,4 +31,14 @@ var SparkChoice = new function(){
 			$("#no_spark_selected_warning").removeClass('hidden');
 		}
 	}
+
+	self.setHandlerSelection15 = function(){
+		$("#selectionDiv").addEventListener('change', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var resource = $('input[name=resource]:checked').val();
+			$('#resourceString').text(resource);
+			$('input[name=resource_string]').val(resource);
+		});
+	}
 }
