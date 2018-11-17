@@ -328,6 +328,16 @@ class SparkController extends Controller
 					'charId'=>$charId]);
 				break;
 
+			case 23:
+				// Grondstoffen 2
+				return view('spark/sparkEntries/sparkSelection15',
+					['sparkIndex'=>$sparkIndex,
+					'title'=>$this->SPARK_TABLE[$sparkIndex]['title'],
+					'resources' => $this->RESOURCE_TABLE,
+					'charId'=>$charId,
+					'max_resources'=>3]);
+				break;
+
 			default:
 			return $this->showSparkRandom($charId, $selectedSpark);
 		}		
@@ -907,7 +917,7 @@ class SparkController extends Controller
 			'title'=>'Herbalisme 1',
 			'shortText'=>'Het karakter begint met een licht brouwsel.',
 			'text'=>['Je hebt recent nog een herbalistisch brouwsel kunnen kopen, ruilen of stelen.',
-					'Je ontvangt $eacute;$eacute;n Niveau 1 Herbalisme Brouwsel']
+					'Je ontvangt &eacute;&eacute;n Niveau 1 Herbalisme Brouwsel']
 			],
 		17=>['start'=>28,
 			'end'=>29,

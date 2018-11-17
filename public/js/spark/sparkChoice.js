@@ -40,5 +40,36 @@ var SparkChoice = new function(){
 			$('#resourceString').text(resource);
 			$('input[name=resource_string]').val(resource);
 		});
+
+		self.setEventHandlersSelection23 = function(){
+			$("#selectionDiv").change(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			var total = 0;
+			var resourcesArray = new Array();
+			var maxResources = $("input[name='max_resources']").val();
+
+			$('.resourceInput').each(function(){
+				var value = $this.val();
+
+				total = total + value;
+				for(var i=0; i < value; i++){
+					resourcesArray.push($this.attr('name'));
+				}
+			});
+
+			$('.resourceInput').each(function(){
+				var value = $this.val();
+
+				if(value == 0){
+					$this.attr('max', (maxResources-total));
+				}
+			});
+
+			resourceString = resourcesArray.join();
+			$('#resourceString').text(resourceString);
+			$('input[name=resource_string]').val(resourceString);
+		});
 	}
 }
