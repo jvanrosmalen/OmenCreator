@@ -33,7 +33,7 @@ var SparkChoice = new function(){
 	}
 
 	self.setEventHandlersSelection15 = function(){
-		$("#selectionDiv").addEventListener('change', function(e) {
+		$("#selectionDiv").change(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 			var resource = $('input[name=resource]:checked').val();
