@@ -48,14 +48,14 @@ var CreatePlayerCharSkills = new function(){
 	}
 	
 	self.submitSkills = function(event){
-		if($("#spent_descent_ep").data("ep_amount") 
-				< $("#total_descent_ep").data("ep_amount")){
-			// Some descent EP has not been spent
-			ErrorMessage.showErrorMessage("Je hebt nog afkomstpunten niet besteed." +
-					" Selecteer nog meer afkomstvaardigheden.");
-			event.preventDefault();
-			return;
-		}
+		// if($("#spent_descent_ep").data("ep_amount") 
+		// 		< $("#total_descent_ep").data("ep_amount")){
+		// 	// Some descent EP has not been spent
+		// 	ErrorMessage.showErrorMessage("Je hebt nog afkomstpunten niet besteed." +
+		// 			" Selecteer nog meer afkomstvaardigheden.");
+		// 	event.preventDefault();
+		// 	return;
+		// }
 		
 		if($(".spent_character_ep").data("ep_amount") 
 				> $(".total_character_ep").data("ep_amount")){
@@ -69,12 +69,14 @@ var CreatePlayerCharSkills = new function(){
 		// Construct below is to stop button event until user has been
 		// asked if low EP amount is ok.
 		
-		if($(".spent_character_ep").data("ep_amount") 
+		if(($(".spent_character_ep").data("ep_amount") 
 				< $(".total_character_ep").data("ep_amount")
+			|| ($("#spent_descent_ep").data("ep_amount") 
+				< $("#total_descent_ep").data("ep_amount")))
 				&& !low_spent_ep_ok){
 			event.preventDefault();
 			
-			PromptMessage.showPromptMessage("Je hebt minder EP besteed dan toegestaan. " +
+			PromptMessage.showPromptMessage("Je hebt minder EP of AP besteed dan toegestaan. " +
 					"Wil je dit karakter toch opslaan?", self.doTriggerSaveBtn);			
 		}
 	}
