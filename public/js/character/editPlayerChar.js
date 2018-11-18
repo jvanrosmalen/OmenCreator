@@ -46,6 +46,37 @@ var EditPlayerChar = new function(){
 		CreatePlayerCharSkills.updateOverviewNonClassSkills();
 		CreatePlayerCharSkills.updateOverviewDescentSkills();
 	}
+
+	self.handleSurvivedChange = function(event){
+		event.preventDefault();
+		var nrSurvived = $(event.target).val();
+		var char_level = self.survivedToLevel(parseInt(nrSurvived));
+		var old_char_level = $('#char_level').val();
+		
+		if(char_level != old_char_level){
+			$("#char_level_name_"+old_char_level).addClass('hidden');
+			$("#char_level_name_"+char_level).removeClass('hidden');
+			$("#char_level").val(char_level);
+
+			ErrorMessage.showErrorMessage("Het level van dit karakter is veranderd. Sla de wijziging op, en refresh de " +
+			 "pagina om de juiste vaardigheden te laden.");
+		}
+	}
+
+	self.survivedToLevel = function(nrSurvived){
+		var retVal = 1;
+		if(nrSurvived >= 3){
+			if(nrSurvived < 8){
+				retVal = 2;
+			}else if(nrSurvived < 15){
+				retVal = 3;
+			}else {
+				retVal = 4;
+			}
+		}
+		
+		return retVal;
+	}
 	
 	// ***************************
 	// Wrapper listeners to adjust overview EP amount

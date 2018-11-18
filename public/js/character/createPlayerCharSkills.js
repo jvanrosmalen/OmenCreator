@@ -48,15 +48,6 @@ var CreatePlayerCharSkills = new function(){
 	}
 	
 	self.submitSkills = function(event){
-		// if($("#spent_descent_ep").data("ep_amount") 
-		// 		< $("#total_descent_ep").data("ep_amount")){
-		// 	// Some descent EP has not been spent
-		// 	ErrorMessage.showErrorMessage("Je hebt nog afkomstpunten niet besteed." +
-		// 			" Selecteer nog meer afkomstvaardigheden.");
-		// 	event.preventDefault();
-		// 	return;
-		// }
-		
 		if($(".spent_character_ep").data("ep_amount") 
 				> $(".total_character_ep").data("ep_amount")){
 			// Too much EP spent.

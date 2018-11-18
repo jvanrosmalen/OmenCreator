@@ -56,13 +56,20 @@
 							#Omens: 
 						</div>
 						<div class='col-xs-2'>
-							<span id="overview_survived">{{$character->nr_events_survived}}</span>
-						</div> 
+							<input id="overview_survived" class='number_input' type="number" name="nr_events_survived" min="0" value="{{$character->nr_events_survived}}" onChange="EditPlayerChar.handleSurvivedChange(event)"> 
+						</div>
 						<div class='col-xs-1'>
 							Niveau : 
 						</div>
-						<div class='col-xs-1'>	
-							<span id="overview_char_level">{{$character->char_level}}</span>
+						<div class='col-xs-1'>
+							@foreach($skilllevels as $skilllevel)
+								@if ($skilllevel->id == {{$character->getCharLevelId()}})
+									<input id="char_level" type="hidden" name="char_level" value="{{$skilllevel->id}}">
+									<span id="char_level_name_{{$skilllevel->id}}">{{$skilllevel->skill_level}}</span>
+								@else
+									<span id="char_level_name_{{$skilllevel->id}}" class="hidden">{{$skilllevel->skill_level}}</span>
+								@endif
+							@endforeach
 						</div>
 					</div>
 					<div class='row'>

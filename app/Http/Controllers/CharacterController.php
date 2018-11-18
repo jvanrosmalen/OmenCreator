@@ -386,6 +386,7 @@ class CharacterController extends Controller
 		$character->faith_id = $_POST['character_faith'];
 		$character->title = $_POST['character_title'];
 		$character->extra_info = $_POST['extra_info'];
+		$character->nr_events_survived = $_POST['nr_events_survived'];
 
     	$raceSkillIds = json_decode($_POST['race_skill_list']);
     	$descentSkillIds = json_decode($_POST['descent_skill_list']);
