@@ -63,7 +63,7 @@
 						</div>
 						<div class='col-xs-1'>
 							@foreach($skilllevels as $skilllevel)
-								@if ($skilllevel->id == {{$character->getCharLevelId()}})
+								@if ($skilllevel->id == $character->getCharLevelId())
 									<input id="char_level" type="hidden" name="char_level" value="{{$skilllevel->id}}">
 									<span id="char_level_name_{{$skilllevel->id}}">{{$skilllevel->skill_level}}</span>
 								@else
