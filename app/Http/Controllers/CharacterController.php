@@ -276,7 +276,8 @@ class CharacterController extends Controller
     			'skills' => $allClassSkills,
     			'descent_skills' => $allDescentSkills,
 				'wealth_types'=> WealthType::all(),
-				'faiths' => Faith::all()
+				'faiths' => Faith::all(),
+				'skilllevels' => SkillLevel::all()
     	]);
     }
     
