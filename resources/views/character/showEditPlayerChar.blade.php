@@ -201,7 +201,7 @@
 							Levensvonk - {{$sparkData->title}}
 						</div>
 						<div class="col-xs-1">
-							<a href="show_spark_choice/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas Levensvonk Aan">
+							<a href="show_spark_choice/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Levensvonk Aan">
 								<span class="glyphicon glyphicon-pencil"></span> 
 							</a>						
 						</div>		
