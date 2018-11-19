@@ -119,7 +119,7 @@ var EditPlayerChar = new function(){
 		var total_value = base_value + descent_value + class_value + nonclass_value;
 		$("#overview_stat_"+statId).data('value', total_value);
 
-		$("#overview_stat_"+statId).html("value");
+		$("#overview_stat_"+statId).html(total_value);
 
 		if(statId == 1){
 			self.updateStatValueForSpark(11, bonus);
@@ -134,7 +134,7 @@ var EditPlayerChar = new function(){
 		var total_value = bonus + descent_value + class_value + nonclass_value;
 		$("#overview_res_"+statId).data('value', total_value);
 
-		$("#overview_res_"+statId).html("value");
+		$("#overview_res_"+statId).html(total_value);
 	}
 
 	
