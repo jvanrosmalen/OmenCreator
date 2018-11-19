@@ -85,9 +85,58 @@ var EditPlayerChar = new function(){
 	// ***************************
 	self.updateAllForSpark = function(){
 		if($("#spark_data")){
-			var spark_data = JSON.parse($("spark_data").data("spark_data"));
+			var spark_data = $("spark_data").data("spark_data");
+
+			// Handle statistics
+			var statistics = spark_data['statistics'];
+
+			for(var statId in statistics){
+				if(statistics[statId] > 0){
+					self.updateStatValueForSpark(statId, statistics[statId]);
+				}
+			}
+
+			// handle resistances
+			var resistances = spark_data['resistances'];
+
+			for(var resId in resistances){
+				if(resistances[resId] > 0){
+					self.updateResValueForSpark(statId, resistances[resId]);
+				}
+			}
 		}
 	}
+
+	self.updateStatValueForSpark = function(statId, bonus){
+		var base_value = $("#overview_stat_"+statId).data('base');
+		var descent_value = $("#overview_stat_"+statId).data('descent');
+		var class_value = $("#overview_stat_"+statId).data('class');
+		var nonclass_value = $("#overview_stat_"+statId).data('nonclass');
+
+		base_value = base_value + bonus;
+		$("#overview_stat_"+statId).data('base', base_value);
+
+		var total_value = base_value + descent_value + class_value + nonclass_value;
+		$("#overview_stat_"+statId).data('value', total_value);
+
+		$("#overview_stat_"+statId).html("value");
+
+		if(statId == 1){
+			self.updateStatValueForSpark(11, bonus);
+		}
+	}
+
+	self.updateResValueForSpark = function(statId, bonus){
+		var descent_value = $("#overview_res_"+statId).data('descent');
+		var class_value = $("#overview_res_"+statId).data('class');
+		var nonclass_value = $("#overview_res_"+statId).data('nonclass');
+
+		var total_value = bonus + descent_value + class_value + nonclass_value;
+		$("#overview_res_"+statId).data('value', total_value);
+
+		$("#overview_res_"+statId).html("value");
+	}
+
 	
 	// ***************************
 	// Wrapper listeners to adjust overview EP amount
