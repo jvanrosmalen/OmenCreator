@@ -104,17 +104,6 @@ var EditPlayerChar = new function(){
 					self.updateResValueForSpark(resId, resistances[resId]);
 				}
 			}
-
-			// handle wealth bonus
-			var wealth_bonus = spark_data['wealth_bonus'];
-			var current_wealth = $("#overview_wealth").data('base');
-			if((wealth_bonus > 0) &&  (current_wealth < 4)){
-				var total_wealth = current_wealth + wealth_bonus;
-				$("#overview_wealth").data('base', total_wealth);
-
-				var wealthString = CreateCharacter.getWealthType(total_wealth);
-				$("#overview_wealth").html(wealthString);
-			}
 		}
 	}
 
