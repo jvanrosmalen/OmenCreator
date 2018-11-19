@@ -190,6 +190,31 @@
 							</table>
 						</div>							
 					</div>
+
+					<div class="row overview_header_row">
+						@php
+							$sparkData = json_decode($character->spark_data);
+						@endphp
+						<div class="col-xs-1">
+						</div>
+						<div class="col-xs-5">
+							Levensvonk - {{$sparkData->title}}
+						</div>
+						<div class="col-xs-1">
+							<a href="show_spark_choice/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas Levensvonk Aan">
+								<span class="glyphicon glyphicon-pencil"></span> 
+							</a>						
+						</div>		
+					</div>
+					<div class="row">
+						<div class="col-xs-1">
+						</div>
+						<div class="col-xs-8">
+							@foreach($sparkData->text as $sparkLine)
+								{{$sparkLine}}<br>
+							@endforeach
+						</div>
+					</div>
 				</div>
 
 				<div class="row well">
