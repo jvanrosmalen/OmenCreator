@@ -195,6 +195,7 @@
 						@php
 							$sparkData = json_decode($character->spark_data);
 						@endphp
+						<div id="spark_data" class="hidden" data-spark_data="{{$character->spark_data}}"></div>
 						<div class="col-xs-1">
 						</div>
 						<div class="col-xs-8">

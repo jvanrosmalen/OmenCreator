@@ -45,6 +45,8 @@ var EditPlayerChar = new function(){
 		CreatePlayerCharSkills.updateOverviewClassSkills();
 		CreatePlayerCharSkills.updateOverviewNonClassSkills();
 		CreatePlayerCharSkills.updateOverviewDescentSkills();
+
+		self.updateAllForSpark();
 	}
 
 	self.handleSurvivedChange = function(event){
@@ -76,6 +78,15 @@ var EditPlayerChar = new function(){
 		}
 		
 		return retVal;
+	}
+
+	// ***************************
+	// Handle the stuff from the spark roll
+	// ***************************
+	self.updateAllForSpark = function(){
+		if($("#spark_data")){
+			var spark_data = JSON.parse($("spark_data").data("spark_data"));
+		}
 	}
 	
 	// ***************************
