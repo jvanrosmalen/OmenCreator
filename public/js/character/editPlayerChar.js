@@ -101,7 +101,7 @@ var EditPlayerChar = new function(){
 
 			for(var resId in resistances){
 				if(resistances[resId] > 0){
-					self.updateResValueForSpark(statId, resistances[resId]);
+					self.updateResValueForSpark(resId, resistances[resId]);
 				}
 			}
 		}
@@ -127,15 +127,15 @@ var EditPlayerChar = new function(){
 		}
 	}
 
-	self.updateResValueForSpark = function(statId, bonus){
-		var descent_value = $("#overview_res_"+statId).data('descent');
-		var class_value = $("#overview_res_"+statId).data('class');
-		var nonclass_value = $("#overview_res_"+statId).data('nonclass');
+	self.updateResValueForSpark = function(resId, bonus){
+		var descent_value = $("#overview_res_"+resId).data('descent');
+		var class_value = $("#overview_res_"+resId).data('class');
+		var nonclass_value = $("#overview_res_"+resId).data('nonclass');
 
 		var total_value = bonus + descent_value + class_value + nonclass_value;
-		$("#overview_res_"+statId).data('value', total_value);
+		$("#overview_res_"+resId).data('value', total_value);
 
-		$("#overview_res_"+statId).html(total_value);
+		$("#overview_res_"+resId).html(total_value);
 	}
 
 	
