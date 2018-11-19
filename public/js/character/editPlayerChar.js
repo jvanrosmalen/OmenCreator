@@ -85,7 +85,7 @@ var EditPlayerChar = new function(){
 	// ***************************
 	self.updateAllForSpark = function(){
 		if($("#spark_data")){
-			var spark_data = $("spark_data").data("spark_data");
+			var spark_data = $("#spark_data").data("spark_data");
 
 			// Handle statistics
 			var statistics = spark_data['statistics'];
