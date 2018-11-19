@@ -122,7 +122,8 @@ var EditPlayerChar = new function(){
 		$("#overview_stat_"+statId).html(total_value);
 
 		if(statId == 1){
-			self.updateStatValueForSpark(11, bonus);
+			$("#overview_stat_"+statId).data('value', (total_value-1));
+			$("#overview_stat_11").html((total_value-1));
 		}
 	}
 
