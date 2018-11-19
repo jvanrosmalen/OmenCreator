@@ -489,6 +489,11 @@ class Character extends Model
 			$spark_data = json_decode($character->spark_data);
 			if($spark_data != null && isset($spark_data->wealth_bonus)){
 				$wealthId += $spark_data->wealth_bonus;
+
+				$max_wealthId = WealthType::where('wealth_type', '=', 'rijk')->get()[0]->id;
+				if( $wealthId > $max_wealthId){
+					$wealthId = $max_wealthId;
+				}
 			}
 		}
 			
