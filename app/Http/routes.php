@@ -144,6 +144,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_edit_character/{charId?}', ['as'=>'show_edit_character', 'uses'=>'CharacterController@showEditPlayerChar'])->middleware('isStoryTelling');
 	Route::post('/edit_character_submit', ['as'=>'edit_character_submit', 'uses'=>'CharacterController@editPlayerCharSubmit'])->middleware('isStoryTelling');
 	Route::get('/my_playerchar', 'CharacterController@showMyCharacter')->middleware('auth');
+	Route::get('/show_user_character/{userId?}/{charId?}', 'CharacterController@showUserCharacter')->middleware('auth');
+	Route::get('/my_playercharacters', 'CharacterController@showMyCharacters')->middleware('auth');
+	
 // 	Route::get('/my_extras', 'CharacterController@showMyExtras');
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');
 	Route::get('/raise_character/{charId?}', 'CharacterController@doRaiseCharacter')->middleware('isAdmin');

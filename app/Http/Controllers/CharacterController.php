@@ -234,7 +234,34 @@ class CharacterController extends Controller
     	}else{
     		return redirect('/illegal_link');
     	}
-    }
+	}
+	
+	public function showMyCharacters(){
+		$user = Auth::user();
+    	
+    	if($user != null){
+    		$charNameIds = Character::where('user_id', '=', $user->id )
+    			->where('is_alive', true)
+				->where('is_player_char', true)
+				->select('name','id');
+				
+			if(sizeof($charNameIds) > 1){
+				return view('character/showMyPlayerChars', ['charnames' => $charNameIds,
+				'userId' => $user->id]);
+			} else if(sizeof($charNameIds) == 1) {
+				return $this->showMyCharacter();
+			} else {
+    			return view('character/showNoPlayerChar');
+    		}
+    	}else{
+    		return redirect('/illegal_link');
+    	}
+	}
+
+	public function showUserCharacter($userId, $charId){
+		echo $userId;
+		echo $charId;
+	}
     
     public function showEditPlayerChar($charId){
     	$character = Character::find($charId);

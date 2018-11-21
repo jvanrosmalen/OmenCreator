@@ -112,6 +112,7 @@
                         	<li><a href="{{ url('my_playerchar') }}">Mijn Spelerkarakter</a></li>
 <!--                         	<li><a href="{{ url('my_extras') }}">Mijn Figurantrollen</a></li> -->
                         	@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+                            <li><a href="{{ url('my_playercharacters') }}">Mijn Spelerkarakter (test)</a></li>
                         	<hr>
                         	<li><a href="{{ url('create_player_character_basic_info') }}">Cre&euml;er Spelerkarakter</a></li>
                             <li><a href="{{ url('/showall_character') }}">Overzicht Karakters</a></li>
