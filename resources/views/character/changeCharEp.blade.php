@@ -23,7 +23,7 @@
 		</div>
 
         <div class="row">
-            <form action="/do_change_character_ep" method="post" enctype="multipart/form-data">
+            <form action="/do_change_character_ep/{{$character->id}}" method="post" enctype="multipart/form-data">
 
                 <!-- ******************* -->
                 <!-- For Laravel CSRF administration -->

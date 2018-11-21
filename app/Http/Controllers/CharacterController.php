@@ -510,6 +510,17 @@ class CharacterController extends Controller
 		return view('/character/changeCharEp',
 				['character'=>Character::find($charId)]);
 	}
+
+	public function doChangeCharEp($charId){
+		$character = Character::find($charId);
+
+		$character->ep_amount = $_POST["ep_amount"];
+		$character->descent_ep_amount = $_POST["descent_ep_amount"];
+
+		$character->save();
+
+		return $this->doShowPlayerChar($charId);
+	}
 	
 	public function removeCharEp(){
 		$charId = $_POST['charId'];
