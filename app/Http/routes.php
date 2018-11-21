@@ -151,6 +151,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');
 	Route::get('/raise_character/{charId?}', 'CharacterController@doRaiseCharacter')->middleware('isAdmin');
 	Route::get('/show_character_ep/{charId?}', ['as'=>'show_character_ep', 'uses'=>'CharacterController@showCharEp'])->middleware('isStoryTelling');
+	Route::get('/change_character_ep/{charId?}', ['as'=>'change_character_ep', 'uses'=>'CharacterController@changeCharEp'])->middleware('isStoryTelling');
 	Route::post('/remove_character_ep', ['as'=>'remove_character_ep', 'uses'=>'CharacterController@removeCharEp'])->middleware('isStoryTelling');
 	Route::post('/do_character_add_ep', ['as'=>'do_character_add_ep', 'uses'=>'CharacterController@doCharAddEp'])->middleware('isStoryTelling');
 // 	Route::post('/do_character_remove_ep', ['as'=>'do_character_remove_ep', 'uses'=>'CharacterController@doCharRemoveEp'])->middleware('isStoryTelling');
