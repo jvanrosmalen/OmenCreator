@@ -8,11 +8,11 @@
             </div>
         </div>
 
-        <div class="row well warning-text">
+        <div class="row well warning-text text-center">
 			<div class="col-xs-12">
 				Deze pagina is enkel en alleen bedoeld om fouten in de EP hoeveelheid van karakters te verhelpen!
                 Gebruik onderstaande opties niet voor het regulier toewijzen van EP, want dan komt deze niet netjes in
-                het EP-overzicht van het karakter te staan!<br>
+                het EP-overzicht van het karakter te staan!<br><br>
                 Als je gewoon EP wil toewijzen aan een karakters, ga dan naar:<br>
                 <a class="btn btn-default" href="show_character_ep/{{$character->id}}">Update Karakter Ep</a>
 			</div>		
