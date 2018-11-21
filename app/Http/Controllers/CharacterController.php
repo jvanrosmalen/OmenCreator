@@ -204,33 +204,7 @@ class CharacterController extends Controller
     			->where('is_player_char', true)
     			->first();
     		
-    		if($character != null){
-				$skill_handout_objects = array();
-				$char_docs = array();
-
-				if(Storage::disk('chardocs')->exists('/'.$character->id)){
-					$full_names = glob(storage_path('app/chardocs/'.$character->id).'/*.pdf');
-
-					// Now strip off leading directory path
-					foreach($full_names as $full_name){
-						$char_docs[] = basename($full_name);
-					}
-				}
-				
-				$handoutSkills = $character->skills()->whereNotNull("skill_handout")->where('skill_handout', '!=', '')->get();
-		
-				foreach($handoutSkills as $handoutSkill){
-					$skill_handout_objects[] = ["skill_id" => $handoutSkill->id, "handout_name" => $handoutSkill->skill_handout];
-				}
-
-		    	return view('character/showPlayerChar', ['character'=>$character,
-		    			'overview_skills_string_array' => $character->getOverviewSkillsStringArray(),
-						'skill_handouts' => $skill_handout_objects,
-						'char_docs' => $char_docs
-						]);
-    		}else{
-    			return view('character/showNoPlayerChar');
-    		}
+				$this->showUserCharacter($user->id, $character->id);
     	}else{
     		return redirect('/illegal_link');
     	}
