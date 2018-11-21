@@ -18,7 +18,7 @@
 					{{ $charNameId->name }}
 				</div>
 				<div class="col-xs-2">
-					<a href="/show_user_character/{{$userId}}?}/{{$charNameId->id}}." class="btn btn-default">Toon Karakter</a>
+					<a href="/show_user_character/{{$userId}}/{{$charNameId->id}}." class="btn btn-default">Toon Karakter</a>
 				</div>
 			</div>
 		@endforeach
