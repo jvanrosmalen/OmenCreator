@@ -247,7 +247,7 @@ class CharacterController extends Controller
 				->get();
 				
 			if(sizeof($charNameIds) > 1){
-				return view('character/showMyPlayerChars', ['charnames' => $charNameIds,
+				return view('character/showMyPlayerChars', ['charNameIds' => $charNameIds,
 				'userId' => $user->id]);
 			} else if(sizeof($charNameIds) == 1) {
 				return $this->showMyCharacter();
