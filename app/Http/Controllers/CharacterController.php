@@ -243,7 +243,8 @@ class CharacterController extends Controller
     		$charNameIds = Character::where('user_id', '=', $user->id )
     			->where('is_alive', true)
 				->where('is_player_char', true)
-				->select('name','id');
+				->select('name','id')
+				->toArray();
 				
 			if(sizeof($charNameIds) > 1){
 				return view('character/showMyPlayerChars', ['charnames' => $charNameIds,
