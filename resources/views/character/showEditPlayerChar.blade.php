@@ -307,11 +307,12 @@
 						<div class='col-xs-1'>
 						</div>
 						<div class='col-xs-10'>
-							<h4>Aantal bestede EP: <span id='spent_descent_ep' data-ep_amount='{{$character->getSpentDescentEpAmount()}}'>{{$character->getSpentDescentEpAmount()}}</span> van <span id='total_descent_ep' data-ep_amount='{{$character->descent_ep_amount}}'>{{$character->descent_ep_amount}}</span></h4>
-							&nbsp;&nbsp;
-							<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
-								<span class="glyphicon glyphicon-pencil"></span> 
-							</a>
+							<h4>Aantal bestede EP: <span id='spent_descent_ep' data-ep_amount='{{$character->getSpentDescentEpAmount()}}'>{{$character->getSpentDescentEpAmount()}}</span> van <span id='total_descent_ep' data-ep_amount='{{$character->descent_ep_amount}}'>{{$character->descent_ep_amount}}</span>
+								&nbsp;&nbsp;
+								<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
+									<span class="glyphicon glyphicon-pencil"></span> 
+								</a>
+							</h4>
 						</div>
 					</div>
 			    </div>
@@ -502,11 +503,12 @@
 						<div class='col-xs-1'>
 						</div>
 						<div class='col-xs-10'>
-							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}'>{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}</span> van <span class='total_character_ep' data-ep_amount="{{$character->ep_amount}}">{{$character->ep_amount}}</span></h4>
-							&nbsp;&nbsp;
-							<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
-								<span class="glyphicon glyphicon-pencil"></span> 
-							</a>
+							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}'>{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}</span> van <span class='total_character_ep' data-ep_amount="{{$character->ep_amount}}">{{$character->ep_amount}}</span>
+								&nbsp;&nbsp;
+								<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
+									<span class="glyphicon glyphicon-pencil"></span> 
+								</a>
+							</h4>
 						</div>
 					</div>
 			    </div>
@@ -698,11 +700,12 @@
 						<div class='col-xs-1'>
 						</div>
 						<div class='col-xs-10'>
-							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}'>{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}</span> van <span class='total_character_ep' data-ep_amount="{{$character->ep_amount}}">{{$character->ep_amount}}</span></h4>
-							&nbsp;&nbsp;
-							<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
-								<span class="glyphicon glyphicon-pencil"></span> 
-							</a>
+							<h4>Aantal bestede EP: <span class='spent_character_ep' data-ep_amount='{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}'>{{$character->getSpentEpAmount()-$character->getSpentDescentEpAmount()}}</span> van <span class='total_character_ep' data-ep_amount="{{$character->ep_amount}}">{{$character->ep_amount}}</span>
+								&nbsp;&nbsp;
+								<a href="change_character_ep/{{$character->id}}" class="btn btn-info btn-sm edit-char-btn" data-toggle="tooltip" title="Pas EP Aan">
+									<span class="glyphicon glyphicon-pencil"></span> 
+								</a>
+							</h4>
 						</div>
 					</div>
 			    </div>
