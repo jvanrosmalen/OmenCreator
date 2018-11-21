@@ -45,8 +45,11 @@
                             <div class="col-xs-4">
                                 <strong>Huidig aantal: {{$character->descent_ep_amount}}</strong>
                             </div>
-                            <div class="col-xs-2">
-                                Gewenst: <input type="number" name="descent_ep_amount" min="3" value="{{$character->descent_ep_amount}}">
+                            <div class="col-xs-1">
+                                Gewenst: 
+                            </div>
+                            <div class="col-xs-1">
+                                <input type="number" name="descent_ep_amount" min="3" value="{{$character->descent_ep_amount}}">
                             </div>
                         </div>
                     </div>
@@ -68,8 +71,11 @@
                             <div class="col-xs-4">
                                 <strong>Huidig aantal: {{$character->ep_amount}}</strong>
                             </div>
-                            <div class="col-xs-2">
-                                Gewenst: <input type="number" name="ep_amount" min="15" value="{{$character->ep_amount}}">
+                            <div class="col-xs-1">
+                                Gewenst: 
+                            </div>
+                            <div class="col-xs-1">
+                                <input type="number" name="ep_amount" min="15" value="{{$character->ep_amount}}">
                             </div>
                         </div>
                     </div>
