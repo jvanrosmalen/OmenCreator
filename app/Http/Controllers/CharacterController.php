@@ -204,7 +204,7 @@ class CharacterController extends Controller
     			->where('is_player_char', true)
     			->first();
     		
-				$this->showUserCharacter($user->id, $character->id);
+				return $this->showUserCharacter($user->id, $character->id);
     	}else{
     		return redirect('/illegal_link');
     	}
