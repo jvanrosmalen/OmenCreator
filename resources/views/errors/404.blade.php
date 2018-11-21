@@ -19,7 +19,7 @@
         <div class="col-xs-4 col-xs-offset-4">
         	<div class='row'>
         		<div class="col-xs-4 col-xs-offset-4">
-        			<a href='home' class='btn btn-default' style='width:100%'>Wordt wakker</a>
+        			<a href='home' class='btn btn-default' style='width:100%'>Ontwaak</a>
         		</div>
         	</div>
         </div>
