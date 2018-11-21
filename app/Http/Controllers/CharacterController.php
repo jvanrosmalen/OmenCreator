@@ -262,7 +262,7 @@ class CharacterController extends Controller
 	public function showUserCharacter($userId, $charId){
 		$user = Auth::user();
     	
-    	if($user->id != $userId){
+    	if($user->id == $userId){
 			$character = Character::where('user_id', '=', $user->id )
 			->where('id', '=', $charId)
 			->where('is_alive', true)
