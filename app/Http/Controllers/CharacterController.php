@@ -507,7 +507,7 @@ class CharacterController extends Controller
 	}
 
 	public function changeCharEp($charId){
-		return view('/character/changeCharacterEp',
+		return view('/character/changeCharEp',
 				['character'=>Character::find($charId)]);
 	}
 	
