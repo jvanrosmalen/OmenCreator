@@ -195,6 +195,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('upload_chardoc/{charId}/', 'CharacterController@uploadCharacterDocument')->middleware('isStoryTelling');
 	Route::post('do_upload_chardoc', 'CharacterController@doUploadCharDoc')->middleware('isStoryTelling');
 	
+	Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound']);
 });
 
 // Route::group(['middleware' => 'web'], function () {
