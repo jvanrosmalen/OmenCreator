@@ -10,7 +10,7 @@
     
     <!-- Need this below for all the links in my ajaxInterface.js -->
     <script>
-		var GLOBAL_BASE = 'http://www.omencreator.be/';
+		var GLOBAL_BASE = "http://"+<?php echo json_encode(env("GLOBAL_BASE", "www.omencreator.be/")); ?>+"/";
 	</script>
 
     <!-- reCaptcha -->
