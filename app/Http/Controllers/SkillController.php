@@ -316,7 +316,7 @@ class SkillController extends Controller
 			}
 
 			echo "Skill ep cost ".$skill->ep_cost;
-			echo "ep cost ".ep_cost;
+			echo "ep cost ".$ep_cost;
 			var_dump($players);
 
 			die();
