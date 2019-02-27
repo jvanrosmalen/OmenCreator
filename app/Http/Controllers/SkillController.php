@@ -311,7 +311,7 @@ class SkillController extends Controller
 
 			foreach($players as $player){
 				echo "Handling player id ".$player->id;
-				Player::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
+				Player::find($player->id)->first()->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
 			}
 
 			echo "Skill ep cost ".$skill->ep_cost;
