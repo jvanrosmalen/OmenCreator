@@ -301,7 +301,21 @@ class SkillController extends Controller
 		
 		// Save everything to skill table
 		$skill->name = $skill_name;
-		$skill->ep_cost = $ep_cost;
+
+		if($skill->ep_cost != $ep_cost){
+			// save new ep_cost
+			$skill->ep_cost = $ep_cost;
+
+			// update all players that already have this skill
+			$players = $skill->ownedByPlayers();
+
+			if(is_array($players) && sizeof($players) > 0){
+				foreach($players as $player){
+					Player::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
+				}
+			}
+		}
+
 		$skill->skill_level_id = $skill_level;
 		$skill->description_small = $desc_short;
 		$skill->description_long = $desc_long;
