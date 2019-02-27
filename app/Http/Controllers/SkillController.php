@@ -16,7 +16,7 @@ use Session;
 use App\SkillGroup;
 use App\WealthType;
 use Storage;
-use Character;
+use App\Character;
 
 class SkillController extends Controller
 {
