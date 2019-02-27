@@ -309,10 +309,9 @@ class SkillController extends Controller
 			// update all players that already have this skill
 			$players = $skill->ownedByPlayers();
 
-			if(is_array($players) && sizeof($players) > 0){
-				foreach($players as $player){
-					Player::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
-				}
+			foreach($players as $player){
+				echo "Handling player id ".$player->id;
+				Player::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
 			}
 
 			echo "Skill ep cost ".$skill->ep_cost;
