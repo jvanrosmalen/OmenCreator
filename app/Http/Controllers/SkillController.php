@@ -307,7 +307,7 @@ class SkillController extends Controller
 			$skill->ep_cost = $ep_cost;
 
 			// update all players that already have this skill
-			$players = $skill->ownedByPlayers();
+			$players = $skill->ownedByPlayers()->get();
 
 			if(is_array($players) && sizeof($players) > 0){
 				foreach($players as $player){
