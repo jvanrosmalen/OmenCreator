@@ -16,6 +16,7 @@ use Session;
 use App\SkillGroup;
 use App\WealthType;
 use Storage;
+use Character;
 
 class SkillController extends Controller
 {
@@ -311,7 +312,7 @@ class SkillController extends Controller
 
 			foreach($players as $player){
 				echo "Handling player id ".$player->id;
-				Player::find($player->id)->first()->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
+				Character::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
 			}
 
 			echo "Skill ep cost ".$skill->ep_cost;
