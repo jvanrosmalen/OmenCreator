@@ -311,15 +311,8 @@ class SkillController extends Controller
 			$players = $skill->ownedByPlayers();
 
 			foreach($players as $player){
-				echo "Handling player id ".$player->id;
 				Character::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
 			}
-
-			echo "Skill ep cost ".$skill->ep_cost;
-			echo "ep cost ".$ep_cost;
-			var_dump($players);
-
-			die();
 		}
 
 		$skill->skill_level_id = $skill_level;
