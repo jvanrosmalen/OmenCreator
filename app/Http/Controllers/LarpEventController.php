@@ -10,11 +10,7 @@ use App\LarpEvent;
 class LarpEventController extends Controller
 {
     public function showAllEvents(){
-        $current_date = date("Y-m-d");
-
-        echo LarpEvent::find(1)->end_date;
-
-        $coming_events = LarpEvent::where('end_date','>',$current_date)->get();
+        $coming_events = LarpEvent::where('end_date','>=',$current_date)->get();
         $past_events = LarpEvent::where('end_date','<',$current_date)->get();
 
         return view('larp_event/showAllLarpEvents',
