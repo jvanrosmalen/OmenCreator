@@ -51,7 +51,7 @@
 				            </tr>
 				        </thead>
 					 
-				        <tbody id="coming_omen">
+				        <tbody id="coming_omens">
 				            @foreach ($coming_events as $event)
 				                <tr id="{{$event->id}}">
 				                    <td id="{{$event->name}}" class="col-xs-6 eventname">
@@ -97,7 +97,7 @@
 				        </thead>
 					 
 				        <tbody id="past_omens">
-                            @foreach ($coming_events as $event)
+                            @foreach ($past_events as $event)
 				                <tr id="{{$event->id}}">
 				                    <td id="{{$event->name}}" class="col-xs-6 eventname">
 				                    	{{$event->name}}
