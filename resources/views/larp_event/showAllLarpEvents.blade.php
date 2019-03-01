@@ -25,7 +25,7 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<li class="active"><a id="tab1" data-toggle="tab" href="#coming_larp_events">Komend Event</a></li>
+		<li class="active"><a id="tab1" data-toggle="tab" href="#coming_larp_events">Komende/Huidige Events</a></li>
 		<li><a id="tab2" data-toggle="tab" href="#past_larp_events">Afgelopen Events</a></li>
 	</ul>
 				
