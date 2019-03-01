@@ -52,6 +52,10 @@ class Character extends Model
     	return $this->belongsToMany('App\Skill')
     		->withTimeStamps()
     		->withPivot('purchase_ep_cost','is_descent_skill','is_out_of_class_skill');
+	}
+	
+	public function larpEvents(){
+    	return $this->belongsToMany('App\LarpEvent')->withTimeStamps();
     }
     
     public function descentClasses(){
