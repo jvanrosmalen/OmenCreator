@@ -311,7 +311,14 @@ class SkillController extends Controller
 			$players = $skill->ownedByPlayers();
 
 			foreach($players as $player){
-				Character::find($player->id)->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost]);
+				$character = Character::find($player->id);
+				$ep_cost_pivot = $ep_cost;
+
+				if($character->skills()->pivot->is_out_of_class_skill){
+					$ep_cost_pivot = 2 * $ep_cost;
+				}
+
+				$character->skills()->updateExistingPivot($skill->id, ['purchase_ep_cost' => $ep_cost_pivot]);
 			}
 		}
 
