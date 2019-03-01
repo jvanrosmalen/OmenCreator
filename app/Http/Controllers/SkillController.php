@@ -314,7 +314,7 @@ class SkillController extends Controller
 				$character = Character::find($player->id);
 				$ep_cost_pivot = $ep_cost;
 
-				if($character->skills()->withPivot('is_out_of_class_skill')){
+				if((boolean) $character->skills()->withPivot('is_out_of_class_skill')){
 					$ep_cost_pivot = 2 * $ep_cost;
 				}
 
