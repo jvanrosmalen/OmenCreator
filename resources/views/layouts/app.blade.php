@@ -93,12 +93,13 @@
     </style>
 </head>
 <body id="app-layout">
+
+    <div class="navbar-header" style="padding-left:50px;">
+        <a href="{{ url('/home') }}"><img class="nav_bar_png" src="{{ URL::asset('img/omen.png') }}" alt="Omen Creator"></a>
+    </div>
+
     <nav class="navbar navbar-default">
         <div class="container">
-            <div class="navbar-header">
-                <a href="{{ url('/home') }}"><img class="nav_bar_png" src="{{ URL::asset('img/omen.png') }}" alt="Omen Creator"></a>
-            </div>
-
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
