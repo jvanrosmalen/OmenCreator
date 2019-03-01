@@ -32,7 +32,7 @@
 	<div id="larp_events" class="tab-content">
 		<div id="coming_larp_events" class="tab-pane fade in active">
 			<div class='row'>
-				<div class="col-xs-8">
+				<div class="col-xs-12">
 				    <table id="coming_larp_events_table" class="event_table table table-fixedheader table-responsive table-condensed table-hover sortable">
 				        <thead>
 				            <tr>
@@ -54,10 +54,10 @@
 				        <tbody id="current_omen">
 				            @foreach ($coming_events as $event)
 				                <tr id="{{$event->id}}">
-				                    <td id="{{$event->name}}" class="col-xs-3 eventname">
+				                    <td id="{{$event->name}}" class="col-xs-8 eventname">
 				                    	{{$event->name}}
 				                    </td>
-				                    <td id="{{$event->begin_date}}" class="col-xs-3 begin_date">
+				                    <td id="{{$event->begin_date}}" class="col-xs-2 begin_date">
 				                    	{{$event->begin_date}}
 				                    </td>
 				               		<td class="col-xs-2">
