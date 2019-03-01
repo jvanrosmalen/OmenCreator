@@ -12,7 +12,7 @@ class LarpEventController extends Controller
     public function showAllEvents(){
         $current_date = date("Y-m-d");
 
-        echo $current_date;
+        echo LarpEvent::find(1)->end_date;
 
         $coming_events = LarpEvent::where('end_date','>',$current_date)->get();
         $past_events = LarpEvent::where('end_date','<',$current_date)->get();
