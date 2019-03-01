@@ -13,9 +13,9 @@ class LarpEventController extends Controller
         $current_date = date("Y-m-d");
 
         echo $current_date;
-        
-        $coming_events = LarpEvent::all()->where('end_date','>',$current_date)->get();
-        $past_events = LarpEvent::all()->where('end_date','<',$current_date)->get();
+
+        $coming_events = LarpEvent::where('end_date','>',$current_date)->get();
+        $past_events = LarpEvent::where('end_date','<',$current_date)->get();
 
         return view('larp_event\showAllLarpEvents',
                         ['coming_events' => $coming_events,
