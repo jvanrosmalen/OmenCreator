@@ -59,7 +59,7 @@
 			<div class='col-xs-1'></div>
 			<div class='col-xs-1'>Beschrijving:</div>
 			<div class='col-xs-9'>
-				<input id='larp_event_description' name='larp_event_description' type='text' style='width:100%' readonly placeholder='Korte beschrijving'>
+				<input id='larp_event_description' name='larp_event_description' type='text' style='width:100%' placeholder='Korte beschrijving'>
 			</div>
             </div>
 		</div>

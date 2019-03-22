@@ -1,7 +1,7 @@
-var LarpEvent = function(){
+var LarpEvent = new function(){
     var self = this;
 
-    self.init = function(){
+    self.initialize = function(){
         $('#eventBeginDate').datetimepicker( );
         $('#eventEndDate').datetimepicker( );
     }
