@@ -3,10 +3,12 @@ var LarpEvent = new function(){
 
     self.initialize = function(){
         $('#eventBeginDate').datepicker({  
-            format: 'dd-mm-yyyy'
+            format: 'dd-mm-yyyy',
+            locale: 'nl'
           });
         $('#eventEndDate').datepicker({  
-            format: 'dd-mm-yyyy'
+            format: 'dd-mm-yyyy',
+            locale: 'nl'
           });
     }
 }
