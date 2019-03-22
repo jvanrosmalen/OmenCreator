@@ -68,7 +68,7 @@
 	@include('popups.showErrorMessage')
 
 	<script>
-		LarpEvent.init();
+		LarpEvent.initialize();
 	</script>
 @stop
 </html>
