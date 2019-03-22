@@ -143,8 +143,6 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/create_larp_event') }}">Cre&euml;er Evenement</a></li>
-                            </ul>
-                            <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/larpeventsshowall') }}">Overzicht Evenementen</a></li>
                             </ul>
                     </li>
