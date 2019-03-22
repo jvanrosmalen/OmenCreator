@@ -20,4 +20,9 @@ class LarpEventController extends Controller
                         'past_events' => $past_events
                     ]);
     }
+
+    public function showCreateEvent(){
+        return view('larp_event/showNewLarpEvent');
+        
+    }
 }
