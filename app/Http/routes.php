@@ -189,7 +189,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::get('/create_larp_event', 'LarpEventController@showCreateEvent')->middleware('isStoryTelling');
-	Route::get('/create_larp_event_submit', 'LarpEventController@createEventSubmit')->middleware('isStoryTelling');
+	Route::post('/create_larp_event_submit', 'LarpEventController@createEventSubmit')->middleware('isStoryTelling');
 	Route::get('/larpeventsshowall', 'LarpEventController@showAllEvents')->middleware('isStoryTelling');
 	
 
