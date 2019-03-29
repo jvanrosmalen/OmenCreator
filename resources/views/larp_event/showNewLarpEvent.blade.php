@@ -63,6 +63,10 @@
 			</div>
             </div>
 		</div>
+
+        <div class="row">
+            <input type="submit" class='btn btn-default' style='width:100%' value='opslaan'>
+        </div>
 	</form>
 
 	@include('popups.showErrorMessage')

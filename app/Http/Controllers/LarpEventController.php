@@ -22,7 +22,16 @@ class LarpEventController extends Controller
     }
 
     public function showCreateEvent(){
-        return view('larp_event/showNewLarpEvent');
-        
+        return view('larp_event/showNewLarpEvent'); 
+    }
+
+    public function createEventSubmit(Request $request){
+        $newEvent = new LarpEvent();
+
+        $newEvent->name = $request->input('larp_event_name');
+        $newEvent->description = $request->input('larp_event_description');
+
+        var_dump($request->inpu('eventBeginDate'));
+
     }
 }
