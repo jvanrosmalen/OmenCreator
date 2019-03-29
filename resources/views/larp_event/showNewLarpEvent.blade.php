@@ -31,7 +31,7 @@
                 <div class='col-xs-2'>
                     <div class="form-group">
                         <div class="input-group date" id="eventBeginDate">
-                            <input type="text" class="form-control" />
+                            <input type="text" name='larp_event_begin_date' class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon-calendar glyphicon">
                                 </span>
@@ -44,7 +44,7 @@
                 <div class='col-xs-2'>
                     <div class="form-group">
                         <div class="input-group date" id="eventEndDate">
-                            <input type="text" class="form-control" />
+                            <input type="text" name='larp_event_end_date' class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon-calendar glyphicon">
                                 </span>
