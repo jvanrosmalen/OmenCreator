@@ -25,10 +25,7 @@ class LarpEventController extends Controller
         return view('larp_event/showNewLarpEvent'); 
     }
 
-    public function createEventSubmit(){
-        echo "BLABLA";
-        die();
-
+    public function createEventSubmit(Request $request){
         $newEvent = new LarpEvent();
 
         $newEvent->name = $request->input('larp_event_name');
