@@ -11,7 +11,7 @@
 		</div>
 	</div>
 
-	<form action="create_larp_event_submit" method="POST">
+	<form action="/create_larp_event_submit" method="POST">
 		<!-- ******************* -->
 		<!-- For Laravel CSRF administration -->
 		<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -65,7 +65,12 @@
 		</div>
 
         <div class="row">
-            <input type="submit" class='btn btn-default' style='width:100%' value='opslaan'>
+            <div class='col-xs-5'></div>
+			<div class='col-xs-2'>
+			    <input type="submit" class='btn btn-default' style='width:100%' value='opslaan'>
+            </div>
+            <div class='col-xs-5'></div>
+			
         </div>
 	</form>
 
