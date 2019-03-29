@@ -70,7 +70,6 @@
 			    <input type="submit" class='btn btn-default' style='width:100%' value='opslaan'>
             </div>
             <div class='col-xs-5'></div>
-			
         </div>
 	</form>
 
