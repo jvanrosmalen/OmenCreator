@@ -30,8 +30,8 @@ class LarpEventController extends Controller
 
         $newEvent->name = $request->input('larp_event_name');
         $newEvent->description = $request->input('larp_event_description');
-        $newEvent->beginDate = strtotime($request->input('larp_event_begin_date'));
-        $newEvent->endDate = strtotime($request->input('larp_event_end_date'));
+        $newEvent->begin_date = date("Y-m-d", strtotime($request->input('larp_event_begin_date')));
+        $newEvent->end_date = date("Y-m-d", strtotime($request->input('larp_event_end_date')));
 
         $newEvent->save();
     }
