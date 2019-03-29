@@ -32,6 +32,7 @@ class LarpEventController extends Controller
         $newEvent->description = $request->input('larp_event_description');
 
         var_dump($request);
+        die();
 
     }
 }
