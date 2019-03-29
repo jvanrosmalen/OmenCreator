@@ -36,5 +36,7 @@ class LarpEventController extends Controller
         $newEvent->save();
 
         echo "done";
+        echo $newEvent->description;
+        echo $request->input('larp_event_description');
     }
 }
