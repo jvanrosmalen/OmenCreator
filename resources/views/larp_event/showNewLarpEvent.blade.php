@@ -7,7 +7,13 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<h3>Cre&euml;er Nieuw Event</h3>
+            @if (isset($event))
+                <!-- It is an update. Not a create -->
+                <h3>Pas Event Aan</h3>
+            @else
+                <!-- It is a new create -->
+			    <h3>Cre&euml;er Nieuw Event</h3>
+            @endif
 		</div>
 	</div>
 
@@ -15,12 +21,23 @@
 		<!-- ******************* -->
 		<!-- For Laravel CSRF administration -->
 		<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        @if (isset($event))
+            <!-- It is an update. Not a create -->
+            <input type="hidden" name="larp_event_id" value="{{$event->id}}">    
+        @endif
+
 		<!-- ******************* -->
 
 		<div class='row well'>
 			<div class='col-xs-1'>Eventnaam:</div>
 			<div class='col-xs-3'>
-				<input id='larp_event_name' name='larp_event_name' type='text' style='width:100%' placeholder='Event naam'>
+                @if (isset($event))
+                    <!-- It is an update. Not a create -->
+		    		<input id='larp_event_name' name='larp_event_name' type='text' style='width:100%' value='{{$event->name}}'>
+                @else
+                    <!-- It is a new create -->
+		    		<input id='larp_event_name' name='larp_event_name' type='text' style='width:100%' placeholder='Event naam'>
+                @endif
 			</div>
 		</div>
 		

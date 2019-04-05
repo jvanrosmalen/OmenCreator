@@ -67,7 +67,7 @@
 				                    	<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
 		   								</a>
-										<a href="" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
+										<a href="/editlarpevent/{{ $event->id }}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Event Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>										   
 		   							</td>
@@ -82,7 +82,7 @@
 			<div class='row'>
 				<div class="col-xs-12">
 				    <table id="past_larp_events_table" class="event_table table table-fixedheader table-responsive table-condensed table-hover sortable">
-                    <thead>
+                    	<thead>
 				            <tr>
 				                <th class="col-xs-6">
 				                    Naam
@@ -115,7 +115,7 @@
 										<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
 		   								</a>
-										<a href="" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
+										<a href="/editlarpevent/{{ $event->id }}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Event Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>	
 		   							</td>
