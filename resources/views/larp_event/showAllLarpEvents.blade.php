@@ -58,6 +58,7 @@
 				                    	{{$event->name}}
 				                    </td>
 				                    <td id="{{$event->begin_date}}" class="col-xs-2 begin_date">
+										{{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}} <br>
 				                    	{{$event->begin_date}}
 				                    </td>
 				               		<td class="col-xs-2">
