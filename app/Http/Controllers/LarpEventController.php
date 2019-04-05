@@ -34,5 +34,7 @@ class LarpEventController extends Controller
         $newEvent->end_date = date("Y-m-d", strtotime($request->input('larp_event_end_date')));
 
         $newEvent->save();
+
+        return view('larp_event/showCreateLarpEventSuccess', ['eventName' => $newEvent->name]);
     }
 }
