@@ -7,7 +7,7 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<h3>Overzicht Event: {{ $larpEvent->name }}</h3>
+			<h3>Overzicht Event: {{ $event->name }}</h3>
 		</div>
 	</div>
 
