@@ -37,4 +37,10 @@ class LarpEventController extends Controller
 
         return view('larp_event/showCreateLarpEventSuccess', ['eventName' => $newEvent->name]);
     }
+
+    public function showEvent($eventId){
+        $event = LarpEvent::find($eventId);
+
+        return view('larp_event/showLarpEvent', ['event' => $event])
+    }
 }

@@ -30,7 +30,6 @@
 					style="width: 100%; font-size: 18px;">Event Overzicht</a>
 			</div>
 		</div>
-
 	</div>
 </div>
 @endsection

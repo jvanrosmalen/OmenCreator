@@ -64,9 +64,12 @@
 				               			{{$event->end_date}}
 				               		</td>
 				                    <td class="col-xs-2">
-				                    	<a href="" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
+				                    	<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
 		   								</a>
+										<a href="" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
+		   									<span class="glyphicon glyphicon-pencil"></span> 
+		   								</a>										   
 		   							</td>
 				                </tr>
 				            @endforeach
@@ -109,9 +112,12 @@
 				               			{{$event->end_date}}
 				               		</td>
 				                    <td class="col-xs-2">
-				                    	<a href="" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
+										<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
 		   								</a>
+										<a href="" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
+		   									<span class="glyphicon glyphicon-pencil"></span> 
+		   								</a>	
 		   							</td>
 				                </tr>
 				            @endforeach
