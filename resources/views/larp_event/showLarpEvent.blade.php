@@ -16,12 +16,12 @@
             <div class='col-xs-1'></div>
             <div class='col-xs-1'>Begindatum:</div>
             <div class='col-xs-2'>
-                {{$event->begin_date}}
+                {{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
             </div>
             <div class='col-xs-1'></div>
             <div class='col-xs-1'>Einddatum:</div>
             <div class='col-xs-2'>
-                {{$event->end_date}}
+                {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
             </div>
             </div>
             <div class='col-xs-1'></div>

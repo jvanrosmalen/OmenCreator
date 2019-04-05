@@ -57,12 +57,11 @@
 				                    <td id="{{$event->name}}" class="col-xs-6 eventname">
 				                    	{{$event->name}}
 				                    </td>
-				                    <td id="{{$event->begin_date}}" class="col-xs-2 begin_date">
-										{{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}} <br>
-				                    	{{$event->begin_date}}
+				                    <td class="col-xs-2">
+										{{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
 				                    </td>
 				               		<td class="col-xs-2">
-				               			{{$event->end_date}}
+									   {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
 				               		</td>
 				                    <td class="col-xs-2">
 				                    	<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
@@ -106,11 +105,11 @@
 				                    <td id="{{$event->name}}" class="col-xs-6 eventname">
 				                    	{{$event->name}}
 				                    </td>
-				                    <td id="{{$event->begin_date}}" class="col-xs-2 begin_date">
-				                    	{{$event->begin_date}}
+				                    <td class="col-xs-2">
+										{{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
 				                    </td>
 				               		<td class="col-xs-2">
-				               			{{$event->end_date}}
+									   {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
 				               		</td>
 				                    <td class="col-xs-2">
 										<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
