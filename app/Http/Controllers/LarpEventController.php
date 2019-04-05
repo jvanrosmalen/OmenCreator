@@ -12,8 +12,8 @@ class LarpEventController extends Controller
     public function showAllEvents(){
         $current_date = date("Y-m-d");
 
-        $coming_events = LarpEvent::where('end_date','>=',$current_date)->orderBy('end_date', 'ASC')->get();
-        $past_events = LarpEvent::where('end_date','<',$current_date)->orderBy('end_date', 'ASC')->get();
+        $coming_events = LarpEvent::where('end_date','>=',$current_date)->orderBy('end_date', 'DESC')->get();
+        $past_events = LarpEvent::where('end_date','<',$current_date)->orderBy('end_date', 'DESC')->get();
 
         return view('larp_event/showAllLarpEvents',
                         ['coming_events' => $coming_events,
