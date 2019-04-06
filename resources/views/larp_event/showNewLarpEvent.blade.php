@@ -50,7 +50,7 @@
                         <div class="input-group date" id="eventBeginDate">
                             @if (isset($event))
                                 <!-- It is an update. Not a create -->
-		    	            	<input type="text" name='larp_event_begin_date' class="form-control" value="{{$event->begin_date}}"/>
+		    	            	<input type="text" name='larp_event_begin_date' class="form-control" value="{{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}"/>
                             @else
                                 <!-- It is a new create -->
                                 <input type="text" name='larp_event_begin_date' class="form-control" />
@@ -69,7 +69,7 @@
                         <div class="input-group date" id="eventEndDate">
                             @if (isset($event))
                                 <!-- It is an update. Not a create -->
-		    	            	<input type="text" name='larp_event_end_date' class="form-control" value="{{$event->end_date}}"/>
+		    	            	<input type="text" name='larp_event_end_date' class="form-control" value="{{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}"/>
                             @else
                                 <!-- It is a new create -->
                                 <input type="text" name='larp_event_end_date' class="form-control" />
