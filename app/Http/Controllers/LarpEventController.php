@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\LarpEvent;
+use App\Character;
 
 class LarpEventController extends Controller
 {
@@ -35,6 +36,21 @@ class LarpEventController extends Controller
 
     public function showCreateEvent(){
         return view('larp_event/showNewLarpEvent'); 
+    }
+
+    public function addPlayers($eventId){
+        $event = LarpEvent::find($eventId);
+
+        $characters = Character::where('is_alive', true)
+                                ->where('is_active', true)
+                                ->where('is_player_char', true)
+                                ->orderBy('name')
+                                ->get();
+
+        return view('larp_event/showLarpEventAddPlayers',
+                        ['event' => $event,
+                        'characters' => $characters
+                        ]);
     }
 
     public function createEventSubmit(Request $request){

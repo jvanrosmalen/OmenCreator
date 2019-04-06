@@ -193,7 +193,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/larpeventsshowall', 'LarpEventController@showAllEvents')->middleware('isStoryTelling');
 	Route::get('/larpeventsshow/{eventId}', 'LarpEventController@showEvent')->middleware('isStoryTelling');
 	Route::get('/editlarpevent/{eventId}', 'LarpEventController@editEvent')->middleware('isStoryTelling');
-	
+	Route::get('/larpeventaddplayer/{eventId}', 'LarpEventController@addPlayers')->middleware('isStoryTelling');
 
 	Route::get('download_handout/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
 	Route::get('download_chardoc/{charId}/{chardocName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
