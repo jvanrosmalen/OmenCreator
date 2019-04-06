@@ -12,7 +12,9 @@
 	</div>
 
 	<div class='row'>
-		<div class='col-xs-12'>
+        <div class="col-xs-1">
+        </div>
+		<div class='col-xs-10'>
 			<h4>Deelnemers</h4>
 		</div>
 	</div>
