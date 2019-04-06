@@ -51,6 +51,9 @@
 					style="width: 100%; font-size: 18px;">Event Overzicht</a>
 			</div>
 		</div>
-	</div>
+    </div>
+    
+@include('popups.selectParticipant', array('submitMethod'=>'CreatePlayerCharBasicInfo.submitPlayerSelection(event)', 'characters'=>$characters))
+
 @stop
 </html>
