@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20c276def5081da80116b7de71db254f",
+    "content-hash": "b2a944da514a8dee64c8f2dcd0f417ab",
     "packages": [
         {
             "name": "asan/phpexcel",
