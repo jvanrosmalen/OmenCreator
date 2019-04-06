@@ -11,30 +11,6 @@
 		</div>
 	</div>
 
-    <div class='row well'>
-        <div class='row'>
-            <div class='col-xs-1'></div>
-            <div class='col-xs-1'>Begindatum:</div>
-            <div class='col-xs-2'>
-                {{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
-            </div>
-            <div class='col-xs-1'></div>
-            <div class='col-xs-1'>Einddatum:</div>
-            <div class='col-xs-2'>
-                {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
-            </div>
-            <div class='col-xs-1'></div>
-        </div>
-
-        <div class='row'>
-            <div class='col-xs-1'></div>
-            <div class='col-xs-1'>Beschrijving:</div>
-            <div class='col-xs-9'>
-                {{ $event->description }}
-            </div>
-        </div>
-    </div>
-
 	<div class='row'>
 		<div class='col-xs-12'>
 			<h4>Deelnemers</h4>
@@ -47,12 +23,15 @@
 			    <table id="participants_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 			        <thead>
 			            <tr>
-			                <th class="col-xs-6">
+			                <th class="col-xs-5">
 			                    Spelernaam
 			                </th>
 			                <th class="col-xs-6">
 			                	Karakternaam
-			                </th>
+                            </th>
+			                <th class="col-xs-1">
+			                	Actie
+			                </th>                            
 			            </tr>
 			        </thead>
 			 
