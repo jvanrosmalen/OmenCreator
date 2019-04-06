@@ -26,7 +26,14 @@ class LarpEventController extends Controller
     }
 
     public function createEventSubmit(Request $request){
-        $newEvent = new LarpEvent();
+
+        if($request->exists('larp_event_id')){
+            // This is an update.
+            $newEvent = LarpEvent::find($request->input('larp_event_id')); 
+        } else {
+            // This is a create
+            $newEvent = new LarpEvent();
+        }
 
         $newEvent->name = $request->input('larp_event_name');
         $newEvent->description = $request->input('larp_event_description');
