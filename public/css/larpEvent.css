@@ -1,0 +1,4 @@
+#participants_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 480px
+}

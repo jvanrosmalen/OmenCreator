@@ -42,6 +42,7 @@
 	<link href="{{ URL::asset('css/errorMessage.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/promptMessage.css') }}" rel='stylesheet' type='text/css'>
 	<link href="{{ URL::asset('css/loaderMessage.css') }}" rel='stylesheet' type='text/css'>
+	<link href="{{ URL::asset('css/larpEvent.css') }}" rel='stylesheet' type='text/css'>
     <script src="{{ URL::asset('js/ajax/ajaxInterface.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacter.js') }}"></script>
     <script src="{{ URL::asset('js/character/createPlayerCharBasicInfo.js') }}"></script>
