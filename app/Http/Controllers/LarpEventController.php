@@ -21,6 +21,18 @@ class LarpEventController extends Controller
                     ]);
     }
 
+    public function showEvent($eventId){
+        $event = LarpEvent::find($eventId);
+
+        return view('larp_event/showLarpEvent', ['event' => $event]);
+    }
+
+    public function editEvent($eventId){
+        $event = LarpEvent::find($eventId);
+
+        return view('larp_event/showNewLarpEvent', ['event' => $event]);
+    }
+
     public function showCreateEvent(){
         return view('larp_event/showNewLarpEvent'); 
     }
@@ -46,17 +58,5 @@ class LarpEventController extends Controller
                         ['eventName' => $newEvent->name,
                         'isUpdate' => $request->exists('larp_event_id')
                         ]);
-    }
-
-    public function showEvent($eventId){
-        $event = LarpEvent::find($eventId);
-
-        return view('larp_event/showLarpEvent', ['event' => $event]);
-    }
-
-    public function editEvent($eventId){
-        $event = LarpEvent::find($eventId);
-
-        return view('larp_event/showNewLarpEvent', ['event' => $event]);
     }
 }

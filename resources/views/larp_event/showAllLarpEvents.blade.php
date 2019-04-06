@@ -64,8 +64,11 @@
 									   {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
 				               		</td>
 				                    <td class="col-xs-2">
-				                    	<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
+										<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
+		   								</a>
+										<a href="/larpeventaddplayer" class="btn btn-warning btn-xs show-char-btn" data-toggle="tooltip" title="Voeg Speler Toe">
+		   									<span class="glyphicon glyphicon-user"></span>
 		   								</a>
 										<a href="/editlarpevent/{{ $event->id }}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Event Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
