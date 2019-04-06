@@ -44,7 +44,7 @@ class LarpEventController extends Controller
         $characters = Character::where('is_alive', true)
                                 ->where('is_active', true)
                                 ->where('is_player_char', true)
-                                ->orderBy('name')
+                                ->orderBy('char_user->name')
                                 ->get();
 
         return view('larp_event/showLarpEventAddPlayers',
