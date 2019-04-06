@@ -9,7 +9,7 @@
 		<div class='col-xs-12'>
             @if (isset($event))
                 <!-- It is an update. Not a create -->
-                <h3>Pas Event Aan</h3>
+                <h3>Aanpassen Event</h3>
             @else
                 <!-- It is a new create -->
 			    <h3>Cre&euml;er Nieuw Event</h3>
@@ -48,7 +48,13 @@
                 <div class='col-xs-2'>
                     <div class="form-group">
                         <div class="input-group date" id="eventBeginDate">
-                            <input type="text" name='larp_event_begin_date' class="form-control" />
+                            @if (isset($event))
+                                <!-- It is an update. Not a create -->
+		    	            	<input type="text" name='larp_event_begin_date' class="form-control" value="{{$event->begin_date}}"/>
+                            @else
+                                <!-- It is a new create -->
+                                <input type="text" name='larp_event_begin_date' class="form-control" />
+                            @endif
                             <span class="input-group-addon">
                                 <span class="glyphicon-calendar glyphicon">
                                 </span>
@@ -61,7 +67,13 @@
                 <div class='col-xs-2'>
                     <div class="form-group">
                         <div class="input-group date" id="eventEndDate">
-                            <input type="text" name='larp_event_end_date' class="form-control" />
+                            @if (isset($event))
+                                <!-- It is an update. Not a create -->
+		    	            	<input type="text" name='larp_event_end_date' class="form-control" value="{{$event->end_date}}"/>
+                            @else
+                                <!-- It is a new create -->
+                                <input type="text" name='larp_event_end_date' class="form-control" />
+                            @endif
                             <span class="input-group-addon">
                                 <span class="glyphicon-calendar glyphicon">
                                 </span>
@@ -76,7 +88,14 @@
 			<div class='col-xs-1'></div>
 			<div class='col-xs-1'>Beschrijving:</div>
 			<div class='col-xs-9'>
-				<input id='larp_event_description' name='larp_event_description' type='text' style='width:100%' placeholder='Korte beschrijving'>
+                @if (isset($event))
+                    <!-- It is an update. Not a create -->
+                    <input id='larp_event_description' name='larp_event_description' type='text' style='width:100%' value="{{$event->description}}">
+                @else
+                    <!-- It is a new create -->
+                    <input id='larp_event_description' name='larp_event_description' type='text' style='width:100%' placeholder='Korte beschrijving'>
+                @endif            
+				
 			</div>
             </div>
 		</div>
