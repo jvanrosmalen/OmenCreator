@@ -15,7 +15,11 @@
             <div class='row'>
             </div>
 			<div class="col-xs-10 col-xs-offset-1">
-				Het event met de naam: <b>{{ $eventName }}</b> is succesvol gecre&euml;erd.
+				@if ($isUpdate)
+					Het event met de naam: <b>{{ $eventName }}</b> is succesvol aangepast.
+				@else
+					Het event met de naam: <b>{{ $eventName }}</b> is succesvol gecre&euml;erd.
+				@endif
 			</div>
             <div class='row'>
             </div>

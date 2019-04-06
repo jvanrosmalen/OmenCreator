@@ -42,7 +42,10 @@ class LarpEventController extends Controller
 
         $newEvent->save();
 
-        return view('larp_event/showCreateLarpEventSuccess', ['eventName' => $newEvent->name]);
+        return view('larp_event/showCreateLarpEventSuccess',
+                        ['eventName' => $newEvent->name,
+                        'isUpdate' => $request->exists('larp_event_id')
+                        ]);
     }
 
     public function showEvent($eventId){
