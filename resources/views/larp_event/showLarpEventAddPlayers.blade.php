@@ -26,10 +26,10 @@
 			        <thead>
 			            <tr>
 			                <th class="col-xs-5">
-			                    Spelernaam
+			                    Karakternaam
 			                </th>
 			                <th class="col-xs-6">
-			                	Karakternaam
+			                	Spelernaam
                             </th>
 			                <th class="col-xs-1">
 			                	Actie

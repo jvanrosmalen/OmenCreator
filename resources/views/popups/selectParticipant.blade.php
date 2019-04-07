@@ -15,7 +15,7 @@
 					<div class="col-xs-5">
            				<div id="participantSelectorSearch">
                             <div class="input-group col-md-12">
-                                <input id="participantSelectorSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken (onderdeel van naam of email)" onchange="ParticipantSelector.searchParticipant();"/>
+                                <input id="participantSelectorSearchInput"  type="text" class="search-query form-control" placeholder="Zoeken (onderdeel van speler- of karakternaam)" onchange="ParticipantSelector.searchParticipant();"/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-danger" type="button">
                                         <span class=" glyphicon glyphicon-search"></span>
@@ -33,23 +33,23 @@
 					        <thead>
 					            <tr>
 					                <th class="col-xs-6">
-					                    Naam
+					                    Karakternaam
 					                </th>
 					                <th class="col-xs-6">
-					                	Karakter
+					                	Spelernaam
 					                </th>
 					            </tr>
 					        </thead>
 					 
 					        <tbody id="participants">
 					            @foreach ($characters as $character)
-					                <tr id="{{ $character->id }}" onclick="ParticipantSelector.selectParticipant(event);">
+									<tr id="{{ $character->id }}" onclick="ParticipantSelector.selectParticipant(event);">
+										<td id="{{$character->name}}" class="col-xs-6">
+					                    	{{ $character->name }}
+				               			</td>
 					                    <td id="{{$character->char_user->name}}" class="col-xs-6">
 					                    	{{ $character->char_user->name }}
 					                    </td>
-					                    <td id="{{$character->name}}" class="col-xs-6">
-					                    	{{ $character->name }}
-				               			</td>
 					                </tr>
 					            @endforeach
 					        </tbody>

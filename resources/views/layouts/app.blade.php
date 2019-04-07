@@ -79,6 +79,7 @@
     <script src="{{ URL::asset('js/character/createCharacterControl.js') }}"></script>
     <script src="{{ URL::asset('js/character/createCharacterTabControl.js') }}"></script>
     <script src="{{ URL::asset('js/popups/playerSelector.js') }}"></script>
+    <script src="{{ URL::asset('js/popups/participantSelector.js') }}"></script>
     <script src="{{ URL::asset('js/popups/errorMessage.js') }}"></script>
     <script src="{{ URL::asset('js/popups/promptMessage.js') }}"></script>
     <script src="{{ URL::asset('js/popups/loaderMessage.js') }}"></script>
