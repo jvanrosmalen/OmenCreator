@@ -14,9 +14,13 @@
 	<div class='row'>
         <div class="col-xs-1">
         </div>
-		<div class='col-xs-10'>
+		<div class='col-xs-9'>
 			<h4>Deelnemers</h4>
+        </div>
+        <div class='col-xs-2'>
+				<button class="btn btn-default float-right" onClick='ParticipantSelector.openParticipantSelector(event)'>Selecteer Deelnemers</button> 
 		</div>
+        
 	</div>
     <div class="row">
             <div class="col-xs-1">
