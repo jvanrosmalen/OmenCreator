@@ -44,14 +44,16 @@
 			        <tbody id="participants">
                         @foreach ($characters as $character)
                             <tr id="participant_{{ $character->id }}">
-                                <td id="{{$character->name}}" class="character_name col-xs-6">
+                                <td class="character_name col-xs-6">
                                     {{ $character->name }}
                                 </td>
-                                <td id="{{$character->char_user->name}}" class="user_name col-xs-6">
+                                <td class="user_name col-xs-5">
                                     {{ $character->char_user->name }}
                                 </td>
-                                <td>
-          				    		<span class="glyphicon glyphicon-minus" onClick='ParticipantSelector.removeSelectedParticipant(event)'></span> 
+                                <td class="user_name col-xs-1">
+                                    <button type="button" class="btn btn-xs btn-danger remove-skill-btn" onClick='ParticipantSelector.removeSelectedParticipant(event);'>
+                                        <span class="glyphicon glyphicon-minus"></span> 
+                                    </button>
         						</td>
                             </tr>
                         @endforeach
