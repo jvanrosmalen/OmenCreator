@@ -9,7 +9,7 @@
 			
 				<div class="row">
 					<div class="col-xs-7">
-						<h3>Selecteer een Speler</h3>
+						<h3>Beschikbare Spelerkarakters</h3>
 					</div>
 					
 					<div class="col-xs-5">
@@ -61,7 +61,7 @@
 					<div>
 						<div class='col-xs-1'></div>
 						<div class='col-xs-10'>
-							<button id="btnParticipantSelector" type="button" class="btn btn-success btn-lg btn-block submitParticipantSelected" onclick="{{$submitMethod}}">Selecteer Speler</button>
+							<button id="btnParticipantSelector" type="button" class="btn btn-success btn-lg btn-block submitParticipantSelected" onclick="{{$submitMethod}}">Selecteer Deelnemers</button>
 						</div>
 						<div class='col-xs-1'></div>
 					</div>

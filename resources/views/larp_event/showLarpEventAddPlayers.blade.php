@@ -57,7 +57,7 @@
 		</div>
     </div>
     
-@include('popups.selectParticipant', array('submitMethod'=>'CreatePlayerCharBasicInfo.submitPlayerSelection(event)', 'characters'=>$characters))
+@include('popups.selectParticipant', array('submitMethod'=>'LarpEvent.submitParticipantSelection(event)', 'characters'=>$characters))
 
 @stop
 </html>
