@@ -61,7 +61,7 @@
 					<div>
 						<div class='col-xs-1'></div>
 						<div class='col-xs-10'>
-							<button id="btnParticipantSelector" type="button" class="btn btn-success btn-lg btn-block submitParticipantSelected" onclick="{{$submitMethod}}">Selecteer Deelnemers</button>
+							<button id="btnParticipantSelector" type="button" class="btn btn-success btn-lg btn-block submitParticipantSelected" onclick="{{$submitMethod}}">Selecteer Spelerkarakters</button>
 						</div>
 						<div class='col-xs-1'></div>
 					</div>

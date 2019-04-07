@@ -30,6 +30,10 @@ var ParticipantSelector = new function(){
 			source.addClass("selected");
 		}		
 	}
+
+	self.removeSelectedParticipant = function(event){
+		console.log("Testie");
+	}
 	
 	self.searchParticipant = function(event){
 		var value = $("#participantSelectorSearchInput").val().toLowerCase();

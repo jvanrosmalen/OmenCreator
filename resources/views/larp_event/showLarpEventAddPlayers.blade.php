@@ -42,6 +42,19 @@
 			        </thead>
 			 
 			        <tbody id="participants">
+                        @foreach ($characters as $character)
+                            <tr id="participant_{{ $character->id }}">
+                                <td id="{{$character->name}}" class="character_name col-xs-6">
+                                    {{ $character->name }}
+                                </td>
+                                <td id="{{$character->char_user->name}}" class="user_name col-xs-6">
+                                    {{ $character->char_user->name }}
+                                </td>
+                                <td>
+          				    		<span class="glyphicon glyphicon-minus" onClick='ParticipantSelector.removeSelectedParticipant(event)'></span> 
+        						</td>
+                            </tr>
+                        @endforeach
 			        </tbody>
 			    </table>
 		    </div>
