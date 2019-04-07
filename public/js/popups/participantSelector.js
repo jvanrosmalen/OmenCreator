@@ -32,7 +32,7 @@ var ParticipantSelector = new function(){
 	}
 	
 	self.searchParticipant = function(event){
-		var value = $("#playerSelectorSearchInput").val().toLowerCase();
+		var value = $("#participantSelectorSearchInput").val().toLowerCase();
 		
 		if(value == 'undefined' || value == ""){
 			$("#users > hidden").each(function(){
@@ -40,9 +40,9 @@ var ParticipantSelector = new function(){
 			});
 		}
 		
-		$("#users > tr").each(function(){
-			var username = $(this).find(".username").attr('id').toLowerCase();
-			var email = $(this).find(".user_email").attr('id').toLowerCase();
+		$("#participants > tr").each(function(){
+			var username = $(this).find(".user_name").attr('id').toLowerCase();
+			var email = $(this).find(".character_name").attr('id').toLowerCase();
 			
 			if(username.indexOf(value) > -1 || email.indexOf(value) > -1 ){
 				if($(this).hasClass("hidden")){

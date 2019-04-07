@@ -44,10 +44,10 @@
 					        <tbody id="participants">
 					            @foreach ($characters as $character)
 									<tr id="{{ $character->id }}" onclick="ParticipantSelector.selectParticipant(event);">
-										<td id="{{$character->name}}" class="col-xs-6">
+										<td id="{{$character->name}}" class="character_name col-xs-6">
 					                    	{{ $character->name }}
 				               			</td>
-					                    <td id="{{$character->char_user->name}}" class="col-xs-6">
+					                    <td id="{{$character->char_user->name}}" class="user_name col-xs-6">
 					                    	{{ $character->char_user->name }}
 					                    </td>
 					                </tr>
