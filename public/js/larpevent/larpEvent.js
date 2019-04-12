@@ -17,8 +17,9 @@ var LarpEvent = new function(){
 
       $('#participant_select_table .selected').each(function(){
         $(this).addClass("hidden");
+        $(this).removeClass("selected");
         var char_id = $(this).attr('id');
-        $((".participant_"+char_id)).removeClass("hidden");
+        $(("#participant_"+char_id)).removeClass("hidden");
       });
       
       ParticipantSelector.closeParticipantSelector(event);
