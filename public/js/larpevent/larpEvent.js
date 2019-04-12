@@ -27,7 +27,7 @@ var LarpEvent = new function(){
 
     self.removeSelectedParticipant = function(event){
       event.stopPropagation();
-
+    
       var buttonSource = event.target || event.srcElement;
       var id = $(buttonSource).val("id");
       console.log(id);
