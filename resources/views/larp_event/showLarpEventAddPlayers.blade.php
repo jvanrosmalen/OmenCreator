@@ -51,7 +51,7 @@
                                     {{ $character->char_user->name }}
                                 </td>
                                 <td class="user_name col-xs-1">
-                                    <button type="button" class="btn btn-xs btn-danger remove-skill-btn" onClick='ParticipantSelector.removeSelectedParticipant(event);'>
+                                    <button type="button" class="btn btn-xs btn-danger remove-skill-btn" value-id="{{ $character->id }}" onClick='ParticipantSelector.removeSelectedParticipant(event);'>
                                         <span class="glyphicon glyphicon-minus"></span> 
                                     </button>
         						</td>
