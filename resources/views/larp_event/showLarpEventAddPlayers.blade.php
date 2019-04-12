@@ -51,8 +51,8 @@
                                     {{ $character->char_user->name }}
                                 </td>
                                 <td class="user_name col-xs-1">
-                                    <button type="button" class="btn btn-xs btn-danger remove-skill-btn" value-id="{{ $character->id }}" onClick='LarpEvent.removeSelectedParticipant(event);'>
-                                        <span class="glyphicon glyphicon-minus"></span> 
+                                    <button type="button" class="btn btn-xs btn-danger remove-skill-btn" onClick='LarpEvent.removeSelectedParticipant(event);'>
+                                        <span class="glyphicon glyphicon-minus" value-id="{{ $character->id }}" ></span> 
                                     </button>
         						</td>
                             </tr>
