@@ -30,8 +30,7 @@ var LarpEvent = new function(){
     
       var buttonSource = event.target || event.srcElement;
       var id = $(buttonSource).data("id");
-      var id3 = $(buttonSource).attr("data-id");
-      var id2 = buttonSource.data("id");
-      console.log(id);
+      $(("#participant_"+char_id)).addClass("hidden");
+      $("#"+id).removeClass("hidden");
     }
 }
