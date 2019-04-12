@@ -29,7 +29,7 @@ var LarpEvent = new function(){
       event.stopPropagation();
     
       var buttonSource = event.target || event.srcElement;
-      var id = $(buttonSource).val("id");
+      var id = $(buttonSource).data("id");
       console.log(id);
     }
 }
