@@ -43,11 +43,11 @@
 			 
 			        <tbody id="participants">
                         @foreach ($characters as $character)
-                            <tr id="participant_{{ $character->id }}">
-                                <td class="character_name col-xs-6">
+                            <tr id="participant_{{ $character->id }}" class="hidden">
+                                <td class="character_name col-xs-5">
                                     {{ $character->name }}
                                 </td>
-                                <td class="user_name col-xs-5">
+                                <td class="user_name col-xs-6">
                                     {{ $character->char_user->name }}
                                 </td>
                                 <td class="user_name col-xs-1">

@@ -14,11 +14,12 @@ var LarpEvent = new function(){
 
     self.submitParticipantSelection = function(event){
       event.stopPropagation();
-      // var selectedPlayerId = $('#users .selected').attr('id');
-      // var selectedPlayerName = $('#users .selected .username').attr('id');
-      
-      // $('#basic_info_player_id').val( selectedPlayerId );
-      // $('#basic_info_player_name').val( selectedPlayerName );
+
+      $('#participant_select_table .selected').each(function(){
+        $(this).addClass("hidden");
+        var char_id = $(this).attr('id');
+        $((".participant_"+char_id).removeClass("hidden");
+      });
       
       ParticipantSelector.closeParticipantSelector(event);
     }
