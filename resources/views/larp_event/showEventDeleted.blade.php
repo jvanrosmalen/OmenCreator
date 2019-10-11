@@ -19,13 +19,13 @@
 		</div>
 			
 		<div class="row button-row">
-			<div class="col-xs-3"></div>
-			<div class="col-xs-6">
-				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 150px; font-size: 18px;">
 				Event Overzicht
 				</a>
 			</div>
-			<div class="col-xs-3"></div>
+			<div class="col-xs-4"></div>
 		</div>
  	</div>
 @endsection
