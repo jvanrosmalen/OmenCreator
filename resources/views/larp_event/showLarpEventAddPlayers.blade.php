@@ -45,11 +45,11 @@
                         @foreach ($characters as $character)
 							<?php
 							var_dump($participant_ids);
-							if(in_array($participant_ids, $character->id)){
-								echo "<tr id='participant_".$character->id."'>";	
-							} else {
-								echo "<tr id='participant_".$character->id."' class='hidden'>";
-							}
+							// if(in_array($participant_ids, $character->id)){
+							// 	echo "<tr id='participant_".$character->id."'>";	
+							// } else {
+							// 	echo "<tr id='participant_".$character->id."' class='hidden'>";
+							// }
 							?>
 
                                 <td class="character_name col-xs-5">
