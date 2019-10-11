@@ -48,9 +48,9 @@ class LarpEventController extends Controller
                                 ->orderBy('name')
                                 ->get();
 
-        foreach($event->participants as $participant){
-            array_push($participant_ids, $participant->id);
-        }
+        // foreach($event->participants as $participant){
+        //     array_push($participant_ids, $participant->id);
+        // }
 
         return view('larp_event/showLarpEventAddPlayers',
                         ['event' => $event,
