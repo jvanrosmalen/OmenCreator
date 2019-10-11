@@ -41,7 +41,7 @@
 			            </tr>
 			        </thead>
 			 
-			        <tbody id="participants">
+			        <tbody id="selected_participants">
                         @foreach ($characters as $character)
                             <tr id="participant_{{ $character->id }}" class="hidden">
                                 <td class="character_name col-xs-5">
