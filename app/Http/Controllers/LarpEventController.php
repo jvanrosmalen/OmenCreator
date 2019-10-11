@@ -40,6 +40,7 @@ class LarpEventController extends Controller
 
     public function addPlayers($eventId){
         $event = LarpEvent::find($eventId);
+        $participant_ids = array();
 
         $characters = Character::where('is_alive', true)
                                 ->where('is_active', true)
@@ -47,9 +48,14 @@ class LarpEventController extends Controller
                                 ->orderBy('name')
                                 ->get();
 
+        foreach($event->participants as $participant){
+            array_push($participant_ids, $participant->id);
+        }
+
         return view('larp_event/showLarpEventAddPlayers',
                         ['event' => $event,
-                        'characters' => $characters
+                        'characters' => $characters,
+                        'participant_ids' => json_encode($participant_ids)
                         ]);
     }
 

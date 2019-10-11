@@ -8,15 +8,15 @@ class LarpEvent extends Model
 {
     public $timestamps = false; 
 
-    protected $appends = [ 'characters' ];
+    protected $appends = [ 'participants' ];
 
-    public function characters(){
+    public function participants(){
         return $this->belongsToMany('App\Character');
     }
 
-    public function getCharactersAttribute(){
+    public function getParticipantsAttribute(){
         return Character::find($this->id)
-                            ->characters()
+                            ->participants()
                             ->select(['id','name', 'char_user'])
                             ->orderBy('name')
                             ->get();
