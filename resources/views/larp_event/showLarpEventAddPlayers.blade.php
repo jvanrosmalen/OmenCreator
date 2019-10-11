@@ -7,7 +7,7 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<h3>Toevoegen Spelers: {{ $event->name }}</h3>
+			<h3>Beheren Spelers: {{ $event->name }}</h3>
 		</div>
 	</div>
 
@@ -62,15 +62,20 @@
 		    </div>
 		</div>  
 
-	<div class="row">
 		<div class="row button-row">
-			<div class="col-xs-2 col-xs-offset-5">
-				<a href="{{ url('/larpeventsshowall') }}" class="btn btn-success"
-					type="button"
-					style="width: 100%; font-size: 18px;">Event Overzicht</a>
+			<div class="col-xs-3"></div>
+			<div class="col-xs-2">
+				<a href="larpeventdelete/{{ $eventId }}" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+				Update Spelers
+				</a>
+			</div>
+			<div class="col-xs-2"></div>
+			<div class="col-xs-2">
+				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+				Cancel
+				</a>
 			</div>
 		</div>
-    </div>
     
 @include('popups.selectParticipant', array('submitMethod'=>'LarpEvent.submitParticipantSelection(event)', 'characters'=>$characters))
 
