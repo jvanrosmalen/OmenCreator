@@ -75,4 +75,18 @@ class LarpEventController extends Controller
                         'isUpdate' => $request->exists('larp_event_id')
                         ]);
     }
+
+    public function doDeleteEvent($eventId){
+        $event = LarpEvent::find($eventId);
+        $name = $event->name;
+        $event->delete();
+
+        return view('larp_event/showEventDeleted', ['name' => $name]);
+    }
+
+    public function deleteEventWarning($eventId){
+        $eventName = LarpEvent::find($eventId)->name;
+
+        return view('larp_event/showDeleteEventWarning',['eventName' => $eventName, 'eventId' => $eventId]);
+    }
 }

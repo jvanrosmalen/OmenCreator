@@ -72,6 +72,9 @@
 		   								</a>
 										<a href="/editlarpevent/{{ $event->id }}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Event Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
+		   								</a>
+									   <a href="/larpeventdeletewarning/{{ $event->id }}" class="btn btn-danger btn-xs show-char-btn" data-toggle="tooltip" title="Voeg Speler Toe">
+		   									<span class="glyphicon glyphicon-minus"></span>
 		   								</a>										   
 		   							</td>
 				                </tr>
@@ -118,9 +121,15 @@
 										<a href="/larpeventsshow/{{ $event->id }}" class="btn btn-success btn-xs show-char-btn" data-toggle="tooltip" title="Bekijk Event">
 		   									<span class="glyphicon glyphicon-eye-open"></span>
 		   								</a>
+										<a href="/larpeventaddplayer/{{ $event->id }}" class="btn btn-warning btn-xs show-char-btn" data-toggle="tooltip" title="Voeg Speler Toe">
+		   									<span class="glyphicon glyphicon-user"></span>
+		   								</a>
 										<a href="/editlarpevent/{{ $event->id }}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Event Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
-		   								</a>	
+		   								</a>
+										<a href="/larpeventdeletewarning/{{ $event->id }}" class="btn btn-danger btn-xs show-char-btn" data-toggle="tooltip" title="Voeg Speler Toe">
+		   									<span class="glyphicon glyphicon-minus"></span>
+		   								</a>
 		   							</td>
 				                </tr>
 				            @endforeach
