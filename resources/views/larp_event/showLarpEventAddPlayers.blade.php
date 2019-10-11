@@ -65,13 +65,13 @@
 		<div class="row button-row">
 			<div class="col-xs-3"></div>
 			<div class="col-xs-2">
-				<a href="larpeventdelete/{{ $event->id }}" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+				<a href="larpeventdelete/{{ $event->id }}" class="btn btn-default" id="cancel_button" type="button"	style="width: 150px; font-size: 18px;">
 				Update Spelers
 				</a>
 			</div>
 			<div class="col-xs-2"></div>
 			<div class="col-xs-2">
-				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 120px; font-size: 18px;">
+				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 150px; font-size: 18px;">
 				Cancel
 				</a>
 			</div>
