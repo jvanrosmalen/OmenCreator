@@ -9,6 +9,7 @@ use App\User;
 use App\PlayerClass;
 use App\Resistance;
 use App\Statistic;
+use App\LarpEvent;
 
 class Character extends Model
 {
