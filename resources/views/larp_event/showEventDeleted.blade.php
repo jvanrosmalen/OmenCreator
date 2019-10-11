@@ -18,14 +18,14 @@
 			</div>		
 		</div>
 			
+        <div class="row">
 		<div class="row button-row">
-			<div class="col-xs-4"></div>
-			<div class="col-xs-4">
-				<a href="larpeventsshowall" class="btn btn-default" id="cancel_button" type="button"	style="width: 150px; font-size: 18px;">
-				Event Overzicht
-				</a>
+			<div class="col-xs-2 col-xs-offset-5">
+				<a href="{{ url('/larpeventsshowall') }}" class="btn btn-success"
+					type="button"
+					style="width: 100%; font-size: 18px;">Event Overzicht</a>
 			</div>
-			<div class="col-xs-4"></div>
 		</div>
+	</div>
  	</div>
 @endsection
