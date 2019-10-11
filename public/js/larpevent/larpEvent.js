@@ -22,7 +22,7 @@ var LarpEvent = new function(){
         $(("#participant_"+char_id)).removeClass("hidden");
 
         // Add id to submit array
-        var selected_participants_list = JSON.parse($("#selected_participants").val());
+        var selected_participants_list = JSON.parse($("#selected_participants_list_hidden").val());
         var indexOfCharId = selected_participants_list.indexOf(char_id);
         if(indexOfCharId < 0){
           // char id is not yet in array. Add it.
@@ -42,7 +42,7 @@ var LarpEvent = new function(){
       $("#"+id).removeClass("hidden");
 
       // Remove id from the submit array
-      var selected_participants_list = JSON.parse($("#selected_participants").val());
+      var selected_participants_list = JSON.parse($("#selected_participants_list_hidden").val());
       var indexOfCharId = selected_participants_list.indexOf(id);
       if(indexOfCharId < 0){
         // char id is in the array. Remove it.
