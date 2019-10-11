@@ -78,10 +78,10 @@ class LarpEventController extends Controller
 
     public function doDeleteEvent($eventId){
         $event = LarpEvent::find($eventId);
-        $name = $event->name;
+        $eventName = $event->name;
         $event->delete();
 
-        return view('larp_event/showEventDeleted', ['name' => $name]);
+        return view('larp_event/showEventDeleted', ['eventName' => $eventName]);
     }
 
     public function deleteEventWarning($eventId){

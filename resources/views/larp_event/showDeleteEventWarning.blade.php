@@ -4,7 +4,7 @@
 	<div class='container'>
 		<div class="row">
 			<div class="col-xs-5">
-				<span class="overview_header">Verwijder Vaardigheid</span>
+				<span class="overview_header">Verwijder Evenement</span>
 			</div>
 		</div>
 
