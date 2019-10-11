@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Character;
 
 class LarpEvent extends Model
 {
@@ -15,7 +16,7 @@ class LarpEvent extends Model
     }
 
     public function getParticipantsAttribute(){
-        return Character::find($this->id)
+        return LarpEvent::find($this->id)
                             ->participants()
                             ->select(['id','name', 'char_user'])
                             ->orderBy('name')
