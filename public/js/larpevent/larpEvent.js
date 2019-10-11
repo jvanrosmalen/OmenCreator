@@ -23,11 +23,13 @@ var LarpEvent = new function(){
 
         // Add id to submit array
         var selected_participants_list = JSON.parse($("#selected_participants_list_hidden").val());
-        var indexOfCharId = selected_participants_list.indexOf(char_id);
+        var indexOfCharId = selected_participants_list.indexOf(parseInt(char_id, 10));
         if(indexOfCharId < 0){
           // char id is not yet in array. Add it.
-          selected_participants_list.push(char_id);
+          selected_participants_list.push(parseInt(char_id, 10));
         } 
+
+        $("#selected_participants_list_hidden").val(JSON.stringify(selected_participants_list));
       });
       
       ParticipantSelector.closeParticipantSelector(event);
@@ -43,10 +45,12 @@ var LarpEvent = new function(){
 
       // Remove id from the submit array
       var selected_participants_list = JSON.parse($("#selected_participants_list_hidden").val());
-      var indexOfCharId = selected_participants_list.indexOf(id);
+      var indexOfCharId = selected_participants_list.indexOf(parseInt(id, 10));
       if(indexOfCharId < 0){
         // char id is in the array. Remove it.
         selected_participants_list.splice(indexOfCharId, 1);
       }
+
+      $("#selected_participants_list_hidden").val(JSON.stringify(selected_participants_list));
     }
 }
