@@ -66,7 +66,7 @@
 			<div class="col-xs-3"></div>
 			<div class="col-xs-2">
 				<form action='larpeventupdateparticipants' method='POST' >
-					<input type='hidden' id="selected_participants_list_hidden" name='selected_participants' value="@json($participant_ids)">
+					<input type='hidden' id="selected_participants_list_hidden" name='selected_participants' value="{{participant_ids_json}}">
 					<input type='submit' class="btn btn-default" id="cancel_button" type="button" value="Update Spelers" style="width: 150px; font-size: 18px;">
 				</form>
 			</div>
