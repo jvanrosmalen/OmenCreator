@@ -67,9 +67,7 @@
 			<div class="col-xs-2">
 				<form action='larpeventupdateparticipants' method='POST' >
 					<input type='hidden' id="selected_participants" name='selected_participants' value="{{$participant_ids}}">
-					<input type='submit' class="btn btn-default" id="cancel_button" type="button"	style="width: 150px; font-size: 18px;">
-					Update Spelers
-					</a>
+					<input type='submit' class="btn btn-default" id="cancel_button" type="button" value="Update Spelers" style="width: 150px; font-size: 18px;">
 				</form>
 			</div>
 			<div class="col-xs-2"></div>

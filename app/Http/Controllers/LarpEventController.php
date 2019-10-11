@@ -48,6 +48,8 @@ class LarpEventController extends Controller
                                 ->orderBy('name')
                                 ->get();
 
+        var_dump($event->participants);
+        die();
         // foreach($event->participants as $participant){
         //     array_push($participant_ids, $participant->id);
         // }
