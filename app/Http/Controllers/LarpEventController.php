@@ -55,7 +55,7 @@ class LarpEventController extends Controller
         return view('larp_event/showLarpEventAddPlayers',
                         ['event' => $event,
                         'characters' => $characters,
-                        'participant_ids' => json_encode($participant_ids)
+                        'participant_ids' => $participant_ids
                         ]);
     }
 
