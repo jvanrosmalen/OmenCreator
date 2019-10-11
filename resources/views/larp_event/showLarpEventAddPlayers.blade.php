@@ -43,7 +43,13 @@
 			 
 			        <tbody id="selected_participants">
                         @foreach ($characters as $character)
-                            <tr id="participant_{{ $character->id }}" class="hidden">
+							<?php
+							if(in_array($participant_ids, $character->id)){
+								echo "<tr id='participant_".$character->id."'>";	
+							} else {
+								echo "<tr id='participant_".$character->id."' class='hidden'>";
+							}
+							?>
                                 <td class="character_name col-xs-5">
                                     {{ $character->name }}
                                 </td>
