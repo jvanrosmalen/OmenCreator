@@ -98,8 +98,12 @@ class LarpEventController extends Controller
     }
 
     public function doUpdateParticipants($eventId){
-        echo "Bla";
         $participantIdsArray = JSON_decode($_POST['selected_participants']);
-        var_dump($participantIdsArray);
+        $event = LarpEvent::find($eventId);
+
+        $event->participants->sync($participantIdsArray);
+
+        return view('larp_event/showParticipantsUpdated', ['eventName' => $event->name]);
+
     }
 }
