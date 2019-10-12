@@ -102,6 +102,7 @@ class LarpEventController extends Controller
         $event = LarpEvent::find($eventId);
 
         $event->participants()->sync($participantIdsArray);
+        $event->save();
 
         return view('larp_event/showParticipantsUpdated', ['eventName' => $event->name]);
 
