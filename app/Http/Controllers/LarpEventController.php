@@ -98,7 +98,8 @@ class LarpEventController extends Controller
     }
 
     public function doUpdateParticipants($eventId){
-        $participantIdsArray = JSON_decode($_POST['selected_participants_list_hidden']);
+        echo "Bla";
+        $participantIdsArray = JSON_decode($_POST['selected_participants']);
         var_dump($participantIdsArray);
     }
 }
