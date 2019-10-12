@@ -73,6 +73,12 @@
 			<div class="col-xs-3"></div>
 			<div class="col-xs-2">
 				<form action='larpeventupdateparticipants/{{ $event->id }}' method='POST' >
+
+					<!-- ******************* -->
+					<!-- For Laravel CSRF administration -->
+					<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+					<!-- ******************* -->
+
 					<input type='hidden' id="selected_participants_list_hidden" name='selected_participants' value="{{$participant_ids_json}}">
 					<input type='submit' class="btn btn-default" id="cancel_button" type="button" value="Update Spelers" style="width: 150px; font-size: 18px;">
 				</form>
