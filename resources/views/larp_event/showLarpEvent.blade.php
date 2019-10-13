@@ -60,13 +60,13 @@
                 
                         <tbody id="selected_participants_overview">
                             @foreach ($participants as $participant)
-                                <tr id='participant_{{$participant->id}}'>";	
+                                <tr id='participant_{{$participant->id}}'>	
                                     <td class="character_name col-xs-5">
                                         {{ $participant->name }}
                                     </td>
                                     <td class="user_name col-xs-6">
                                         <?php var_dump($participant); ?>
-                                        <!-- {{ $participant->char_user->name }} -->
+                                        {{ $participant->char_user }}
                                     </td>
                                 </tr>
                             @endforeach
