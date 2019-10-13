@@ -18,7 +18,7 @@
 
 	<div class="tab-content">
 		<div id="event_info" class="tab-pane fade in active">
-            <div class='row well'>
+            <div class='row'>
                 <div class='row'>
                     <div class='col-xs-1'></div>
                     <div class='col-xs-1'>Begindatum:</div>
@@ -47,7 +47,7 @@
                     <div class="col-xs-2">
                     </div>
                     <div class="col-xs-7">
-                    <h3>Deelnemers</h3>
+                    <h4>Deelnemers</h4>
                     </div>
                 </div>
                 <div class='row'>
