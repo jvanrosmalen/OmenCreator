@@ -87,7 +87,7 @@ class LarpEventController extends Controller
         $event = LarpEvent::find($eventId);
         $eventName = $event->name;
 
-        if(!$event->participants()->isEmpty()){
+        if(!$event->participants->isEmpty()){
             $event->participants()->detach(); 
         }
 
