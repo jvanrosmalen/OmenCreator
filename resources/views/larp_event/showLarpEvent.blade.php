@@ -65,7 +65,8 @@
                                         {{ $participant->name }}
                                     </td>
                                     <td class="user_name col-xs-6">
-                                        {{ $participant->char_user->name }}
+                                        <?php var_dump($participant); ?>
+                                        <!-- {{ $participant->char_user->name }} -->
                                     </td>
                                 </tr>
                             @endforeach
