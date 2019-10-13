@@ -56,7 +56,7 @@
                             <thead>
                                 <tr>
                                     <th class="col-xs-6">
-                                        Karakternaam
+                                        Karakternaam (<?php echo count($participants) ?>)
                                     </th>
                                     <th class="col-xs-6">
                                         Spelernaam
