@@ -11,28 +11,40 @@
 		</div>
 	</div>
 
-    <div class='row well'>
-        <div class='row'>
-            <div class='col-xs-1'></div>
-            <div class='col-xs-1'>Begindatum:</div>
-            <div class='col-xs-2'>
-                {{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
+    <ul class="nav nav-tabs">
+		<li class="active"><a id="tab1" data-toggle="tab" href="#event_info">Event Info</a></li>
+		<li><a id="tab2" data-toggle="tab" href="#event_actions">Event Acties</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="event_info" class="tab-pane fade in active">
+            <div class='row well'>
+                <div class='row'>
+                    <div class='col-xs-1'></div>
+                    <div class='col-xs-1'>Begindatum:</div>
+                    <div class='col-xs-2'>
+                        {{\Carbon\Carbon::parse($event->begin_date)->format('d-m-Y')}}
+                    </div>
+                    <div class='col-xs-1'></div>
+                    <div class='col-xs-1'>Einddatum:</div>
+                    <div class='col-xs-2'>
+                        {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
+                    </div>
+                    </div>
+                    <div class='col-xs-1'></div>
+                </div>
+
+                <div class='row'>
+                <div class='col-xs-1'></div>
+                <div class='col-xs-1'>Beschrijving:</div>
+                <div class='col-xs-9'>
+                    {{ $event->description }}
+                </div>
+                </div>
             </div>
-            <div class='col-xs-1'></div>
-            <div class='col-xs-1'>Einddatum:</div>
-            <div class='col-xs-2'>
-                {{\Carbon\Carbon::parse($event->end_date)->format('d-m-Y')}}
-            </div>
-            </div>
-            <div class='col-xs-1'></div>
         </div>
 
-        <div class='row'>
-        <div class='col-xs-1'></div>
-        <div class='col-xs-1'>Beschrijving:</div>
-        <div class='col-xs-9'>
-            {{ $event->description }}
-        </div>
+        <div id="event_actions" class="tab-pane fade">
         </div>
     </div>
 
