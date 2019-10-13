@@ -18,8 +18,8 @@ class LarpEvent extends Model
     public function getParticipantsAttribute(){
         return LarpEvent::find($this->id)
                             ->participants()
-                            ->select(['id', 'name'])
                             ->sortBy('name')
+                            ->select(['id', 'name'])
                             ->get();
     }
 }
