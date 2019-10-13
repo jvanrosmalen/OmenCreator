@@ -47,7 +47,7 @@
                     <div class="col-xs-2">
                     </div>
                     <div class="col-xs-7">
-                    <h2>Deelnemers</h2>
+                    <h3>Deelnemers</h3>
                     </div>
                 </div>
                 <div class='row'>

@@ -19,6 +19,7 @@ class LarpEvent extends Model
         return LarpEvent::find($this->id)
                             ->participants()
                             ->select(['id', 'name'])
+                            ->sortBy('name')
                             ->get();
     }
 }

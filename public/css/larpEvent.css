@@ -5,5 +5,5 @@
 
 #participants_overview_table.table-fixedheader>tbody {
 	overflow-y: scroll;
-	height: 300px;
+	height: 280px;
 }
