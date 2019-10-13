@@ -2,3 +2,8 @@
 	overflow-y: scroll;
 	height: 380px;
 }
+
+#participants_overview_table.table-fixedheader>tbody {
+	overflow-y: scroll;
+	height: 300px;
+}
