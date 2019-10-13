@@ -18,6 +18,7 @@
 
 	<div class="tab-content">
 		<div id="event_info" class="tab-pane fade in active">
+            <br>
             <div class='row'>
                 <div class='row'>
                     <div class='col-xs-1'></div>
@@ -40,6 +41,7 @@
                         {{ $event->description }}
                     </div>
                 </div>
+                <hr>
             </div>
 
             <div class="row">
