@@ -46,14 +46,10 @@
 
             <div class="row">
                 <div class='row'>
-                    <div class="col-xs-2">
+                    <div class="col-xs-1">
                     </div>
-                    <div class="col-xs-7">
-                    <h4>Deelnemers</h4>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class="col-xs-2">
+                    <div class="col-xs-1">
+                        Deelnemers:
                     </div>
                     <div class="col-xs-7">
                         <table id="participants_overview_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
