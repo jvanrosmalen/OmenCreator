@@ -157,8 +157,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-	Barryvdh\DomPDF\ServiceProvider::class,
-	Barryvdh\Cors\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+        LynX39\LaraPdfMerger\PdfMergerServiceProvider::class,
     ],
 
     /*
@@ -204,9 +205,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-   	'Form'=> Collective\Html\FormFacade::class,
-   	'HTML'=> Collective\Html\HtmlFacade::class,
-	'PDF' => Barryvdh\DomPDF\Facade::class,
+   	    'Form'=> Collective\Html\FormFacade::class,
+   	    'HTML'=> Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PdfMerger' => LynX39\LaraPdfMerger\Facades\PdfMerger::class,
 
     	// Add to be able to reference to StatisticRule in blade files
     	'StatisticRule'=> App\Statistic::class,

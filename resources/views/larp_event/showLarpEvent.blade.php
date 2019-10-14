@@ -103,8 +103,8 @@
                             type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
                         </div>
                         <div class='col-xs-8'>
-                            Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
-                            Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
+                            Geeft 3 EP voor dit event aan iedere levende deelnemer.<br>
+                            Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn in hun EP overzicht.
                         </div>
                     @endif
 
@@ -121,7 +121,24 @@
                         type="button" style="width: 100%; font-size: 16px;">Inkomstenoverzicht</a>
                     </div>
                     <div class='col-xs-8'>
-                        Maak een overzicht van de inkomsten van iedere deelnemer.
+                        Maakt een overzicht van de inkomsten van iedere deelnemer.
+                    </div>
+
+                    <div class='col-xs-1'></div>
+                </div>
+
+                <br>
+
+                <div class='row'>
+                    <div class='col-xs-1'></div>
+                    
+                    <div class='col-xs-2'>
+                        <a href="{{ url('/generateEventCombatSheets/'.$event->id) }}" class="btn btn-default"
+                        type="button" style="width: 100%; font-size: 16px;">Combatsheets</a>
+                    </div>
+                    <div class='col-xs-8'>
+                        Maakt &eacute;&eacute;n document met alle combat sheets van alle deelnemers van dit event.<br>
+                        WAARSCHUWING: dit kan lang duren. Blijf op deze pagina tot de download klaar is.
                     </div>
 
                     <div class='col-xs-1'></div>

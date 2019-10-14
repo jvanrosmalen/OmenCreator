@@ -9,6 +9,7 @@ use App\LarpEvent;
 use App\Character;
 use App\EpAssignment;
 use PDF;
+use PdfMerger;
 
 class LarpEventController extends Controller
 {
@@ -160,5 +161,33 @@ class LarpEventController extends Controller
 		$pdf = \PDF::loadView('larp_event.revenueSheet', compact('participants', 'event'));
 		$pdf->setPaper('A4', 'portrait');
 		return $pdf->download('inkomsten '.$event->name.'.pdf');        
+    }
+
+    public function generateEventCombatSheets($eventId){
+        $participants = LarpEvent::find($eventId)->participants;
+        $combatSheetsPdf = null;
+        $pdfMerger = PDFMerger::init();
+
+        foreach($participants as $participant){
+            $character = Character::find($participant->id);
+            $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$character->name.'.pdf');
+
+            $pdf = \PDF::loadView('character.charCombatSheet', compact('character'));
+            $pdf->setPaper('A4', 'landscape');
+
+            $pdf->save($temp_storage_path);
+            $pdfMerger->addPDF($temp_storage_path, 'all');
+        }
+
+        $pdfMerger->duplexMerge();
+        // delete all files in temp storage folder
+        $files = glob(storage_path('events/temp_combatsheets/').'*'); // get all file names
+        foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
+        }
+
+        return $pdfMerger->save("combatsheets ".$event->name, "download");
+		// return $combatSheetsPdf->download('combatsheet_'.$character->name.'.pdf');
     }
 }
