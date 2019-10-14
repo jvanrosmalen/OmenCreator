@@ -117,9 +117,8 @@ class LarpEventController extends Controller
     public function doAssignEP($eventId){
         $event = LarpEvent::find($eventId);
 
-        foreach($event->participants as $participant){
+        foreach($event->participants as $character){
             $ep_amount = 3;
-            $character = $participant->char_user;
             $epAssign = new EpAssignment();
 
             if($character->is_alive){
