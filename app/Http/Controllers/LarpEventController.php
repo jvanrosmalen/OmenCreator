@@ -124,7 +124,7 @@ class LarpEventController extends Controller
 
             // Trick needed as DB query returns a tiny int
             $test = $character;
-            if($is_alive){
+            if($character->is_alive){
                 $character->ep_amount = $character->ep_amount + $ep_amount; 
                 $character->nr_events_survived = $character->nr_events_survived + 1;        
                 $character->save();
