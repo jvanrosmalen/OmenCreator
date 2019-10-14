@@ -20,14 +20,19 @@
                border: 1px solid black;
                width: 18px;
                height: 18px;
-               padding-right: 5px;
            }
 
+           td:nth-child(2) {
+               padding-left: 5px;
+           }
+           
            td:nth-child(2),
            td:nth-child(3),
            td:nth-child(4) {
                padding-right: 20px;
            }
+
+
         </style>
 	</head>
 	<body>
