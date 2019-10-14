@@ -116,35 +116,39 @@ class LarpEventController extends Controller
 
     public function doAssignEP($eventId){
         $event = LarpEvent::find($eventId);
-        $test;
 
-        foreach($event->participants as $participant){
-            $ep_amount = 3;
-            $epAssign = new EpAssignment();
+        if(!$event->ep_assigned){
+            foreach($event->participants as $participant){
+                $ep_amount = 3;
+                $epAssign = new EpAssignment();
 
-            // the Participants do not give is_alive attribute via event
-            // so check the character behind it.
-            $character = Character::find($participant->id);
+                // the Participants do not give is_alive attribute via event
+                // so check the character behind it.
+                $character = Character::find($participant->id);
 
-            if($character->is_alive){
-                $character->ep_amount = $character->ep_amount + $ep_amount; 
-                $character->nr_events_survived = $character->nr_events_survived + 1;        
-                $character->save();
+                if($character->is_alive){
+                    $character->ep_amount = $character->ep_amount + $ep_amount; 
+                    $character->nr_events_survived = $character->nr_events_survived + 1;        
+                    $character->save();
 
-                $epAssign->amount = $ep_amount;
-                $epAssign->reason = $event->name;
-            } else {
-                $epAssign->amount = 0;
-                $epAssign->reason = "Gestorven op ".$event->name;
+                    $epAssign->amount = $ep_amount;
+                    $epAssign->reason = $event->name;
+                } else {
+                    $epAssign->amount = 0;
+                    $epAssign->reason = "Gestorven op ".$event->name;
+                }
+
+                $epAssign->character_id = $character->id;
+                $epAssign->save();
+
+                $event->ep_assigned = true;
+                $event->save();
             }
+        
 
-            $epAssign->character_id = $character->id;
-            $epAssign->save();
-
-            $event->ep_assigned = true;
-            $event->save();
+            return view('larp_event/showParticipantsEpAssigned', ['event' => $event]);
+        } else {
+            return view('larp_event/showEpAlreadyAssigned', ['event' => $event]);
         }
-
-        return view('larp_event/showParticipantsEpAssigned', ['event' => $event]);
     }
 }
