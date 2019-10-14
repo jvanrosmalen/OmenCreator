@@ -88,14 +88,26 @@
                 <br>
                 <div class='row'>
                     <div class='col-xs-1'></div>
-                    <div class='col-xs-2'>
-                        <a href="{{ url('/larpeventsassignep/'.$event->id) }}" class="btn btn-default"
-                        type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
-                    </div>
-                    <div class='col-xs-8'>
-                        Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
-                        Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
-                    </div>
+                    
+                    @if($event->ep_assigned)
+                        <div class='col-xs-2'>
+                            <a href="#" class="btn btn-default disabled"
+                            type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
+                        </div>
+                        <div class='col-xs-8'>
+                            Er is reeds EP toegekend voor dit event. Het is niet mogelijk dit nog eens te doen.
+                        </div>
+                    @else
+                        <div class='col-xs-2'>
+                            <a href="{{ url('/larpeventsassignep/'.$event->id) }}" class="btn btn-default"
+                            type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
+                        </div>
+                        <div class='col-xs-8'>
+                            Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
+                            Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
+                        </div>
+                    @endif
+
                     <div class='col-xs-1'></div>
                 </div>
            </div>
