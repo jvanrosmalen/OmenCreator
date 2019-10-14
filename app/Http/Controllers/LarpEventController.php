@@ -9,7 +9,7 @@ use App\LarpEvent;
 use App\Character;
 use App\EpAssignment;
 use PDF;
-// use LynX39\LaraPdfMerger\Facades\PdfMerger;
+use LynX39\LaraPdfMerger\Facades\PdfMerger;
 
 class LarpEventController extends Controller
 {
@@ -164,30 +164,30 @@ class LarpEventController extends Controller
     }
 
     public function generateEventCombatSheets($eventId){
-        // $participants = LarpEvent::find($eventId)->participants;
-        // $combatSheetsPdf = null;
-        // $pdfMerger = PDFMerger::init();
+        $participants = LarpEvent::find($eventId)->participants;
+        $combatSheetsPdf = null;
+        $pdfMerger = PDFMerger::init();
 
-        // foreach($participants as $participant){
-        //     $character = Character::find($participant->id);
-        //     $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$character->name.'.pdf');
+        foreach($participants as $participant){
+            $character = Character::find($participant->id);
+            $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$character->name.'.pdf');
 
-        //     $pdf = \PDF::loadView('character.charCombatSheet', compact('character'));
-        //     $pdf->setPaper('A4', 'landscape');
+            $pdf = \PDF::loadView('character.charCombatSheet', compact('character'));
+            $pdf->setPaper('A4', 'landscape');
 
-        //     $pdf->save($temp_storage_path);
-        //     $pdfMerger->addPDF($temp_storage_path, 'all');
-        // }
+            $pdf->save($temp_storage_path);
+            $pdfMerger->addPDF($temp_storage_path, 'all');
+        }
 
-        // $pdfMerger->duplexMerge();
-        // // delete all files in temp storage folder
-        // $files = glob(storage_path('events/temp_combatsheets/').'*'); // get all file names
-        // foreach($files as $file){ // iterate files
-        // if(is_file($file))
-        //     unlink($file); // delete file
-        // }
+        $pdfMerger->duplexMerge();
+        // delete all files in temp storage folder
+        $files = glob(storage_path('events/temp_combatsheets/').'*'); // get all file names
+        foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
+        }
 
-        // return $pdfMerger->save("combatsheets ".$event->name, "download");
+        return $pdfMerger->save("combatsheets ".$event->name, "download");
 		// return $combatSheetsPdf->download('combatsheet_'.$character->name.'.pdf');
     }
 }
