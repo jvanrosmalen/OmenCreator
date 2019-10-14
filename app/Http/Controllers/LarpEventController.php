@@ -114,7 +114,7 @@ class LarpEventController extends Controller
         return view('larp_event/showParticipantsUpdated', ['eventName' => $event->name]);
     }
 
-    public function doAssignEP($eventID){
+    public function doAssignEP($eventId){
         $event = LarpEvent::find($eventId);
 
         foreach($event->participants as $participant){

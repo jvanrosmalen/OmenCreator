@@ -93,8 +93,8 @@
                         type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
                     </div>
                     <div class='col-xs-8'>
-                        Geef 3 EP voor dit event aan iedere levende deelnemer. Gestorven deelnemers krijgen een
-                        melding dat zij dit event gestorven zijn.
+                        Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
+                        Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
                     </div>
                     <div class='col-xs-1'></div>
                 </div>
