@@ -188,7 +188,6 @@ class LarpEventController extends Controller
             unlink($file); // delete file
         }
 
-        return $pdfMerger->save("combatsheets ".$event->name, "download");
-		// return $combatSheetsPdf->download('combatsheet_'.$character->name.'.pdf');
+        return $pdfMerger->save("combatsheets ".$event->name.".pdf", "download");
     }
 }
