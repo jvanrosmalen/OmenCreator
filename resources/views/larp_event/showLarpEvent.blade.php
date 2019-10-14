@@ -121,8 +121,7 @@
                         type="button" style="width: 100%; font-size: 16px;">Inkomstenoverzicht</a>
                     </div>
                     <div class='col-xs-8'>
-                        Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
-                        Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
+                        Maak een overzicht van de inkomsten van iedere deelnemer.
                     </div>
 
                     <div class='col-xs-1'></div>
