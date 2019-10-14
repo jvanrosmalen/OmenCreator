@@ -15,7 +15,6 @@
 		<div class="row well">
 			<div class="col-xs-12">
                 De EP voor alle deelnemers aan <b><em>{{$event->name}}</em></b> is succesvol toegekend.<br>
-                Alive value is: <?php echo $alive;?>
             </div>	
 		</div>
 			

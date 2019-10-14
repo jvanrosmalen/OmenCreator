@@ -102,6 +102,8 @@
         </div>
     </div>
 
+    <br>
+
 	<div class="row">
 		<div class="row button-row">
 			<div class="col-xs-2 col-xs-offset-5">

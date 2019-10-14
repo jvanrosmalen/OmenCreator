@@ -118,12 +118,14 @@ class LarpEventController extends Controller
         $event = LarpEvent::find($eventId);
         $test;
 
-        foreach($event->participants as $character){
+        foreach($event->participants as $participant){
             $ep_amount = 3;
             $epAssign = new EpAssignment();
 
-            // Trick needed as DB query returns a tiny int
-            $test = $character;
+            // the Participants do not give is_alive attribute via event
+            // so check the character behind it.
+            $character = Character::find($participant->id);
+
             if($character->is_alive){
                 $character->ep_amount = $character->ep_amount + $ep_amount; 
                 $character->nr_events_survived = $character->nr_events_survived + 1;        
@@ -143,6 +145,6 @@ class LarpEventController extends Controller
             $event->save();
         }
 
-        return view('larp_event/showParticipantsEpAssigned', ['event' => $event, 'alive' => $test]);
+        return view('larp_event/showParticipantsEpAssigned', ['event' => $event]);
     }
 }
