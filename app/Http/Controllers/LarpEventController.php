@@ -170,6 +170,10 @@ class LarpEventController extends Controller
         $pdfMerger = PDFMerger::init();
         $count = 1;
 
+        // Temporarity set the PHP execution time to 15 minutes.
+        // the generation of the PDF can take a long time
+        set_time_limit(9000); 
+
         foreach($participants as $participant){
             $character = Character::find($participant->id);
             $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$count.'.pdf');
