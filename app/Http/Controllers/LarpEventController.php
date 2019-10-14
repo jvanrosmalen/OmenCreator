@@ -168,16 +168,18 @@ class LarpEventController extends Controller
         $participants = $event->participants;
         $combatSheetsPdf = null;
         $pdfMerger = PDFMerger::init();
+        $count = 1;
 
         foreach($participants as $participant){
             $character = Character::find($participant->id);
-            $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$character->name.'.pdf');
+            $temp_storage_path = storage_path('events/temp_combatsheets/combatsheet_'.$count.'.pdf');
 
             $pdf = \PDF::loadView('character.charCombatSheet', compact('character'));
             $pdf->setPaper('A4', 'landscape');
 
             $pdf->save($temp_storage_path);
             $pdfMerger->addPDF($temp_storage_path, 'all');
+            $count++;
         }
 
         $pdfMerger->duplexMerge();
