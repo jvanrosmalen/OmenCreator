@@ -43,7 +43,7 @@
                     <td> </td>
                     <td>{{ $participant -> name }}</td>
                     <td>{{ $participant -> char_user -> name }}</td>
-                    <td></td>
+                    <td>{{ $participant->moneyAmountToString($participant->getIncome()) }}</td>
                 </tr>
             @endforeach
         </table>
