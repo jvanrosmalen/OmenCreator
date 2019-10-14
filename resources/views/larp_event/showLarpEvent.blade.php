@@ -116,7 +116,7 @@
                     
                     <div class='col-xs-2'>
                         <a href="{{ url('/generateRevenueOverview/'.$event->id) }}" class="btn btn-default"
-                        type="button" style="width: 100%; font-size: 18px;">Inkomstenoverzicht</a>
+                        type="button" style="width: 100%; font-size: 16px;">Inkomstenoverzicht</a>
                     </div>
                     <div class='col-xs-8'>
                         Geef 3 EP voor dit event aan iedere levende deelnemer.<br>

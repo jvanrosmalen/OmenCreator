@@ -11,6 +11,22 @@
             .underlined {
                 border-bottom: 1px solid black;
             }
+
+            table {
+                cellspacing: 1px;
+            }
+
+           td:nth-child(1){
+               border: 1px solid black;
+               width: 18px;
+               height: 18px;
+           }
+
+           td:nth-child(2),
+           td:nth-child(3),
+           td:nth-child(4) {
+               width: 25%;
+           }
         </style>
 	</head>
 	<body>
@@ -24,10 +40,10 @@
             </tr>
             @foreach($participants as $participant)
                 <tr>
-                    <td>&#x25fb;</td>
-                    <td class="underlined">{{ $participant -> name }}</td>
-                    <td class="underlined"></td>
-                    <td class="underlined"></td>
+                    <td> </td>
+                    <td>{{ $participant -> name }}</td>
+                    <td>{{ $participant -> char_user -> name }}</td>
+                    <td></td>
                 </tr>
             @endforeach
         </table>
