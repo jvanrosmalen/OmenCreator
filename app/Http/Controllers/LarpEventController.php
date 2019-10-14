@@ -121,7 +121,8 @@ class LarpEventController extends Controller
             $ep_amount = 3;
             $epAssign = new EpAssignment();
 
-            if($character->is_alive){
+            // Cast needed as DB query returns a value
+            if((boolean)$character->is_alive){
                 $character->ep_amount = $character->ep_amount + $ep_amount; 
                 $character->nr_events_survived = $character->nr_events_survived + 1;        
                 $character->save();
