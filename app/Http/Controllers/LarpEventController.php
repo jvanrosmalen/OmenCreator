@@ -9,7 +9,7 @@ use App\LarpEvent;
 use App\Character;
 use App\EpAssignment;
 use PDF;
-use PdfMerger;
+use LynX39\LaraPdfMerger\Facades\PdfMerger;
 
 class LarpEventController extends Controller
 {
