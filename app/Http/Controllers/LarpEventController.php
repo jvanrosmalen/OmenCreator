@@ -116,15 +116,14 @@ class LarpEventController extends Controller
 
     public function doAssignEP($eventId){
         $event = LarpEvent::find($eventId);
-        $is_alive_val;
+        $test;
 
         foreach($event->participants as $character){
             $ep_amount = 3;
             $epAssign = new EpAssignment();
 
             // Trick needed as DB query returns a tiny int
-            $is_alive = $character->is_alive == 1 ? true : false;
-            $is_alive_val = $character->is_alive;
+            $test = $character;
             if($is_alive){
                 $character->ep_amount = $character->ep_amount + $ep_amount; 
                 $character->nr_events_survived = $character->nr_events_survived + 1;        
@@ -144,6 +143,6 @@ class LarpEventController extends Controller
             $event->save();
         }
 
-        return view('larp_event/showParticipantsEpAssigned', ['event' => $event, 'alive' => $is_alive_val]);
+        return view('larp_event/showParticipantsEpAssigned', ['event' => $event, 'alive' => $test]);
     }
 }
