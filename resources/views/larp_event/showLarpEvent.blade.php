@@ -86,11 +86,11 @@
             <div class='row'>
                 <div class='row'>
                     <div class='col-xs-1'></div>
-                    <div class='col-xs-1'>
-                        <a href="{{ url('/larpeventsassignep/$event->id') }}" class="btn btn-success"
+                    <div class='col-xs-2'>
+                        <a href="{{ url('/larpeventsassignep/$event->id') }}" class="btn"
                         type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
                     </div>
-                    <div class='col-xs-9'>
+                    <div class='col-xs-8'>
                         Geef 3 EP voor dit event aan iedere levende deelnemer. Gestorven deelnemers krijgen een
                         melding dat zij dit event gestorven zijn.
                     </div>
