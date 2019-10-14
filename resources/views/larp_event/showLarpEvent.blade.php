@@ -84,7 +84,19 @@
 
         <div id="event_actions" class="tab-pane fade">
             <div class='row'>
-            </div>
+                <div class='row'>
+                    <div class='col-xs-1'></div>
+                    <div class='col-xs-1'>
+                        <a href="{{ url('/larpeventsassignep/$event->id') }}" class="btn btn-success"
+                        type="button" style="width: 100%; font-size: 18px;">EP toekennen</a>
+                    </div>
+                    <div class='col-xs-9'>
+                        Geef 3 EP voor dit event aan iedere levende deelnemer. Gestorven deelnemers krijgen een
+                        melding dat zij dit event gestorven zijn.
+                    </div>
+                    <div class='col-xs-1'></div>
+                </div>
+           </div>
         </div>
     </div>
 

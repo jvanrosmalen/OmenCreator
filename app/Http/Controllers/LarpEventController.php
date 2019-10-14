@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\LarpEvent;
 use App\Character;
+use App\EpAssignment;
 
 class LarpEventController extends Controller
 {
@@ -74,6 +75,7 @@ class LarpEventController extends Controller
         $newEvent->description = $request->input('larp_event_description');
         $newEvent->begin_date = date("Y-m-d", strtotime($request->input('larp_event_begin_date')));
         $newEvent->end_date = date("Y-m-d", strtotime($request->input('larp_event_end_date')));
+        $newEvent->ep_assigned = false;
 
         $newEvent->save();
 
@@ -110,6 +112,35 @@ class LarpEventController extends Controller
         $event->save();
 
         return view('larp_event/showParticipantsUpdated', ['eventName' => $event->name]);
+    }
 
+    public function doAssignEP($eventID){
+        $event = LarpEvent::find($eventId);
+
+        foreach($event->participants as $participant){
+            $ep_amount = 3;
+            $character = $participant->char_user;
+            $epAssign = new EpAssignment();
+
+            if($character->is_alive){
+                $character->ep_amount = $character->ep_amount + $ep_amount; 
+                $character->nr_events_survived = $character->nr_events_survived + 1;        
+                $character->save();
+
+                $epAssign->amount = $ep_amount;
+                $epAssign->reason = $event->name;
+            } else {
+                $epAssign->amount = 0;
+                $epAssign->reason = "Gestorven op ".$event->name;
+            }
+
+            $epAssign->character_id = $character->id;
+            $epAssign->save();
+
+            $event->ep_assigned = true;
+            $event->save();
+        }
+
+        return view('larp_event/showParticipantsEpAssigned', ['event' => $event]);
     }
 }
