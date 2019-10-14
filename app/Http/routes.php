@@ -198,7 +198,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/larpeventdelete/{eventId}', 'LarpEventController@doDeleteEvent')->middleware('isStoryTelling');
 	Route::post('/larpeventupdateparticipants/{eventId}', 'LarpEventController@doUpdateParticipants')->middleware('isStoryTelling');
 	Route::get('/larpeventsassignep/{eventId}', 'LarpEventController@doAssignEP')->middleware('isStoryTelling');
-
+	Route::get('/generateRevenueOverview/{eventId}', 'LarpEventController@generateRevenueOverview')->middleware('isStoryTelling');
+	
 	Route::get('download_handout/{charId}/{skillId}/{handoutName}', 'CharacterController@downloadHandout')->middleware('auth');
 	Route::get('download_chardoc/{charId}/{chardocName}', 'CharacterController@downloadCharacterDocument')->middleware('auth');
 	Route::get('remove_chardoc/{charId}/{chardocName}', 'CharacterController@removeCharacterDocument')->middleware('isStoryTelling');

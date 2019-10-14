@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\LarpEvent;
 use App\Character;
 use App\EpAssignment;
+use PDF;
 
 class LarpEventController extends Controller
 {
@@ -150,5 +151,14 @@ class LarpEventController extends Controller
         } else {
             return view('larp_event/showEpAlreadyAssigned', ['event' => $event]);
         }
+    }
+
+    public function generateRevenueOverview($eventId){
+        $event = LarpEvent::find($eventId);
+        $participants = $event->participants;
+
+		$pdf = \PDF::loadView('larp_event.revenueSheet', compact('participants', 'event'));
+		$pdf->setPaper('A4', 'portrait');
+		return $pdf->download('inkomsten '.$event->name.'.pdf');        
     }
 }

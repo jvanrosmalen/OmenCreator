@@ -110,6 +110,21 @@
 
                     <div class='col-xs-1'></div>
                 </div>
+
+                <div class='row'>
+                    <div class='col-xs-1'></div>
+                    
+                    <div class='col-xs-2'>
+                        <a href="{{ url('/generateRevenueOverview/'.$event->id) }}" class="btn btn-default"
+                        type="button" style="width: 100%; font-size: 18px;">Inkomstenoverzicht</a>
+                    </div>
+                    <div class='col-xs-8'>
+                        Geef 3 EP voor dit event aan iedere levende deelnemer.<br>
+                        Gestorven deelnemers krijgen een melding dat zij dit event gestorven zijn.
+                    </div>
+
+                    <div class='col-xs-1'></div>
+                </div>
            </div>
         </div>
     </div>
