@@ -164,7 +164,8 @@ class LarpEventController extends Controller
     }
 
     public function generateEventCombatSheets($eventId){
-        $participants = LarpEvent::find($eventId)->participants;
+        $event = LarpEvent::find($eventId);
+        $participants = $event->participants;
         $combatSheetsPdf = null;
         $pdfMerger = PDFMerger::init();
 
