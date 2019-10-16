@@ -185,7 +185,23 @@ class Character extends Model
 	}
 	
 	public function getTraumaAssignmentsAttribute(){
-		return Character::find($this->id)->traumaAssignments()->get();
+		return Character::find($this->id)->traumaAssignments()->orderBy('gotten_on_omen', 'desc')->get();
+	}
+
+	public function getUnhealedTraumaAssignments(){
+		return Character::find($this->id)
+						->traumaAssignments()
+						->where('healed_on_omen', '<=', '0')
+						->orderBy('gotten_on_omen', 'desc')
+						->get();
+	}
+
+	public function getHealedTraumaAssignments(){
+		return Character::find($this->id)
+						->traumaAssignments()
+						->where('healed_on_omen', '>', '0')
+						->orderBy('gotten_on_omen', 'desc')
+						->get();
 	}
     
     public function getCharRaceAttribute(){
