@@ -33,22 +33,24 @@
 				</div>
 			</div>
 			<br>
-			<div class="row">
-				<div class="row button-row">
-					<div class="col-xs-3 col-xs-offset-4">
-						<button type='submit' class="btn btn-default">Trauma Toekennen</button>
-					</div>
-				</div>
-			</div>
-		</form>
 	</div>
 	
 	<div class="row">
-		<div class="col-xs-3 col-xs-offset-5">
-			<a href="{{ url('/show_character'.$character->id) }}" class="btn btn-default"
+        <div class="row">
+				<div class="row button-row">
+					<div class="col-xs-3 col-xs-offset-2">
+						<button type='submit' class="btn btn-default" style="width: 120px; font-size: 18px;">Trauma Toekennen</button>
+					</div>
+				</div>
+			</div>
+
+		<div class="col-xs-3 col-xs-offset-2">
+			<a href="{{ url('/show_character/'.$character->id) }}" class="btn btn-default"
 				id="cancel_button" type="button"
 				style="width: 120px; font-size: 18px;"> Terug </a>
 		</div>
-	</div>
+    </div>
+    
+    </form>
 </div>
 @endsection
