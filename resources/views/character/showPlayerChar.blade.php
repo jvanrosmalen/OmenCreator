@@ -23,10 +23,10 @@
 		<li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
 		<li><a id="tab2" data-toggle="tab" href="#skills">Vaardigheden</a></li>
 		<li><a id="tab3" data-toggle="tab" href="#ep_overview">EP Overzicht</a></li>
-		<!-- <li><a id="tab4" data-toggle="tab" href="#trauma">Trauma</a></li> -->
-		<li><a id="tab4" data-toggle="tab" href="#documents">Documenten</a></li>
+		<li><a id="tab4" data-toggle="tab" href="#trauma">Trauma</a></li>
+		<li><a id="tab5" data-toggle="tab" href="#documents">Documenten</a></li>
 		@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-		<li><a id="tab5" data-toggle="tab" href="#extra_info">Extra Info</a></li>
+		<li><a id="tab6" data-toggle="tab" href="#extra_info">Extra Info</a></li>
 		@endif
 	</ul>
 
@@ -347,8 +347,8 @@
 			</div>
 		</div>
 
-		<!-- <div id="trauma" class="tab-pane fade"> -->
-			<!-- <br>
+		<div id="trauma" class="tab-pane fade">
+			<br>
 			<div class='row'>
 				<div class="col-xs-8 col-xs-offset-2"><h4>Trauma Overzicht</h4></div>
 			</div>
@@ -362,11 +362,9 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody> -->
-							<!-- @foreach($character->traumas as $trauma)
+						<tbody>
 
-							@endforeach -->
-						<!-- </tbody>
+						</tbody>
 					</table>
 				</div>
 				<div class="col-xs-1">
@@ -376,8 +374,8 @@
 							</a>
 						@endif
 				</div>				
-			</div> -->
-		<!-- </div> -->
+			</div>
+		</div>
 
 		<div id="documents" class="tab-pane fade">
 			<br>

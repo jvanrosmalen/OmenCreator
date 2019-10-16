@@ -64,7 +64,7 @@ class Character extends Model
     	return $this->belongsToMany('App\PlayerClass', 'character_descent_class');
     }
 	
-	public function myTraumas(){
+	public function traumas(){
     	return $this->hasMany('App\Trauma')->orderBy('gotten_on_omen','desc');
     }
 	
@@ -185,7 +185,7 @@ class Character extends Model
 	}
 	
 	public function getTraumasAttribute(){
-		return Character::find($this->id)->myTraumas()->get();
+		return Character::find($this->id)->traumas()->get();
 	}
     
     public function getCharRaceAttribute(){
