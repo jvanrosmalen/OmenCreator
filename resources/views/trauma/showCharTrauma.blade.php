@@ -52,10 +52,10 @@
 				<table id="char_trauma_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 					<thead>
 						<tr>
-							<th class="col-xs-11">
+							<th class="col-xs-10">
 								Beschrijving
 							</th>
-							<th class="col-xs-1">
+							<th class="col-xs-2">
 								Actie
 							</th>
 						</tr>
@@ -63,14 +63,14 @@
 					<tbody>
 						<?php $first = true;?>
 						@foreach($character->getUnhealedTraumaAssignments() as $unhealedTrauma)
-							<tr id="{{ $unhealedTrauma->id }}">
+							<tr class="col-xs-10" id="{{ $unhealedTrauma->id }}">
 								<td id="{{$unhealedTrauma->id}}">
 									{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
 									<br>
-									<em>Nog niet genezen</em>
+									&nbsp;&nbsp;<em>Nog niet genezen</em>
 								</td>
 								<td class="col-xs-1">
-									<form action='heal_character_trauma' method='POST'>
+									<form display="inline" action='heal_character_trauma' method='POST'>
 										<!-- ******************* -->
 										<!-- For Laravel CSRF administration -->
 										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -78,10 +78,10 @@
 			
 										<input name='assignmentId' type='hidden' value='{{ $unhealedTrauma->id }}'>
 			
-										<button type='submit' class="btn btn-default btn-xs heal-trauma-btn glyphicon glyphicon-certificate" data-toggle="tooltip" title="Verwijder Trauma">
+										<button type='submit' class="btn btn-default btn-xs heal-trauma-btn glyphicon glyphicon-certificate" data-toggle="tooltip" title="Genees Trauma">
 										</button>
 									</form>
-									<form action='remove_character_trauma' method='POST'>
+									<form display="inline" action='remove_character_trauma' method='POST'>
 										<!-- ******************* -->
 										<!-- For Laravel CSRF administration -->
 										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
