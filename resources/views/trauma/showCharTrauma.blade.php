@@ -59,7 +59,7 @@
 					</thead>
 					<tbody>
 						<?php $first = true;?>
-						@foreach($character->getUnhealedTraumaAssignments as $unhealedTrauma)
+						@foreach($character->getUnhealedTraumaAssignments() as $unhealedTrauma)
 							<tr id="{{ $unhealedTrauma->id }}">
 								<td id="{{$unhealedTrauma->id}}">
 									{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
