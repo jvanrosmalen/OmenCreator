@@ -7,6 +7,8 @@ use App\Character;
 
 class Trauma extends Model
 {
+    public $timestamps = false;
+    
     protected $appends = ['character'];
 
 
