@@ -52,46 +52,30 @@
 				<table id="char_trauma_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 					<thead>
 						<tr>
-							<th class="col-xs-10">
+							<th class="col-xs-11">
 								Beschrijving
 							</th>
-							<th class="col-xs-2">
+							<th class="col-xs-1">
 								Actie
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $first = true;?>
 						@foreach($character->getUnhealedTraumaAssignments() as $unhealedTrauma)
-							<tr class="col-xs-10" id="{{ $unhealedTrauma->id }}">
-								<td id="{{$unhealedTrauma->id}}">
+							<tr class="col-xs-11" id="{{ $unhealedTrauma->id }}">
+								<td id="{{$unhealedTrauma->id}}" class="col-xs-11">
 									{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
 									<br>
 									&nbsp;&nbsp;<em>Nog niet genezen</em>
 								</td>
 								<td class="col-xs-1">
-									<form display="inline" action='heal_character_trauma' method='POST'>
-										<!-- ******************* -->
-										<!-- For Laravel CSRF administration -->
-										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-										<!-- ******************* -->
-			
-										<input name='assignmentId' type='hidden' value='{{ $unhealedTrauma->id }}'>
-			
-										<button type='submit' class="btn btn-default btn-xs heal-trauma-btn glyphicon glyphicon-certificate" data-toggle="tooltip" title="Genees Trauma">
-										</button>
-									</form>
-									<form display="inline" action='remove_character_trauma' method='POST'>
-										<!-- ******************* -->
-										<!-- For Laravel CSRF administration -->
-										<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-										<!-- ******************* -->
-			
-										<input name='assignmentId' type='hidden' value='{{ $unhealedTrauma->id }}'>
-			
-										<button type='submit' class="btn btn-default btn-danger btn-xs glyphicon glyphicon-minus" data-toggle="tooltip" title="Verwijder Trauma">
-										</button>
-									</form>
+									<a href="heal_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-xs heal-trauma-btn" data-toggle="tooltip" title="Genees Trauma">
+		   								<span class="glyphicon glyphicon-certificate"></span> 
+		   							</a>
+
+									<a href="remove_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+		   								<span class=" glyphicon glyphicon-minus"></span> 
+		   							</a>
 								</td>
 							</tr>
 						@endforeach
