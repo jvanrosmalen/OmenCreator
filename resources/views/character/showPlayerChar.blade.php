@@ -363,6 +363,16 @@
 							</tr>
 							@foreach($character->trauma_assignments as $trauma)
 							<tr>
+								<table>
+									<tr>
+										<td>
+												
+										</td>
+										<td>
+										
+										</td>
+									</tr>
+								</table>
 							</tr>
 							@endforeach
 						</thead>
