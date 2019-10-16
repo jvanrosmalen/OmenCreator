@@ -362,6 +362,8 @@
 								</th>
 							</tr>
 							@foreach($character->trauma_assignments as $trauma)
+							<tr>
+							</tr>
 							@endforeach
 						</thead>
 						<tbody>

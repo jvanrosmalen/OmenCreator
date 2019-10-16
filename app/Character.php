@@ -185,7 +185,7 @@ class Character extends Model
 	}
 	
 	public function getTraumaAssignmentsAttribute(){
-		return Character::find($this->id)->traumas()->get();
+		return Character::find($this->id)->traumaAssignments()->get();
 	}
     
     public function getCharRaceAttribute(){
