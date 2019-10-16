@@ -363,7 +363,9 @@
 							</tr>
 						</thead>
 						<tbody> -->
+							<!-- @foreach($character->traumas as $trauma)
 
+							@endforeach -->
 						<!-- </tbody>
 					</table>
 				</div>
