@@ -380,14 +380,7 @@
 
 						</tbody>
 					</table>
-				</div>
-				<div class="col-xs-1">
-						@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-							<a class='btn btn-success btn-sm' href="add_trauma/{{$character->id}}/" data-toggle='tooltip' title='voeg trauma toe'>
-								<span class='glyphicon glyphicon-plus'></span>
-							</a>
-						@endif
-				</div>				
+				</div>			
 			</div>
 		</div>
 
