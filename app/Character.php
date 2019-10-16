@@ -46,7 +46,7 @@ class Character extends Model
     						'res_poison',
 				    		'res_magic',
 							'res_disease',
-							'traumas',
+							'trauma_assignments',
     						'wealth_string'
     						];
     
@@ -64,7 +64,7 @@ class Character extends Model
     	return $this->belongsToMany('App\PlayerClass', 'character_descent_class');
     }
 	
-	public function traumas(){
+	public function traumaAssignments(){
     	return $this->hasMany('App\Trauma')->orderBy('gotten_on_omen','desc');
     }
 	
@@ -184,7 +184,7 @@ class Character extends Model
     	return Character::find($this->id)->myEpAssigments()->get();
 	}
 	
-	public function getTraumasAttribute(){
+	public function getTraumaAssignmentsAttribute(){
 		return Character::find($this->id)->traumas()->get();
 	}
     
