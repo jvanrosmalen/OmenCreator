@@ -361,6 +361,8 @@
 									Trauma
 								</th>
 							</tr>
+							@foreach($character->traumas as $trauma)
+							@endforeach
 						</thead>
 						<tbody>
 
