@@ -369,19 +369,19 @@
 										<table class='table_trauma_entry'>
 											<tr>
 												<td class='table_trauma_description'>
-													$trauma->description;
+													{{ $trauma->description }}
 												</td>
 												<td>
-													$trauma->gotten_on_omen;
+													{{ $trauma->gotten_on_omen }}
 												</td>
 											</tr>
 											<tr>
 												@if($trauma->healed_on_omen > 0)
 													<td class='table_trauma_description'>
-														$trauma->healed_by;
+														{{ $trauma->healed_by }}
 													</td>
 													<td>
-														$trauma->healed_on_omen;
+														{{ $trauma->healed_on_omen }}
 													</td>
 												@elseif
 													<td class='table_trauma_description table_trauma_not_healed'>
