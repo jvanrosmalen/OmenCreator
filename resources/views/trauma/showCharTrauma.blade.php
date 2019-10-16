@@ -52,10 +52,10 @@
 				<table id="char_trauma_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 					<thead>
 						<tr>
-							<th class="col-xs-11">
+							<th class="col-xs-10">
 								Beschrijving
 							</th>
-							<th class="col-xs-1">
+							<th class="col-xs-2">
 								Actie
 							</th>
 						</tr>
@@ -63,12 +63,12 @@
 					<tbody>
 						@foreach($character->getUnhealedTraumaAssignments() as $unhealedTrauma)
 							<tr class="col-xs-11" id="{{ $unhealedTrauma->id }}">
-								<td id="{{$unhealedTrauma->id}}" class="col-xs-11">
+								<td id="{{$unhealedTrauma->id}}" class="col-xs-10">
 									{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
 									<br>
 									&nbsp;&nbsp;<em>Nog niet genezen</em>
 								</td>
-								<td class="col-xs-1">
+								<td class="col-xs-2">
 									<a href="heal_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-xs heal-trauma-btn" data-toggle="tooltip" title="Genees Trauma">
 		   								<span class="glyphicon glyphicon-certificate"></span> 
 		   							</a>
