@@ -15,7 +15,7 @@ class TraumaController extends Controller
         return view('trauma/showCharTrauma', ['character'=>$character]);
     }
 
-    public function do_character_add_trauma($charId){
+    public function do_character_add_trauma(){
         $charId = $_POST["charId"];
         $character = Character::find($charId);
 
