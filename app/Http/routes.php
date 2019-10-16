@@ -148,7 +148,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/my_playercharacters', 'CharacterController@showMyCharacters')->middleware('auth');
 
 	Route::get('manage_trauma/{charId}/', 'TraumaController@manageTrauma')->middleware('isStoryTelling');
-
+	Route::post('do_character_add_trauma/{charId}/', 'TraumaController@doAddTrauma')->middleware('isStoryTelling');
+	
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');
 	Route::get('/raise_character/{charId?}', 'CharacterController@doRaiseCharacter')->middleware('isAdmin');
 	Route::get('/show_character_ep/{charId?}', ['as'=>'show_character_ep', 'uses'=>'CharacterController@showCharEp'])->middleware('isStoryTelling');

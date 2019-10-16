@@ -25,8 +25,11 @@
 			<input name='charId' type='hidden' value='{{$character->id}}'>
 		
 			<div class='row'>
-				<div class='col-xs-6 coll-xs-offset-3'>
-					<input name="trauma_reason" style="width: 100%;" placeholder="Reden van EP toekenning" value="">
+				<div class='col-xs-2 col-xs-offset-2'>
+					Gekregen op Omen <input class='input_number_field' name='gotten_on_omen' type='number' min='1'>
+				</div>
+				<div class='col-xs-6'>
+					<input name="trauma_reason" style="width: 100%;" placeholder="Reden van Trauma toekenning" value="">
 				</div>
 			</div>
 			<br>
