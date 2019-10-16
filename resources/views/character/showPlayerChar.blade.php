@@ -348,7 +348,7 @@
 		</div>
 
 		<div id="trauma" class="tab-pane fade">
-			<br>
+			<!-- <br>
 			<div class='row'>
 				<div class="col-xs-8 col-xs-offset-2"><h4>Trauma Overzicht</h4></div>
 			</div>
@@ -362,7 +362,7 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody> -->
 							<!-- @foreach($character->traumas as $trauma)
 								<tr id="{{ $trauma->id }}">
 									<td>
@@ -395,7 +395,7 @@
 									</td>
 								</tr>
 							@endforeach -->
-						</tbody>
+						<!-- </tbody>
 					</table>
 				</div>
 				<div class="col-xs-1">
@@ -405,7 +405,7 @@
 							</a>
 						@endif
 				</div>				
-			</div>
+			</div> -->
 		</div>
 
 		<div id="documents" class="tab-pane fade">
