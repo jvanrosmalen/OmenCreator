@@ -347,7 +347,7 @@
 			</div>
 		</div>
 
-		<div id="trauma" class="tab-pane fade">
+		<!-- <div id="trauma" class="tab-pane fade"> -->
 			<!-- <br>
 			<div class='row'>
 				<div class="col-xs-8 col-xs-offset-2"><h4>Trauma Overzicht</h4></div>
@@ -406,7 +406,7 @@
 						@endif
 				</div>				
 			</div> -->
-		</div>
+		<!-- </div> -->
 
 		<div id="documents" class="tab-pane fade">
 			<br>
