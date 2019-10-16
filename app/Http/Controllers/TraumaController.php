@@ -16,6 +16,7 @@ class TraumaController extends Controller
     }
 
     public function do_character_add_trauma($charId){
+        $charId = $_POST["charId"];
         $character = Character::find($charId);
 
         $trauma = new Trauma();
