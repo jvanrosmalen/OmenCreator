@@ -23,9 +23,10 @@
 		<li class="active"><a id="tab1" data-toggle="tab" href="#base_info">Basis Info</a></li>
 		<li><a id="tab2" data-toggle="tab" href="#skills">Vaardigheden</a></li>
 		<li><a id="tab3" data-toggle="tab" href="#ep_overview">EP Overzicht</a></li>
-		<li><a id="tab4" data-toggle="tab" href="#documents">Documenten</a></li>
+		<li><a id="tab4" data-toggle="tab" href="#trauma">Trauma</a></li>
+		<li><a id="tab5" data-toggle="tab" href="#documents">Documenten</a></li>
 		@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
-		<li><a id="tab5" data-toggle="tab" href="#extra_info">Extra Info</a></li>
+		<li><a id="tab6" data-toggle="tab" href="#extra_info">Extra Info</a></li>
 		@endif
 	</ul>
 
@@ -343,6 +344,67 @@
 							</tbody>
 						</table>
 					</div>
+			</div>
+		</div>
+
+		<div id="trauma" class="tab-pane fade">
+			<br>
+			<div class='row'>
+				<div class="col-xs-8 col-xs-offset-2"><h4>Trauma Overzicht</h4></div>
+			</div>
+			<div class='row'>
+				<div class="col-xs-8 col-xs-offset-2">
+					<table id="char_trauma_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
+						<thead>
+							<tr>
+								<th class="col-xs-10">
+									Trauma
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($character->traumas as $trauma)
+								<tr id="{{ $assignment->id }}">
+									<td>
+										<table class='table_trauma_entry'>
+											<tr>
+												<td class='table_trauma_description'>
+													$trauma->description;
+												</td>
+												<td>
+													$trauma->gotten_on_omen;
+												</td>
+											</tr>
+											<tr>
+												@if($trauma->healed_on_omen > 0)
+													<td class='table_trauma_description'>
+														$trauma->healed_by;
+													</td>
+													<td>
+														$trauma->healed_on_omen;
+													</td>
+												@elseif
+													<td class='table_trauma_description table_trauma_not_healed'>
+														Nog niet genezen.
+													</td>
+													<td>
+													</td>
+												@endif
+											</tr>
+										</table>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+				<div class="col-xs-1">
+						@if( Auth::user()->is_story_telling || Auth::user()->is_admin)
+							<a class='btn btn-success btn-sm' href="add_trauma/{{$character->id}}/" data-toggle='tooltip' title='voeg trauma toe'>
+								<span class='glyphicon glyphicon-plus'></span>
+							</a>
+						@endif
+				</div>				
 			</div>
 		</div>
 

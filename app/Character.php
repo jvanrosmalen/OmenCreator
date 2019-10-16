@@ -45,7 +45,8 @@ class Character extends Model
     						'res_trauma',
     						'res_poison',
 				    		'res_magic',
-    						'res_disease',
+							'res_disease',
+							'traumas',
     						'wealth_string'
     						];
     
@@ -62,7 +63,11 @@ class Character extends Model
     public function descentClasses(){
     	return $this->belongsToMany('App\PlayerClass', 'character_descent_class');
     }
-    
+	
+	public function myTraumas(){
+    	return $this->hasMany('App\Trauma')->orderBy('gotten_on_omen','desc');
+    }
+	
     public function myEpAssigments(){
     	return $this->hasMany('App\EpAssignment')->orderBy('created_at','desc');
     }
@@ -177,7 +182,11 @@ class Character extends Model
    	
    	public function getEpAssignmentsAttribute(){
     	return Character::find($this->id)->myEpAssigments()->get();
-    }
+	}
+	
+	public function getTraumasAttribute(){
+		return Character::find($this->id)->myTraumas()->get();
+	}
     
     public function getCharRaceAttribute(){
     	return Character::find($this->id)->charRace()
