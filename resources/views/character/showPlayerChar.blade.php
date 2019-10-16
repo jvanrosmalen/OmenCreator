@@ -363,7 +363,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($character->traumas as $trauma)
+							<!-- @foreach($character->traumas as $trauma)
 								<tr id="{{ $trauma->id }}">
 									<td>
 										<table class='table_trauma_entry'>
@@ -394,7 +394,7 @@
 										</table>
 									</td>
 								</tr>
-							@endforeach
+							@endforeach -->
 						</tbody>
 					</table>
 				</div>
