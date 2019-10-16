@@ -9,8 +9,8 @@ use App\Character;
 
 class TraumaController extends Controller
 {
-    public function addTrauma($charId){
+    public function manageTrauma($charId){
         $character = Character::find($charId);
-        return view('trauma/showAddTrauma', ['character'=>$character]);
+        return view('trauma/showCharTrauma', ['character'=>$character]);
     }
 }

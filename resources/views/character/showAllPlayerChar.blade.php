@@ -83,7 +83,10 @@
 		   								</a>
 				                    	<a href="show_character_ep/{{$character->id}}" class="btn btn-success btn-xs show-add-ep-btn" data-toggle="tooltip" title="Bekijk EP">
 		   									<span class="glyphicon glyphicon-arrow-up"></span> 
-		   								</a>
+										</a>
+				                    	<a href="manage_trauma/{{$character->id}}/" class="btn btn-success btn-xs show-manage-trauma-btn" data-toggle="tooltip" title="Bekijk Trauma">
+		   									<span class="glyphicon glyphicon-glyphicon-exclamation-sign"></span> 
+										</a>
 				                    	<a href="show_edit_character/{{$character->id}}" class="btn btn-info btn-xs edit-char-btn" data-toggle="tooltip" title="Pas Karakter Aan" onclick="ShowAllPlayerChar.doUpdateCharacter()">
 		   									<span class="glyphicon glyphicon-pencil"></span> 
 		   								</a>
