@@ -60,7 +60,8 @@ class TraumaController extends Controller
 
     public function doDeleteTrauma(){
         $traumaId = $_POST['traumaId'];
-        $traumaDescription = Trauma::find($traumaId)->description;
+        $trauma = Trauma::find($traumaId);
+        $traumaDescription = $trauma->description;
         $character = Character::find($trauma->character_id);
 
         $trauma->delete();
