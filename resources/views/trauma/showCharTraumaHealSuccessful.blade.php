@@ -10,9 +10,10 @@
 
 	<div class="row well">
 		<div class='row'>
-			<div class="col-xs-10 col-xs-offset-1">
-                Het trauma <label>{{$trauma->description}}</label> van <label>{{ $character->name }}</label>\
-                <br> is succesvol genezen vanwege: {{$trauma->healed_by}}.
+			<div class="col-xs-10 col-xs-offset-1 text-center">
+                Het trauma <label>{{$trauma->description}}</label> van <label>{{ $character->name }}</label>
+                <br>is succesvol genezen vanwege:
+                <br>{{$trauma->healed_by}}.
 			</div>
 		</div>
 	</div>
