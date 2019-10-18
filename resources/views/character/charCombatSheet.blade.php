@@ -2810,273 +2810,88 @@
 			</div>			
 			
 			<div id='page_5' class='page heavy_outline left_page'>
+				<?php
+					// Create a variable to hold the amount of trauma left to display
+					$trauma_count = count($character->getUnhealedTraumaAssignments());
+				?>
+
 				<table>
 					<tr>
 						<td colspan='18' class='heavy_outline text_centered'>
 						Trauma Journaal
 						</td>
 					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='heavy_outline text_centered'>
-						Opgelopen op
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Omen
-						</td>
-						<td class='heavy_outline'>
-						</td>
-						<td colspan='5' class='heavy_outline text_centered'>
-						Aantal
-						</td>
-						<td class='heavy_outline'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Hoe?
-						</td>
-						<td colspan='12' class='dashed_bottom text_centered'>
-						</td>
-					</tr>
-					<tr>
-						<td colspan='6' class='light_outline text_centered'>
-						Genezen door?
-						</td>
-						<td colspan='12' class='light_bottom text_centered'>
-						</td>
-					</tr>
+
+					@for($i = 0; $i < 9; $i++)
+						@if ($trauma_count > 0)
+							<tr>
+								<td colspan='6' class='heavy_outline text_centered'>
+								Opgelopen op
+								</td>
+								<td colspan='5' class='heavy_outline text_centered'>
+								Omen
+								</td>
+								<td class='heavy_outline'>
+									$character->getUnhealedTraumaAssignments()[i]->gotten_on_omen;
+								</td>
+								<td colspan='5' class='heavy_outline text_centered'>
+								Aantal
+								</td>
+								<td class='heavy_outline'>
+									$character->getUnhealedTraumaAssignments()[i]->amount;
+								</td>
+							</tr>
+							<tr>
+								<td colspan='6' class='light_outline text_centered'>
+								Hoe?
+								</td>
+								<td colspan='12' class='dashed_bottom ellipsis text_centered'>
+									$character->getUnhealedTraumaAssignments()[i]->description;
+								</td>
+							</tr>
+							<tr>
+								<td colspan='6' class='light_outline text_centered'>
+								Genezen door?
+								</td>
+								<td colspan='12' class='dashed_bottom text_centered'>
+								</td>
+							</tr>
+							 <?php
+							 	$trauma_count--;
+							 ?>
+						@else
+							<tr>
+								<td colspan='6' class='heavy_outline text_centered'>
+								Opgelopen op
+								</td>
+								<td colspan='5' class='heavy_outline text_centered'>
+								Omen
+								</td>
+								<td class='heavy_outline'>
+								</td>
+								<td colspan='5' class='heavy_outline text_centered'>
+								Aantal
+								</td>
+								<td class='heavy_outline'>
+								</td>
+							</tr>
+							<tr>
+								<td colspan='6' class='light_outline text_centered'>
+								Hoe?
+								</td>
+								<td colspan='12' class='dashed_bottom text_centered'>
+								</td>
+							</tr>
+							<tr>
+								<td colspan='6' class='light_outline text_centered'>
+								Genezen door?
+								</td>
+								<td colspan='12' class='dashed_bottom text_centered'>
+								</td>
+							</tr>
+						@endif
+					@endfor
+					
 					<tr>
 						<td class='dashed'>
 						</td>
