@@ -2832,13 +2832,13 @@
 								Omen
 								</td>
 								<td class='heavy_outline'>
-									{{ $character->getUnhealedTraumaAssignments()[i]->gotten_on_omen }}
+									{{ $character->getUnhealedTraumaAssignments()[$i]->gotten_on_omen }}
 								</td>
 								<td colspan='5' class='heavy_outline text_centered'>
 								Aantal
 								</td>
 								<td class='heavy_outline'>
-									{{ $character->getUnhealedTraumaAssignments()[i]->amount }}
+									{{ $character->getUnhealedTraumaAssignments()[$i]->amount }}
 								</td>
 							</tr>
 							<tr>
@@ -2846,7 +2846,7 @@
 								Hoe?
 								</td>
 								<td colspan='12' class='dashed_bottom ellipsis text_centered'>
-									{{ $character->getUnhealedTraumaAssignments()[i]->description }}
+									{{ $character->getUnhealedTraumaAssignments()[$i]->description }}
 								</td>
 							</tr>
 							<tr>
