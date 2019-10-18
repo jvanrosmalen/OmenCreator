@@ -44,7 +44,7 @@
 		
 			<div class='row'>
 				<div class='col-xs-2 col-xs-offset-2'>
-					Genezen op Omen <input class='input_number_field' name='healed_on_omen' type='number' min='1'>
+					Genezen op Omen <input class='input_number_field' name='healed_on_omen' type='number' min="{{$trauma->gotten_on_omen}}>
 				</div>
 				<div class='col-xs-6'>
 					<input name="healed_by" style="width: 100%;" placeholder="Genezen door" value="">
