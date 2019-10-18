@@ -68,16 +68,16 @@
 								<td class="col-xs-11">
 									<strong>
 										{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
-										<br>
-										&nbsp;&nbsp;<em>Nog niet genezen</em>
-									</strong>
+									</strong>	
+									<br>
+									&nbsp;&nbsp;<em>Nog niet genezen</em>
 								</td>
 								<td class="col-xs-1">
 									<a href="show_heal_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-xs heal-trauma-btn" data-toggle="tooltip" title="Genees Trauma">
 										<span class="glyphicon glyphicon-certificate"></span> 
 									</a>
 
-									<a href="remove_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+									<a href="delete_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
 										<span class=" glyphicon glyphicon-minus"></span> 
 									</a>
 								</td>
@@ -91,7 +91,7 @@
 									&nbsp;&nbsp;Genezen: {{$healedTrauma->healed_by}} (Omen {{$healedTrauma->healed_on_omen}})
 								</td>
 								<td class="col-xs-1">
-									<a href="remove_trauma/{{$healedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+									<a href="delete_trauma/{{$healedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
 		   								<span class=" glyphicon glyphicon-minus"></span> 
 		   							</a>
 								</td>

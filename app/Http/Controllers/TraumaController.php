@@ -52,4 +52,19 @@ class TraumaController extends Controller
         return view('trauma/showCharTraumaHealSuccessful', ['trauma'=> $trauma, 'character' => $character]);
     }
 
+    public function showDeleteTrauma($traumaId){
+        $trauma = Trauma::find($traumaId);
+        $character = Character::find($trauma->character_id);
+        return view('trauma/showDeleteTrauma', ['trauma' => $trauma, 'character' => $character]);
+    }
+
+    public function doDeleteTrauma(){
+        $traumaId = $_POST['traumaId'];
+        $traumaDescription = Trauma::find($traumaId)->description;
+        $character = Character::find($trauma->character_id);
+
+        $trauma->delete();
+
+        return view('trauma/showCharTraumaDeleteSuccessful', ['traumaDescription'=> $traumaDescription, 'character' => $character]);
+    }
 }
