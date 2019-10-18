@@ -13,7 +13,7 @@
 			<div class="col-xs-10 col-xs-offset-1"><h4>Trauma Genezen</h4></div>
         </div>
         <div class='row'>
-            <div class='col-xs-2 col-xs-offset-2'>
+            <div class='col-xs-8 col-xs-offset-2'>
                 Met betrekking tot onderstaande trauma:
             </div>
         </div>
