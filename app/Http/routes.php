@@ -151,7 +151,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('do_character_add_trauma/', 'TraumaController@doAddTrauma')->middleware('isStoryTelling');
 	Route::get('show_heal_trauma/{traumaId}', 'TraumaController@showHealTrauma')->middleware('isStoryTelling');
 	Route::post('do_character_heal_trauma', 'TraumaController@doHealTrauma')->middleware('isStoryTelling');
-	Route::get('delete_trauma/{$traumaId}', 'TraumaController@showDeleteTrauma')->middleware('isStoryTelling');
+	Route::get('show_delete_trauma/{traumaId}', 'TraumaController@showDeleteTrauma')->middleware('isStoryTelling');
 	Route::post('do_character_delete_trauma', 'TraumaController@doDeleteTrauma')->middleware('isStoryTelling');
 
 	Route::get('/show_raise_character/{charId?}', 'CharacterController@showRaiseCharacter')->middleware('isAdmin');

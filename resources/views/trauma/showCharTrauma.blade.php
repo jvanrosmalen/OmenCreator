@@ -77,7 +77,7 @@
 										<span class="glyphicon glyphicon-certificate"></span> 
 									</a>
 
-									<a href="delete_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+									<a href="show_delete_trauma/{{$unhealedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
 										<span class=" glyphicon glyphicon-minus"></span> 
 									</a>
 								</td>
@@ -91,7 +91,7 @@
 									&nbsp;&nbsp;Genezen: {{$healedTrauma->healed_by}} (Omen {{$healedTrauma->healed_on_omen}})
 								</td>
 								<td class="col-xs-1">
-									<a href="delete_trauma/{{$healedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+									<a href="show_delete_trauma/{{$healedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
 		   								<span class=" glyphicon glyphicon-minus"></span> 
 		   							</a>
 								</td>
