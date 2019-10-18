@@ -2831,13 +2831,13 @@
 								<td colspan='5' class='heavy_outline text_centered'>
 								Omen
 								</td>
-								<td class='heavy_outline'>
+								<td class='heavy_outline text_centered'>
 									{{ $character->getUnhealedTraumaAssignments()[$i]->gotten_on_omen }}
 								</td>
 								<td colspan='5' class='heavy_outline text_centered'>
 								Aantal
 								</td>
-								<td class='heavy_outline'>
+								<td class='heavy_outline text_centered'>
 									{{ $character->getUnhealedTraumaAssignments()[$i]->amount }}
 								</td>
 							</tr>
