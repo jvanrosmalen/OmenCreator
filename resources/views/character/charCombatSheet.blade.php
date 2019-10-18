@@ -2818,7 +2818,7 @@
 				<table>
 					<tr>
 						<td colspan='18' class='heavy_outline text_centered'>
-						Trauma Journaal
+						Ongenezen Trauma
 						</td>
 					</tr>
 
