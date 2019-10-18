@@ -81,6 +81,20 @@
 								</td>
 							</tr>
 						@endforeach
+						@foreach($character->getHealedTraumaAssignments() as $healedTrauma)
+							<tr>
+								<td class="col-xs-11">
+									{{$healedTrauma->description}} (Omen {{$healedTrauma->gotten_on_omen}})
+									<br>
+									&nbsp;&nbsp;{{$healedTrauma->healed_by}} (Omen {{$healedTrauma->healed_on_omen}})
+								</td>
+								<td class="col-xs-1">
+									<a href="remove_trauma/{{$healedTrauma->id}}" class="btn btn-default btn-danger btn-xs" data-toggle="tooltip" title="Verwijder Trauma">
+		   								<span class=" glyphicon glyphicon-minus"></span> 
+		   							</a>
+								</td>
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
