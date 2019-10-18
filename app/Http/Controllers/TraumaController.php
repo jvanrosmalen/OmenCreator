@@ -42,6 +42,7 @@ class TraumaController extends Controller
     public function doHealTrauma(){
         $traumaId = $_POST['traumaId'];
         $trauma = Trauma::find($traumaId);
+        $character = Character::find($trauma->character_id);
 
         $trauma->healed_on_omen = $_POST['healed_on_omen'];
         $trauma->healed_by = $_POST['healed_by'];
