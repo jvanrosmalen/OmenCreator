@@ -39,4 +39,16 @@ class TraumaController extends Controller
         return view('trauma/showHealTrauma', ['trauma' => $trauma, 'character' => $character]);
     }
 
+    public function doHealTrauma(){
+        $traumaId = $_POST['traumaId'];
+        $trauma = Trauma::find($traumaId);
+
+        $trauma->healed_on_omen = $_POST['healed_on_omen'];
+        $trauma->healed_by = $_POST['healed_by'];
+
+        $trauma->save();
+
+        return view('trauma/showCharTraumaHealSuccessful', ['trauma'=> $trauma, 'character' => $character]);
+    }
+
 }
