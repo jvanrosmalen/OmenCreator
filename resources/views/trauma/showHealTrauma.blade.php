@@ -8,28 +8,26 @@
 
 	<br>
 
-	<div class="row"></div>
-
 	<div class="row well">
 		<div class='row'>
 			<div class="col-xs-10 col-xs-offset-1"><h4>Trauma Genezen</h4></div>
         </div>
         <div class='row'>
-            Met betrekking tot onderstaande trauma:
+            <div class='col-xs-2 col-xs-offset-2'>
+                Met betrekking tot onderstaande trauma:
+            </div>
         </div>
         <div class='row'>
-                <em>
-                    <div class='col-xs-2 col-xs-offset-2'>
-                        Gekregen op Omen {{$trauma->gotten_on_omen}}
-                    </div>
-                    <div class='col-xs-6'>
-                        Met als reden: {{$trauma->description}}
-                    </div>
-                </em>
-			</div>
-			<br>
+            <em>
+                <div class='col-xs-2 col-xs-offset-2'>
+                    Gekregen op Omen {{$trauma->gotten_on_omen}}
+                </div>
+                <div class='col-xs-6'>
+                    Met als reden: {{$trauma->description}}
+                </div>
+            </em>
         </div>
-        <br>
+		<br>
 
         <div class='row'>
 			<div class="col-xs-10 col-xs-offset-1">Geef hieronder aan hoe het trauma van <label>{{ $character->name }}</label> genezen is en door wie.</div>
