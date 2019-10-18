@@ -33,4 +33,10 @@ class TraumaController extends Controller
         return view('trauma/showCharTraumaAddSuccessful', ['character' => $character]);
     }
 
+    public function showHealTrauma($traumaId){
+        $trauma = Trauma::find($traumaId);
+        $character = Character::find($traumaId->character_id);
+        return view('trauma/showHealTrauma', ['trauma' => $trauma, 'character' => $character]);
+    }
+
 }
