@@ -357,27 +357,32 @@
 					<table id="char_trauma_table" class="table table-fixedheader table-responsive table-condensed table-hover sortable">
 						<thead>
 							<tr>
-								<th class="col-xs-10">
-									Trauma
+								<th class="col-xs-12">
+									Beschrijving
 								</th>
 							</tr>
-							@foreach($character->trauma_assignments as $trauma)
-							<tr>
-								<table>
-									<tr>
-										<td>
-												
-										</td>
-										<td>
-										
-										</td>
-									</tr>
-								</table>
-							</tr>
-							@endforeach
 						</thead>
 						<tbody>
-
+							@foreach($character->getUnhealedTraumaAssignments() as $unhealedTrauma)
+								<tr>
+									<td class="col-xs-12">
+										<strong>
+											{{$unhealedTrauma->description}} (Omen {{$unhealedTrauma->gotten_on_omen}})
+										</strong>	
+										<br>
+										&nbsp;&nbsp;<em>Nog niet genezen</em>
+									</td>
+								</tr>
+							@endforeach
+							@foreach($character->getHealedTraumaAssignments() as $healedTrauma)
+								<tr>
+									<td class="col-xs-12">
+										{{$healedTrauma->description}} (Omen {{$healedTrauma->gotten_on_omen}})
+										<br>
+										&nbsp;&nbsp;Genezen: {{$healedTrauma->healed_by}} (Omen {{$healedTrauma->healed_on_omen}})
+									</td>
+								</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>			
