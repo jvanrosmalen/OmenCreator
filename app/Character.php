@@ -408,7 +408,9 @@ class Character extends Model
     	$retVal += $this->getSparkStatBonus(self::STAT_TRAUMA);
     
     	// Add any modifiers from skills
-    	$retVal += $this->getSkillStatBonus(self::STAT_TRAUMA);
+		$retVal += $this->getSkillStatBonus(self::STAT_TRAUMA);
+		
+		$retVal += count($this->getUnhealedTraumaAssignments());
     
     	return $retVal;
     }
