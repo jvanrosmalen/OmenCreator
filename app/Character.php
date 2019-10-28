@@ -252,7 +252,7 @@ class Character extends Model
 		$charLevel = 1; // default: Debutant
 		$ep_amount = $this->ep_amount;
 
-    	if( >= 24){
+    	if( $ep_amount >= 24){
     		if($ep_amount < 39 ){
     			$charLevel = 2; // Avonturier
     		}else if($ep_amount < 60){
