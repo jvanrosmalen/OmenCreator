@@ -75,7 +75,9 @@ var CreatePlayerCharBasicInfo = new function(){
     		}else {
     			charLevel = 4; // Held
     		}
-    	}
+		}
+		
+		return charLevel;
 	}
 	
 	self.handleSurvivedChange = function(event){

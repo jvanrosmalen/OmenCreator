@@ -161,7 +161,9 @@ var CreateCharacter = new function(){
     		}else {
     			charLevel = 4; // Held
     		}
-    	}
+		}
+		
+		return charLevel;
 	}
 
 	self.handleCharLevelChange = function(char_level){

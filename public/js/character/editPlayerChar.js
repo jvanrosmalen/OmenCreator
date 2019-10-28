@@ -83,7 +83,9 @@ var EditPlayerChar = new function(){
     		}else {
     			charLevel = 4; // Held
     		}
-    	}
+		}
+		
+		return charLevel;
 	}
 
 	// ***************************
