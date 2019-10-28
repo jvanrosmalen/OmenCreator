@@ -49,10 +49,10 @@ var EditPlayerChar = new function(){
 		self.updateAllForSpark();
 	}
 
-	self.handleSurvivedChange = function(event){
+	self.handleEpAmountChange = function(event){
 		event.preventDefault();
-		var nrSurvived = $(event.target).val();
-		var char_level = self.survivedToLevel(parseInt(nrSurvived));
+		var ep_amount = $(event.target).val();
+		var char_level = self.survivedToLevel(parseInt(ep_amount));
 		var old_char_level = $('#char_level').val();
 		
 		if(char_level != old_char_level){
@@ -65,19 +65,25 @@ var EditPlayerChar = new function(){
 		}
 	}
 
-	self.survivedToLevel = function(nrSurvived){
-		var retVal = 1;
-		if(nrSurvived >= 3){
-			if(nrSurvived < 8){
-				retVal = 2;
-			}else if(nrSurvived < 15){
-				retVal = 3;
-			}else {
-				retVal = 4;
-			}
-		}
-		
-		return retVal;
+	self.handleSurvivedChange = function(event){
+		event.preventDefault();
+		var nrSurvived = $(event.target).val();
+			
+		$("#overview_survived").html(nrSurvived);
+	}
+
+	self.EpToLevel = function(ep_amount){
+		var charLevel = 1; // default: Debutant
+
+    	if(ep_amount >= 24){
+    		if(ep_amount < 39 ){
+    			charLevel = 2; // Avonturier
+    		}else if(ep_amount < 60){
+    			charLevel = 3; // Veteraan
+    		}else {
+    			charLevel = 4; // Held
+    		}
+    	}
 	}
 
 	// ***************************

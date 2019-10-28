@@ -242,35 +242,38 @@ class Character extends Model
     }
     
     public function getCharLevelAttribute(){
-    	$nrSurvived = Character::find($this->id)->nr_events_survived;
-    	$charLevel = 1;
-
-    	if($nrSurvived >= 3){
-    		if($nrSurvived < 8){
-    			$charLevel = 2;
-    		}else if($nrSurvived < 15){
-    			$charLevel = 3;
-    		}else {
-    			$charLevel = 4;
-    		}
-    	}
+		$charLevelId = $this->getCharLevelId();
     	
-    	return SkillLevel::find($charLevel)->skill_level;
+    	return SkillLevel::find($charLevelId)->skill_level;
     }
     
     public function getCharLevelId(){
-    	$nrSurvived = Character::find($this->id)->nr_events_survived;
-    	$charLevel = 1;
-    	
-    	if($nrSurvived >= 3){
-    		if($nrSurvived < 8){
-    			$charLevel = 2;
-    		}else if($nrSurvived < 15){
-    			$charLevel = 3;
+		// Calculate according to EP amount, excluding decent EP.
+		$charLevel = 1; // default: Debutant
+		$ep_amount = $this->ep_amount;
+
+    	if( >= 24){
+    		if($ep_amount < 39 ){
+    			$charLevel = 2; // Avonturier
+    		}else if($ep_amount < 60){
+    			$charLevel = 3; // Veteraan
     		}else {
-    			$charLevel = 4;
+    			$charLevel = 4; // Held
     		}
     	}
+
+    	// $nrSurvived = Character::find($this->id)->nr_events_survived;
+    	// $charLevel = 1;
+    	
+    	// if($nrSurvived >= 3){
+    	// 	if($nrSurvived < 8){
+    	// 		$charLevel = 2;
+    	// 	}else if($nrSurvived < 15){
+    	// 		$charLevel = 3;
+    	// 	}else {
+    	// 		$charLevel = 4;
+    	// 	}
+    	// }
     	 
     	return $charLevel;
     }

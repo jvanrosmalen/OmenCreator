@@ -134,25 +134,37 @@ var CreateCharacter = new function(){
 		$('#'+table+' tbody tr').remove();
 	}
 	
-	self.survivedToLevel = function(nrSurvived){
-		var retVal = 1;
-		if(nrSurvived >= 3){
-			if(nrSurvived < 8){
-				retVal = 2;
-			}else if(nrSurvived < 15){
-				retVal = 3;
-			}else {
-				retVal = 4;
-			}
-		}
+	// 	**** No longer used ****
+	//  self.survivedToLevel = function(nrSurvived){
+	// 	var retVal = 1;
+	// 	if(nrSurvived >= 3){
+	// 		if(nrSurvived < 8){
+	// 			retVal = 2;
+	// 		}else if(nrSurvived < 15){
+	// 			retVal = 3;
+	// 		}else {
+	// 			retVal = 4;
+	// 		}
+	// 	}
 		
-		return retVal;
+	// 	return retVal;
+	// }
+
+	self.EpToLevel = function(ep_amount){
+		var charLevel = 1; // default: Debutant
+
+    	if(ep_amount >= 24){
+    		if(ep_amount < 39 ){
+    			charLevel = 2; // Avonturier
+    		}else if(ep_amount < 60){
+    			charLevel = 3; // Veteraan
+    		}else {
+    			charLevel = 4; // Held
+    		}
+    	}
 	}
-	
-	self.handleSurvivedChange = function(event){
-		event.preventDefault();
-		var nrSurvived = $(event.target).val();
-		var char_level = CreateCharacter.survivedToLevel(parseInt(nrSurvived));
+
+	self.handleCharLevelChange = function(char_level){
 		var old_char_level = $('#char_level').val();
 		
 		if(char_level != old_char_level){
@@ -164,10 +176,20 @@ var CreateCharacter = new function(){
 			createCharacterControl.updateSkillEP(0);
 			self.doHandleClassSelection();
 		}
-		
-		$("#overview_survived").html(nrSurvived);
 	}
 	
+	self.handleSurvivedChange = function(event){
+		event.preventDefault();
+		var nrSurvived = $(event.target).val();
+			
+		$("#overview_survived").html(nrSurvived);
+	}
+
+	self.handleEpAmountChange = function(ep_amount){
+		var char_level = CreateCharacter.EpToLevel(ep_amount);
+		self.handleCharLevelChange(char_level);
+	}
+
 	self.handleDescentSkills = function(data){
 		CreateCharacter.clearTable('descent_race_skill_options');
 		CreateCharacter.clearTable('descent_race_skill_selected');
@@ -406,7 +428,7 @@ var CreateCharacter = new function(){
 	
 	self.handleEpInput = function(event){
 		event.preventDefault();
-		var epAmount = $(event.target).val();
+		var epAmount = parseInt($(event.target).val());
 		var oldEpAmount = $('.spent_character_ep').data("ep_amount");
 		
 		// check if value not under spent EP
@@ -416,6 +438,8 @@ var CreateCharacter = new function(){
 			return;
 		}
 		
+		self.handleEpAmountChange(epAmount);
+
 		$(".total_character_ep").data("ep_amount", epAmount);
 		$(".total_character_ep").html(epAmount);
 		
